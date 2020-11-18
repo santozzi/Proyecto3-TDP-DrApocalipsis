@@ -1,5 +1,6 @@
 package niveles.fabricas;
 
+import java.awt.Point;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,42 +25,42 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 	@Override
 	public void primeraTanda() {
-		int posicionEnX;
-		int posicionEnY;
+		Point posicion;
 		Infectado nuevoInfectado;
 		Random random = new Random();
-		List<Integer> posicionesEnX = new LinkedList<Integer>();
-		List<Integer> posicionesEnY = new LinkedList<Integer>();
+		List<Point> posiciones = new LinkedList<Point>();
 		
 		for(int i=0 ; i<cantidadInfectados ; i++) {
 			
-			posicionEnX = asignarPosicionEnX(posicionesEnX, random.nextInt(Juego.ANCHO_DE_COMBATE), random);
-			posicionEnY = asignarPosicionEnY(posicionesEnY, random.nextInt(Juego.ALTO_DE_COMBATE), random);
+			posicion = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE), random.nextInt(Juego.ALTO_DE_COMBATE), random);
+			
+			posiciones.add(posicion);
 			
 			nuevoInfectado = new InfectadoAlpha(this.juego);
-			nuevoInfectado.getPosicion().x = posicionEnX + Juego.DECORADO_IZQUIERDO;
-			nuevoInfectado.getPosicion().y = posicionEnY;
+			nuevoInfectado.getPosicion().x = posicion.x + Juego.DECORADO_IZQUIERDO;
+			nuevoInfectado.getPosicion().y = posicion.y;
 			nuevoInfectado.getVector().setModulo(10 );
 			entidades.add(nuevoInfectado);
 		}
 	}
 
-	private int asignarPosicionEnX(List<Integer> posicionesEnX, int x, Random random) {
-		Iterator<Integer> itPosiciones;
-		int aRetornar;
-		int elem;
+	private Point asignarPosicion(List<Point> posiciones, int x, int y, Random random) {
+		Iterator<Point> itPosiciones;
+		Point aRetornar;
+		Point elem;
 		boolean estaInsertado = false;
-		itPosiciones = posicionesEnX.iterator();
+		itPosiciones = posiciones.iterator();
 		
 		while(itPosiciones.hasNext() && !estaInsertado) {
 			elem = itPosiciones.next();
-			estaInsertado = x <= (elem + ANCHO_INFECTADO*2) && x >= (elem - ANCHO_INFECTADO*2);
+			estaInsertado = (x <= (elem.x + ANCHO_INFECTADO) && x >= (elem.x - ANCHO_INFECTADO))
+					&& (y <= (elem.y + ALTO_INFECTADO) && y >= (elem.y - ALTO_INFECTADO));
 		}
 		
 		if(estaInsertado)
-			aRetornar = asignarPosicionEnX(posicionesEnX, random.nextInt(Juego.ANCHO_DE_COMBATE), random);
+			aRetornar = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE), random.nextInt(Juego.ALTO_DE_COMBATE), random);
 		else
-			aRetornar = x;
+			aRetornar = new Point(x, y);
 		
 		return aRetornar;
 	}
