@@ -147,7 +147,7 @@ public Mapa() {
 			//System.out.println("posicion en entidad: ("+entidad.getPosicion().x+";"+entidad.getPosicion().y+")");
 			etiquetaDeEntidad = new JLabel();
 			etiquetaDeEntidad.setBounds(
-					entidad.getPosicion().x, entidad.getPosicion().y,
+					entidad.getVector().getPosicion().x, entidad.getVector().getPosicion().y,
 					entidad.getImagen().getAncho(), entidad.getImagen().getAlto());
 			etiquetaDeEntidad.setIcon(entidad.getImagen().getImagen());
 			mapeoEntidades.put(entidad,etiquetaDeEntidad);
@@ -166,7 +166,7 @@ public Mapa() {
 
 		jugador.setIcon(juego.getJugador().getImagen().getImagen());
 
-		jugador.setBounds((int)juego.getJugador().getPosicion().getX(),(int)juego.getJugador().getPosicion().getY(),
+		jugador.setBounds(juego.getJugador().getVector().getPosicion().x,juego.getJugador().getVector().getPosicion().y,
 				juego.getJugador().getIma().getAncho(),
 				juego.getJugador().getIma().getAlto());
 
@@ -202,7 +202,7 @@ public Mapa() {
 			//System.out.println("posicion en entidad: ("+entidad.getPosicion().x+";"+entidad.getPosicion().y+")");
 			etiquetaDeEntidad = new JLabel();
 			etiquetaDeEntidad.setBounds(
-					entidad.getPosicion().x, entidad.getPosicion().y,
+					entidad.getVector().getPosicion().x, entidad.getVector().getPosicion().y,
 					entidad.getImagen().getAncho(), entidad.getImagen().getAlto());
 			etiquetaDeEntidad.setIcon(entidad.getImagen().getImagen());
 			mapeoEntidades.put(entidad,etiquetaDeEntidad);
@@ -220,7 +220,7 @@ public Mapa() {
 
 			lblEntidad.setIcon(entidad.getImagen().getImagen());
 
-			lblEntidad.setBounds(entidad.getPosicion().x,entidad.getPosicion().y,
+			lblEntidad.setBounds(entidad.getVector().getPosicion().x,entidad.getVector().getPosicion().y,
 					entidad.getImagen().getAncho(),
 					entidad.getImagen().getAlto());
 

@@ -4,11 +4,13 @@ import java.awt.Point;
 
 public class Vector {
 	protected Point direccion;
+	protected Point posicion;
 	protected int sentido;
 	protected int modulo;
 
 	public Vector(int x, int y,int modulo) {
 		this.direccion = new Point(x,y);
+		this.posicion = new Point();
 		this.sentido = 1;
 		this.modulo = modulo;
 
@@ -44,6 +46,11 @@ public class Vector {
 	public void setModulo(int modulo) {
 		this.modulo = modulo;
 	}
+	public void desplazarse() {
+	    posicion.x +=direccion.x;
+		posicion.y +=direccion.y;
+	}
+	
 	public void avanzarEnX() {
 
 		setX(getX()+sentido);
@@ -53,6 +60,14 @@ public class Vector {
 	}
 
 	public void cambioDeSentido() {
-		this.sentido= (-1)*this.sentido;
+	//	this.sentido= (-1)*this.sentido;
+		direccion.x *=-1;
+		direccion.y *=-1;
 	}   
+	public Point getPosicion() {
+		return posicion;
+	}
+	public Point getDireccion() {
+		return direccion;
+	}
 }

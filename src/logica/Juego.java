@@ -78,8 +78,8 @@ public class Juego implements IObservado{
 							int latencia = VELOCIDAD_MAXIMA/velocidad;
 
                           if(entidad!=jugador) {
-							if(entidad.getVector().getModulo()==lat.getLatencia()) {
-								System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
+							if(latencia==lat.getLatencia()) {
+							//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
 								entidad.desplazarse();
 								actualizarEntidad(entidad);
 								lat.reiniciarLatencia();

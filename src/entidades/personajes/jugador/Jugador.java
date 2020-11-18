@@ -25,8 +25,11 @@ public class Jugador extends Personaje{
 		this.energia = 100;
 		this.juego= juego;
 		imagen = new Imagen();
-		this.vector = new Vector(225,550,500);
-        this.posicion = new Point(225,550);
+		this.vector = new Vector(1,0,500);
+		this.vector.getPosicion().x=225;
+		this.vector.getPosicion().y=550;
+		
+       // this.posicion = new Point(225,550);
 		imagen.setAlto(50);
 		imagen.setAncho(30);
 		imagen.setImagen("Jugador_dispara");
@@ -43,7 +46,7 @@ public class Jugador extends Personaje{
 
 	@Override
 	public void desplazarse() {
-		// TODO Auto-generated method stub
+		vector.desplazarse();
 
 	}
 	public void detenerse() {
@@ -126,8 +129,8 @@ public class Jugador extends Personaje{
 		return this.vector;
 	}
 	public void desplazarseIzquierda() {
-		if(this.posicion.x>=Juego.DECORADO_IZQUIERDO) {
-		if(vector.getSentido()==1) {
+		if(this.vector.getPosicion().x>=Juego.DECORADO_IZQUIERDO) {
+		if(vector.getDireccion().x==1) {
 			vector.cambioDeSentido();
 
 
@@ -138,14 +141,13 @@ public class Jugador extends Personaje{
 			imagen.setImagen("Jugador_caminarIzquierda");
 
 		}
-		 this.posicion.x = this.posicion.x + vector.getSentido();
-		//vector.avanzarEnX();
+		desplazarse();
 		}
-		System.out.println(this.posicion.x);
+	
 	}
 	public void desplazarseDerecha() {
-		if(this.posicion.getX()<=Juego.ANCHO_DE_COMBATE+Juego.DECORADO_IZQUIERDO-30) {
-		if(vector.getSentido()==-1) {
+		if(this.vector.getPosicion().x<=Juego.ANCHO_DE_COMBATE+Juego.DECORADO_IZQUIERDO-30) {
+		if(vector.getDireccion().x==-1) {
 			vector.cambioDeSentido();
 		}
 		
@@ -156,9 +158,8 @@ public class Jugador extends Personaje{
 			imagen.setImagen("Jugador_caminarDerecha");
 		}
 		
-	    this.posicion.x = this.posicion.x + vector.getSentido();
+	    desplazarse();
 	    
-		//vector.avanzarEnX();
 	}
 	}
 	@Override
