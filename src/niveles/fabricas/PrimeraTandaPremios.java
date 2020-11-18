@@ -38,6 +38,7 @@ public class PrimeraTandaPremios extends PrimerTanda{
 	  }
 	  
 	}
+	
 	public List<Entidad> getEntidades(){
 		return entidades;
 	}
