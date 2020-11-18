@@ -65,25 +65,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		return aRetornar;
 	}
 	
-	private int asignarPosicionEnY(List<Integer> posicionesEnY, int y, Random random) {
-		Iterator<Integer> itPosiciones;
-		int aRetornar;
-		int elem;
-		boolean estaInsertado = false;
-		itPosiciones = posicionesEnY.iterator();
-		
-		while(itPosiciones.hasNext() && !estaInsertado) {
-			elem = itPosiciones.next();
-			estaInsertado = y <= (elem + ALTO_INFECTADO*2) && y >= (elem - ALTO_INFECTADO*2);
-		}
-		
-		if(estaInsertado)
-			aRetornar = asignarPosicionEnX(posicionesEnY, random.nextInt(Juego.ALTO_DE_COMBATE), random);
-		else
-			aRetornar = y;
-		
-		return aRetornar;
-	}
+	
 
 	@Override
 	public void segundaTanda() {
