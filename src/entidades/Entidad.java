@@ -29,6 +29,7 @@ abstract public class  Entidad {
 	abstract public void accionar();
 	abstract public Vector getVector();
 	abstract public Point getPosicion();
+	abstract public void detenerse();
 	
 
 }

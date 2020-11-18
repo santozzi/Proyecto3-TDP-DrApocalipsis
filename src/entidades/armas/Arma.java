@@ -2,7 +2,7 @@ package entidades.armas;
 
 import entidades.Entidad;
 
-public abstract class Arma extends Entidad{
+public abstract class Arma{
 /**
  * disparar
  * --------

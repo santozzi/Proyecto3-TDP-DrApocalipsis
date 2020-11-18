@@ -105,4 +105,10 @@ public class InfectadoBeta extends Infectado {
 		return posicion;
 	}
 
+	@Override
+	public void detenerse() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

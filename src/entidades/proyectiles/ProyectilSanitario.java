@@ -56,4 +56,10 @@ public class ProyectilSanitario extends Proyectil{
 		return null;
 	}
 
+	@Override
+	public void detenerse() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

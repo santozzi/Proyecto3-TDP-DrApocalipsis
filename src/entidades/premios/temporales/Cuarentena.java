@@ -61,4 +61,10 @@ public class Cuarentena extends Temporal{
 		return null;
 	}
 
+	@Override
+	public void detenerse() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

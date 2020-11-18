@@ -14,7 +14,7 @@ import logica.Juego;
 public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 	
 	public Nivel1InfectadosAlpha(Juego j) {
-		this(j, 50);
+		this(j, 20);
 	}
 
 	public Nivel1InfectadosAlpha(Juego j, int cantInfectados) {
@@ -32,7 +32,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		
 		for(int i=0 ; i<cantidadInfectados ; i++) {
 			
-			posicion = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE), random.nextInt(Juego.ALTO_DE_COMBATE), random);
+			posicion = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE), random.nextInt(Juego.ANCHO_DE_COMBATE), random);
 			
 			posiciones.add(posicion);
 			
@@ -41,7 +41,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			//nuevoInfectado.getVector().getDireccion().x=1;
 			nuevoInfectado.getVector().getPosicion().x = posicion.x + Juego.DECORADO_IZQUIERDO;
 			nuevoInfectado.getVector().getPosicion().y = posicion.y;
-			nuevoInfectado.getVector().setModulo(1000 );
+			nuevoInfectado.getVector().setModulo(50 );
 		//	nuevoInfectado.getVector().cambioDeSentido();
 			entidades.add(nuevoInfectado);
 		}
@@ -61,7 +61,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		}
 		
 		if(estaInsertado)
-			aRetornar = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE), random.nextInt(Juego.ALTO_DE_COMBATE), random);
+			aRetornar = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE), random.nextInt(Juego.ANCHO_DE_COMBATE), random);
 		else
 			aRetornar = new Point(x, y);
 		

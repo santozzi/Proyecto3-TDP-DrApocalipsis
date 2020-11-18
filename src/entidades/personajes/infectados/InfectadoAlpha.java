@@ -113,4 +113,10 @@ public class InfectadoAlpha extends Infectado{
 		return posicion;
 	}
 
+	@Override
+	public void detenerse() {
+		vector.setModulo(0);
+		
+	}
+
 }

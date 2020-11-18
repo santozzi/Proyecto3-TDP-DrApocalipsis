@@ -54,5 +54,11 @@ public class SuperProyectilSanitario extends Proyectil {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void detenerse() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
