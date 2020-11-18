@@ -30,7 +30,7 @@ package javazoom.jl.decoder;
  * @author	Mat McGowan 12/12/99 
  * @since	0.0.7
  */
-public class OutputChannels 
+public class OutputChannels
 {		
 	/**
 	 * Flag to indicate output should include both channels. 

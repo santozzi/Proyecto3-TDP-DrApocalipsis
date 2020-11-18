@@ -37,7 +37,7 @@ package javazoom.jl.decoder;
  * @author MDM	12/12/99
  */
 
-public class BitstreamException  extends JavaLayerException
+public class BitstreamException extends JavaLayerException
 	implements BitstreamErrors
 {	
 	private int errorcode = UNKNOWN_ERROR;

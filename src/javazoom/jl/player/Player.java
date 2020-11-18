@@ -50,7 +50,7 @@ public class Player
 	 * The MPEG audio bitstream. 
 	 */
 	// javac blank final bug. 
-	/*final*/  private Bitstream		bitstream;
+	/*final*/ private Bitstream		bitstream;
 	
 	/**
 	 * The MPEG audio decoder. 

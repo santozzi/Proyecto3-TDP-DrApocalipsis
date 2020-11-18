@@ -28,11 +28,8 @@ public class InfectadoAlpha extends Infectado{
 
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
-		this.vector = new Vector(0, -1, 20);
+		this.vector = new Vector(0, -1, 3);
 		this.energia = 100;
-		this.posicion = new Point();
-		this.imagen = new Imagen();
-		imagen.setImagen("InfectadoAlpha_golpear");
 
 		v = new VisitanteInfectadoAlpha(this);
 	}
@@ -79,7 +76,7 @@ public class InfectadoAlpha extends Infectado{
 
 	@Override
 	public void desplazarse() {
-		posicion.y++;
+		vector.avanzarEnY();
 		//pregunatar cuando se choca con el limite del mapa
 	}
 	@Override

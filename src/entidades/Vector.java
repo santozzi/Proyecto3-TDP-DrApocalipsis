@@ -5,7 +5,7 @@ import java.awt.Point;
 public class Vector {
 	protected Point direccion;
 	protected int sentido;
-	protected int modulo ;
+	protected int modulo;
 
 	public Vector(int x, int y,int modulo) {
 		this.direccion = new Point(x,y);
@@ -44,11 +44,10 @@ public class Vector {
 	public void setModulo(int modulo) {
 		this.modulo = modulo;
 	}
-	
 	public void avanzarEnX() {
+
 		setX(getX()+sentido);
 	}
-
 	public void avanzarEnY() {
 		setY(getY()+sentido);
 	}

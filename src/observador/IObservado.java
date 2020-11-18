@@ -22,5 +22,4 @@ public void eliminarObservador(IObservador obs);
  */
 public void notificarObservadores();
 
-
 }

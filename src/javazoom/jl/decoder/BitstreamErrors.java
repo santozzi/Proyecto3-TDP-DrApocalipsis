@@ -31,7 +31,7 @@ package javazoom.jl.decoder;
  * @since	0.0.6
  */
 
-public interface BitstreamErrors  extends JavaLayerErrors
+public interface BitstreamErrors extends JavaLayerErrors
 {
 	
 	/**

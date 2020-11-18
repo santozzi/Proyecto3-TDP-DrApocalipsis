@@ -19,7 +19,7 @@ public class Nivel1 extends Nivel{
 	@Override
 	public List<Entidad> primeraTanda() {
 		FabricaDeTandas  fdt = new PrimeraTandaPremios( juego); 
-		fdt.generar();
+		fdt.primeraTanda();
 	//	this.entidades = fdt.getEntidades();
 		return fdt.getEntidades();
 	}
