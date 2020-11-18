@@ -189,9 +189,12 @@ public Mapa() {
 			etiquetaDeEntidad.setBounds(
 				
 					
-					entidad.getVector().getPosicion().x, entidad.getVector().getPosicion().y,
-					entidad.getImagen().getAncho(), entidad.getImagen().getAlto());
+					entidad.getVector().getPosicion().x,
+					entidad.getVector().getPosicion().y,
+					entidad.getImagen().getAncho(),
+					entidad.getImagen().getAlto());
 			etiquetaDeEntidad.setIcon(entidad.getImagen().getImagen());
+			
 			mapeoEntidades.put(entidad,etiquetaDeEntidad);
 		    contenedor.add(etiquetaDeEntidad);
 		    getContentPane().add(lblFondo);
@@ -203,13 +206,18 @@ public Mapa() {
         JLabel lblEntidad = mapeoEntidades.get(entidad);
 
 		if(lblEntidad!=null) {
-
+            // esto es para que el infectado re aparezca por arriba una vez que salio del mapa
+			// hay que tener en cuenta que hacer con los premios
 			if(entidad.getVector().getPosicion().y>Juego.ALTO_DE_COMBATE) {
-				entidad.getVector().getPosicion().y=-entidad.getImagen().getAlto();
+				entidad.getVector().getPosicion().y =  Juego.limite-entidad.getImagen().getAlto();
 			}
+			
+			
 			lblEntidad.setIcon(entidad.getImagen().getImagen());
 
-			lblEntidad.setBounds(entidad.getVector().getPosicion().x,entidad.getVector().getPosicion().y,
+			lblEntidad.setBounds(
+					entidad.getVector().getPosicion().x,
+					entidad.getVector().getPosicion().y,
 					entidad.getImagen().getAncho(),
 					entidad.getImagen().getAlto());
 

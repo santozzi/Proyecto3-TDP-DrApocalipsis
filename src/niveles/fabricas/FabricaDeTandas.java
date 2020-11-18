@@ -11,8 +11,8 @@ public abstract class FabricaDeTandas {
 	protected Juego juego;
 	protected int cantidadInfectados;
 	protected LinkedList<Entidad> entidades;
-	public static final int ANCHO_INFECTADO = 40;
-	public static final int ALTO_INFECTADO = 60;
+	protected int anchoInfectado;
+	protected int altoInfectado ;
 	
 	abstract public void primeraTanda();
 	abstract public void segundaTanda();

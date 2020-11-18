@@ -19,10 +19,12 @@ public class Juego implements IObservado{
 	protected List<Latencia> entidadesParaRecorido;
 	protected List<Entidad> entidadesParaAgregar;
 	protected List<Entidad> entidadesParaQuitar;
+	
 
 	protected List<IObservador> observadores;
 	public static final int ANCHO_DE_COMBATE=444;
 	public static final int ALTO_DE_COMBATE=619;
+	public static int limite;
 	//public static final int DECORADO_IZQUIERDO=62;
 	//public static final int DECORADO_DERECHO=62;
 	public static final int DECORADO_IZQUIERDO=184;
@@ -34,6 +36,7 @@ public class Juego implements IObservado{
 	protected Jugador jugador;
 
 	public Juego() {
+		limite = Integer.MAX_VALUE;
 		observadores = new LinkedList<IObservador>();
 
 		jugador = new Jugador(this);
@@ -50,10 +53,10 @@ public class Juego implements IObservado{
 	}
 	public void hiloRecorredorDeEntidades() {
 		Thread hiloVerificar = new Thread(){
-        Iterator<Latencia> itLat ;
+      //  Iterator<Latencia> itLat ;
 			@Override 
 			public void run() {
-
+                
 				while(true) {
 					try {
 						Thread.sleep(VELOCIDAD_MINIMA);
@@ -80,6 +83,9 @@ public class Juego implements IObservado{
                           if(entidad!=jugador) {
 							if(latencia==lat.getLatencia()) {
 							//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
+								if(entidad.getVector().getPosicion().y<limite) {
+									limite = entidad.getVector().getPosicion().y;
+								}
 								entidad.desplazarse();
 								actualizarEntidad(entidad);
 								lat.reiniciarLatencia();

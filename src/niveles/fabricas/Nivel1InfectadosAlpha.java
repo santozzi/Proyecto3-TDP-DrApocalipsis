@@ -14,13 +14,14 @@ import logica.Juego;
 public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 	
 	public Nivel1InfectadosAlpha(Juego j) {
-		this(j, 20);
+		this(j, 30);
 	}
 
 	public Nivel1InfectadosAlpha(Juego j, int cantInfectados) {
 		this.juego = j;
 		this.entidades = new LinkedList<Entidad>();
 		this.cantidadInfectados = cantInfectados;
+		
 	}
 
 	@Override
@@ -36,13 +37,15 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			
 			posiciones.add(posicion);
 			
-			nuevoInfectado = new InfectadoAlpha(this.juego);
-		//	nuevoInfectado.getVector().getDireccion().y=0;
+ 			nuevoInfectado = new InfectadoAlpha(this.juego);
+ 			this.anchoInfectado = nuevoInfectado.getImagen().getAncho();
+ 			this.altoInfectado = nuevoInfectado.getImagen().getAlto();
+			//nuevoInfectado.getVector().getDireccion().y=1;
 			//nuevoInfectado.getVector().getDireccion().x=1;
-			nuevoInfectado.getVector().getPosicion().x = posicion.x + Juego.DECORADO_IZQUIERDO;
+			nuevoInfectado.getVector().getPosicion().x = posicion.x + Juego.DECORADO_IZQUIERDO-anchoInfectado;
 			nuevoInfectado.getVector().getPosicion().y = posicion.y;
-			nuevoInfectado.getVector().setModulo(50 );
-		//	nuevoInfectado.getVector().cambioDeSentido();
+			nuevoInfectado.getVector().setModulo(1000);
+			//nuevoInfectado.getVector().cambioDeSentido();
 			entidades.add(nuevoInfectado);
 		}
 	}
@@ -56,8 +59,8 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		
 		while(itPosiciones.hasNext() && !estaInsertado) {
 			elem = itPosiciones.next();
-			estaInsertado = (x <= (elem.x + ANCHO_INFECTADO) && x >= (elem.x - ANCHO_INFECTADO))
-					&& (y <= (elem.y + ALTO_INFECTADO) && y >= (elem.y - ALTO_INFECTADO));
+			estaInsertado = (x <= (elem.x + anchoInfectado) && x >= (elem.x - anchoInfectado))
+					&& (y <= (elem.y + anchoInfectado) && y >= (elem.y - altoInfectado));
 		}
 		
 		if(estaInsertado)
