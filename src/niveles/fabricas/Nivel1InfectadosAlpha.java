@@ -39,7 +39,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			nuevoInfectado = new InfectadoAlpha(this.juego);
 			nuevoInfectado.getPosicion().x = posicionEnX + Juego.DECORADO_IZQUIERDO;
 			nuevoInfectado.getPosicion().y = posicionEnY;
-			nuevoInfectado.getVector().setModulo(500);
+			nuevoInfectado.getVector().setModulo(10 );
 			entidades.add(nuevoInfectado);
 		}
 	}

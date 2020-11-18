@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,11 @@ import observador.IObservador;
 
 public class Juego implements IObservado{
 	protected Nivel nivel;
+
 	protected List<Latencia> entidadesParaRecorido;
+	protected List<Entidad> entidadesParaAgregar;
+	protected List<Entidad> entidadesParaQuitar;
+
 	protected List<IObservador> observadores;
 	public static final int ANCHO_DE_COMBATE=444;
 	public static final int ALTO_DE_COMBATE=619;
@@ -29,19 +34,26 @@ public class Juego implements IObservado{
 	protected Jugador jugador;
 
 	public Juego() {
+		observadores = new LinkedList<IObservador>();
+
 		jugador = new Jugador(this);
 		nivel = new Nivel1(this);
-		observadores = new LinkedList<IObservador>();
+
 		entidadesParaRecorido = new LinkedList<Latencia>();
-	    agregarEntidad(jugador);	
+		entidadesParaAgregar = new LinkedList<Entidad>();
+		entidadesParaQuitar = new LinkedList<Entidad>();
 		hiloRecorredorDeEntidades();
 
 	}
+	public void cargarJugador() {
+		 entidadesParaAgregar.add(jugador) ;	
+	}
 	public void hiloRecorredorDeEntidades() {
 		Thread hiloVerificar = new Thread(){
-
+        Iterator<Latencia> itLat ;
 			@Override 
 			public void run() {
+
 				while(true) {
 					try {
 						Thread.sleep(VELOCIDAD_MINIMA);
@@ -51,47 +63,78 @@ public class Juego implements IObservado{
 					}
 
 					notificarObservadores();
-					for(Latencia lat : entidadesParaRecorido) {
 
-						Entidad entidad = lat.getEntidad();
+
+					Entidad entidad;
+
+                    for(Latencia lat: entidadesParaRecorido){
+
+
+						 entidad = lat.getEntidad();
 						int velocidad = entidad.getVector().getModulo();
 						if(velocidad!=0) {
 							//velocidad cuanto mas cercano a uno sea mas rapido va a ir
 
 							int latencia = VELOCIDAD_MAXIMA/velocidad;
+
                           if(entidad!=jugador) {
-							if(latencia==lat.getLatencia()) {
+							if(entidad.getVector().getModulo()==lat.getLatencia()) {
+								System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
 								entidad.desplazarse();
+								actualizarEntidad(entidad);
 								lat.reiniciarLatencia();
 							}else {
 								lat.incrementarLatencia();
+								//
 							}
-                          }else {
-                        	  //si la entidad es jugador 
                           }
-							
-							
+
+
 
 
 						}
 					}
+                     for(Entidad entidadA : entidadesParaAgregar) {
+                    	 agregarEntidad(entidadA);
+                     }
+                     entidadesParaAgregar.clear();
+
+
 				}
 
 
 			}
+			public void agregarEntidad(Entidad entidad) {
+				entidadesParaRecorido.add(new Latencia(entidad));
+				notificarEntidad(entidad);
+				//System.out.println(entidadesParaRecorido.get(0).getEntidad());
+
+			}
+
+
+
 
 		};
 		hiloVerificar.start();
 
 	}
-	public void agregarEntidad(Entidad entidad) {
-		entidadesParaRecorido.add(new Latencia(entidad));
-		
-		
-	}
+
+
 	public void cargarNivel() {
 		for(Entidad entidad : nivel.primeraTanda()) {
-			agregarEntidad(entidad);
+			entidadesParaAgregar.add(entidad);
+
+		}
+	}
+	private void notificarEntidad(Entidad entidad) {
+		for(IObservador obs : observadores) {
+			obs.updateEntidades(entidad);
+		}
+
+	}
+	public void actualizarEntidad(Entidad entidad) {
+		for(IObservador obs : observadores) {
+			obs.updateEntidad(entidad);
 		}
 	}
 	public Jugador getJugador() {
@@ -119,5 +162,6 @@ public class Juego implements IObservado{
 		}
 
 	}
-	
+
+
 }
