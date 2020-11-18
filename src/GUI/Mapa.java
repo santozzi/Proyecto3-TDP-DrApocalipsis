@@ -138,23 +138,7 @@ public Mapa() {
 		juego.cargarJugador();
 		juego.cargarNivel();
 	}
-	private void pintarEntidades() {
-		Entidad entidad;
-        JLabel etiquetaDeEntidad;
 
-        for(Latencia latencia : juego.getLista()) {
-			entidad = latencia.getEntidad();
-			//System.out.println("posicion en entidad: ("+entidad.getPosicion().x+";"+entidad.getPosicion().y+")");
-			etiquetaDeEntidad = new JLabel();
-			etiquetaDeEntidad.setBounds(
-					entidad.getVector().getPosicion().x, entidad.getVector().getPosicion().y,
-					entidad.getImagen().getAncho(), entidad.getImagen().getAlto());
-			etiquetaDeEntidad.setIcon(entidad.getImagen().getImagen());
-			mapeoEntidades.put(entidad,etiquetaDeEntidad);
-		    contenedor.add(etiquetaDeEntidad);
-		}
-
-	}
 
 
 	public void cargarEntidades() {
@@ -201,7 +185,10 @@ public Mapa() {
 
 			//System.out.println("posicion en entidad: ("+entidad.getPosicion().x+";"+entidad.getPosicion().y+")");
 			etiquetaDeEntidad = new JLabel();
+			
 			etiquetaDeEntidad.setBounds(
+				
+					
 					entidad.getVector().getPosicion().x, entidad.getVector().getPosicion().y,
 					entidad.getImagen().getAncho(), entidad.getImagen().getAlto());
 			etiquetaDeEntidad.setIcon(entidad.getImagen().getImagen());
@@ -217,7 +204,9 @@ public Mapa() {
 
 		if(lblEntidad!=null) {
 
-
+			if(entidad.getVector().getPosicion().y>Juego.ALTO_DE_COMBATE) {
+				entidad.getVector().getPosicion().y=-entidad.getImagen().getAlto();
+			}
 			lblEntidad.setIcon(entidad.getImagen().getImagen());
 
 			lblEntidad.setBounds(entidad.getVector().getPosicion().x,entidad.getVector().getPosicion().y,
