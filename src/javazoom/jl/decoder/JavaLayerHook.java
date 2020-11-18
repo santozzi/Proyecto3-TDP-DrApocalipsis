@@ -26,7 +26,7 @@ import java.io.InputStream;
  * the way the JavaLayer library uses Resources. 
  */
 
-public interface JavaLayerHook 
+public interface JavaLayerHook
 {
 	/**
 	 * Retrieves the named resource. This allows resources to be

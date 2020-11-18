@@ -52,7 +52,7 @@ import java.io.PushbackInputStream;
  */
 public final class Bitstream implements BitstreamErrors
 {
-	/** 
+	/**
 	 * Synchronization control constant for the initial
 	 * synchronization to the start of a frame.
 	 */

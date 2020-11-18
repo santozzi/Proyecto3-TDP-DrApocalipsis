@@ -32,7 +32,7 @@ import java.io.PrintStream;
  * 
  * @author MDM
  */
-public class JavaLayerException extends Exception 
+public class JavaLayerException extends Exception
 {
 	
 	private Throwable		exception;

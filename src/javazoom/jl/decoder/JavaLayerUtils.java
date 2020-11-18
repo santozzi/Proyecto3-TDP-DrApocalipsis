@@ -35,7 +35,7 @@ import java.lang.reflect.Array;
  * 
  * @author MDM
  */
-public class JavaLayerUtils 
+public class JavaLayerUtils
 {
 	static private JavaLayerHook	hook = null;
 	

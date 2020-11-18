@@ -8,7 +8,7 @@ public class Imagen {
    
     private int ancho;
     private int alto;
-    private String nom ;
+    private String nom;
     private ImageIcon imagen;
     
     private Map<Integer,String> ruta;
@@ -31,12 +31,10 @@ public class Imagen {
 			ruta.put("nivel1".hashCode(),"/img/calle.jpg");
 			ruta.put("fondoPresentacion".hashCode(),"/img/drApocalipsis.png");
 			ruta.put("plagueInc".hashCode(), "/img/plagueInc.PNG");
-
 			ruta.put("mapaDerecha".hashCode(), "/img/baranda_der.jpg");
 			ruta.put("mapaIzquierda".hashCode(), "/img/baranda_izq.jpg");
 			ruta.put("fondoIzquierda".hashCode(), "/img/fondo_izq.jpg");
 			ruta.put("fondoDerecha".hashCode(), "/img/fondo_der.jpg");
-
 		
 		
 	}
