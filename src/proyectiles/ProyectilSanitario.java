@@ -1,4 +1,4 @@
-package entidades.armas;
+package entidades.proyectiles;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -11,18 +11,7 @@ import entidades.Entidad;
 import logica.Imagen;
 import visitor.Visitor;
 
-/**
- * Los proyectiles de esta arma causan mas daño
- * @author 
- *
- */
-public class SuperArmaSanitaria extends Arma{
-
-	@Override
-	public void disparar() {
-		// TODO Auto-generated method stub
-		
-	}
+public class ProyectilSanitario extends Proyectil{
 
 	@Override
 	public void accept(Visitor v) {

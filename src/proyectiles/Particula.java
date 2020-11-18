@@ -1,28 +1,18 @@
-package entidades.armas;
+package entidades.proyectiles;
 
 import java.awt.Point;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
-import entidades.Vector;
-
 import entidades.Entidad;
+import entidades.Vector;
 import logica.Imagen;
 import visitor.Visitor;
 
-/**
- * Los proyectiles de esta arma causan mas daño
- * @author 
- *
- */
-public class SuperArmaSanitaria extends Arma{
-
-	@Override
-	public void disparar() {
-		// TODO Auto-generated method stub
-		
-	}
+public class Particula extends Proyectil {
+	
+	protected int rango;
 
 	@Override
 	public void accept(Visitor v) {
@@ -43,7 +33,7 @@ public class SuperArmaSanitaria extends Arma{
 	}
 
 	@Override
-	public ArrayList<Entidad> detectarColisiones() {
+	public List<Entidad> detectarColisiones() {
 		// TODO Auto-generated method stub
 		return null;
 	}

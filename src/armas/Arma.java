@@ -1,10 +1,12 @@
-package armas;
+package entidades.armas;
 
-public abstract class Arma {
+import entidades.Entidad;
 
-	public void disparar() {
-		// TODO Auto-generated method stub
-		
-	}
-
+public abstract class Arma extends Entidad{
+/**
+ * disparar
+ * --------
+ * Es el encargado de generar nuevos proyectiles	
+ */
+abstract public void disparar();
 }
