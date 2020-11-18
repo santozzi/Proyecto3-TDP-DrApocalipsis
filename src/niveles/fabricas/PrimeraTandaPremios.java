@@ -13,7 +13,7 @@ import entidades.premios.temporales.Cuarentena;
 import logica.Juego;
 
 public class PrimeraTandaPremios extends PrimerTanda{
-    protected Juego juego;
+    protected Juego juego; 
 	protected List<Entidad> entidades;
 	public PrimeraTandaPremios(Juego juego) {
      this.juego= juego;
