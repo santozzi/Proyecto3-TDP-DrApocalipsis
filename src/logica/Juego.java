@@ -24,7 +24,7 @@ public class Juego implements IObservado{
 	protected List<IObservador> observadores;
 	public static final int ANCHO_DE_COMBATE=444;
 	public static final int ALTO_DE_COMBATE=619;
-	public static int limite;
+	public static int limite = ALTO_DE_COMBATE*3;
 	//public static final int DECORADO_IZQUIERDO=62;
 	//public static final int DECORADO_DERECHO=62;
 	public static final int DECORADO_IZQUIERDO=184;
@@ -36,7 +36,7 @@ public class Juego implements IObservado{
 	protected Jugador jugador;
 
 	public Juego() {
-		limite = Integer.MAX_VALUE;
+		
 		observadores = new LinkedList<IObservador>();
 
 		jugador = new Jugador(this);

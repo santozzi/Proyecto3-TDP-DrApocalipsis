@@ -3,10 +3,13 @@
 package GUI;
 
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.EventQueue;
-
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,18 +77,24 @@ public Mapa() {
 		getContentPane().setLayout(null);
 
 		mapeoEntidades = new HashMap<Entidad, JLabel>();
-
-
-
-
+		
+		/*
+		try {
+			AudioClip clip = Applet.newAudioClip(new URL("file: C:\\Users\\Lucio\\Desktop\\workspace\\Proyecto-3-TDP\\src\\audio\\Digadig.mp3"));
+			clip.play();
+			} catch (MalformedURLException murle) {
+			System.out.println(murle);
+			}
+		*/
+		
 		ap = new AudioPlayer("/audio/Digadig.mp3");
 		audio = new Thread(ap);
-		//audio.start();
+		audio.start();
 
 
 		setTitle("Juego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, Juego.DECORADO_IZQUIERDO+Juego.ANCHO_DE_COMBATE+Juego.DECORADO_DERECHO, 700);
+		setBounds(0, 0, Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20, Juego.ALTO_DE_COMBATE + 80);
 		contenedor = getContentPane();
 
 
