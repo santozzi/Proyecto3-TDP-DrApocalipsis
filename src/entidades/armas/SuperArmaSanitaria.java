@@ -1,6 +1,5 @@
 package entidades.armas;
 
-import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -37,7 +36,7 @@ public class SuperArmaSanitaria extends Arma{
 	}
 
 	@Override
-	public Imagen getImagen() {
+	public ImageIcon getImagen() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -56,12 +55,6 @@ public class SuperArmaSanitaria extends Arma{
 
 	@Override
 	public Vector getVector() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Point getPosicion() {
 		// TODO Auto-generated method stub
 		return null;
 	}
