@@ -2,18 +2,13 @@
 
 package GUI;
 
-
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.EventQueue;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,7 +16,6 @@ import javax.swing.JPanel;
 
 import audio.AudioPlayer;
 import entidades.Entidad;
-import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.jugador.Jugador;
 import entidades.personajes.jugador.comandos.CaminarDerecha;
 import entidades.personajes.jugador.comandos.CaminarIzquierda;
@@ -29,9 +23,8 @@ import entidades.personajes.jugador.comandos.Detenerse;
 import entidades.personajes.jugador.comandos.Disparar;
 import entidades.personajes.jugador.comandos.IComando;
 import entidades.personajes.jugador.controles.Teclado;
-import logica.Imagen;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
-import logica.Latencia;
 import observador.IObservador;
 
 import javax.swing.JLabel;
@@ -40,18 +33,16 @@ import javax.swing.JProgressBar;
 public class Mapa  extends JFrame implements IObservador{
 
 	private Container contenedor;
-	private JLabel lblNewLabel;
 	protected Juego juego;
 	protected JLabel jugador;
 	protected JPanel pnlAreaDeJuego;
 	protected JLabel lblFondo;
+	protected JPanel panelFondo;
 	protected Teclado teclado;
 
 	private Thread audio;
 	private AudioPlayer ap;
 	private Map<Entidad,JLabel> mapeoEntidades;
-	private Entidad ent1;
-	private Entidad ent2;
 
 	/**
 	 * Launch the application.
@@ -99,10 +90,7 @@ public Mapa() {
 		contenedor = getContentPane();
 
 
-		Imagen imagendDeFondo = new Imagen();
-		imagendDeFondo.setAlto(619);
-		imagendDeFondo.setAncho(454);
-		imagendDeFondo.setImagen("nivel1");
+		ImageIcon imagendDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("nivel1");
 
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setForeground(new Color(124, 252, 0));
@@ -110,8 +98,10 @@ public Mapa() {
 		progressBar.setBounds(289, 620, 155, 33);
 		getContentPane().add(progressBar);
 
-		lblFondo = new JLabel(imagendDeFondo.getImagen());
+		lblFondo = new JLabel(imagendDeFondo);
+		//panelFondo = new JPanel();
 		lblFondo.setBounds(Juego.DECORADO_IZQUIERDO, 0, Juego.ANCHO_DE_COMBATE, Juego.ALTO_DE_COMBATE);
+		//panelFondo.setBounds(Juego.DECORADO_IZQUIERDO, 0, Juego.ANCHO_DE_COMBATE, Juego.ALTO_DE_COMBATE);
 
 
 
@@ -119,29 +109,19 @@ public Mapa() {
 		JLabel lblMapaDerecha = new JLabel("");
 		lblMapaDerecha.setBounds(Juego.ANCHO_DE_COMBATE+Juego.DECORADO_IZQUIERDO, 0, Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
 
-		Imagen barandaDerecha = new Imagen();
-		barandaDerecha.setAlto(Juego.ALTO_DE_COMBATE);
-		barandaDerecha.setAncho(Juego.DECORADO_DERECHO);
+		ImageIcon barandaDerecha = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoDerecha");
 
-
-		barandaDerecha.setImagen("fondoDerecha");
-
-
-
-		lblMapaDerecha.setIcon(barandaDerecha.getImagen());
+		lblMapaDerecha.setIcon(barandaDerecha);
 		getContentPane().add(lblMapaDerecha);
 
 		JLabel lblMapaIzquierda = new JLabel("");
 		lblMapaIzquierda.setBounds(0, 0, Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
-		Imagen barandaIzquierda = new Imagen();
-		barandaIzquierda.setAlto(Juego.ALTO_DE_COMBATE);
-		barandaIzquierda.setAncho(Juego.DECORADO_IZQUIERDO);
+		ImageIcon barandaIzquierda = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoIzquierda");
 
 		//barandaIzquierda.setImagen("mapaIzquierda");
-		barandaIzquierda.setImagen("fondoIzquierda");
 
 
-		lblMapaIzquierda.setIcon(barandaIzquierda.getImagen());
+		lblMapaIzquierda.setIcon(barandaIzquierda);
 		getContentPane().add(lblMapaIzquierda);
 
 		juego.agregarObservador(this);
@@ -158,11 +138,11 @@ public Mapa() {
 		if(jugador!=null) {
 
 
-		jugador.setIcon(juego.getJugador().getImagen().getImagen());
+		jugador.setIcon(juego.getJugador().getImagen());
 
 		jugador.setBounds(juego.getJugador().getVector().getPosicion().x,juego.getJugador().getVector().getPosicion().y,
-				juego.getJugador().getIma().getAncho(),
-				juego.getJugador().getIma().getAlto());
+				juego.getJugador().getImagen().getIconWidth(),
+				juego.getJugador().getImagen().getIconHeight());
 
 		jugador.updateUI();
 		}
@@ -208,13 +188,14 @@ public Mapa() {
 					
 					entidad.getVector().getPosicion().x,
 					entidad.getVector().getPosicion().y,
-					entidad.getImagen().getAncho(),
-					entidad.getImagen().getAlto());
-			etiquetaDeEntidad.setIcon(entidad.getImagen().getImagen());
+					entidad.getImagen().getIconWidth(),
+					entidad.getImagen().getIconHeight());
+			etiquetaDeEntidad.setIcon(entidad.getImagen());
 			
 			mapeoEntidades.put(entidad,etiquetaDeEntidad);
 		    contenedor.add(etiquetaDeEntidad);
 		    getContentPane().add(lblFondo);
+		    //getContentPane().add(panelFondo);
 
 	}
 
@@ -226,17 +207,17 @@ public Mapa() {
             // esto es para que el infectado re aparezca por arriba una vez que salio del mapa
 			// hay que tener en cuenta que hacer con los premios
 			if(entidad.getVector().getPosicion().y>Juego.ALTO_DE_COMBATE) {
-				entidad.getVector().getPosicion().y =  Juego.limite-entidad.getImagen().getAlto();
+				entidad.getVector().getPosicion().y =  Juego.limite-entidad.getImagen().getIconHeight();
 			}
 			
 			
-			lblEntidad.setIcon(entidad.getImagen().getImagen());
+			lblEntidad.setIcon(entidad.getImagen());
 
 			lblEntidad.setBounds(
 					entidad.getVector().getPosicion().x,
 					entidad.getVector().getPosicion().y,
-					entidad.getImagen().getAncho(),
-					entidad.getImagen().getAlto());
+					entidad.getImagen().getIconWidth(),
+					entidad.getImagen().getIconHeight());
 
 			lblEntidad.updateUI();
 		}

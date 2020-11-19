@@ -13,7 +13,6 @@ import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
 import entidades.proyectiles.Particula;
 import entidades.Entidad;
-import logica.Imagen;
 import logica.Juego;
 import visitor.VisitanteInfectadoAlpha;
 import visitor.VisitanteInfectadoBeta;

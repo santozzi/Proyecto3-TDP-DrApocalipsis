@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+
 import entidades.Entidad;
 import entidades.Vector;
 import entidades.personajes.Personaje;
@@ -12,7 +14,7 @@ import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
 import entidades.proyectiles.Particula;
-import logica.Imagen;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteInfectadoAlpha;
 import visitor.Visitor;
@@ -39,7 +41,8 @@ public abstract class Infectado extends Personaje {
 	 * Genera daño a lo que tenga adelante.
 	 */
 	public void atacar() {
-		imagen.setImagen("infectado_atacar");
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("infectado_atacar");
+		
 		v.visitarJugador(juego.getJugador());
 	}
 
@@ -76,7 +79,8 @@ public abstract class Infectado extends Personaje {
 	abstract public void accept(Visitor v);
 	//	v.visitarInfectadoAlpha(this);
 	
-	public Imagen getImagen() {
+	@Override
+	public ImageIcon getImagen() {
 		return imagen;
 	}
     

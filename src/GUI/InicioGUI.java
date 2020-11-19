@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import logica.Imagen;
+import logica.ColeccionDeImagenes;
 
 import javax.swing.JLabel;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -67,12 +69,7 @@ public class InicioGUI extends JFrame {
 
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setBounds(0, 305, 54, 77);
-		Imagen logoInc = new Imagen();
-		int x = 50;
-		logoInc.setAncho(x);
-		logoInc.setAlto((int)(x*1.26));
-		logoInc.setImagen("plagueInc");
-		lblLogo.setIcon(logoInc.getImagen());
+		ImageIcon logoInc = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("plagueInc");
 
 		contentPane.add(lblLogo);
 		cargarFondo();
@@ -81,12 +78,8 @@ public class InicioGUI extends JFrame {
 	private void cargarFondo() {
 		JLabel lblFondo = new JLabel("");
 
-		Imagen imagenDeFondo = new Imagen();
-		imagenDeFondo.setAncho(getWidth());
-		imagenDeFondo.setAlto(getHeight());
-		imagenDeFondo.setImagen("fondoPresentacion");
+		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoPresentacion");
 		lblFondo.setBounds(0, 0, getWidth(), getHeight());
-		lblFondo.setIcon(imagenDeFondo.getImagen());
 		contentPane.add(lblFondo);
 
 

@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import entidades.Vector;
 
 import entidades.Entidad;
-import logica.Imagen;
 import logica.Juego;
 import visitor.Visitor;
 

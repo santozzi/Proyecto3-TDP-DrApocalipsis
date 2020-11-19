@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 import entidades.Vector;
 
 import entidades.Entidad;
-import logica.Imagen;
 import visitor.Visitor;
 
 public class SuperArma extends Temporal{
@@ -32,7 +31,7 @@ public class SuperArma extends Temporal{
 	}
 
 	@Override
-	public Imagen getImagen() {
+	public ImageIcon getImagen() {
 		// TODO Auto-generated method stub
 		return null;
 	}

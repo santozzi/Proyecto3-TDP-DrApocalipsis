@@ -10,7 +10,7 @@ import entidades.Vector;
 import entidades.armas.*;
 import entidades.personajes.Personaje;
 import entidades.Entidad;
-import logica.Imagen;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
 import logica.Latencia;
 import visitor.VisitanteJugador;
@@ -24,17 +24,17 @@ public class Jugador extends Personaje{
 	public Jugador(Juego juego) {
 		this.energia = 100;
 		this.juego= juego;
-		imagen = new Imagen();
 		this.vector = new Vector(1,0,500);
 		this.vector.getPosicion().x=225;
 		this.vector.getPosicion().y=550;
+		this.claveImagen = new String("Jugador_dispara");
 		
        // this.posicion = new Point(225,550);
 		//imagen.setAlto(50);
 		//imagen.setAncho(30);
-		imagen.setAlto(70);
-		imagen.setAncho(50);
-		imagen.setImagen("Jugador_dispara");
+		
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
+		
 		v = new VisitanteJugador(this);
 
 		arma = new ArmaSanitaria(juego);
@@ -52,12 +52,9 @@ public class Jugador extends Personaje{
 
 	}
 	public void detenerse() {
-		if(!imagen.getNom().equals("Jugador_dispara") && !imagen.getNom().equals("recargar")) {
-			//imagen.setAlto(50);
-			//imagen.setAncho(30);
-			imagen.setAlto(70);
-			imagen.setAncho(50);
-			imagen.setImagen("Jugador_dispara");
+		if(!this.claveImagen.equals("Jugador_dispara") && !this.claveImagen.equals("recargar")) {
+			this.claveImagen = "Jugador_dispara";
+			imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		}
 
 	}
@@ -98,12 +95,8 @@ public class Jugador extends Personaje{
 	}
 
 	@Override
-	public Imagen getImagen() {
+	public ImageIcon getImagen() {
 
-		return imagen;
-	}
-	//es para probar despues se borra
-	public Imagen getIma() {
 		return imagen;
 	}
 	@Override
@@ -137,12 +130,10 @@ public class Jugador extends Personaje{
 		if(vector.getDireccion().x==1) {
 			vector.cambioDeSentido();
 
-
 		}
-		if(!imagen.getNom().equals("Jugador_caminarIzquierda")) {
-			imagen.setAlto(70);
-			imagen.setAncho(50);
-			imagen.setImagen("Jugador_caminarIzquierda");
+		if(!this.claveImagen.equals("Jugador_caminarIzquierda")) {
+			this.claveImagen = "Jugador_caminarIzquierda";
+			imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 
 		}
 		desplazarse();
@@ -156,10 +147,9 @@ public class Jugador extends Personaje{
 		}
 		
 		
-		if(!imagen.getNom().equals("Jugador_caminarDerecha")) {
-			imagen.setAlto(70);
-			imagen.setAncho(50);
-			imagen.setImagen("Jugador_caminarDerecha");
+		if(!this.claveImagen.equals("Jugador_caminarDerecha")) {
+			this.claveImagen = "Jugador_caminarDerecha";
+			imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		}
 		
 	    desplazarse();
@@ -172,9 +162,9 @@ public class Jugador extends Personaje{
 	}
 	public void disparar() {
 		arma.disparar();
-		imagen.setAlto(70);
-		imagen.setAncho(50);
-		imagen.setImagen("recargar");
+		this.claveImagen = "recargar";
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
+		imagen.getImage().flush();
 	}
 
 }

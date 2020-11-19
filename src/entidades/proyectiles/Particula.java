@@ -7,21 +7,19 @@ import javax.swing.ImageIcon;
 
 import entidades.Entidad;
 import entidades.Vector;
-import logica.Imagen;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.Visitor;
 
 public class Particula extends Proyectil{
 
 	protected int velocidad;
-	protected Imagen imagen; 
 	
 	public Particula(Juego juego) {
-		imagen = new Imagen();
 		this.vector = new Vector(225,550,500);
 		
         this.juego = juego;
-		imagen.setImagen("Jeringa2.png");
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("Jeringa2.png");
 		//v = new VisitanteParticula(this);	
 	}
 	
@@ -38,7 +36,7 @@ public class Particula extends Proyectil{
 	}
 
 	@Override
-	public Imagen getImagen() {
+	public ImageIcon getImagen() {
 		// TODO Auto-generated method stub
 		return null;
 	}

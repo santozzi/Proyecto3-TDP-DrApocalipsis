@@ -13,7 +13,7 @@ import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
 import entidades.proyectiles.Particula;
 import entidades.Entidad;
-import logica.Imagen;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.*;
 import visitor.Visitor;
@@ -31,8 +31,7 @@ public class InfectadoAlpha extends Infectado{
 		this.vector = new Vector(0, 1, 1000);
 		this.energia = 80;
 		this.posicion = new Point();
-		this.imagen = new Imagen();
-		imagen.setImagen("InfectadoAlpha_golpear");
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("InfectadoAlpha_golpear");
 
 		v = new VisitanteInfectadoAlpha(this);
 	}

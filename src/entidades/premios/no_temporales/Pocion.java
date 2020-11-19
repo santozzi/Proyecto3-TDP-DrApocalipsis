@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 import entidades.Vector;
 
 import entidades.Entidad;
-import logica.Imagen;
 import visitor.Visitor;
 
 public class Pocion extends NoTemporal {
@@ -32,7 +31,7 @@ public class Pocion extends NoTemporal {
 	}
 
 	@Override
-	public Imagen getImagen() {
+	public ImageIcon getImagen() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -10,29 +10,26 @@ import javax.swing.ImageIcon;
 import entidades.Vector;
 import entidades.personajes.jugador.Jugador;
 import entidades.Entidad;
-import logica.Imagen;
+import logica.ColeccionDeImagenes;
 import visitor.VisitanteJugador;
 import visitor.Visitor;
 
 public class ProyectilSanitario extends Proyectil{
 
-	protected Imagen imagen;
 	protected int letalidad;
 	protected int velocidad;
 	protected Jugador jugador;
 	//constructor crear un vector con los datos, recibe a juego
 	
 	public ProyectilSanitario(Juego juego) {
-		imagen = new Imagen();
 		this.vector = new Vector(0,-1,1000);
 		jugador= juego.getJugador();
-		vector.getPosicion().x= jugador.getVector().getPosicion().x+15;
+		vector.getPosicion().x= jugador.getVector().getPosicion().x+24;
 		vector.getPosicion().y= jugador.getVector().getPosicion().y-15;
-		imagen.setImagen("proyectilSanitario");
-		imagen.setAncho(20);
-		imagen.setAlto(50);
-		Image newImg = imagen.getImagen().getImage().getScaledInstance(imagen.getAncho(), imagen.getAlto(), Image.SCALE_SMOOTH);
-		imagen.getImagen().setImage(newImg);
+		//Image newImg = imagen.getImagen().getImage().getScaledInstance(imagen.getAncho(), imagen.getAlto(), Image.SCALE_SMOOTH);
+		//imagen.getImagen().setImage(newImg);
+		
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("proyectilSanitario");
 		juego.agregarAEntidadesParaAgregar(this);
 		//v = new VisitanteProyectil(this);
 	}
@@ -49,8 +46,8 @@ public class ProyectilSanitario extends Proyectil{
 		
 	}
 
-
-	public Imagen getImagen() {
+	@Override
+	public ImageIcon getImagen() {
 		return imagen;
 	}
 

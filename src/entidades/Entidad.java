@@ -1,12 +1,11 @@
 package entidades;
 
 import java.awt.Point;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 
-import logica.Imagen;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.Visitante;
 import visitor.Visitor;
@@ -19,12 +18,13 @@ abstract public class  Entidad {
 	protected Vector vector;
 	protected Point posicion;
 	protected Juego juego;
-	protected Imagen imagen;
+	protected ImageIcon imagen;
+	protected String claveImagen;
 
 
 	abstract public void accept(Visitor v);
 	abstract public void desplazarse();
-	abstract public Imagen getImagen();
+	abstract public ImageIcon getImagen();
 	abstract public List<Entidad> detectarColisiones();
 	abstract public void accionar();
 	abstract public Vector getVector();
