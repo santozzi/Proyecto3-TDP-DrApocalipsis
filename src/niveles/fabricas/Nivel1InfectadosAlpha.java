@@ -14,7 +14,7 @@ import logica.Juego;
 public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 	
 	public Nivel1InfectadosAlpha(Juego j) {
-		this(j, 10);
+		this(j, 90);
 	}
 
 	public Nivel1InfectadosAlpha(Juego j, int cantInfectados) {
