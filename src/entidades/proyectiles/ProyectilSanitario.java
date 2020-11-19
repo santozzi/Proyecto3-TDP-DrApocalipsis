@@ -13,7 +13,6 @@ import visitor.Visitor;
 
 public class ProyectilSanitario extends Proyectil{
 
-	
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
@@ -54,12 +53,6 @@ public class ProyectilSanitario extends Proyectil{
 	public Point getPosicion() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void detenerse() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
