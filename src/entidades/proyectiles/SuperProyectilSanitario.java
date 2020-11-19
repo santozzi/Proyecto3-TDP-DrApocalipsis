@@ -1,5 +1,6 @@
 package entidades.proyectiles;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -25,7 +26,7 @@ public class SuperProyectilSanitario extends Proyectil {
 	}
 
 	@Override
-	public ImageIcon getImagen() {
+	public Imagen getImagen() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,6 +47,18 @@ public class SuperProyectilSanitario extends Proyectil {
 	public Vector getVector() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Point getPosicion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void detenerse() {
+		// TODO Auto-generated method stub
+		
 	}
     
 }

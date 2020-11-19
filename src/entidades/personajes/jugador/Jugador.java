@@ -35,7 +35,7 @@ public class Jugador extends Personaje{
 		imagen.setImagen("Jugador_dispara");
 		v = new VisitanteJugador(this);
 
-		arma = new ArmaSanitaria();
+		arma = new ArmaSanitaria(juego);
 	}
 
 	@Override
@@ -165,6 +165,9 @@ public class Jugador extends Personaje{
 	@Override
 	public Point getPosicion() {
 		return posicion;
+	}
+	public void disparar() {
+		arma.disparar();
 	}
 
 }

@@ -13,7 +13,8 @@ public class Vector {
 		this.posicion = new Point();
 		this.sentido = 1;
 		this.modulo = modulo;
-
+		
+		
 	}
 
 	public int getX() {

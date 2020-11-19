@@ -29,7 +29,7 @@ public class InfectadoAlpha extends Infectado{
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
 		this.vector = new Vector(0, 1, 1000);
-		this.energia = 100;
+		this.energia = 80;
 		this.posicion = new Point();
 		this.imagen = new Imagen();
 		imagen.setImagen("InfectadoAlpha_golpear");
@@ -46,77 +46,12 @@ public class InfectadoAlpha extends Infectado{
 	public void duplicarVelocidad() {
 		vector.setModulo(vector.getModulo()*2);
 	}
-	@Override
-	public void tirarParticula() {
-		particula = new Particula();
-	}
 
-	@Override
-	public void atacar() {
-		imagen.setImagen("infectado_atacar");
-		v.visitarJugador(juego.getJugador());
-	}
-
-	@Override
-	public void dejarCaerPremio() {
-		Random random = new Random();
-		int randomInt = random.nextInt(3);
-
-		if(randomInt == 0)
-			premio = new SuperArma();
-		else if(randomInt == 1)
-			premio = new Cuarentena();
-		else
-			premio = new Pocion();
-		
-		premio.getPosicion().setLocation(posicion);
-	}
-
-	@Override
-	public boolean estaMuerto() {
-		return energia<=0;
-	}
-
-	@Override
-	public void desplazarse() {
-		//this.posicion.y++;
-		this.vector.desplazarse();
-		//pregunatar cuando se choca con el limite del mapa
-	}
 	@Override
 	public void accept(Visitor v) {
-		v.visitarInfectadoAlpha(this);
-	}
-	@Override
-	public Imagen getImagen() {
-		return imagen;
-	}
-	@Override
-	public ArrayList<Entidad> detectarColisiones() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void accionar() {
-		for(Entidad ent : detectarColisiones()) {
-			//visitor
-			ent.accept(v);
-		}
-	}
-	@Override
-	public Vector getVector() {
-		return vector;
-	}
-
-	@Override
-	public Point getPosicion() {
-		return posicion;
-	}
-
-	@Override
-	public void detenerse() {
-		vector.setModulo(0);
 		
 	}
+	
 
 }

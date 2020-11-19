@@ -35,6 +35,7 @@ public class Imagen {
 			ruta.put("mapaIzquierda".hashCode(), "/img/baranda_izq.jpg");
 			ruta.put("fondoIzquierda".hashCode(), "/img/fondo_izq.jpg");
 			ruta.put("fondoDerecha".hashCode(), "/img/fondo_der.jpg");
+			ruta.put("proyectilSanitario".hashCode(), "/img/Jeringa2.png");
 		
 		
 	}
@@ -58,7 +59,7 @@ public class Imagen {
 	}
 	public void setImagen(String personaje) {
         this.nom = personaje;
-        System.out.println(this.ruta.get(personaje.hashCode()));
+       // System.out.println(this.ruta.get(personaje.hashCode()));
 		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource(this.ruta.get(personaje.hashCode())));
 	   	this.imagen.setImage(imageIcon.getImage().getScaledInstance(ancho, alto,0));
 	   

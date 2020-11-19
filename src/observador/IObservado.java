@@ -1,5 +1,7 @@
 package observador;
 
+import entidades.Entidad;
+
 public interface IObservado {
 /**
  * agregarObservador
@@ -21,5 +23,7 @@ public void eliminarObservador(IObservador obs);
  * Notifica a todos los observadores de la coleccion
  */
 public void notificarObservadores();
+public void notificarEntidad(Entidad entidad);
+public void actualizarEntidad(Entidad entidad);
 
 }

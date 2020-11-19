@@ -31,7 +31,7 @@ public class Juego implements IObservado{
 	public static final int DECORADO_DERECHO=184;
 
 
-	protected static final int VELOCIDAD_MINIMA=10;
+	protected static final int VELOCIDAD_MINIMA=5;
 	protected static final int VELOCIDAD_MAXIMA=1000;
 	protected Jugador jugador;
 
@@ -45,6 +45,7 @@ public class Juego implements IObservado{
 		entidadesParaRecorido = new LinkedList<Latencia>();
 		entidadesParaAgregar = new LinkedList<Entidad>();
 		entidadesParaQuitar = new LinkedList<Entidad>();
+		
 		hiloRecorredorDeEntidades();
 
 	}
@@ -64,7 +65,7 @@ public class Juego implements IObservado{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
+                    
 					notificarObservadores();
 
 
@@ -83,10 +84,13 @@ public class Juego implements IObservado{
                           if(entidad!=jugador) {
 							if(latencia==lat.getLatencia()) {
 							//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
-								if(entidad.getVector().getPosicion().y<limite) {
+								
+								if(entidad.getVector().getPosicion().y<limite&&entidad.getVector().getPosicion().y<0) {
 									limite = entidad.getVector().getPosicion().y;
 								}
+								
 								entidad.desplazarse();
+								
 								actualizarEntidad(entidad);
 								lat.reiniciarLatencia();
 							}else {
@@ -104,6 +108,11 @@ public class Juego implements IObservado{
                     	 agregarEntidad(entidadA);
                      }
                      entidadesParaAgregar.clear();
+                     
+                     for(Entidad entidadA : entidadesParaQuitar) {
+                    	 agregarEntidad(entidadA);
+                     }
+                     entidadesParaQuitar.clear();
 
 
 				}
@@ -113,13 +122,9 @@ public class Juego implements IObservado{
 			public void agregarEntidad(Entidad entidad) {
 				entidadesParaRecorido.add(new Latencia(entidad));
 				notificarEntidad(entidad);
-				//System.out.println(entidadesParaRecorido.get(0).getEntidad());
+			
 
 			}
-
-
-
-
 		};
 		hiloVerificar.start();
 
@@ -132,12 +137,14 @@ public class Juego implements IObservado{
 
 		}
 	}
-	private void notificarEntidad(Entidad entidad) {
+	@Override
+	public void notificarEntidad(Entidad entidad) {
 		for(IObservador obs : observadores) {
 			obs.updateEntidades(entidad);
 		}
 
 	}
+	@Override
 	public void actualizarEntidad(Entidad entidad) {
 		for(IObservador obs : observadores) {
 			obs.updateEntidad(entidad);
@@ -168,6 +175,11 @@ public class Juego implements IObservado{
 		}
 
 	}
-
+	public void agregarAEntidadesParaAgregar(Entidad entidad) {
+		entidadesParaAgregar.add(entidad);
+	}
+	public void agregarAEntidadesParaQuitar(Entidad entidad) {
+		entidadesParaQuitar.add(entidad);
+	}
 
 }

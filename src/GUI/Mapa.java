@@ -26,6 +26,7 @@ import entidades.personajes.jugador.Jugador;
 import entidades.personajes.jugador.comandos.CaminarDerecha;
 import entidades.personajes.jugador.comandos.CaminarIzquierda;
 import entidades.personajes.jugador.comandos.Detenerse;
+import entidades.personajes.jugador.comandos.Disparar;
 import entidades.personajes.jugador.comandos.IComando;
 import entidades.personajes.jugador.controles.Teclado;
 import logica.Imagen;
@@ -92,7 +93,7 @@ public Mapa() {
 		audio.start();
 
 
-		setTitle("Juego");
+		setTitle("Dr. Apocalipasis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20, Juego.ALTO_DE_COMBATE + 80);
 		contenedor = getContentPane();
@@ -177,10 +178,17 @@ public Mapa() {
 		if(teclado.derecha) {
 			comando = new CaminarDerecha(gamer);
 		}else if(teclado.izquierda) {
+			
 			comando = new CaminarIzquierda(gamer);
+		
+		}else if(teclado.disparar&&teclado.llave) {
+			comando = new Disparar(gamer);
+			teclado.llave=false;
+			
+			
 		}else {
 			comando = new Detenerse(gamer);
-
+			
 		}
 		comando.ejecutar();
 

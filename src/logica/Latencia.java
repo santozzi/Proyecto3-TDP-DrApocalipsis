@@ -27,7 +27,7 @@ public void incrementarLatencia() {
 	latencia++;
 }
 public void reiniciarLatencia() {
-	latencia=0;
+	latencia=1;
 }
 
    
