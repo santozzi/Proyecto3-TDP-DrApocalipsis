@@ -90,7 +90,7 @@ public Mapa() {
 		
 		ap = new AudioPlayer("/audio/Digadig.mp3");
 		audio = new Thread(ap);
-		audio.start();
+		//audio.start();
 
 
 		setTitle("Dr. Apocalipasis");

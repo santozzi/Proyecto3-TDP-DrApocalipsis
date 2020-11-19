@@ -1,6 +1,7 @@
 package entidades.proyectiles;
 import logica.Juego;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -25,11 +26,13 @@ public class ProyectilSanitario extends Proyectil{
 		imagen = new Imagen();
 		this.vector = new Vector(0,-1,1000);
 		jugador= juego.getJugador();
-		vector.getPosicion().x= jugador.getVector().getPosicion().x;
-		vector.getPosicion().y= jugador.getVector().getPosicion().y;
+		vector.getPosicion().x= jugador.getVector().getPosicion().x+15;
+		vector.getPosicion().y= jugador.getVector().getPosicion().y-15;
 		imagen.setImagen("proyectilSanitario");
-		imagen.setAncho(40);
-		imagen.setAlto(80);
+		imagen.setAncho(20);
+		imagen.setAlto(50);
+		Image newImg = imagen.getImagen().getImage().getScaledInstance(imagen.getAncho(), imagen.getAlto(), Image.SCALE_SMOOTH);
+		imagen.getImagen().setImage(newImg);
 		juego.agregarAEntidadesParaAgregar(this);
 		//v = new VisitanteProyectil(this);
 	}

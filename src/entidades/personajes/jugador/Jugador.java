@@ -30,8 +30,10 @@ public class Jugador extends Personaje{
 		this.vector.getPosicion().y=550;
 		
        // this.posicion = new Point(225,550);
-		imagen.setAlto(50);
-		imagen.setAncho(30);
+		//imagen.setAlto(50);
+		//imagen.setAncho(30);
+		imagen.setAlto(70);
+		imagen.setAncho(50);
 		imagen.setImagen("Jugador_dispara");
 		v = new VisitanteJugador(this);
 
@@ -50,9 +52,11 @@ public class Jugador extends Personaje{
 
 	}
 	public void detenerse() {
-		if(!imagen.getNom().equals("Jugador_dispara")) {
-			imagen.setAlto(50);
-			imagen.setAncho(30);
+		if(!imagen.getNom().equals("Jugador_dispara") && !imagen.getNom().equals("recargar")) {
+			//imagen.setAlto(50);
+			//imagen.setAncho(30);
+			imagen.setAlto(70);
+			imagen.setAncho(50);
 			imagen.setImagen("Jugador_dispara");
 		}
 
@@ -168,6 +172,9 @@ public class Jugador extends Personaje{
 	}
 	public void disparar() {
 		arma.disparar();
+		imagen.setAlto(70);
+		imagen.setAncho(50);
+		imagen.setImagen("recargar");
 	}
 
 }

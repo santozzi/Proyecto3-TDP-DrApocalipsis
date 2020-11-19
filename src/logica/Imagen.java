@@ -22,7 +22,6 @@ public class Imagen {
 		this.ancho = 40;
 		this.alto = 60;
 	    imagen = new ImageIcon();
-		
 	
 			ruta.put("InfectadoAlpha_golpear".hashCode(),"/img/z_ataque_abajo.gif");
 			ruta.put("Jugador_dispara".hashCode(),"/img/pistola_idle.png");
@@ -36,6 +35,7 @@ public class Imagen {
 			ruta.put("fondoIzquierda".hashCode(), "/img/fondo_izq.jpg");
 			ruta.put("fondoDerecha".hashCode(), "/img/fondo_der.jpg");
 			ruta.put("proyectilSanitario".hashCode(), "/img/Jeringa2.png");
+			ruta.put("recargar".hashCode(), "/img/recargar.gif");
 		
 		
 	}
