@@ -78,7 +78,7 @@ public class InicioGUI extends JFrame {
 	private void cargarFondo() {
 		JLabel lblFondo = new JLabel("");
 
-		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoPresentacion");
+		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("ruinas");
 		lblFondo.setBounds(0, 0, getWidth(), getHeight());
 		contentPane.add(lblFondo);
 

@@ -25,13 +25,13 @@ public class Juego implements IObservado{
 	protected List<IObservador> observadores;
 	public static final int ANCHO_DE_COMBATE=444;
 	public static final int ALTO_DE_COMBATE=619;
-	public static Point limite = new Point(0, ALTO_DE_COMBATE*3);
+	
 	//public static final int DECORADO_IZQUIERDO=62;
 	//public static final int DECORADO_DERECHO=62;
 	public static final int DECORADO_IZQUIERDO=184;
 	public static final int DECORADO_DERECHO=184;
 
-
+	protected Point limite;
 	protected static final int VELOCIDAD_MINIMA=5;
 	protected static final int VELOCIDAD_MAXIMA=1000;
 	protected Jugador jugador;
@@ -40,6 +40,7 @@ public class Juego implements IObservado{
 
 		observadores = new LinkedList<IObservador>();
 
+		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		jugador = new Jugador(this);
 		nivel = new Nivel1(this);
 
@@ -83,19 +84,24 @@ public class Juego implements IObservado{
 							int latencia = VELOCIDAD_MAXIMA/velocidad;
 
 							if(entidad!=jugador) {
+								
+								if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
+									
+									if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
+										limite.y = limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
+										limite.x = 0;
+									}else {
+										limite.y = limite.y = entidad.getVector().getPosicion().y;
+										limite.x += entidad.getImagen().getIconWidth();
+									}
+									
+									
+									System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
+								}
+								
 								if(latencia==lat.getLatencia()) {
 									//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
-
-									if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
-
-										if(limite.x >= Juego.ANCHO_DE_COMBATE-40) {
-											limite.y = entidad.getVector().getPosicion().y-40;
-											limite.x = 0;
-										}else
-											limite.x += 40;
-										
-										System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
-									}
+									
 									
 									entidad.desplazarse();
 
@@ -105,7 +111,6 @@ public class Juego implements IObservado{
 									lat.incrementarLatencia();
 									//
 								}
-
 							}
 
 
@@ -137,6 +142,10 @@ public class Juego implements IObservado{
 		};
 		hiloVerificar.start();
 
+	}
+	
+	public Point getLimite() {
+		return this.limite;
 	}
 
 
