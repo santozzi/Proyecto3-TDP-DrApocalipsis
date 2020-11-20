@@ -30,9 +30,7 @@ public abstract class Infectado extends Personaje {
 	 * Son las particulas que lanza el infectado
 	 * estas particulas son de tipo Proyectil
 	 */
-	public void tirarParticula() {
-		particula = new Particula(juego);
-	}
+	
 
 
 	/**
@@ -72,7 +70,7 @@ public abstract class Infectado extends Personaje {
 	public void desplazarse() {
 		//this.posicion.y++;
 		this.vector.desplazarse();
-		detectarColisiones();
+		//detectarColisiones();
 		//pregunatar cuando se choca con el limite del mapa
 	}
 

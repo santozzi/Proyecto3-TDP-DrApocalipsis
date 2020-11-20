@@ -36,7 +36,7 @@ public class Imagen {
 			ruta.put("fondoDerecha".hashCode(), "/img/fondo_der.jpg");
 			ruta.put("proyectilSanitario".hashCode(), "/img/Jeringa2.png");
 			ruta.put("recargar".hashCode(), "/img/recargar.gif");
-		
+		    ruta.put("particula".hashCode(),"img/particula.gif");
 		
 	}
 	public int getAncho() { 

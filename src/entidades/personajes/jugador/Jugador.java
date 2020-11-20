@@ -49,7 +49,7 @@ public class Jugador extends Personaje{
 	@Override
 	public void desplazarse() {
 		vector.desplazarse();
-		detectarColisiones();
+		//detectarColisiones();
 
 	}
 	public void detenerse() {

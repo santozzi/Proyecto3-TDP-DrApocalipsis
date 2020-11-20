@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 import entidades.Entidad;
 import entidades.Vector;
+import entidades.personajes.infectados.Infectado;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.Visitor;
@@ -15,30 +16,39 @@ public class Particula extends Proyectil{
 
 	protected int velocidad;
 	
-	public Particula(Juego juego) {
-		this.vector = new Vector(225,550,500);
+	public Particula(Juego juego,Infectado infectado) {
+		vector = new Vector(0,1,infectado.getVector().getModulo());
+		vector.getPosicion().x= infectado.getVector().getPosicion().x;
+		vector.getPosicion().y= infectado.getVector().getPosicion().y;
 		
         this.juego = juego;
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("Jeringa2.png");
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("particula");
 		//v = new VisitanteParticula(this);	
+		juego.agregarAEntidadesParaAgregar(this);
 	}
 	
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
 		v.visitarProyectil(this);
 	}
 
 	@Override
 	public void desplazarse() {
-		// TODO Auto-generated method stub
+		/*int y = this.vector.getY();
 		
-	}
+		
+		while(y!= 1000) {
+			vector.setY(++y);
+		//this.vector.setY(++y);
+		*/
+		vector.desplazarse();
+		}
+	
 
 	@Override
 	public ImageIcon getImagen() {
 		// TODO Auto-generated method stub
-		return null;
+		return imagen;
 	}
 
 	@Override
@@ -59,7 +69,7 @@ public class Particula extends Proyectil{
 	@Override
 	public Point getPosicion() {
 		// TODO Auto-generated method stub
-		return null;
+		return posicion;
 	}
 
 	@Override

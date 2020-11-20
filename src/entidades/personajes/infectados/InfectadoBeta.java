@@ -14,6 +14,7 @@ import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
 import entidades.proyectiles.Particula;
+import entidades.proyectiles.Proyectil;
 import entidades.Entidad;
 import logica.Juego;
 import logica.Latencia;
@@ -32,7 +33,7 @@ public class InfectadoBeta extends Infectado {
 		this.juego = juego;
 		this.vector = new Vector(0, -1, 3);
 		this.energia = 200;
-		
+		tirarParticula();
 		v = new VisitanteInfectadoBeta(this);
 	}
 
@@ -42,6 +43,12 @@ public class InfectadoBeta extends Infectado {
 		
 	}
 
+	public void tirarParticula() {
+		Proyectil p = new Particula(juego,this);
+		
+	
+	}
+	
 	@Override
 	public List<Entidad> detectarColisiones() {
 		 System.out.println("soy beta");

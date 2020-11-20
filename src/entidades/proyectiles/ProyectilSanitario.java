@@ -47,7 +47,7 @@ public class ProyectilSanitario extends Proyectil{
 	@Override
 	public void desplazarse() {
 		vector.desplazarse();
-		detectarColisiones();
+		//detectarColisiones();
 		
 	}
 
