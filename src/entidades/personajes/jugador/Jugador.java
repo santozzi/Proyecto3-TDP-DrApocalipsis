@@ -49,6 +49,7 @@ public class Jugador extends Personaje{
 	@Override
 	public void desplazarse() {
 		vector.desplazarse();
+		detectarColisiones();
 
 	}
 	public void detenerse() {
@@ -101,15 +102,21 @@ public class Jugador extends Personaje{
 	}
 	@Override
 	public List<Entidad> detectarColisiones() {
-		List<Entidad> colisiones = new LinkedList<Entidad>();
-		for(Latencia lat : juego.getLista()) {
-			Entidad entidad = lat.getEntidad();
-			//analizo si la entidad me toca y si lo hace lo agrego a la lista
-
-			colisiones.add(entidad);
-		}
-
-		return colisiones;
+		 List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
+		 List<Latencia> listaDeLatencia = juego.getLista();
+		 Entidad entidadDeLatencia;
+		 Entidad entidadActual = this;
+		 for(Latencia latencia : listaDeLatencia) {
+			 entidadDeLatencia = latencia.getEntidad();
+			 if(entidadActual!=entidadDeLatencia) {
+				 if(this.vector.getPosicion().equals(entidadDeLatencia.getVector().getPosicion())) {
+					 listaDeColisiones.add(entidadDeLatencia);
+					 System.out.println("choque con jugador");
+				 }
+			 }
+		 }
+		 
+		 return listaDeColisiones;
 	}
 
 	@Override
@@ -165,6 +172,12 @@ public class Jugador extends Personaje{
 		this.claveImagen = "recargar";
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		imagen.getImage().flush();
+	}
+
+	@Override
+	public boolean hayColision(Entidad entidad) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

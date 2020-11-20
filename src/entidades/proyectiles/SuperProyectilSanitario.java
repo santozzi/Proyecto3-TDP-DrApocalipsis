@@ -59,5 +59,11 @@ public class SuperProyectilSanitario extends Proyectil {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean hayColision(Entidad entidad) {
+		// TODO Auto-generated method stub
+		return false;
+	}
     
 }

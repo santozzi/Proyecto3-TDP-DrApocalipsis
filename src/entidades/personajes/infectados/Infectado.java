@@ -72,6 +72,7 @@ public abstract class Infectado extends Personaje {
 	public void desplazarse() {
 		//this.posicion.y++;
 		this.vector.desplazarse();
+		detectarColisiones();
 		//pregunatar cuando se choca con el limite del mapa
 	}
 
@@ -84,7 +85,7 @@ public abstract class Infectado extends Personaje {
 		return imagen;
 	}
     
-	 public ArrayList<Entidad> detectarColisiones() {return null;}
+
 	
 	
 	 public void  accionar() {}

@@ -1,9 +1,12 @@
 package entidades.proyectiles;
 import logica.Juego;
+import logica.Latencia;
 
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
@@ -22,6 +25,7 @@ public class ProyectilSanitario extends Proyectil{
 	//constructor crear un vector con los datos, recibe a juego
 	
 	public ProyectilSanitario(Juego juego) {
+		this.juego = juego;
 		this.vector = new Vector(0,-1,1000);
 		jugador= juego.getJugador();
 		vector.getPosicion().x= jugador.getVector().getPosicion().x+24;
@@ -43,6 +47,7 @@ public class ProyectilSanitario extends Proyectil{
 	@Override
 	public void desplazarse() {
 		vector.desplazarse();
+		detectarColisiones();
 		
 	}
 
@@ -52,9 +57,26 @@ public class ProyectilSanitario extends Proyectil{
 	}
 
 	@Override
-	public ArrayList<Entidad> detectarColisiones() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Entidad> detectarColisiones() {
+		 List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
+	
+		 List<Latencia> listaDeLatencia = juego.getLista();
+		 
+		 Entidad entidadDeLatencia;
+		 Entidad entidadActual = this;
+		 
+		 for(Latencia latencia : listaDeLatencia) {
+			 entidadDeLatencia = latencia.getEntidad();
+			 if(entidadActual!=entidadDeLatencia) {
+				 if(this.vector.getPosicion().x==entidadDeLatencia.getVector().getPosicion().x&&
+						 this.vector.getPosicion().y==entidadDeLatencia.getVector().getPosicion().y ) {
+					 listaDeColisiones.add(entidadDeLatencia);
+					 System.out.println("choque con proyectil");
+				 }
+			 }
+		 }
+		 
+		 return listaDeColisiones;
 	}
 
 	@Override
@@ -78,6 +100,12 @@ public class ProyectilSanitario extends Proyectil{
 	@Override
 	public void detenerse() {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean hayColision(Entidad entidad) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -66,4 +66,10 @@ public class SuperArma extends Temporal{
 		
 	}
 
+	@Override
+	public boolean hayColision(Entidad entidad) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

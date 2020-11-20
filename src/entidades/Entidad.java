@@ -30,6 +30,7 @@ abstract public class  Entidad {
 	abstract public Vector getVector();
 	abstract public Point getPosicion();
 	abstract public void detenerse();
+	abstract public boolean hayColision(Entidad entidad);
 	
 
 }

@@ -61,6 +61,7 @@ public class Mapa  extends JFrame implements IObservador{
 		});
 	}
 	public Mapa() {
+		setResizable(false);
 
 		juego = new Juego();
 

@@ -23,7 +23,7 @@ public class ColeccionDeImagenes {
 	private ColeccionDeImagenes() {
 
 
-		System.out.println("Ejecuto constructor de ColeccionDeImagenes");
+		//System.out.println("Ejecuto constructor de ColeccionDeImagenes");
 		this.contador = 0;
 		this.ruta = new HashMap<Integer, ImageIcon>();
 		Imagen imagen;
@@ -83,7 +83,7 @@ public class ColeccionDeImagenes {
 		private ImageIcon imagen;
 
 		public Imagen(ImageIcon icono, int ancho, int alto) {
-			System.out.println("Ejecuto constructor de Imagen");
+			//System.out.println("Ejecuto constructor de Imagen");
 			this.ancho = ancho;
 			this.alto = alto;
 			this.imagen = icono;

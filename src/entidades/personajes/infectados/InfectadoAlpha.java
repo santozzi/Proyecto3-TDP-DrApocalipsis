@@ -2,6 +2,8 @@ package entidades.personajes.infectados;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -15,6 +17,7 @@ import entidades.proyectiles.Particula;
 import entidades.Entidad;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import logica.Latencia;
 import visitor.*;
 import visitor.Visitor;
 
@@ -52,5 +55,29 @@ public class InfectadoAlpha extends Infectado{
 		
 	}
 	
+	
+	 public List<Entidad> detectarColisiones() {
+		
+		 List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
+		 List<Latencia> listaDeLatencia = juego.getLista();
+		 Entidad entidadDeLatencia;
+		 Entidad entidadActual = this;
+		 for(Latencia latencia : listaDeLatencia) {
+			 entidadDeLatencia = latencia.getEntidad();
+			 if(entidadActual!=entidadDeLatencia) {
+				 if(this.vector.getPosicion().equals(entidadDeLatencia.getVector().getPosicion())) {
+					 listaDeColisiones.add(entidadDeLatencia);
+					 System.out.println("choque con infectado alfa");
+				 }
+			 }
+		 }
+		 
+		 return listaDeColisiones;
+		 }
 
+	@Override
+	public boolean hayColision(Entidad entidad) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

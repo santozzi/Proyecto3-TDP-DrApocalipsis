@@ -88,7 +88,7 @@ public class Juego implements IObservado{
 								if(entidad.getVector().getPosicion().y<limite&&entidad.getVector().getPosicion().y<0) {
 									limite = entidad.getVector().getPosicion().y;
 								}
-								
+							    
 								entidad.desplazarse();
 								
 								actualizarEntidad(entidad);
