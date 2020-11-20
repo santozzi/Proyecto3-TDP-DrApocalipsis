@@ -11,6 +11,7 @@ public class ColeccionDeImagenes {
 	//private Imagen [] imagenes;
 	private Map<Integer, ImageIcon> ruta;
 	private static ColeccionDeImagenes colDeImg;
+	private int contador;
 
 	public static ColeccionDeImagenes getColeccionDeImagenes() {
 		if(colDeImg == null) {
@@ -23,6 +24,7 @@ public class ColeccionDeImagenes {
 
 
 		System.out.println("Ejecuto constructor de ColeccionDeImagenes");
+		this.contador = 0;
 		this.ruta = new HashMap<Integer, ImageIcon>();
 		Imagen imagen;
 		
@@ -65,15 +67,10 @@ public class ColeccionDeImagenes {
 		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/recargar.gif")), 70, 50);
 		ruta.put("recargar".hashCode(), imagen.getImagen());
 
-
-		//ImageIcon imageIcon = new ImageIcon(this.getClass().getResource());
-		//this.imagen.setImage(imageIcon.getImage().getScaledInstance(ancho, alto,0));
-
-
-
 	}
 
 	public ImageIcon getImagen(String ruta) {
+		//System.out.println("Buscar imagen " + ruta + " " + this.contador++);
 		return this.ruta.get(ruta.hashCode());
 	}
 	
@@ -90,7 +87,6 @@ public class ColeccionDeImagenes {
 			this.ancho = ancho;
 			this.alto = alto;
 			this.imagen = icono;
-			//Image newImg = this.imagen.getImage().getScaledInstance(this.ancho, this.alto, Image.SCALE_SMOOTH);
 			this.imagen.setImage(this.imagen.getImage().getScaledInstance(this.ancho, this.alto, 0));
 			
 		}

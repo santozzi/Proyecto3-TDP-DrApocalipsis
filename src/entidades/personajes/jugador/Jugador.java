@@ -126,7 +126,7 @@ public class Jugador extends Personaje{
 		return this.vector;
 	}
 	public void desplazarseIzquierda() {
-		if(this.vector.getPosicion().x>=Juego.DECORADO_IZQUIERDO) {
+		if(this.vector.getPosicion().x>=-15) {
 		if(vector.getDireccion().x==1) {
 			vector.cambioDeSentido();
 
@@ -141,7 +141,7 @@ public class Jugador extends Personaje{
 	
 	}
 	public void desplazarseDerecha() {
-		if(this.vector.getPosicion().x<=Juego.ANCHO_DE_COMBATE+Juego.DECORADO_IZQUIERDO-30) {
+		if(this.vector.getPosicion().x<=Juego.ANCHO_DE_COMBATE-55) {
 		if(vector.getDireccion().x==-1) {
 			vector.cambioDeSentido();
 		}
