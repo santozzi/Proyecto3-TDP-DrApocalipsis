@@ -33,7 +33,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		
 		for(int i=0 ; i<cantidadInfectados ; i++) {
 			
-			posicion = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE - anchoInfectado), random.nextInt(Juego.limite), random);
+			posicion = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE - anchoInfectado), random.nextInt(Juego.limite.y), random);
 			
 			posiciones.add(posicion);
 			
@@ -43,8 +43,8 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			//nuevoInfectado.getVector().getDireccion().y=1;  
 			//nuevoInfectado.getVector().getDireccion().x=1;
 			nuevoInfectado.getVector().getPosicion().x = posicion.x;
-			nuevoInfectado.getVector().getPosicion().y = posicion.y - Juego.limite;
-			nuevoInfectado.getVector().setModulo(500);
+			nuevoInfectado.getVector().getPosicion().y = posicion.y - Juego.limite.y;
+			nuevoInfectado.getVector().setModulo(700);
 			//nuevoInfectado.getVector().cambioDeSentido();
 			entidades.add(nuevoInfectado);
 		}
