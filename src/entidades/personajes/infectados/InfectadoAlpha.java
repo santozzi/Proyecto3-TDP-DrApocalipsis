@@ -34,7 +34,8 @@ public class InfectadoAlpha extends Infectado{
 		this.vector = new Vector(0, 1, 1000);
 		this.energia = 80;
 		this.posicion = new Point();
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("InfectadoAlpha_golpear");
+		this.claveImagen = new String("InfectadoAlpha_golpear");
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 
 		v = new VisitanteInfectadoAlpha(this);
 	}

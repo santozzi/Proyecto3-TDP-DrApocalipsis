@@ -211,7 +211,14 @@ public class Mapa  extends JFrame implements IObservador{
 			// esto es para que el infectado re aparezca por arriba una vez que salio del mapa
 			// hay que tener en cuenta que hacer con los premios
 			if(entidad.getVector().getPosicion().y>Juego.ALTO_DE_COMBATE) {
-				entidad.getVector().getPosicion().y =  Juego.limite-entidad.getImagen().getIconHeight();
+				if(Juego.limite.x >= Juego.ANCHO_DE_COMBATE-40)
+					entidad.getVector().getPosicion().y =  Juego.limite.y-entidad.getImagen().getIconHeight();
+				else {
+					entidad.getVector().getPosicion().x =  Juego.limite.x;
+					entidad.getVector().getPosicion().y =  Juego.limite.y;
+					Juego.limite.x += 40;
+				}
+				System.out.println("Limite: X=" + Juego.limite.x + " ; Y=" + Juego.limite.y + " (Mapa)");
 			}
 
 

@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.Point;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,12 +20,12 @@ public class Juego implements IObservado{
 	protected List<Latencia> entidadesParaRecorido;
 	protected List<Entidad> entidadesParaAgregar;
 	protected List<Entidad> entidadesParaQuitar;
-	
+
 
 	protected List<IObservador> observadores;
 	public static final int ANCHO_DE_COMBATE=444;
 	public static final int ALTO_DE_COMBATE=619;
-	public static int limite = ALTO_DE_COMBATE*3;
+	public static Point limite = new Point(0, ALTO_DE_COMBATE*3);
 	//public static final int DECORADO_IZQUIERDO=62;
 	//public static final int DECORADO_DERECHO=62;
 	public static final int DECORADO_IZQUIERDO=184;
@@ -36,7 +37,7 @@ public class Juego implements IObservado{
 	protected Jugador jugador;
 
 	public Juego() {
-		
+
 		observadores = new LinkedList<IObservador>();
 
 		jugador = new Jugador(this);
@@ -45,19 +46,19 @@ public class Juego implements IObservado{
 		entidadesParaRecorido = new LinkedList<Latencia>();
 		entidadesParaAgregar = new LinkedList<Entidad>();
 		entidadesParaQuitar = new LinkedList<Entidad>();
-		
+
 		hiloRecorredorDeEntidades();
 
 	}
 	public void cargarJugador() {
-		 entidadesParaAgregar.add(jugador) ;	
+		entidadesParaAgregar.add(jugador) ;	
 	}
 	public void hiloRecorredorDeEntidades() {
 		Thread hiloVerificar = new Thread(){
-      //  Iterator<Latencia> itLat ;
+			//  Iterator<Latencia> itLat ;
 			@Override 
 			public void run() {
-                
+
 				while(true) {
 					try {
 						Thread.sleep(VELOCIDAD_MINIMA);
@@ -65,29 +66,46 @@ public class Juego implements IObservado{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-                    
+
 					notificarObservadores();
 
 
 					Entidad entidad;
 
-                    for(Latencia lat: entidadesParaRecorido){
+					for(Latencia lat: entidadesParaRecorido){
 
 
-						 entidad = lat.getEntidad();
+						entidad = lat.getEntidad();
 						int velocidad = entidad.getVector().getModulo();
 						if(velocidad!=0) {
 							//velocidad cuanto mas cercano a uno sea mas rapido va a ir
 
 							int latencia = VELOCIDAD_MAXIMA/velocidad;
 
-                          if(entidad!=jugador) {
-							if(latencia==lat.getLatencia()) {
-							//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
-								
-								if(entidad.getVector().getPosicion().y<limite&&entidad.getVector().getPosicion().y<0) {
-									limite = entidad.getVector().getPosicion().y;
+							if(entidad!=jugador) {
+								if(latencia==lat.getLatencia()) {
+									//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
+
+									if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
+
+										if(limite.x >= Juego.ANCHO_DE_COMBATE-40) {
+											limite.y = entidad.getVector().getPosicion().y-40;
+											limite.x = 0;
+										}else
+											limite.x += 40;
+										
+										System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
+									}
+									
+									entidad.desplazarse();
+
+									actualizarEntidad(entidad);
+									lat.reiniciarLatencia();
+								}else {
+									lat.incrementarLatencia();
+									//
 								}
+<<<<<<< HEAD
 							    
 								entidad.desplazarse();
 								
@@ -96,23 +114,24 @@ public class Juego implements IObservado{
 							}else {
 								lat.incrementarLatencia();
 								//
+=======
+>>>>>>> a39ae933697f703824924e26c7d8e2b3d5e35a7c
 							}
-                          }
 
 
 
 
 						}
 					}
-                     for(Entidad entidadA : entidadesParaAgregar) {
-                    	 agregarEntidad(entidadA);
-                     }
-                     entidadesParaAgregar.clear();
-                     
-                     for(Entidad entidadA : entidadesParaQuitar) {
-                    	 agregarEntidad(entidadA);
-                     }
-                     entidadesParaQuitar.clear();
+					for(Entidad entidadA : entidadesParaAgregar) {
+						agregarEntidad(entidadA);
+					}
+					entidadesParaAgregar.clear();
+
+					for(Entidad entidadA : entidadesParaQuitar) {
+						agregarEntidad(entidadA);
+					}
+					entidadesParaQuitar.clear();
 
 
 				}
@@ -122,7 +141,7 @@ public class Juego implements IObservado{
 			public void agregarEntidad(Entidad entidad) {
 				entidadesParaRecorido.add(new Latencia(entidad));
 				notificarEntidad(entidad);
-			
+
 
 			}
 		};

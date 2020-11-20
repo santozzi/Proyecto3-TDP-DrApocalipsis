@@ -26,47 +26,38 @@ public class ColeccionDeImagenes {
 		//System.out.println("Ejecuto constructor de ColeccionDeImagenes");
 		this.contador = 0;
 		this.ruta = new HashMap<Integer, ImageIcon>();
-		Imagen imagen;
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/z_ataque_abajo.gif")), 40, 60);
-		ruta.put("InfectadoAlpha_golpear".hashCode(), imagen.getImagen());
+		agregarRuta("InfectadoAlpha_golpear", "/img/z_ataque_abajo.gif", 40, 60);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/pistola_idle.png")), 70, 50);
-		ruta.put("Jugador_dispara".hashCode(), imagen.getImagen());
+		agregarRuta("Jugador_dispara", "/img/pistola_idle.png", 70, 50);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/Jugador_caminarDerecha.gif")), 70, 60);
-		ruta.put("Jugador_caminarDerecha".hashCode(), imagen.getImagen());
+		agregarRuta("Jugador_caminarDerecha", "/img/Jugador_caminarDerecha.gif", 70, 60);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/Jugador_caminarIzquierda.gif")), 70, 60);
-		ruta.put("Jugador_caminarIzquierda".hashCode(), imagen.getImagen());
+		agregarRuta("Jugador_caminarIzquierda", "/img/Jugador_caminarIzquierda.gif", 70, 60);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/calle.jpg")), Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
-		ruta.put("nivel1".hashCode(), imagen.getImagen());
+		agregarRuta("nivel1", "/img/calle.jpg", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/drApocalipsis.png")), 70, 50);
-		ruta.put("fondoPresentacion".hashCode(), imagen.getImagen());
+		agregarRuta("fondoPresentacion", "/img/drApocalipsis.png", 70, 50);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/plagueInc.PNG")), 50, 63);
-		ruta.put("plagueInc".hashCode(), imagen.getImagen());
+		agregarRuta("plagueInc", "/img/plagueInc.PNG", 50, 63);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/baranda_der.jpg")), Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
-		ruta.put("mapaDerecha".hashCode(), imagen.getImagen());
+		agregarRuta("mapaDerecha", "/img/baranda_der.jpg", Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/baranda_izq.jpg")), Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
-		ruta.put("mapaIzquierda".hashCode(), imagen.getImagen());
+		agregarRuta("mapaIzquierda", "/img/baranda_izq.jpg", Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/fondo_izq.jpg")), Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
-		ruta.put("fondoIzquierda".hashCode(), imagen.getImagen());
+		agregarRuta("fondoIzquierda", "/img/fondo_izq.jpg", Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/fondo_der.jpg")), Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
-		ruta.put("fondoDerecha".hashCode(), imagen.getImagen());
+		agregarRuta("fondoDerecha", "/img/fondo_der.jpg", Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/Jeringa2.png")), 20, 50);
-		ruta.put("proyectilSanitario".hashCode(), imagen.getImagen());
+		agregarRuta("proyectilSanitario", "/img/Jeringa2.png", 20, 50);
 		
-		imagen = new Imagen(new ImageIcon(this.getClass().getResource("/img/recargar.gif")), 70, 50);
-		ruta.put("recargar".hashCode(), imagen.getImagen());
+		agregarRuta("recargar", "/img/recargar.gif", 70, 50);
 
+	}
+	
+	private void agregarRuta(String clave, String ruta, int ancho, int alto) {
+		Imagen imagen = new Imagen(new ImageIcon(this.getClass().getResource(ruta)), ancho, alto);
+		this.ruta.put(clave.hashCode(), imagen.getImagen());
 	}
 
 	public ImageIcon getImagen(String ruta) {
