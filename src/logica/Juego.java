@@ -105,17 +105,7 @@ public class Juego implements IObservado{
 									lat.incrementarLatencia();
 									//
 								}
-<<<<<<< HEAD
-							    
-								entidad.desplazarse();
-								
-								actualizarEntidad(entidad);
-								lat.reiniciarLatencia();
-							}else {
-								lat.incrementarLatencia();
-								//
-=======
->>>>>>> a39ae933697f703824924e26c7d8e2b3d5e35a7c
+
 							}
 
 
