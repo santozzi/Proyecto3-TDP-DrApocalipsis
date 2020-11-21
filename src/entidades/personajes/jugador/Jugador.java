@@ -32,7 +32,7 @@ public class Jugador extends Personaje{
        // this.posicion = new Point(225,550);
 		//imagen.setAlto(50);
 		//imagen.setAncho(30);
-		
+	
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		
 		v = new VisitanteJugador(this);

@@ -180,7 +180,7 @@ public class Mapa  extends JFrame implements IObservador{
 
 	@Override
 	public void updateEntidades(Entidad entidad)  {
-
+       // System.out.println(entidad.getImagen());
 		JLabel etiquetaDeEntidad;
 
 		//System.out.println("posicion en entidad: ("+entidad.getPosicion().x+";"+entidad.getPosicion().y+")");

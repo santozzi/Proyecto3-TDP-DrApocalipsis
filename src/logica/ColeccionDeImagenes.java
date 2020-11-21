@@ -39,8 +39,7 @@ public class ColeccionDeImagenes {
 		
 		agregarRuta("fondoPresentacion", "/img/drApocalipsis.png", 562, 411);
 		
-		agregarRuta("background", "/img/background.gif", 785, 600);
-		
+			
 		agregarRuta("ruinas", "/img/ruinas.gif", 785, 600);
 		
 		agregarRuta("plagueInc", "/img/plagueInc.PNG", 54, 77);
@@ -56,13 +55,14 @@ public class ColeccionDeImagenes {
 		agregarRuta("proyectilSanitario", "/img/Jeringa2.png", 20, 50);
 		
 		agregarRuta("recargar", "/img/recargar.gif", 70, 50);
-
+		
 	}
 	
 	private void agregarRuta(String clave, String ruta, int ancho, int alto) {
 		ImageIcon icono = new ImageIcon(this.getClass().getResource(ruta));
 		icono.setImage(icono.getImage().getScaledInstance(ancho, alto, 0));
 		this.ruta.put(clave.hashCode(), icono);
+		System.out.println(this.ruta.put(clave.hashCode(), icono));
 	}
 
 	public ImageIcon getImagen(String ruta) {
