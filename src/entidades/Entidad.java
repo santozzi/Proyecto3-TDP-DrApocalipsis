@@ -1,12 +1,15 @@
 package entidades;
 
 import java.awt.Point;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import logica.Latencia;
 import visitor.Visitante;
 import visitor.Visitor;
 
@@ -23,14 +26,65 @@ abstract public class  Entidad {
 
 
 	abstract public void accept(Visitor v);
-	abstract public void desplazarse();
+	//	abstract public void desplazarse();
 	abstract public ImageIcon getImagen();
-	abstract public List<Entidad> detectarColisiones();
-	abstract public void accionar();
+	//abstract public List<Entidad> detectarColisiones();
+	//abstract public void accionar();
 	abstract public Vector getVector();
 	abstract public Point getPosicion();
 	abstract public void detenerse();
-	abstract public boolean hayColision(Entidad entidad);
+	//abstract public boolean hayColision(Entidad entidad);
+	public boolean hayColision(Entidad entidad) {
+		// entidad.getEntorno() this.entorno
+		//entorno = [x;x+anchoEntidad]
+		//entornoEnY= [[y;y+anchoEntidad]
+
+		return (this.vector.getPosicion().x <= (entidad.getVector().getPosicion().x + entidad.getImagen().getIconWidth()) && this.vector.getPosicion().x >= (entidad.getVector().getPosicion().x - entidad.getImagen().getIconWidth()) &&
+				(this.vector.getPosicion().y == (entidad.getVector().getPosicion().y + entidad.getImagen().getIconHeight())));
+	}
+
+	public void desplazarse() {
+		//this.posicion.y++;
+		this.vector.desplazarse();
+		//detectarColisiones();
+        accionar();
+		//detectarColisiones();
+		//pregunatar cuando se choca con el limite del mapa
+
+	}
+	public List<Entidad> detectarColisiones() {
+		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
+		List<Latencia> listaDeLatencia = juego.getLista();
+		boolean esta = false;
+		Entidad entidadDeLatencia;
+		Entidad entidadActual = this;
+		Entidad entVerificar;
+		Iterator<Entidad> itEntidades ;
+		for(Latencia latencia : listaDeLatencia) {
+			entidadDeLatencia = latencia.getEntidad();
+			itEntidades = listaDeColisiones.iterator();
+			if(entidadActual!=entidadDeLatencia&&hayColision(entidadDeLatencia)) {
+
+				while(itEntidades.hasNext()&&!esta) {
+					entVerificar = itEntidades.next();
+					esta= entVerificar == entidadDeLatencia;
+				}
+				if(!esta)
+					listaDeColisiones.add(entidadDeLatencia);
+				else
+					esta = false;
+
+			}			 
+	}
+	return listaDeColisiones;
+}  
 	
 
+	public void accionar() {
+		for(Entidad ent : detectarColisiones()) {
+			//visitor
+			ent.accept(v);
+		}
+
+	}
 }

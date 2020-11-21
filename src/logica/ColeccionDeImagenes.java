@@ -23,7 +23,7 @@ public class ColeccionDeImagenes {
 	private ColeccionDeImagenes() {
 
 
-		System.out.println("Ejecuto constructor de ColeccionDeImagenes");
+		//System.out.println("Ejecuto constructor de ColeccionDeImagenes");
 		this.contador = 0;
 		this.ruta = new HashMap<Integer, ImageIcon>();
 		
@@ -54,9 +54,8 @@ public class ColeccionDeImagenes {
 		agregarRuta("proyectilSanitario", "/img/Jeringa2.png", 20, 50);
 		
 		agregarRuta("recargar", "/img/recargar.gif", 70, 50);
-		
-
-		agregarRuta("particula", "/img/particula.png", 50, 50);
+	
+		agregarRuta("particula", "/img/particula.png", 20, 20);
 
 
 	}
@@ -65,7 +64,7 @@ public class ColeccionDeImagenes {
 		ImageIcon icono = new ImageIcon(this.getClass().getResource(ruta));
 		icono.setImage(icono.getImage().getScaledInstance(ancho, alto, 0));
 		this.ruta.put(clave.hashCode(), icono);
-		System.out.println(this.ruta.put(clave.hashCode(), icono));
+		
 	}
 
 	public ImageIcon getImagen(String ruta) {

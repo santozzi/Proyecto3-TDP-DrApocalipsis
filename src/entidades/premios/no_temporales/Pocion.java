@@ -24,11 +24,7 @@ public class Pocion extends NoTemporal {
 		
 	}
 
-	@Override
-	public void desplazarse() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public ImageIcon getImagen() {
@@ -36,11 +32,6 @@ public class Pocion extends NoTemporal {
 		return null;
 	}
 
-	@Override
-	public ArrayList<Entidad> detectarColisiones() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void accionar() {
@@ -66,10 +57,5 @@ public class Pocion extends NoTemporal {
 		
 	}
 
-	@Override
-	public boolean hayColision(Entidad entidad) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

@@ -46,12 +46,7 @@ public class Jugador extends Personaje{
 		return energia<=0;
 	}
 
-	@Override
-	public void desplazarse() {
-		vector.desplazarse();
-		//detectarColisiones();
 
-	}
 	public void detenerse() {
 		if(!this.claveImagen.equals("Jugador_dispara") && !this.claveImagen.equals("recargar")) {
 			this.claveImagen = "Jugador_dispara";
@@ -60,35 +55,6 @@ public class Jugador extends Personaje{
 
 	}
 
-
-	/*
-	public void desplazarse(char key) {
-
-		if(key=='a') {
-			if(vector.getSentido()==1) {
-				vector.cambioDeSentido();
-
-
-			}
-			  if(!imagen.getNom().equals("Jugador_caminarIzquierda"))
-			     imagen.setImagen("Jugador_caminarIzquierda");
-
-			    vector.avanzarEnX();
-
-		}else if(key=='d') {
-			if(vector.getSentido()==-1) {
-				vector.cambioDeSentido();
-
-			}
-			 if(!imagen.getNom().equals("Jugador_caminarDerecha"))
-			  imagen.setImagen("Jugador_caminarDerecha");
-				vector.avanzarEnX();
-		}else
-			imagen.setImagen("Jugador_dispara");
-
-
-	}
-	 */
 	@Override
 	public void accept(Visitor v) {
 		v.visitarJugador(this);
@@ -100,33 +66,9 @@ public class Jugador extends Personaje{
 
 		return imagen;
 	}
-	@Override
-	public List<Entidad> detectarColisiones() {
-		 List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
-		 List<Latencia> listaDeLatencia = juego.getLista();
-		 Entidad entidadDeLatencia;
-		 Entidad entidadActual = this;
-		 for(Latencia latencia : listaDeLatencia) {
-			 entidadDeLatencia = latencia.getEntidad();
-			 if(entidadActual!=entidadDeLatencia) {
-				 if(this.vector.getPosicion().equals(entidadDeLatencia.getVector().getPosicion())) {
-					 listaDeColisiones.add(entidadDeLatencia);
-					 System.out.println("choque con jugador");
-				 }
-			 }
-		 }
-		 
-		 return listaDeColisiones;
-	}
 
-	@Override
-	public void accionar() {
-		for(Entidad ent : detectarColisiones()) {
-			//visitor
-			ent.accept(v);
-		}
 
-	}
+
 
 	@Override
 	public Vector getVector() {
@@ -167,6 +109,7 @@ public class Jugador extends Personaje{
 	public Point getPosicion() {
 		return posicion;
 	}
+	
 	public void disparar() {
 		arma.disparar();
 		this.claveImagen = "recargar";
@@ -174,10 +117,5 @@ public class Jugador extends Personaje{
 		imagen.getImage().flush();
 	}
 
-	@Override
-	public boolean hayColision(Entidad entidad) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

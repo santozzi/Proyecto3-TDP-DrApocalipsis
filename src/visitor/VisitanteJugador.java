@@ -3,7 +3,9 @@ package visitor;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
 import entidades.personajes.jugador.Jugador;
+import entidades.proyectiles.Particula;
 import entidades.proyectiles.Proyectil;
+import entidades.proyectiles.ProyectilSanitario;
 
 public class VisitanteJugador extends Visitante {
 	private Jugador j;
@@ -15,7 +17,8 @@ public class VisitanteJugador extends Visitante {
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ea) {
-		// TODO Auto-generated method stub
+		System.out.println("jugador choca a alpha");
+		ea.detenerse();
 		
 	}
 
@@ -34,9 +37,19 @@ public class VisitanteJugador extends Visitante {
 
 
 	@Override
-	public void visitarProyectil(Proyectil p) {
+	public void visitarProyectilSanitario(ProyectilSanitario p) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public void visitarParticula(Particula par) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }
 

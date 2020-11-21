@@ -31,13 +31,13 @@ public class InfectadoAlpha extends Infectado{
 
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
-		this.vector = new Vector(0, 1, 1000);
+		this.vector = new Vector(0, 1, 200);
 		this.energia = 80;
 		this.posicion = new Point();
 		this.claveImagen = new String("InfectadoAlpha_golpear");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
-
-		tirarParticula();
+		
+		this.rango = 100;
 		v = new VisitanteInfectadoAlpha(this);
 	}
 
@@ -52,40 +52,21 @@ public class InfectadoAlpha extends Infectado{
 	}
 
 	public void tirarParticula() {
-		Proyectil p = new Particula(juego,this);
+		this.particula =  new Particula(juego,this);
 		
 
 	}
-	
+	// v es de jugador
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+		v.visitarInfectadoAlpha(this);
 		
 	}
 	
 	
-	 public List<Entidad> detectarColisiones() {
-		
-		 List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
-		 List<Latencia> listaDeLatencia = juego.getLista();
-		 Entidad entidadDeLatencia;
-		 Entidad entidadActual = this;
-		 for(Latencia latencia : listaDeLatencia) {
-			 entidadDeLatencia = latencia.getEntidad();
-			 if(entidadActual!=entidadDeLatencia) {
-				 if(this.vector.getPosicion().equals(entidadDeLatencia.getVector().getPosicion())) {
-					 listaDeColisiones.add(entidadDeLatencia);
-					 System.out.println("choque con infectado alfa");
-				 }
-			 }
-		 }
-		 
-		 return listaDeColisiones;
-		 }
+	
 
-	@Override
-	public boolean hayColision(Entidad entidad) {
-		// TODO Auto-generated method stub
-		return false;
+	public int getRango() {
+		return rango;
 	}
 }

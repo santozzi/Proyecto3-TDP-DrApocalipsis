@@ -23,6 +23,7 @@ public abstract class Infectado extends Personaje {
 
 	protected Particula particula;
 	protected Premio premio;
+	protected int rango;
 
 	/**
 	 * tirarParticulas
@@ -43,7 +44,7 @@ public abstract class Infectado extends Personaje {
 		
 		v.visitarJugador(juego.getJugador());
 	}
-
+    public void tirarParticula() {}
 	/**
 	 *dejarCaerPremio
 	 *---------------
@@ -67,12 +68,7 @@ public abstract class Infectado extends Personaje {
 	public boolean estaMuerto() {
 		return energia<=0;
 	}
-	public void desplazarse() {
-		//this.posicion.y++;
-		this.vector.desplazarse();
-		//detectarColisiones();
-		//pregunatar cuando se choca con el limite del mapa
-	}
+
 
 
 	abstract public void accept(Visitor v);
@@ -86,7 +82,7 @@ public abstract class Infectado extends Personaje {
 
 	
 	
-	 public void  accionar() {}
+
 	
 	
 	public Vector getVector() {
@@ -102,5 +98,8 @@ public abstract class Infectado extends Personaje {
 	public void detenerse() {
 		vector.setModulo(0);
 
+	}
+	public int getRango() {
+		return rango;
 	}
 }

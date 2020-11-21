@@ -26,6 +26,7 @@ import entidades.personajes.jugador.comandos.Detenerse;
 import entidades.personajes.jugador.comandos.Disparar;
 import entidades.personajes.jugador.comandos.IComando;
 import entidades.personajes.jugador.controles.Teclado;
+import entidades.proyectiles.Particula;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import observador.IObservador;
@@ -186,7 +187,7 @@ public class Mapa  extends JFrame implements IObservador{
 		//System.out.println("posicion en entidad: ("+entidad.getPosicion().x+";"+entidad.getPosicion().y+")");
 		etiquetaDeEntidad = new JLabel();
 
-		System.out.println(entidad.toString());
+	//	System.out.println(entidad.toString());
 		etiquetaDeEntidad.setBounds(
 
 
@@ -226,12 +227,12 @@ public class Mapa  extends JFrame implements IObservador{
 				//entidad.getVector().getPosicion().x = juego.getLimite().x;
 				//entidad.getVector().getPosicion().y = juego.getLimite().y;
 				
-				System.out.println("Limite: X=" + juego.getLimite().x + " ; Y=" + juego.getLimite().y + " (Mapa)");
+			//	System.out.println("Limite: X=" + juego.getLimite().x + " ; Y=" + juego.getLimite().y + " (Mapa)");
 			}
 
 
 			lblEntidad.setIcon(entidad.getImagen());
-
+	
 			lblEntidad.setBounds(
 					entidad.getVector().getPosicion().x,
 					entidad.getVector().getPosicion().y,

@@ -49,31 +49,7 @@ public class InfectadoBeta extends Infectado {
 	
 	}
 	
-	@Override
-	public List<Entidad> detectarColisiones() {
-		 System.out.println("soy beta");
-		 List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
-		 List<Latencia> listaDeLatencia = juego.getLista();
-		 Entidad entidadDeLatencia;
-		 Entidad entidadActual = this;
-		 for(Latencia latencia : listaDeLatencia) {
-			 entidadDeLatencia = latencia.getEntidad();
-			 if(entidadActual!=entidadDeLatencia) {
-				 if(this.vector.getPosicion().equals(entidadDeLatencia.getVector().getPosicion())) {
-					 listaDeColisiones.add(entidadDeLatencia);
-					 System.out.println("choque");
-				 }
-			 }
-		 }
-		 
-		 return listaDeColisiones;
-	}
 
-	@Override
-	public boolean hayColision(Entidad entidad) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 }

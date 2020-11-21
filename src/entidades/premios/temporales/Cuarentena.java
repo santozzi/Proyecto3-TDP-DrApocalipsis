@@ -36,11 +36,7 @@ public class Cuarentena extends Temporal{
 		return null;
 	}
 
-	@Override
-	public ArrayList<Entidad> detectarColisiones() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public void accionar() {
@@ -66,10 +62,7 @@ public class Cuarentena extends Temporal{
 		
 	}
 
-	@Override
-	public boolean hayColision(Entidad entidad) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
+
 
 }

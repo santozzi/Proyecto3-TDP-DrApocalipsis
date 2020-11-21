@@ -8,7 +8,9 @@ import java.util.List;
 
 
 import entidades.Entidad;
+import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.jugador.Jugador;
+import entidades.proyectiles.Particula;
 import niveles.Nivel;
 import niveles.Nivel1;
 import observador.IObservado;
@@ -25,7 +27,7 @@ public class Juego implements IObservado{
 	protected List<IObservador> observadores;
 	public static final int ANCHO_DE_COMBATE=444;
 	public static final int ALTO_DE_COMBATE=619;
-	
+
 	//public static final int DECORADO_IZQUIERDO=62;
 	//public static final int DECORADO_DERECHO=62;
 	public static final int DECORADO_IZQUIERDO=184;
@@ -54,6 +56,10 @@ public class Juego implements IObservado{
 	public void cargarJugador() {
 		entidadesParaAgregar.add(jugador) ;	
 	}
+	
+	
+	
+	//hilo paralelo
 	public void hiloRecorredorDeEntidades() {
 		Thread hiloVerificar = new Thread(){
 			//  Iterator<Latencia> itLat ;
@@ -77,6 +83,7 @@ public class Juego implements IObservado{
 
 
 						entidad = lat.getEntidad();
+						
 						int velocidad = entidad.getVector().getModulo();
 						if(velocidad!=0) {
 							//velocidad cuanto mas cercano a uno sea mas rapido va a ir
@@ -84,9 +91,9 @@ public class Juego implements IObservado{
 							int latencia = VELOCIDAD_MAXIMA/velocidad;
 
 							if(entidad!=jugador) {
-								
+
 								if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
-									
+
 									if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
 										limite.y = limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
 										limite.x = 0;
@@ -94,15 +101,15 @@ public class Juego implements IObservado{
 										limite.y = limite.y = entidad.getVector().getPosicion().y;
 										limite.x += entidad.getImagen().getIconWidth();
 									}
-									
-									
-									System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
+
+
+									//System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
 								}
-								
+
 								if(latencia==lat.getLatencia()) {
 									//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
-									
-									
+
+								
 									entidad.desplazarse();
 
 									actualizarEntidad(entidad);
@@ -118,32 +125,46 @@ public class Juego implements IObservado{
 
 						}
 					}
-					for(Entidad entidadA : entidadesParaAgregar) {
-						agregarEntidad(entidadA);
-					}
-					entidadesParaAgregar.clear();
+					cargarColaDeEntidades();
 
-					for(Entidad entidadA : entidadesParaQuitar) {
-						agregarEntidad(entidadA);
-					}
-					entidadesParaQuitar.clear();
 
 
 				}
 
 
 			}
-			public void agregarEntidad(Entidad entidad) {
-				entidadesParaRecorido.add(new Latencia(entidad));
-				notificarEntidad(entidad);
 
 
-			}
 		};
 		hiloVerificar.start();
 
 	}
+
 	
+	
+	
+	
+	
+	
+	
+	public void agregarEntidad(Entidad entidad) {
+		entidadesParaRecorido.add(new Latencia(entidad));
+		notificarEntidad(entidad);
+
+
+	}
+	private void cargarColaDeEntidades() {
+		for(Entidad entidadA : entidadesParaAgregar) {
+			agregarEntidad(entidadA);
+		}
+		entidadesParaAgregar.clear();
+
+		for(Entidad entidadA : entidadesParaQuitar) {
+			agregarEntidad(entidadA);
+		}
+		entidadesParaQuitar.clear();
+
+	}
 	public Point getLimite() {
 		return this.limite;
 	}
@@ -194,6 +215,7 @@ public class Juego implements IObservado{
 
 	}
 	public void agregarAEntidadesParaAgregar(Entidad entidad) {
+	
 		entidadesParaAgregar.add(entidad);
 	}
 	public void agregarAEntidadesParaQuitar(Entidad entidad) {

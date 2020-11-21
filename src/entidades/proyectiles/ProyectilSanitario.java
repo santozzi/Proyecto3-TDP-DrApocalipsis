@@ -15,6 +15,7 @@ import entidades.personajes.jugador.Jugador;
 import entidades.Entidad;
 import logica.ColeccionDeImagenes;
 import visitor.VisitanteJugador;
+import visitor.VisitanteProyectilSanitario;
 import visitor.Visitor;
 
 public class ProyectilSanitario extends Proyectil{
@@ -29,27 +30,22 @@ public class ProyectilSanitario extends Proyectil{
 		this.vector = new Vector(0,-1,1000);
 		jugador= juego.getJugador();
 		vector.getPosicion().x= jugador.getVector().getPosicion().x+24;
-		vector.getPosicion().y= jugador.getVector().getPosicion().y-15;
+		vector.getPosicion().y= jugador.getVector().getPosicion().y-100;
 		//Image newImg = imagen.getImagen().getImage().getScaledInstance(imagen.getAncho(), imagen.getAlto(), Image.SCALE_SMOOTH);
 		//imagen.getImagen().setImage(newImg);
 		
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("proyectilSanitario");
 		juego.agregarAEntidadesParaAgregar(this);
-		//v = new VisitanteProyectil(this);
+		v = new VisitanteProyectilSanitario(this);
 	}
 	
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		v.visitarProyectil(this);
+		v.visitarProyectilSanitario(this);
 	}
 
-	@Override
-	public void desplazarse() {
-		vector.desplazarse();
-		//detectarColisiones();
-		
-	}
+
 
 	@Override
 	public ImageIcon getImagen() {
@@ -68,8 +64,7 @@ public class ProyectilSanitario extends Proyectil{
 		 for(Latencia latencia : listaDeLatencia) {
 			 entidadDeLatencia = latencia.getEntidad();
 			 if(entidadActual!=entidadDeLatencia) {
-				 if(this.vector.getPosicion().x==entidadDeLatencia.getVector().getPosicion().x&&
-						 this.vector.getPosicion().y==entidadDeLatencia.getVector().getPosicion().y ) {
+				 if(hayColision(entidadDeLatencia)) {
 					 listaDeColisiones.add(entidadDeLatencia);
 					 System.out.println("choque con proyectil");
 				 }
@@ -79,11 +74,6 @@ public class ProyectilSanitario extends Proyectil{
 		 return listaDeColisiones;
 	}
 
-	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Vector getVector() {//direccion, velocidad, sentido
@@ -102,10 +92,11 @@ public class ProyectilSanitario extends Proyectil{
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public boolean hayColision(Entidad entidad) {
-		// TODO Auto-generated method stub
-		return false;
+	public void desaparecer() {
+		juego.agregarAEntidadesParaQuitar(this);
+		
 	}
+
+
 
 }
