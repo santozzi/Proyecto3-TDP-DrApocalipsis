@@ -14,7 +14,7 @@ import logica.Juego;
 public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 	
 	public Nivel1InfectadosAlpha(Juego j) {
-		this(j, 90);
+		this(j, 100);
 	}
 
 	public Nivel1InfectadosAlpha(Juego j, int cantInfectados) {
@@ -32,25 +32,29 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		List<Point> posiciones = new LinkedList<Point>();
 		
 		for(int i=0 ; i<cantidadInfectados ; i++) {
-			
-			posicion = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE - anchoInfectado), random.nextInt(Juego.limite.y), random);
-			
-			posiciones.add(posicion);
-			
+
  			nuevoInfectado = new InfectadoAlpha(this.juego);
- 			this.anchoInfectado = nuevoInfectado.getImagen().getIconWidth();
- 			this.altoInfectado = nuevoInfectado.getImagen().getIconHeight();
-			//nuevoInfectado.getVector().getDireccion().y=1;  
+ 			posicion = asignarPosicion(
+ 					posiciones,
+ 					nuevoInfectado.getImagen().getIconWidth(),
+ 					nuevoInfectado.getImagen().getIconHeight(),
+ 					random.nextInt(Juego.ANCHO_DE_COMBATE-nuevoInfectado.getImagen().getIconWidth()),
+ 					random.nextInt(Juego.ALTO_DE_COMBATE*5),
+ 					random);
+			posiciones.add(posicion);
+ 			if(juego.getLimite().y>=posicion.y)
+				juego.getLimite().y = posicion.y - nuevoInfectado.getImagen().getIconHeight();
+			//nuevoInfectado.getVector().getDireccion().y=1;
 			//nuevoInfectado.getVector().getDireccion().x=1;
 			nuevoInfectado.getVector().getPosicion().x = posicion.x;
-			nuevoInfectado.getVector().getPosicion().y = posicion.y - Juego.limite.y;
-			nuevoInfectado.getVector().setModulo(0);
+			nuevoInfectado.getVector().getPosicion().y = - posicion.y - nuevoInfectado.getImagen().getIconHeight();
+			nuevoInfectado.getVector().setModulo(700);
 			//nuevoInfectado.getVector().cambioDeSentido();
 			entidades.add(nuevoInfectado);
 		}
 	}
 
-	private Point asignarPosicion(List<Point> posiciones, int x, int y, Random random) {
+	private Point asignarPosicion(List<Point> posiciones, int anchoInfectado, int altoInfectado, int x, int y, Random random) {
 		Iterator<Point> itPosiciones;
 		Point aRetornar;
 		Point elem;
@@ -60,11 +64,11 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		while(itPosiciones.hasNext() && !estaInsertado) {
 			elem = itPosiciones.next();
 			estaInsertado = (x <= (elem.x + anchoInfectado) && x >= (elem.x - anchoInfectado))
-					&& (y <= (elem.y + anchoInfectado) && y >= (elem.y - altoInfectado));
+					&& (y <= (elem.y + altoInfectado) && y >= (elem.y - altoInfectado));
 		}
 		
 		if(estaInsertado)
-			aRetornar = asignarPosicion(posiciones, random.nextInt(Juego.ANCHO_DE_COMBATE - anchoInfectado), random.nextInt(Juego.ANCHO_DE_COMBATE), random);
+			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE*5), random);
 		else
 			aRetornar = new Point(x, y);
 		

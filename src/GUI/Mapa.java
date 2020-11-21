@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,7 +62,6 @@ public class Mapa  extends JFrame implements IObservador{
 		});
 	}
 	public Mapa() {
-		setResizable(false);
 
 		juego = new Juego();
 
@@ -87,7 +87,7 @@ public class Mapa  extends JFrame implements IObservador{
 		audio = new Thread(ap);
 		//audio.start();
 
-		setTitle("Dr. Apocalipasis");
+		setTitle("Dr. Apocalipsis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20, Juego.ALTO_DE_COMBATE + 80);
 
@@ -211,14 +211,21 @@ public class Mapa  extends JFrame implements IObservador{
 			// esto es para que el infectado re aparezca por arriba una vez que salio del mapa
 			// hay que tener en cuenta que hacer con los premios
 			if(entidad.getVector().getPosicion().y>Juego.ALTO_DE_COMBATE) {
-				if(Juego.limite.x >= Juego.ANCHO_DE_COMBATE-40)
-					entidad.getVector().getPosicion().y =  Juego.limite.y-entidad.getImagen().getIconHeight();
-				else {
-					entidad.getVector().getPosicion().x =  Juego.limite.x;
-					entidad.getVector().getPosicion().y =  Juego.limite.y;
-					Juego.limite.x += 40;
+				
+				if(juego.getLimite().x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
+					entidad.getVector().getPosicion().y =  juego.getLimite().y-entidad.getImagen().getIconHeight();
+					juego.getLimite().x = 0;
 				}
-				System.out.println("Limite: X=" + Juego.limite.x + " ; Y=" + Juego.limite.y + " (Mapa)");
+				else {
+					entidad.getVector().getPosicion().x = juego.getLimite().x;
+					entidad.getVector().getPosicion().y = juego.getLimite().y;
+					juego.getLimite().x += entidad.getImagen().getIconWidth();
+				}
+				
+				//entidad.getVector().getPosicion().x = juego.getLimite().x;
+				//entidad.getVector().getPosicion().y = juego.getLimite().y;
+				
+				System.out.println("Limite: X=" + juego.getLimite().x + " ; Y=" + juego.getLimite().y + " (Mapa)");
 			}
 
 
