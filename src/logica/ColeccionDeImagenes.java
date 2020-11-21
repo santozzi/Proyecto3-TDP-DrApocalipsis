@@ -21,7 +21,7 @@ public class ColeccionDeImagenes {
 	}
 
 	private ColeccionDeImagenes() {
-
+		// comentario: borrar
 
 		System.out.println("Ejecuto constructor de ColeccionDeImagenes");
 		this.contador = 0;
