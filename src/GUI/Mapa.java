@@ -186,6 +186,7 @@ public class Mapa  extends JFrame implements IObservador{
 		//System.out.println("posicion en entidad: ("+entidad.getPosicion().x+";"+entidad.getPosicion().y+")");
 		etiquetaDeEntidad = new JLabel();
 
+		System.out.println(entidad.toString());
 		etiquetaDeEntidad.setBounds(
 
 

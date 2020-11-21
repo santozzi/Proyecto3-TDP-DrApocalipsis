@@ -21,7 +21,7 @@ public class ColeccionDeImagenes {
 	}
 
 	private ColeccionDeImagenes() {
-		// comentario: borrar
+
 
 		System.out.println("Ejecuto constructor de ColeccionDeImagenes");
 		this.contador = 0;
@@ -39,8 +39,6 @@ public class ColeccionDeImagenes {
 		
 		agregarRuta("fondoPresentacion", "/img/drApocalipsis.png", 562, 411);
 		
-		agregarRuta("background", "/img/background.gif", 785, 600);
-		
 		agregarRuta("ruinas", "/img/ruinas.gif", 785, 600);
 		
 		agregarRuta("plagueInc", "/img/plagueInc.PNG", 54, 77);
@@ -56,6 +54,8 @@ public class ColeccionDeImagenes {
 		agregarRuta("proyectilSanitario", "/img/Jeringa2.png", 20, 50);
 		
 		agregarRuta("recargar", "/img/recargar.gif", 70, 50);
+		
+		agregarRuta("particula", "/img/particula.png", 50, 50);
 
 	}
 	
