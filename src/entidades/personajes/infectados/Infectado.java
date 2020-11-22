@@ -90,7 +90,7 @@ public abstract class Infectado extends Personaje {
 
 	public void desaparecer() {
 		super.desaparecer();
-		particula.desaparecer();
+		particula.desaparecer();  
 
 	}
 	public Vector getVector() {

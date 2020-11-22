@@ -31,7 +31,7 @@ public class InfectadoAlpha extends Infectado{
 
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
-		this.vector = new Vector(0, 1, 200);
+		this.vector = new Vector(0, 1, 350);
 		this.energia = 80;
 		this.posicion = new Point();
 		this.claveImagen = new String("InfectadoAlpha_golpear");
@@ -54,7 +54,7 @@ public class InfectadoAlpha extends Infectado{
 	 * cuando este tiene menos del 20% de energia
 	 */
 	public void duplicarVelocidad() {
-		vector.setModulo(vector.getModulo()*2);
+		vector.setModulo(700);
 		particula.getVector().setModulo(1000);
 	}
 
