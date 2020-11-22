@@ -21,12 +21,14 @@ public abstract class Personaje extends Entidad {
     */
    //abstract public void desplazarse();
 	public void impacto(int disparo) {
-		if(energia-disparo>0)
+		if(energia-disparo>0) {
 		   this.energia -=disparo;
-		else {
+		 
+		}else {
 			desaparecer();
-		    
 		}
+		
+		
 	} 
 	public int getEnergia() {
 		return energia;

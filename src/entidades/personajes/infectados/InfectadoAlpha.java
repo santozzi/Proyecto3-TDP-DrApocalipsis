@@ -55,9 +55,10 @@ public class InfectadoAlpha extends Infectado{
 	 */
 	public void duplicarVelocidad() {
 		vector.setModulo(vector.getModulo()*2);
+		particula.getVector().setModulo(1000);
 	}
 
-
+    
 	// v es de jugador
 	@Override
 	public void accept(Visitor v) {
@@ -67,6 +68,13 @@ public class InfectadoAlpha extends Infectado{
 	
 	public int getRango() {
 		return rango;
+	}
+	@Override
+	public void impacto(int disparo) {
+		super.impacto(disparo);
+		  if(energia-disparo<=20) {
+		     duplicarVelocidad();   
+		   }
 	}
 	
 
