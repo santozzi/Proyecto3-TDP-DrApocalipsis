@@ -56,6 +56,8 @@ public class ColeccionDeImagenes {
 		agregarRuta("recargar", "/img/recargar.gif", 70, 50);
 	
 		agregarRuta("particula", "/img/particula.png", 20, 20);
+		
+		agregarRuta("humano", "/img/Humano.png", 40, 60);
 
 
 	}

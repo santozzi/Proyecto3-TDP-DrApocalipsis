@@ -21,7 +21,6 @@ import visitor.Visitor;
 public class ProyectilSanitario extends Proyectil{
 
 	protected int letalidad;
-	protected int velocidad;
 	protected Jugador jugador;
 	//constructor crear un vector con los datos, recibe a juego
 	
@@ -45,36 +44,4 @@ public class ProyectilSanitario extends Proyectil{
 		// TODO Auto-generated method stub
 		v.visitarProyectilSanitario(this);
 	}
-
-
-
-	@Override
-	public ImageIcon getImagen() {
-		return imagen;
-	}
-
-
-
-	@Override
-	public Vector getVector() {//direccion, velocidad, sentido
-		// TODO Auto-generated method stub
-		return this.vector;
-	}
-
-	@Override
-	public Point getPosicion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
-	@Override
-	public int getLetalidad() {
-		return this.letalidad;
-	}
-
-
-
 }

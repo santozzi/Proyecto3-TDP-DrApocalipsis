@@ -19,6 +19,7 @@ public abstract class Visitor
 	public abstract void visitarJugador(Jugador J);
 	
 	public abstract void visitarProyectilSanitario(ProyectilSanitario p);
+	
 	abstract public void visitarParticula(Particula par);
 }
 

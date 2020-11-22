@@ -1,10 +1,16 @@
 package entidades.personajes;
 
+import java.awt.Point;
+
+import javax.swing.ImageIcon;
+
 import entidades.Entidad;
+import entidades.Vector;
+import visitor.Visitor;
 
 public abstract class Personaje extends Entidad {
 	
-	protected int energia;
+	protected int cargaViral;
 	
    /**
     * estaMuerto
@@ -13,7 +19,6 @@ public abstract class Personaje extends Entidad {
     * @return Si tiene 0 o menos retorna true de lo contrario false
     */
 	
-   abstract public boolean estaMuerto();
    /**
     * desplazarse
     * -----------
@@ -21,17 +26,15 @@ public abstract class Personaje extends Entidad {
     */
    //abstract public void desplazarse();
 	public void impacto(int disparo) {
-		if(energia-disparo>0) {
-		   this.energia -=disparo;
+		if(cargaViral-disparo>0) {
+		   this.cargaViral -=disparo;
 		 
 		}else {
 			desaparecer();
 		}
-		
-		
 	} 
 	public int getEnergia() {
-		return energia;
+		return cargaViral;
 	}
 	
 }

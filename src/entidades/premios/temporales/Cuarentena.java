@@ -23,46 +23,4 @@ public class Cuarentena extends Temporal{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void desplazarse() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ImageIcon getImagen() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Vector getVector() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Point getPosicion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void detenerse() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
 }
