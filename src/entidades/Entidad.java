@@ -32,15 +32,37 @@ abstract public class  Entidad {
 	//abstract public void accionar();
 	abstract public Vector getVector();
 	abstract public Point getPosicion();
-	abstract public void detenerse();
+	 public void detenerse() {
+		 vector.setModulo(0);
+	 }
+		public void desaparecer() {
+			juego.agregarAEntidadesParaQuitar(this);
+			
+		}
 	//abstract public boolean hayColision(Entidad entidad);
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
 		//entorno = [x;x+anchoEntidad]
 		//entornoEnY= [[y;y+anchoEntidad]
-
-		return (this.vector.getPosicion().x <= (entidad.getVector().getPosicion().x + entidad.getImagen().getIconWidth()) && this.vector.getPosicion().x >= (entidad.getVector().getPosicion().x - entidad.getImagen().getIconWidth()) &&
-				(this.vector.getPosicion().y == (entidad.getVector().getPosicion().y + entidad.getImagen().getIconHeight())));
+       int posEntidadActualX =this.vector.getPosicion().x;
+       int posEntidadActualY =this.vector.getPosicion().y;
+       int posEntidadParametroX =entidad.getVector().getPosicion().x;
+       int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
+       
+       int posEntidadParametroY =entidad.getVector().getPosicion().y ;
+       int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
+       
+		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX);
+		boolean colisionEnY = (posEntidadActualY<=posEntidadConAltoY)&&(posEntidadParametroY>=posEntidadParametroY-10);
+		
+		
+		return colisionEnX &&colisionEnY;
+		/*	
+				(
+				this.vector.getPosicion().y <= 
+			(entidad.getVector().getPosicion().y+entidad.getImagen().getIconHeight())&&
+						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
+	*/
 	}
 
 	public void desplazarse() {

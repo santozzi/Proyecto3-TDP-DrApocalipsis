@@ -28,9 +28,10 @@ public class ProyectilSanitario extends Proyectil{
 	public ProyectilSanitario(Juego juego) {
 		this.juego = juego;
 		this.vector = new Vector(0,-1,1000);
+		this.letalidad = 5;
 		jugador= juego.getJugador();
 		vector.getPosicion().x= jugador.getVector().getPosicion().x+24;
-		vector.getPosicion().y= jugador.getVector().getPosicion().y-100;
+		vector.getPosicion().y= jugador.getVector().getPosicion().y-10;
 		//Image newImg = imagen.getImagen().getImage().getScaledInstance(imagen.getAncho(), imagen.getAlto(), Image.SCALE_SMOOTH);
 		//imagen.getImagen().setImage(newImg);
 		
@@ -52,27 +53,6 @@ public class ProyectilSanitario extends Proyectil{
 		return imagen;
 	}
 
-	@Override
-	public List<Entidad> detectarColisiones() {
-		 List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
-	
-		 List<Latencia> listaDeLatencia = juego.getLista();
-		 
-		 Entidad entidadDeLatencia;
-		 Entidad entidadActual = this;
-		 
-		 for(Latencia latencia : listaDeLatencia) {
-			 entidadDeLatencia = latencia.getEntidad();
-			 if(entidadActual!=entidadDeLatencia) {
-				 if(hayColision(entidadDeLatencia)) {
-					 listaDeColisiones.add(entidadDeLatencia);
-					 System.out.println("choque con proyectil");
-				 }
-			 }
-		 }
-		 
-		 return listaDeColisiones;
-	}
 
 
 	@Override
@@ -87,14 +67,12 @@ public class ProyectilSanitario extends Proyectil{
 		return null;
 	}
 
-	@Override
-	public void detenerse() {
-		// TODO Auto-generated method stub
-	}
 
-	public void desaparecer() {
-		juego.agregarAEntidadesParaQuitar(this);
-		
+
+
+	@Override
+	public int getLetalidad() {
+		return this.letalidad;
 	}
 
 

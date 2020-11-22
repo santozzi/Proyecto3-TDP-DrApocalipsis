@@ -5,12 +5,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-
-
+import GUI.Mapa;
 import entidades.Entidad;
-import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.jugador.Jugador;
-import entidades.proyectiles.Particula;
 import niveles.Nivel;
 import niveles.Nivel1;
 import observador.IObservado;
@@ -20,8 +17,9 @@ public class Juego implements IObservado{
 	protected Nivel nivel;
 
 	protected List<Latencia> entidadesParaRecorido;
-	protected List<Entidad> entidadesParaAgregar;
-	protected List<Entidad> entidadesParaQuitar;
+	protected List<Latencia> entidadesParaAgregar;
+	protected List<Latencia> entidadesParaQuitar;
+	protected Mapa mapa;
 
 
 	protected List<IObservador> observadores;
@@ -39,7 +37,7 @@ public class Juego implements IObservado{
 	protected Jugador jugador;
 
 	public Juego() {
-
+		
 		observadores = new LinkedList<IObservador>();
 
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -47,14 +45,16 @@ public class Juego implements IObservado{
 		nivel = new Nivel1(this);
 
 		entidadesParaRecorido = new LinkedList<Latencia>();
-		entidadesParaAgregar = new LinkedList<Entidad>();
-		entidadesParaQuitar = new LinkedList<Entidad>();
-
+		entidadesParaAgregar = new LinkedList<Latencia>();
+		entidadesParaQuitar = new LinkedList<Latencia>();
+        mapa = new Mapa(this);
+		mapa.setVisible(true);
+   
 		hiloRecorredorDeEntidades();
 
 	}
 	public void cargarJugador() {
-		entidadesParaAgregar.add(jugador) ;	
+		entidadesParaAgregar.add(new Latencia(jugador)) ;	
 	}
 	
 	
@@ -150,18 +150,19 @@ public class Juego implements IObservado{
 	public void agregarEntidad(Entidad entidad) {
 		entidadesParaRecorido.add(new Latencia(entidad));
 		notificarEntidad(entidad);
-
-
 	}
 	private void cargarColaDeEntidades() {
-		for(Entidad entidadA : entidadesParaAgregar) {
-			agregarEntidad(entidadA);
+		for(Latencia entidadA : entidadesParaAgregar) {
+			agregarEntidad(entidadA.getEntidad());
+			System.out.println("agrego latencia "+entidadA);
 		}
 		entidadesParaAgregar.clear();
 
-		for(Entidad entidadA : entidadesParaQuitar) {
-			agregarEntidad(entidadA);
+		for(Latencia entidadA : entidadesParaQuitar) {
+			System.out.println("borro la latencia? "+entidadA+" "+entidadesParaRecorido.remove(entidadA));
+			mapa.quitarEntidad(entidadA.getEntidad());
 		}
+		
 		entidadesParaQuitar.clear();
 
 	}
@@ -172,22 +173,21 @@ public class Juego implements IObservado{
 
 	public void cargarNivel() {
 		for(Entidad entidad : nivel.primeraTanda()) {
-			entidadesParaAgregar.add(entidad);
+			entidadesParaAgregar.add(new Latencia(entidad));
 
 		}
 	}
 	@Override
 	public void notificarEntidad(Entidad entidad) {
-		for(IObservador obs : observadores) {
-			obs.updateEntidades(entidad);
-		}
+		    mapa.updateEntidades(entidad);
+		
 
 	}
 	@Override
 	public void actualizarEntidad(Entidad entidad) {
-		for(IObservador obs : observadores) {
-			obs.updateEntidad(entidad);
-		}
+		
+			mapa.updateEntidad(entidad);
+		
 	}
 	public Jugador getJugador() {
 		return this.jugador;
@@ -209,17 +209,34 @@ public class Juego implements IObservado{
 	}
 	@Override
 	public void notificarObservadores() {
-		for(IObservador obs : observadores) {
-			obs.update();
-		}
+			mapa.update();
+		
 
 	}
 	public void agregarAEntidadesParaAgregar(Entidad entidad) {
 	
-		entidadesParaAgregar.add(entidad);
+		entidadesParaAgregar.add(new Latencia(entidad));
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void agregarAEntidadesParaQuitar(Entidad entidad) {
-		entidadesParaQuitar.add(entidad);
+	    Latencia lat = null;
+	    Iterator<Latencia> itLat = entidadesParaRecorido.iterator();
+	    boolean esta = false;
+	   
+	    while(!esta&&itLat.hasNext()) {
+	    	lat= itLat.next();
+	    	if(lat.getEntidad()==entidad) {
+	    		entidadesParaQuitar.add(lat);
+	    	}
+	    }
 	}
 
 }

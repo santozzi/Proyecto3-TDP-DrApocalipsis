@@ -20,4 +20,16 @@ public abstract class Personaje extends Entidad {
     * Mueve al personaje en direccion correspondiente
     */
    //abstract public void desplazarse();
+	public void impacto(int disparo) {
+		if(energia-disparo>0)
+		   this.energia -=disparo;
+		else {
+			desaparecer();
+		    
+		}
+	} 
+	public int getEnergia() {
+		return energia;
+	}
+	
 }

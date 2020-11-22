@@ -34,7 +34,7 @@ import observador.IObservador;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
-public class Mapa  extends JFrame implements IObservador{
+public class Mapa  extends JFrame {
 
 	protected Juego juego;
 	protected JLabel jugador;
@@ -46,25 +46,11 @@ public class Mapa  extends JFrame implements IObservador{
 	private Thread audio;
 	private AudioPlayer ap;
 	private Map<Entidad,JLabel> mapeoEntidades;
+    private static Mapa frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Mapa frame = new Mapa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public Mapa() {
+	public Mapa(Juego juego) {
 
-		juego = new Juego();
+		this.juego= juego;
 
 		teclado = new Teclado();
 		addKeyListener(teclado);
@@ -125,7 +111,7 @@ public class Mapa  extends JFrame implements IObservador{
 		
 		getContentPane().add(panelFondo);
 
-		juego.agregarObservador(this);
+		//juego.agregarObservador(this);
 		juego.cargarJugador();
 		juego.cargarNivel();
 		
@@ -154,7 +140,7 @@ public class Mapa  extends JFrame implements IObservador{
 		//pnlAreaDeJuego.updateUI();
 	}
 
-	@Override
+
 	public void update() {
 
 		IComando comando;
@@ -179,7 +165,7 @@ public class Mapa  extends JFrame implements IObservador{
 		cargarEntidades();
 	}
 
-	@Override
+
 	public void updateEntidades(Entidad entidad)  {
        // System.out.println(entidad.getImagen());
 		JLabel etiquetaDeEntidad;
@@ -204,8 +190,6 @@ public class Mapa  extends JFrame implements IObservador{
 		panelFondo.repaint();
 
 	}
-
-	@Override
 	public void updateEntidad(Entidad entidad) {
 		JLabel lblEntidad = mapeoEntidades.get(entidad);
 
@@ -259,4 +243,18 @@ public class Mapa  extends JFrame implements IObservador{
 		}
 
 	}
+
+    public void quitarEntidad(Entidad entidad) {
+    	JLabel etiquetaEliminada = mapeoEntidades.remove(entidad);
+    	
+    	if(etiquetaEliminada!=null)
+       			panelFondo.remove(etiquetaEliminada);
+    	
+    	
+    } 
+	
+	public void setMapeoEntidades(Map<Entidad, JLabel> mapeoEntidades) {
+		this.mapeoEntidades = mapeoEntidades;
+	}
+	
 }

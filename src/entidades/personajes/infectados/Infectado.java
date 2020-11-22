@@ -31,7 +31,7 @@ public abstract class Infectado extends Personaje {
 	 * Son las particulas que lanza el infectado
 	 * estas particulas son de tipo Proyectil
 	 */
-	
+
 
 
 	/**
@@ -41,10 +41,10 @@ public abstract class Infectado extends Personaje {
 	 */
 	public void atacar() {
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("infectado_atacar");
-		
+
 		v.visitarJugador(juego.getJugador());
 	}
-    public void tirarParticula() {}
+
 	/**
 	 *dejarCaerPremio
 	 *---------------
@@ -73,32 +73,36 @@ public abstract class Infectado extends Personaje {
 
 	abstract public void accept(Visitor v);
 	//	v.visitarInfectadoAlpha(this);
-	
+
 	@Override
 	public ImageIcon getImagen() {
 		return imagen;
 	}
-    
+	public void setPosicion(int x, int y) {
+		vector.getPosicion().x= x;
+		vector.getPosicion().y= y;
 
-	
-	
+		particula.getVector().getPosicion().x = x;
+		particula.getVector().getPosicion().y = y;
 
-	
-	
+	}
+
+
+	public void desaparecer() {
+		super.desaparecer();
+		particula.desaparecer();
+
+	}
 	public Vector getVector() {
 		return vector;
 	}
 
-	
+
 	public Point getPosicion() {
 		return posicion;
 	}
 
-   	
-	public void detenerse() {
-		vector.setModulo(0);
 
-	}
 	public int getRango() {
 		return rango;
 	}

@@ -39,7 +39,7 @@ public class ColeccionDeImagenes {
 		
 		agregarRuta("fondoPresentacion", "/img/drApocalipsis.png", 562, 411);
 		
-		agregarRuta("ruinas", "/img/ruinas.gif", 785, 600);
+		agregarRuta("ruinas", "/img/ruinas.gif", 562, 411);
 		
 		agregarRuta("plagueInc", "/img/plagueInc.PNG", 54, 77);
 		

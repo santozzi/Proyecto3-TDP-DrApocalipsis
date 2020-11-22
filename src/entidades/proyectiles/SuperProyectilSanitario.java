@@ -54,16 +54,18 @@ public class SuperProyectilSanitario extends Proyectil {
 		return null;
 	}
 
-	@Override
-	public void detenerse() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public boolean hayColision(Entidad entidad) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int getLetalidad() {
+		// TODO Auto-generated method stub
+		return this.letalidad;
 	}
     
 }

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import logica.ColeccionDeImagenes;
+import logica.Juego;
 
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -55,8 +56,7 @@ public class InicioGUI extends JFrame {
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Mapa mapa = new Mapa();
-				mapa.setVisible(true);
+			    Juego juego = new Juego();
 				dispose();
 			}
 		});
@@ -78,7 +78,8 @@ public class InicioGUI extends JFrame {
 	private void cargarFondo() {
 		JLabel lblFondo = new JLabel("");
 
-		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("ruinas");
+		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoPresentacion");
+		lblFondo.setIcon(imagenDeFondo);
 		lblFondo.setBounds(0, 0, getWidth(), getHeight());
 		contentPane.add(lblFondo);
 

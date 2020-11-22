@@ -17,9 +17,8 @@ public class VisitanteJugador extends Visitante {
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ea) {
-		System.out.println("jugador choca a alpha");
-		ea.detenerse();
-		
+	//	System.out.println("jugador choca a alpha");
+			
 	}
 
 	@Override

@@ -28,13 +28,12 @@ public class VisitanteInfectadoAlpha extends Visitante {
 
 	@Override
 	public void visitarJugador(Jugador j) {
-		System.out.println("El alpha el pega al jugador");
 		
+		//infectadoAlpha.detenerse();
 	}
 
 	@Override
 	public void visitarProyectilSanitario(ProyectilSanitario p) {
-		//p.desaparecer();
 		
 	}
 

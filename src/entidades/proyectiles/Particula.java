@@ -27,6 +27,7 @@ public class Particula extends Proyectil{
 		juego.agregarAEntidadesParaAgregar(this);
 		rangoParticula= 0;
 		this.infectado = infectado;
+		this.letalidad = 2;
 	}
 	
 	@Override
@@ -80,10 +81,11 @@ public class Particula extends Proyectil{
 	}
 
 	@Override
-	public void detenerse() {
+	public int getLetalidad() {
 		// TODO Auto-generated method stub
-		
+		return this.letalidad;
 	}
+
 
 
 

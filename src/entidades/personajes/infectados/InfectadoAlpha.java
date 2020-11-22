@@ -39,8 +39,14 @@ public class InfectadoAlpha extends Infectado{
 		
 		this.rango = 100;
 		v = new VisitanteInfectadoAlpha(this);
+		tirarParticula();
 	}
-
+	
+	//tiene que existir particulaAlpha y particulaBeta;
+    public void tirarParticula() {
+    	this.particula= new Particula(juego,this);
+    	
+    }
 	/**
 	 * duplicarVelocidad
 	 * -----------------
@@ -51,11 +57,7 @@ public class InfectadoAlpha extends Infectado{
 		vector.setModulo(vector.getModulo()*2);
 	}
 
-	public void tirarParticula() {
-		this.particula =  new Particula(juego,this);
-		
 
-	}
 	// v es de jugador
 	@Override
 	public void accept(Visitor v) {
@@ -63,10 +65,9 @@ public class InfectadoAlpha extends Infectado{
 		
 	}
 	
-	
-	
-
 	public int getRango() {
 		return rango;
 	}
+	
+
 }
