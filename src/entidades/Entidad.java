@@ -26,50 +26,58 @@ abstract public class  Entidad {
 
 
 	abstract public void accept(Visitor v);
-	//	abstract public void desplazarse();
-	abstract public ImageIcon getImagen();
+	public ImageIcon getImagen() {
+		return this.imagen;
+	}
 	//abstract public List<Entidad> detectarColisiones();
 	//abstract public void accionar();
-	abstract public Vector getVector();
-	abstract public Point getPosicion();
-	 public void detenerse() {
-		 vector.setModulo(0);
-	 }
-		public void desaparecer() {
-			juego.agregarAEntidadesParaQuitar(this);
-			
-		}
-	//abstract public boolean hayColision(Entidad entidad);
+	public Vector getVector() {
+		return this.vector;
+	}
+	public Point getPosicion() {
+		return this.posicion;
+	}
+	public void setPosicion(int x, int y) {
+		this.posicion.x = x;
+		this.posicion.y = y;
+	}
+	public void detenerse() {
+		vector.setModulo(0);
+	}
+	public void desaparecer() {
+		juego.agregarAEntidadesParaQuitar(this);
+
+	}
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
 		//entorno = [x;x+anchoEntidad]
 		//entornoEnY= [[y;y+anchoEntidad]
-       int posEntidadActualX =this.vector.getPosicion().x;
-       int posEntidadActualY =this.vector.getPosicion().y;
-       int posEntidadParametroX =entidad.getVector().getPosicion().x;
-       int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
-       
-       int posEntidadParametroY =entidad.getVector().getPosicion().y ;
-       int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
-       
-		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX);
-		boolean colisionEnY = (posEntidadActualY<=posEntidadConAltoY)&&(posEntidadParametroY>=posEntidadParametroY-10);
-		
-		
+		int posEntidadActualX =this.vector.getPosicion().x;
+		int posEntidadActualY =this.vector.getPosicion().y;
+		int posEntidadParametroX =entidad.getVector().getPosicion().x;
+		int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
+
+		int posEntidadParametroY =entidad.getVector().getPosicion().y ;
+		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
+
+		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
+		boolean colisionEnY = (posEntidadActualY<=posEntidadConAltoY) && (posEntidadParametroY>=posEntidadParametroY-10);
+
+
 		return colisionEnX &&colisionEnY;
 		/*	
 				(
 				this.vector.getPosicion().y <= 
 			(entidad.getVector().getPosicion().y+entidad.getImagen().getIconHeight())&&
 						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
-	*/
+		 */
 	}
 
 	public void desplazarse() {
 		//this.posicion.y++;
 		this.vector.desplazarse();
 		//detectarColisiones();
-        accionar();
+		accionar();
 		//detectarColisiones();
 		//pregunatar cuando se choca con el limite del mapa
 
@@ -97,10 +105,10 @@ abstract public class  Entidad {
 					esta = false;
 
 			}			 
-	}
-	return listaDeColisiones;
-}  
-	
+		}
+		return listaDeColisiones;
+	}  
+
 
 	public void accionar() {
 		for(Entidad ent : detectarColisiones()) {

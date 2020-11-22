@@ -64,10 +64,4 @@ public class Nivel3InfectadosMixto extends FabricaDeTandas {
 			entidades.add(nuevoInfectado);
 		}
 	}
-
-	@Override
-	public List<Entidad> getEntidades() {
-		return this.entidades;
-	}
-
 }

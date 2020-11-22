@@ -1,5 +1,5 @@
 package entidades.premios.no_temporales;
 
-abstract public class ObjetoPrecioso extends NoTemporal{
+abstract public class ObjetoPrecioso extends NoTemporal {
 
 }

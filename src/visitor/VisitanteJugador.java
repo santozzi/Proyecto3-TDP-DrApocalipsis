@@ -14,7 +14,6 @@ public class VisitanteJugador extends Visitante {
 		this.j = j;
 	}
 
-
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ea) {
 	//	System.out.println("jugador choca a alpha");

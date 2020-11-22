@@ -1,4 +1,4 @@
-package entidades.armas;
+package armas;
 import entidades.proyectiles.*;
 
 import java.awt.Point;

@@ -17,6 +17,8 @@ public abstract class FabricaDeTandas {
 	abstract public void primeraTanda();
 	abstract public void segundaTanda();
 	//abstract public void generar();
-	abstract public List<Entidad> getEntidades();
+	public List<Entidad> getEntidades(){
+		return this.entidades;
+	}
 
 }

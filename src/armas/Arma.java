@@ -1,4 +1,4 @@
-package entidades.armas;
+package armas;
 import entidades.proyectiles.*;
 import logica.Juego;
 import entidades.Entidad;

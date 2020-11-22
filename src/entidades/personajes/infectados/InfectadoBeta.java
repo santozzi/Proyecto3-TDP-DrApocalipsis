@@ -32,24 +32,12 @@ public class InfectadoBeta extends Infectado {
 	public InfectadoBeta(Juego juego) {
 		this.juego = juego;
 		this.vector = new Vector(0, -1, 3);
-		this.energia = 200;
+		this.cargaViral = 200;
 		tirarParticula();
 		v = new VisitanteInfectadoBeta(this);
 	}
-
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		
 	}
-
-	public void tirarParticula() {
-		Proyectil p = new Particula(juego,this);
-		
-	
-	}
-	
-
-
-
 }

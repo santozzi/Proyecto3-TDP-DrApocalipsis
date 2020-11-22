@@ -23,39 +23,4 @@ public class Pocion extends NoTemporal {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-	@Override
-	public ImageIcon getImagen() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Vector getVector() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Point getPosicion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void detenerse() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

@@ -12,7 +12,7 @@ import entidades.personajes.infectados.InfectadoAlpha;
 import logica.Juego;
 
 public class Nivel1InfectadosAlpha extends FabricaDeTandas{
-	
+
 	public Nivel1InfectadosAlpha(Juego j) {
 		this(j, 20);
 	}
@@ -21,7 +21,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		this.juego = j;
 		this.entidades = new LinkedList<Entidad>();
 		this.cantidadInfectados = cantInfectados;
-		
+
 	}
 
 	@Override
@@ -30,20 +30,20 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		Infectado nuevoInfectado;
 		Random random = new Random();
 		List<Point> posiciones = new LinkedList<Point>();
-		
+
 		for(int i=0 ; i<cantidadInfectados ; i++) {
 
- 			nuevoInfectado = new InfectadoAlpha(this.juego);
- 			
- 			posicion = asignarPosicion(
- 					posiciones,
- 					nuevoInfectado.getImagen().getIconWidth(),
- 					nuevoInfectado.getImagen().getIconHeight(),
- 					random.nextInt(Juego.ANCHO_DE_COMBATE-nuevoInfectado.getImagen().getIconWidth()),
- 					random.nextInt(Juego.ALTO_DE_COMBATE*5),
- 					random);
+			nuevoInfectado = new InfectadoAlpha(this.juego);
+
+			posicion = asignarPosicion(
+					posiciones,
+					nuevoInfectado.getImagen().getIconWidth(),
+					nuevoInfectado.getImagen().getIconHeight(),
+					random.nextInt(Juego.ANCHO_DE_COMBATE-nuevoInfectado.getImagen().getIconWidth()),
+					random.nextInt(Juego.ALTO_DE_COMBATE*5),
+					random);
 			posiciones.add(posicion);
- 			if(juego.getLimite().y>=posicion.y)
+			if(juego.getLimite().y>=posicion.y)
 				juego.getLimite().y = posicion.y - nuevoInfectado.getImagen().getIconHeight();
 			//nuevoInfectado.getVector().getDireccion().y=1;
 			//nuevoInfectado.getVector().getDireccion().x=1;
@@ -51,60 +51,44 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
  			nuevoInfectado.getVector().getPosicion().x = posicion.x;
 			nuevoInfectado.getVector().getPosicion().y = - posicion.y - nuevoInfectado.getImagen().getIconHeight();
 			nuevoInfectado.tirarParticula();
-			*/
- 			nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
- 			
-			nuevoInfectado.getVector().setModulo(350);
-			
-			
-			
-			
+			 */
+			nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
+			nuevoInfectado.getVector().setModulo(200);
 			//nuevoInfectado.getVector().cambioDeSentido();
 			entidades.add(nuevoInfectado);
 		}
 	}
-
 	private Point asignarPosicion(List<Point> posiciones, int anchoInfectado, int altoInfectado, int x, int y, Random random) {
 		Iterator<Point> itPosiciones;
 		Point aRetornar;
 		Point elem;
 		boolean estaInsertado = false;
 		itPosiciones = posiciones.iterator();
-		
+
 		while(itPosiciones.hasNext() && !estaInsertado) {
 			elem = itPosiciones.next();
 			estaInsertado = (x <= (elem.x + anchoInfectado) && x >= (elem.x - anchoInfectado))
 					&& (y <= (elem.y + altoInfectado) && y >= (elem.y - altoInfectado));
 		}
-		
+
 		if(estaInsertado)
 			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE*5), random);
 		else
 			aRetornar = new Point(x, y);
-		
+
 		return aRetornar;
 	}
-	
-	
-
 	@Override
 	public void segundaTanda() {
 		Infectado nuevoInfectado;
 		Random r1 = new Random();
 		for(int i=0 ; i<cantidadInfectados*2 ; i++) {
 			nuevoInfectado = new InfectadoAlpha(this.juego);
-			
+
 			nuevoInfectado.getVector().getPosicion().x = r1.nextInt(Juego.ANCHO_DE_COMBATE) + Juego.DECORADO_IZQUIERDO;
 			nuevoInfectado.getVector().getPosicion().y =r1.nextInt(Juego.ALTO_DE_COMBATE);
 			nuevoInfectado.getVector().setModulo(500);
 			entidades.add(nuevoInfectado);
 		}
 	}
-
-	@Override
-	public List<Entidad> getEntidades() {
-		return this.entidades;
-	}
-
-
 }

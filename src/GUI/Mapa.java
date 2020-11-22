@@ -70,8 +70,8 @@ public class Mapa  extends JFrame {
 			}
 		 */
 
-		ap = new AudioPlayer("/audio/Digadig.mp3");
-		audio = new Thread(ap);
+		//ap = new AudioPlayer("/audio/Digadig.mp3");
+		//audio = new Thread(ap);
 		//audio.start();
 
 		setTitle("Dr. Apocalipsis");

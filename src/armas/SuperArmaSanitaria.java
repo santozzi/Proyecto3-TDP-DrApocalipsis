@@ -1,4 +1,4 @@
-package entidades.armas;
+package armas;
 
 import java.util.ArrayList;
 
