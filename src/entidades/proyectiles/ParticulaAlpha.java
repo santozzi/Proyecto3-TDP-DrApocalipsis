@@ -41,15 +41,18 @@ public class ParticulaAlpha extends Proyectil{
 		//this.vector.setY(++y);
 		 */
 		if(rangoParticula==infectado.getRango()) {
-			rangoParticula=0;
-			vector.getPosicion().x = infectado.getVector().getPosicion().x+
-					(infectado.getImagen().getIconWidth()/4);
-			vector.getPosicion().y = infectado.getVector().getPosicion().y+10;
+		   reiniciarParticula();
 		}else {
 			rangoParticula++;
 		}
 		accionar();  
 		vector.desplazarse();
+	}
+	public void reiniciarParticula() {
+		rangoParticula=0;
+		vector.getPosicion().x = infectado.getVector().getPosicion().x+
+				(infectado.getImagen().getIconWidth()/4);
+		vector.getPosicion().y = infectado.getVector().getPosicion().y+10;
 	}
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
