@@ -1,5 +1,6 @@
 package visitor;
 
+import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
 import entidades.personajes.jugador.Jugador;
@@ -41,6 +42,12 @@ public class VisitanteInfectadoBeta extends Visitante {
 
 	@Override
 	public void visitarParticula(Particula par) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarHumano(Humano hum) {
 		// TODO Auto-generated method stub
 		
 	}

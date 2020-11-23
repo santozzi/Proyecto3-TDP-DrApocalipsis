@@ -99,10 +99,7 @@ public class Jugador extends Personaje{
 
 		}
 	}
-	@Override
-	public Point getPosicion() {
-		return posicion;
-	}
+
 
 	public void disparar() {
 		arma.disparar();

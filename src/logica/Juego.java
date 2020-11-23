@@ -35,9 +35,15 @@ public class Juego implements IObservado{
 	protected static final int VELOCIDAD_MINIMA=5;
 	protected static final int VELOCIDAD_MAXIMA=1000;
 	protected Jugador jugador;
+	protected int[] arregloVelocidad;
 
 	public Juego() {
-		
+        arregloVelocidad = new int[VELOCIDAD_MAXIMA];
+        arregloVelocidad[0]=0;
+        for(int i=1;i<arregloVelocidad.length-2;i++) {
+        	arregloVelocidad[i]= VELOCIDAD_MAXIMA-i-1;
+        }
+        
 		observadores = new LinkedList<IObservador>();
 
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -47,18 +53,18 @@ public class Juego implements IObservado{
 		entidadesParaRecorido = new LinkedList<Latencia>();
 		entidadesParaAgregar = new LinkedList<Latencia>();
 		entidadesParaQuitar = new LinkedList<Latencia>();
-        mapa = new Mapa(this);
+		mapa = new Mapa(this);
 		mapa.setVisible(true);
-   
+
 		hiloRecorredorDeEntidades();
 
 	}
 	public void cargarJugador() {
 		entidadesParaAgregar.add(new Latencia(jugador)) ;	
 	}
-	
-	
-	
+
+
+
 	//hilo paralelo
 	public void hiloRecorredorDeEntidades() {
 		Thread hiloVerificar = new Thread(){
@@ -83,13 +89,13 @@ public class Juego implements IObservado{
 
 
 						entidad = lat.getEntidad();
-						
+
 						int velocidad = entidad.getVector().getModulo();
 						if(velocidad!=0) {
 							//velocidad cuanto mas cercano a uno sea mas rapido va a ir
 
-							int latencia = VELOCIDAD_MAXIMA/velocidad;
-
+							int latencia = arregloVelocidad[velocidad];//VELOCIDAD_MAXIMA/velocidad;
+                               System.out.println("latencia "+latencia);
 							if(entidad!=jugador) {
 
 								if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
@@ -109,44 +115,25 @@ public class Juego implements IObservado{
 								if(latencia==lat.getLatencia()) {
 									//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
 
-								
+
 									entidad.desplazarse();
 
 									actualizarEntidad(entidad);
 									lat.reiniciarLatencia();
 								}else {
 									lat.incrementarLatencia();
-									//
 								}
 							}
-
-
-
-
 						}
 					}
 					cargarColaDeEntidades();
 
-
-
 				}
-
-
 			}
-
-
 		};
 		hiloVerificar.start();
 
 	}
-
-	
-	
-	
-	
-	
-	
-	
 	public void agregarEntidad(Entidad entidad) {
 		entidadesParaRecorido.add(new Latencia(entidad));
 		notificarEntidad(entidad);
@@ -154,15 +141,15 @@ public class Juego implements IObservado{
 	private void cargarColaDeEntidades() {
 		for(Latencia entidadA : entidadesParaAgregar) {
 			agregarEntidad(entidadA.getEntidad());
-			System.out.println("agrego latencia "+entidadA);
+			//	System.out.println("agrego latencia "+entidadA);
 		}
 		entidadesParaAgregar.clear();
 
 		for(Latencia entidadA : entidadesParaQuitar) {
-			System.out.println("borro la latencia? "+entidadA+" "+entidadesParaRecorido.remove(entidadA));
+		    entidadesParaRecorido.remove(entidadA);
 			mapa.quitarEntidad(entidadA.getEntidad());
 		}
-		
+
 		entidadesParaQuitar.clear();
 
 	}
@@ -174,20 +161,15 @@ public class Juego implements IObservado{
 	public void cargarNivel() {
 		for(Entidad entidad : nivel.primeraTanda()) {
 			entidadesParaAgregar.add(new Latencia(entidad));
-
 		}
 	}
 	@Override
 	public void notificarEntidad(Entidad entidad) {
-		    mapa.updateEntidades(entidad);
-		
-
+		mapa.updateEntidades(entidad);
 	}
 	@Override
 	public void actualizarEntidad(Entidad entidad) {
-		
-			mapa.updateEntidad(entidad);
-		
+		mapa.updateEntidad(entidad);
 	}
 	public Jugador getJugador() {
 		return this.jugador;
@@ -195,7 +177,6 @@ public class Juego implements IObservado{
 	public List<Latencia> getLista(){
 		return entidadesParaRecorido;
 	}
-
 
 	@Override
 	public void agregarObservador(IObservador obs) {
@@ -209,34 +190,25 @@ public class Juego implements IObservado{
 	}
 	@Override
 	public void notificarObservadores() {
-			mapa.update();
-		
+		mapa.update();
 
 	}
 	public void agregarAEntidadesParaAgregar(Entidad entidad) {
-	
+
 		entidadesParaAgregar.add(new Latencia(entidad));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public void agregarAEntidadesParaQuitar(Entidad entidad) {
-	    Latencia lat = null;
-	    Iterator<Latencia> itLat = entidadesParaRecorido.iterator();
-	    boolean esta = false;
-	   
-	    while(!esta&&itLat.hasNext()) {
-	    	lat= itLat.next();
-	    	if(lat.getEntidad()==entidad) {
-	    		entidadesParaQuitar.add(lat);
-	    	}
-	    }
+		Latencia lat = null;
+		Iterator<Latencia> itLat = entidadesParaRecorido.iterator();
+		boolean esta = false;
+
+		while(!esta&&itLat.hasNext()) {
+			lat= itLat.next();
+			if(lat.getEntidad()==entidad) {
+				entidadesParaQuitar.add(lat);
+			}
+		}
 	}
 
 }

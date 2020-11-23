@@ -1,12 +1,6 @@
 package entidades.personajes;
 
-import java.awt.Point;
-
-import javax.swing.ImageIcon;
-
 import entidades.Entidad;
-import entidades.Vector;
-import visitor.Visitor;
 
 public abstract class Personaje extends Entidad {
 	

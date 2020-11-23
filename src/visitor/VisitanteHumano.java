@@ -8,16 +8,17 @@ import entidades.proyectiles.Particula;
 import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
 
-public class VisitanteInfectadoAlpha extends Visitante {
+public class VisitanteHumano extends Visitante {
 	
-	private InfectadoAlpha infectadoAlpha;
+	private Humano humano;
 	
-	public VisitanteInfectadoAlpha(InfectadoAlpha ia) {
-		this.infectadoAlpha = ia;
+	public VisitanteHumano(Humano ps) {
+		this.humano = ps;
 	}
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ia) {
+
 		
 	}
 
@@ -29,12 +30,13 @@ public class VisitanteInfectadoAlpha extends Visitante {
 
 	@Override
 	public void visitarJugador(Jugador j) {
+		//System.out.println("El alpha el pega al jugador");
 		
-		//infectadoAlpha.detenerse();
 	}
 
 	@Override
 	public void visitarProyectilSanitario(ProyectilSanitario p) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -50,6 +52,6 @@ public class VisitanteInfectadoAlpha extends Visitante {
 		
 	}
 
-
+	
 
 }

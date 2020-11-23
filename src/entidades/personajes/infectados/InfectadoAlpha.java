@@ -22,7 +22,7 @@ public class InfectadoAlpha extends Infectado{
 
 		this.vector = new Vector(0, 1, 200);
 		this.cargaViral = 80;
-		this.posicion = new Point();
+	
 		this.claveImagen = new String("InfectadoAlpha_golpear");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 
@@ -40,7 +40,7 @@ public class InfectadoAlpha extends Infectado{
 	 * cuando este tiene menos del 20% de energia
 	 */
 	public void duplicarVelocidad() {
-
+       
 		vector.setModulo(700);
 
 		//vector.setModulo(vector.getModulo()*2);
@@ -55,6 +55,8 @@ public class InfectadoAlpha extends Infectado{
 	@Override
 	public void impacto(int disparo) {
 		super.impacto(disparo);
+		
+		
 		if(cargaViral-disparo>0 && cargaViral-disparo<=20)
 			duplicarVelocidad();
 	}

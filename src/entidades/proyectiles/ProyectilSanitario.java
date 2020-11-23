@@ -20,7 +20,7 @@ import visitor.Visitor;
 
 public class ProyectilSanitario extends Proyectil{
 
-	protected int letalidad;
+	
 	protected Jugador jugador;
 	//constructor crear un vector con los datos, recibe a juego
 	

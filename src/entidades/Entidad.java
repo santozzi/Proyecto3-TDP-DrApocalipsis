@@ -19,7 +19,7 @@ abstract public class  Entidad {
 	 * El vector contiene la velocidad y la direccion de la entidad
 	 */
 	protected Vector vector;
-	protected Point posicion;
+
 	protected Juego juego;
 	protected ImageIcon imagen;
 	protected String claveImagen;
@@ -35,11 +35,11 @@ abstract public class  Entidad {
 		return this.vector;
 	}
 	public Point getPosicion() {
-		return this.posicion;
+		return this.vector.getPosicion();
 	}
 	public void setPosicion(int x, int y) {
-		this.posicion.x = x;
-		this.posicion.y = y;
+		this.vector.getPosicion().x = x;
+		this.vector.getPosicion().y = y;
 	}
 	public void detenerse() {
 		vector.setModulo(0);

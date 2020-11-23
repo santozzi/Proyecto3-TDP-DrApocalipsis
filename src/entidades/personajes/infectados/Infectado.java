@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 import entidades.Entidad;
 import entidades.Vector;
+import entidades.personajes.Humano;
 import entidades.personajes.Personaje;
 import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
@@ -64,7 +65,7 @@ public abstract class Infectado extends Personaje {
 		else
 			premio = new Pocion();
 
-		premio.getPosicion().setLocation(posicion);
+		premio.getPosicion().setLocation(getPosicion());
 	}
 	public void tirarParticula() {
     	this.particula= new Particula(juego,this);
@@ -81,17 +82,23 @@ public abstract class Infectado extends Personaje {
 
 
 	public void impacto(int disparo) {
-		if(cargaViral-disparo>0) 
+		if(cargaViral-disparo>0) { 
 			this.cargaViral -=disparo;
-		else
+		
+		}else
 			curar();
 	} 
 	public void curar() {
-		this.claveImagen = "humano";
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
+		Entidad humano = new Humano(juego);
+		humano.setPosicion(vector.getPosicion().x, vector.getPosicion().y);
+		
+		
+		juego.agregarAEntidadesParaAgregar(humano);
 		particula.desaparecer();
-
+		this.desaparecer();
+		
 	}
+	
 	public int getRango() {
 		return rango;
 	}

@@ -1,14 +1,13 @@
 package entidades.personajes;
 
-import java.awt.Point;
 
-import javax.swing.ImageIcon;
 
 import entidades.Vector;
 import entidades.personajes.infectados.Infectado;
 import entidades.personajes.infectados.InfectadoAlpha;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import visitor.VisitanteHumano;
 import visitor.Visitor;
 
 public class Humano extends Personaje {
@@ -16,11 +15,12 @@ public class Humano extends Personaje {
 	public Humano(Juego j) {
 		this.juego = j;
 		this.cargaViral = 0;
-		this.posicion = new Point();
+	
 		this.vector = new Vector(0, 1, 200);
 		this.claveImagen = new String("humano");
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
-		//this.v = new VisitanteHumano(this);
+		this.v = new VisitanteHumano(this);
+		
 		
 	}
 
@@ -46,7 +46,7 @@ public class Humano extends Personaje {
 	*/
 
 	public void accept(Visitor v) {
-		//v.visitarHumano(this);
+		v.visitarHumano(this);
 	}
 	@Override
 	public void impacto(int infeccion) {
@@ -57,7 +57,7 @@ public class Humano extends Personaje {
 	} 
 	private void infectar() {
 		Infectado ia = new InfectadoAlpha(this.juego);
-		ia.setPosicion(this.posicion.x, this.posicion.y);
+		ia.setPosicion(this.getPosicion().x, this.getPosicion().y);
 	}
 
 }
