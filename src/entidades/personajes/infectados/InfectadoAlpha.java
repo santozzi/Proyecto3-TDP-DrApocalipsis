@@ -20,7 +20,7 @@ public class InfectadoAlpha extends Infectado{
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
 
-		this.vector = new Vector(0, 1, 200);
+		this.vector = new Vector(0, 1, 3);
 		this.cargaViral = 80;
 	
 		this.claveImagen = new String("InfectadoAlpha_golpear");
@@ -41,11 +41,11 @@ public class InfectadoAlpha extends Infectado{
 	 */
 	public void duplicarVelocidad() {
        
-		vector.setModulo(700);
+		vector.setModulo(6);
 
 		//vector.setModulo(vector.getModulo()*2);
 
-		particula.getVector().setModulo(1000);
+		//particula.getVector().setModulo(8);
 	}
 	// v es de jugador
 	@Override

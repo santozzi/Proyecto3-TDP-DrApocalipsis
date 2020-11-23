@@ -11,7 +11,7 @@ public class Particula extends Proyectil{
 	protected int velocidad;
 	protected int rangoParticula;
 	public Particula(Juego juego,Infectado infectado) {
-		vector = new Vector(0,1,500);
+		vector = new Vector(0,1,8);
 		vector.getPosicion().x= infectado.getVector().getPosicion().x;
 		vector.getPosicion().y= infectado.getVector().getPosicion().y+100;
 		//	System.out.println("En particula: ("+vector.getPosicion().x+";"+vector.getPosicion().y+")");

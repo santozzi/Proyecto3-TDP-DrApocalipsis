@@ -16,7 +16,7 @@ public class Humano extends Personaje {
 		this.juego = j;
 		this.cargaViral = 0;
 	
-		this.vector = new Vector(0, 1, 200);
+		this.vector = new Vector(0, 1, 3);
 		this.claveImagen = new String("humano");
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		this.v = new VisitanteHumano(this);

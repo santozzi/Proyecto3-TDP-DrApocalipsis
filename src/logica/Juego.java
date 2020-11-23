@@ -33,17 +33,12 @@ public class Juego implements IObservado{
 
 	protected Point limite;
 	protected static final int VELOCIDAD_MINIMA=5;
-	protected static final int VELOCIDAD_MAXIMA=1000;
+	protected static final int VELOCIDAD_MAXIMA=10;
 	protected Jugador jugador;
-	protected int[] arregloVelocidad;
+
 
 	public Juego() {
-        arregloVelocidad = new int[VELOCIDAD_MAXIMA];
-        arregloVelocidad[0]=0;
-        for(int i=1;i<arregloVelocidad.length-2;i++) {
-        	arregloVelocidad[i]= VELOCIDAD_MAXIMA-i-1;
-        }
-        
+		
 		observadores = new LinkedList<IObservador>();
 
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -53,8 +48,8 @@ public class Juego implements IObservado{
 		entidadesParaRecorido = new LinkedList<Latencia>();
 		entidadesParaAgregar = new LinkedList<Latencia>();
 		entidadesParaQuitar = new LinkedList<Latencia>();
-		mapa = new Mapa(this);
-		mapa.setVisible(true);
+		//mapa = new Mapa(this);
+		//mapa.setVisible(true);
 
 		hiloRecorredorDeEntidades();
 
@@ -94,8 +89,8 @@ public class Juego implements IObservado{
 						if(velocidad!=0) {
 							//velocidad cuanto mas cercano a uno sea mas rapido va a ir
 
-							int latencia = arregloVelocidad[velocidad];//VELOCIDAD_MAXIMA/velocidad;
-                               System.out.println("latencia "+latencia);
+							int latencia = VELOCIDAD_MAXIMA-velocidad;
+	
 							if(entidad!=jugador) {
 
 								if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
@@ -146,8 +141,8 @@ public class Juego implements IObservado{
 		entidadesParaAgregar.clear();
 
 		for(Latencia entidadA : entidadesParaQuitar) {
-		    entidadesParaRecorido.remove(entidadA);
-			mapa.quitarEntidad(entidadA.getEntidad());
+			entidadesParaRecorido.remove(entidadA);
+			notificarQuitarEntidad(entidadA.getEntidad());
 		}
 
 		entidadesParaQuitar.clear();
@@ -165,11 +160,13 @@ public class Juego implements IObservado{
 	}
 	@Override
 	public void notificarEntidad(Entidad entidad) {
-		mapa.updateEntidades(entidad);
+		for(IObservador obs: observadores)
+			obs.updateEntidades(entidad);
 	}
 	@Override
 	public void actualizarEntidad(Entidad entidad) {
-		mapa.updateEntidad(entidad);
+		for(IObservador obs: observadores)
+			obs.updateEntidad(entidad);
 	}
 	public Jugador getJugador() {
 		return this.jugador;
@@ -190,7 +187,8 @@ public class Juego implements IObservado{
 	}
 	@Override
 	public void notificarObservadores() {
-		mapa.update();
+		for(IObservador obs: observadores)
+			obs.update();
 
 	}
 	public void agregarAEntidadesParaAgregar(Entidad entidad) {
@@ -209,6 +207,12 @@ public class Juego implements IObservado{
 				entidadesParaQuitar.add(lat);
 			}
 		}
+	}
+	@Override
+	public void notificarQuitarEntidad(Entidad entidad) {
+		for(IObservador obs: observadores)
+			obs.quitarEntidad(entidad);
+
 	}
 
 }

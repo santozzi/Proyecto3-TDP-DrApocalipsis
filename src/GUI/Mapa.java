@@ -34,7 +34,7 @@ import observador.IObservador;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
-public class Mapa  extends JFrame {
+public class Mapa  extends JFrame implements IObservador{
 
 	protected Juego juego;
 	protected JLabel jugador;
@@ -46,11 +46,9 @@ public class Mapa  extends JFrame {
 	private Thread audio;
 	private AudioPlayer ap;
 	private Map<Entidad,JLabel> mapeoEntidades;
-    private static Mapa frame;
 
-	public Mapa(Juego juego) {
-
-		this.juego= juego;
+	public Mapa() {
+        juego = new Juego();
 
 		teclado = new Teclado();
 		addKeyListener(teclado);
@@ -111,7 +109,7 @@ public class Mapa  extends JFrame {
 		
 		getContentPane().add(panelFondo);
 
-		//juego.agregarObservador(this);
+		juego.agregarObservador(this);
 		juego.cargarJugador();
 		juego.cargarNivel();
 		

@@ -43,6 +43,8 @@ public class InicioGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public InicioGUI() {
+		
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 562, 411);
@@ -56,7 +58,9 @@ public class InicioGUI extends JFrame {
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    Juego juego = new Juego();
+			    //Juego juego = new Juego();
+				Mapa mapa = new Mapa();
+				mapa.setVisible(true);
 				dispose();
 			}
 		});
