@@ -8,21 +8,16 @@ import entidades.proyectiles.ParticulaAlpha;
 import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
 
-public class VisitanteProyectilSanitario extends Visitante {
+public class VisitanteParticulaAlpha extends Visitante {
 	
-	private ProyectilSanitario proyectilSanitario;
+	private ParticulaAlpha particulaAlpha;
 	
-	public VisitanteProyectilSanitario(ProyectilSanitario ps) {
-		this.proyectilSanitario = ps;
+	public VisitanteParticulaAlpha(ParticulaAlpha ia) {
+		this.particulaAlpha = ia;
 	}
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ia) {
-	//	ia.detenerse();
-	    ia.impacto(proyectilSanitario.getLetalidad());
-	  //  System.out.println("infectadoAlpha energia "+ia.getEnergia());
-		proyectilSanitario.detenerse();
-		proyectilSanitario.desaparecer();
 		
 	}
 
@@ -34,13 +29,14 @@ public class VisitanteProyectilSanitario extends Visitante {
 
 	@Override
 	public void visitarJugador(Jugador j) {
-		//System.out.println("El alpha el pega al jugador");
+		j.impacto(particulaAlpha.getLetalidad());
+		//particulaAlpha.detenerse();
+		//particulaAlpha.desaparecer();
 		
 	}
 
 	@Override
 	public void visitarProyectilSanitario(ProyectilSanitario p) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -58,6 +54,6 @@ public class VisitanteProyectilSanitario extends Visitante {
 		
 	}
 
-	
+
 
 }

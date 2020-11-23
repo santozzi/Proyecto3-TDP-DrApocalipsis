@@ -14,7 +14,7 @@ import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
-import entidades.proyectiles.Particula;
+import entidades.proyectiles.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteInfectadoAlpha;
@@ -22,7 +22,7 @@ import visitor.Visitor;
 
 public abstract class Infectado extends Personaje {
 
-	protected Particula particula;
+	protected ParticulaAlpha particula;
 	protected Premio premio;
 	protected int rango;
 
@@ -68,7 +68,7 @@ public abstract class Infectado extends Personaje {
 		premio.getPosicion().setLocation(getPosicion());
 	}
 	public void tirarParticula() {
-    	this.particula= new Particula(juego,this);
+    	this.particula= new ParticulaAlpha(juego,this);
     }
 	@Override
 	public void setPosicion(int x, int y) {

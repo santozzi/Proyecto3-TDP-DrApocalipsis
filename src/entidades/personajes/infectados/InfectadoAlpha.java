@@ -3,7 +3,7 @@ package entidades.personajes.infectados;
 import java.awt.Point;
 
 import entidades.Vector;
-import entidades.proyectiles.Particula;
+import entidades.proyectiles.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.*;

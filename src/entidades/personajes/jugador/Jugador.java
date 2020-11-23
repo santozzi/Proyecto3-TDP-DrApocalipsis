@@ -19,7 +19,7 @@ public class Jugador extends Personaje{
 	protected Arma arma;
 
 	public Jugador(Juego juego) {
-		this.cargaViral = 0;
+		this.cargaViral = 100;
 		this.juego= juego;
 		this.vector = new Vector(1,0,3);
 		this.vector.getPosicion().x=225;
@@ -108,5 +108,9 @@ public class Jugador extends Personaje{
 		imagen.getImage().flush();
 	}
 
-
+@Override
+public void impacto(int disparo) {
+	super.impacto(disparo);
+	juego.notificarCargaViralDeJugador();
+}
 }

@@ -13,7 +13,7 @@ import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
-import entidades.proyectiles.Particula;
+import entidades.proyectiles.ParticulaAlpha;
 import entidades.proyectiles.Proyectil;
 import entidades.Entidad;
 import logica.Juego;

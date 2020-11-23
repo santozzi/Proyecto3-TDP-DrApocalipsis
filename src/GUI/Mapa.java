@@ -26,7 +26,7 @@ import entidades.personajes.jugador.comandos.Detenerse;
 import entidades.personajes.jugador.comandos.Disparar;
 import entidades.personajes.jugador.comandos.IComando;
 import entidades.personajes.jugador.controles.Teclado;
-import entidades.proyectiles.Particula;
+import entidades.proyectiles.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import observador.IObservador;
@@ -42,7 +42,7 @@ public class Mapa  extends JFrame implements IObservador{
 	protected JPanel panelFondo;
 	protected JPanel panelDeEntidades;
 	protected Teclado teclado;
-
+    protected JProgressBar progressBar;
 	private Thread audio;
 	private AudioPlayer ap;
 	private Map<Entidad,JLabel> mapeoEntidades;
@@ -78,7 +78,8 @@ public class Mapa  extends JFrame implements IObservador{
 
 		//ImageIcon imagendDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("nivel1");
 
-		JProgressBar progressBar = new JProgressBar();
+		progressBar = new JProgressBar();
+		progressBar.setValue(100);
 		progressBar.setForeground(new Color(124, 252, 0));
 		progressBar.setBackground(Color.RED);
 		progressBar.setBounds(289, 620, 155, 33);
@@ -253,6 +254,15 @@ public class Mapa  extends JFrame implements IObservador{
 	
 	public void setMapeoEntidades(Map<Entidad, JLabel> mapeoEntidades) {
 		this.mapeoEntidades = mapeoEntidades;
+	}
+
+
+
+	@Override
+	public void updateEnergiaJugador() {
+		progressBar.setValue(juego.getJugador().getEnergia());
+		System.out.println("me pegaron");
+		
 	}
 	
 }

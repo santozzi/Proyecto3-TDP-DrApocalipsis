@@ -12,5 +12,6 @@ public interface IObservador {
    public void updateEntidades(Entidad entidad);
    public void updateEntidad(Entidad entidad);
    public void quitarEntidad(Entidad entidad);
+   public void updateEnergiaJugador();
    
 }

@@ -113,6 +113,7 @@ public class Juego implements IObservado{
 									actualizarEntidad(entidad);
 									lat.reiniciarLatencia();
 								}else {
+									
 									lat.incrementarLatencia();
 								}
 							}
@@ -210,6 +211,12 @@ public class Juego implements IObservado{
 		for(IObservador obs: observadores)
 			obs.quitarEntidad(entidad);
 
+	}
+	@Override
+	public void notificarCargaViralDeJugador() {
+		for(IObservador obs: observadores)
+			obs.updateEnergiaJugador();
+		
 	}
 
 }

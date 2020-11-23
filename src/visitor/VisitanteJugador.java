@@ -4,7 +4,7 @@ import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
 import entidades.personajes.jugador.Jugador;
-import entidades.proyectiles.Particula;
+import entidades.proyectiles.ParticulaAlpha;
 import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
 
@@ -43,7 +43,7 @@ public class VisitanteJugador extends Visitante {
 
 
 	@Override
-	public void visitarParticula(Particula par) {
+	public void visitarParticulaAlpha(ParticulaAlpha par) {
 		// TODO Auto-generated method stub
 		
 	}

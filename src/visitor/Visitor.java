@@ -4,7 +4,7 @@ import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
 import entidades.personajes.jugador.Jugador;
-import entidades.proyectiles.Particula;
+import entidades.proyectiles.ParticulaAlpha;
 import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
 
@@ -21,7 +21,7 @@ public abstract class Visitor
 	
 	public abstract void visitarProyectilSanitario(ProyectilSanitario p);
 	
-	abstract public void visitarParticula(Particula par);
+	abstract public void visitarParticulaAlpha(ParticulaAlpha par);
 	
 	abstract public void visitarHumano(Humano hum);
 }
