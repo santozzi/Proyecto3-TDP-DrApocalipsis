@@ -26,7 +26,7 @@ public class ProyectilSanitario extends Proyectil{
 	
 	public ProyectilSanitario(Juego juego) {
 		this.juego = juego;
-		this.vector = new Vector(0,-1,8);
+		this.vector = new Vector(0,-1,9);
 		this.letalidad = 5;
 		jugador= juego.getJugador();
 		vector.getPosicion().x= jugador.getVector().getPosicion().x+24;
@@ -43,5 +43,12 @@ public class ProyectilSanitario extends Proyectil{
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
 		v.visitarProyectilSanitario(this);
+	}
+	@Override
+	public void desplazarse() {
+		this.vector.desplazarse();
+		accionar();
+		if(this.vector.getPosicion().y<=0)
+			this.desaparecer();
 	}
 }

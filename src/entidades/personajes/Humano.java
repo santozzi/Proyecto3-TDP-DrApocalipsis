@@ -16,7 +16,7 @@ public class Humano extends Personaje {
 		this.juego = j;
 		this.cargaViral = 0;
 	
-		this.vector = new Vector(0, 1, 3);
+		this.vector = new Vector(0, 1, 7);
 		this.claveImagen = new String("humano");
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		this.v = new VisitanteHumano(this);
@@ -55,6 +55,13 @@ public class Humano extends Personaje {
 		else
 			infectar();
 	} 
+	@Override
+	public void desplazarse() {
+		this.vector.desplazarse();
+		accionar();
+		if(this.vector.getPosicion().y >= Juego.ALTO_DE_COMBATE)
+			this.desaparecer();
+	}
 	private void infectar() {
 		Infectado ia = new InfectadoAlpha(this.juego);
 		ia.setPosicion(this.getPosicion().x, this.getPosicion().y);

@@ -21,7 +21,7 @@ public class Jugador extends Personaje{
 	public Jugador(Juego juego) {
 		this.cargaViral = 0;
 		this.juego= juego;
-		this.vector = new Vector(1,0,500);
+		this.vector = new Vector(1,0,3);
 		this.vector.getPosicion().x=225;
 		this.vector.getPosicion().y=550;
 		this.claveImagen = new String("Jugador_dispara");

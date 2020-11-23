@@ -32,8 +32,8 @@ public class Juego implements IObservado{
 	public static final int DECORADO_DERECHO=184;
 
 	protected Point limite;
-	protected static final int VELOCIDAD_MINIMA=5;
-	protected static final int VELOCIDAD_MAXIMA=10;
+	protected static final int LATENCIA_MINIMA=5;
+	protected static final int LATENCIA_MAXIMA=10;
 	protected Jugador jugador;
 
 
@@ -69,7 +69,7 @@ public class Juego implements IObservado{
 
 				while(true) {
 					try {
-						Thread.sleep(VELOCIDAD_MINIMA);
+						Thread.sleep(LATENCIA_MINIMA);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -86,10 +86,10 @@ public class Juego implements IObservado{
 						entidad = lat.getEntidad();
 
 						int velocidad = entidad.getVector().getModulo();
-						if(velocidad!=0) {
+						if(velocidad>0 && velocidad<LATENCIA_MAXIMA) {
 							//velocidad cuanto mas cercano a uno sea mas rapido va a ir
 
-							int latencia = VELOCIDAD_MAXIMA-velocidad;
+							int latencia = LATENCIA_MAXIMA-velocidad;
 	
 							if(entidad!=jugador) {
 
@@ -107,12 +107,9 @@ public class Juego implements IObservado{
 									//System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
 								}
 
-								if(latencia==lat.getLatencia()) {
+								if(latencia<=lat.getLatencia()) {
 									//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
-
-
 									entidad.desplazarse();
-
 									actualizarEntidad(entidad);
 									lat.reiniciarLatencia();
 								}else {

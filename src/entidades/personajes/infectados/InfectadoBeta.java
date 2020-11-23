@@ -31,7 +31,7 @@ public class InfectadoBeta extends Infectado {
 	
 	public InfectadoBeta(Juego juego) {
 		this.juego = juego;
-		this.vector = new Vector(0, -1, 3);
+		this.vector = new Vector(0, -1, 5);
 		this.cargaViral = 200;
 		tirarParticula();
 		v = new VisitanteInfectadoBeta(this);
