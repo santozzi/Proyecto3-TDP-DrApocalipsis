@@ -46,7 +46,6 @@ abstract public class  Entidad {
 	}
 	public void desaparecer() {
 		juego.agregarAEntidadesParaQuitar(this);
-
 	}
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno

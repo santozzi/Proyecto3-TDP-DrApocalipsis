@@ -16,7 +16,7 @@ import niveles.Nivel;
 public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 	public Nivel1InfectadosAlpha(Juego j, Nivel nivel) {
-		this(j, nivel, 200);
+		this(j, nivel, 20);
 	}
 
 	public Nivel1InfectadosAlpha(Juego j, Nivel nivel, int cantInfectados) {
@@ -43,7 +43,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 					nuevoInfectado.getImagen().getIconWidth(),
 					nuevoInfectado.getImagen().getIconHeight(),
 					random.nextInt(Juego.ANCHO_DE_COMBATE-nuevoInfectado.getImagen().getIconWidth()),
-					random.nextInt(Juego.ALTO_DE_COMBATE*5),
+					random.nextInt(Juego.ALTO_DE_COMBATE),
 					random);
 			posiciones.add(posicion);
 			if(juego.getLimite().y>=posicion.y)
@@ -75,7 +75,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		}
 
 		if(estaInsertado)
-			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE*5), random);
+			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE), random);
 		else
 			aRetornar = new Point(x, y);
 

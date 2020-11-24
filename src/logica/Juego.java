@@ -219,6 +219,7 @@ public class Juego implements IObservado {
 			obs.updateEnergiaJugador();
 		
 	}
+	// pregunto si no quedan mas infectados en el nivel
 	public void verificarFinTanda() {
 		if(this.nivel.getColeccionDeInfectados().getListaDeInfectados().isEmpty()) {
 			finalizarTanda();
