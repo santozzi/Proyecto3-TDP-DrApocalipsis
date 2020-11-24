@@ -39,9 +39,9 @@ public class ColeccionDeImagenes {
 		
 		agregarRuta("fondoPresentacion", "/img/drApocalipsis.png", 562, 411);
 		
-		agregarRuta("ruinas", "/img/ruinas.gif", 562, 411);
+		agregarRuta("ruinas", "/img/ruinas.gif", 785, 700);
 		
-		agregarRuta("plagueInc", "/img/plagueInc.PNG", 54, 77);
+		agregarRuta("plagueInc", "/img/plagueInc.PNG", 80, 130);
 		
 		agregarRuta("mapaDerecha", "/img/baranda_der.jpg", Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
 		

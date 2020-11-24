@@ -1,10 +1,8 @@
 package entidades.premios.no_temporales;
 
 import entidades.Vector;
-import entidades.personajes.infectados.Infectado;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
-import logica.Latencia;
 import entidades.Entidad;
 import visitor.VisitantePocion;
 import visitor.Visitor;
@@ -19,10 +17,10 @@ public class Pocion extends NoTemporal {
     }
 	@Override
 	public void ejecutar() {
-	    
+	
 		juego.getJugador().curar(20);
 		juego.notificarCargaViralDeJugador();
-         
+
 		
 	}
 

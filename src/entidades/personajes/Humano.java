@@ -65,8 +65,7 @@ public class Humano extends Personaje {
 	} 
 	@Override
 	public void desplazarse() {
-		this.vector.desplazarse();
-		accionar();
+		super.desplazarse();
 		if(this.vector.getPosicion().y >= Juego.ALTO_DE_COMBATE)
 			this.desaparecer();
 	}

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import audio.AudioPlayer;
 import logica.ColeccionDeImagenes;
 
 import javax.swing.JLabel;
@@ -20,6 +21,8 @@ import java.awt.event.ActionEvent;
 public class InicioGUI extends JFrame {
 
 	private JPanel contentPane;
+	private Thread audio;
+	private AudioPlayer ap;
 
 	/**
 	 * Launch the application.
@@ -45,13 +48,16 @@ public class InicioGUI extends JFrame {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 562, 411);
+		//setBounds(100, 100, 562, 411);
+		setBounds(100, 100, 800, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-
+		//ap = new AudioPlayer("");
+		//audio = new Thread(ap);
+		//audio.start();
 
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -59,6 +65,7 @@ public class InicioGUI extends JFrame {
 			    //Juego juego = new Juego();
 				Mapa mapa = new Mapa();
 				mapa.setVisible(true);
+				audio.stop();
 				dispose();
 			}
 		});
@@ -66,12 +73,14 @@ public class InicioGUI extends JFrame {
 		btnNewButton.setBackground(Color.RED);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
 
-		btnNewButton.setBounds(373, 304, 160, 45);
+		btnNewButton.setBounds(587, 574, 160, 45);
 		contentPane.add(btnNewButton);
 
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setBounds(0, 305, 54, 77);
+		//lblLogo.setBounds(311, 187, 54, 77);
+		lblLogo.setBounds(0, 541, 80, 130);
 		ImageIcon logoInc = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("plagueInc");
+		lblLogo.setIcon(logoInc);
 
 		contentPane.add(lblLogo);
 		cargarFondo();
@@ -80,7 +89,7 @@ public class InicioGUI extends JFrame {
 	private void cargarFondo() {
 		JLabel lblFondo = new JLabel("");
 
-		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoPresentacion");
+		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("ruinas");
 		lblFondo.setIcon(imagenDeFondo);
 		lblFondo.setBounds(0, 0, getWidth(), getHeight());
 		contentPane.add(lblFondo);
