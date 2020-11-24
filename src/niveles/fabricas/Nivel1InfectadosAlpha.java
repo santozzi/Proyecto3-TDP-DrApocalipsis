@@ -14,7 +14,7 @@ import logica.Juego;
 public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 	public Nivel1InfectadosAlpha(Juego j) {
-		this(j, 20);
+		this(j, 10);
 	}
 
 	public Nivel1InfectadosAlpha(Juego j, int cantInfectados) {
@@ -53,6 +53,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			nuevoInfectado.tirarParticula();
 			 */
 			nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
+			//estaba en 3
 			nuevoInfectado.getVector().setModulo(3);
 			//nuevoInfectado.getVector().cambioDeSentido();
 			entidades.add(nuevoInfectado);

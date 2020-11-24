@@ -21,9 +21,12 @@ public class VisitanteProyectilSanitario extends Visitante {
 	public void visitarInfectadoAlpha(InfectadoAlpha ia) {
 	//	ia.detenerse();
 	    ia.impacto(proyectilSanitario.getLetalidad());
+	   
+	    
 	  //  System.out.println("infectadoAlpha energia "+ia.getEnergia());
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
+				
 		
 	}
 
