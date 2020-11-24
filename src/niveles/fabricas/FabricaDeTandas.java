@@ -5,20 +5,18 @@ import java.util.List;
 
 import entidades.Entidad;
 import logica.Juego;
+import niveles.Nivel;
 
 public abstract class FabricaDeTandas {
 	
 	protected Juego juego;
 	protected int cantidadInfectados;
-	protected LinkedList<Entidad> entidades;
 	protected int anchoInfectado;
 	protected int altoInfectado ;
+	protected Nivel nivel;
 	
 	abstract public void primeraTanda();
 	abstract public void segundaTanda();
 	//abstract public void generar();
-	public List<Entidad> getEntidades(){
-		return this.entidades;
-	}
 
 }

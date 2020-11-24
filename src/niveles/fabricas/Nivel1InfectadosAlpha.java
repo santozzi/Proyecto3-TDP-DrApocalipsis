@@ -9,18 +9,25 @@ import java.util.Random;
 import entidades.Entidad;
 import entidades.personajes.infectados.Infectado;
 import entidades.personajes.infectados.InfectadoAlpha;
+import logica.CompositeInfectado;
 import logica.Juego;
+import niveles.Nivel;
 
 public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
+<<<<<<< HEAD
 	public Nivel1InfectadosAlpha(Juego j) {
 		this(j, 10);
+=======
+	public Nivel1InfectadosAlpha(Juego j, Nivel nivel) {
+		this(j, nivel, 200);
+>>>>>>> b62e3953d55e2b0d2ce7741f791a0ee403f07722
 	}
 
-	public Nivel1InfectadosAlpha(Juego j, int cantInfectados) {
+	public Nivel1InfectadosAlpha(Juego j, Nivel nivel, int cantInfectados) {
 		this.juego = j;
-		this.entidades = new LinkedList<Entidad>();
 		this.cantidadInfectados = cantInfectados;
+		this.nivel = nivel;
 
 	}
 
@@ -30,6 +37,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		Infectado nuevoInfectado;
 		Random random = new Random();
 		List<Point> posiciones = new LinkedList<Point>();
+		List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
 
 		for(int i=0 ; i<cantidadInfectados ; i++) {
 
@@ -56,7 +64,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			//estaba en 3
 			nuevoInfectado.getVector().setModulo(3);
 			//nuevoInfectado.getVector().cambioDeSentido();
-			entidades.add(nuevoInfectado);
+			compositeInfectados.add(nuevoInfectado);
 		}
 	}
 	private Point asignarPosicion(List<Point> posiciones, int anchoInfectado, int altoInfectado, int x, int y, Random random) {
@@ -89,7 +97,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			nuevoInfectado.getVector().getPosicion().x = r1.nextInt(Juego.ANCHO_DE_COMBATE) + Juego.DECORADO_IZQUIERDO;
 			nuevoInfectado.getVector().getPosicion().y =r1.nextInt(Juego.ALTO_DE_COMBATE);
 			nuevoInfectado.getVector().setModulo(500);
-			entidades.add(nuevoInfectado);
+			//entidades.add(nuevoInfectado);
 		}
 	}
 }

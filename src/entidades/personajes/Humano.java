@@ -10,7 +10,7 @@ import entidades.personajes.infectados.Infectado;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
-
+import entidades.premios.temporales.Cuarentena;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteHumano;
@@ -79,9 +79,9 @@ public class Humano extends Personaje {
 	 *y lo agrega a la colección de entidades.
 	 */
 	public void dejarCaerPremio() {
-		Random random = new Random();
-		int randomInt = random.nextInt(3);
-		premio = new Pocion(juego);
+		//Random random = new Random();
+		//int randomInt = random.nextInt(3);
+		premio = new Cuarentena(juego);
 		
 		
 		/*
@@ -92,7 +92,9 @@ public class Humano extends Personaje {
 		else
 			premio = new Pocion(juego);
 */
-		premio.getPosicion().setLocation(getPosicion());
+		//premio.getPosicion().setLocation(this.getPosicion());
+		this.premio.getPosicion().x = this.getPosicion().x;
+		this.premio.getPosicion().y = this.getPosicion().y-50;
 		juego.agregarAEntidadesParaAgregar(premio);
 	}
 	public boolean hayColision(Entidad entidad) {

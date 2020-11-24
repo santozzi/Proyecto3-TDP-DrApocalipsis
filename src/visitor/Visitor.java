@@ -5,6 +5,7 @@ import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
 import entidades.personajes.jugador.Jugador;
 import entidades.premios.no_temporales.Pocion;
+import entidades.premios.temporales.Cuarentena;
 import entidades.proyectiles.ParticulaAlpha;
 import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
@@ -22,10 +23,12 @@ public abstract class Visitor
 	
 	public abstract void visitarProyectilSanitario(ProyectilSanitario p);
 	
-	abstract public void visitarParticulaAlpha(ParticulaAlpha par);
+	public abstract void visitarParticulaAlpha(ParticulaAlpha par);
 	
-	abstract public void visitarHumano(Humano hum);
+	public abstract void visitarHumano(Humano hum);
 	
-	abstract public void visitarPocion(Pocion pos);
+	public abstract void visitarPocion(Pocion pos);
+
+	public abstract void visitarCuarentena(Cuarentena cuarentena);
 }
 

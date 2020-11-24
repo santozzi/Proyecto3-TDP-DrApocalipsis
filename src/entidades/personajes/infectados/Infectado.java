@@ -61,8 +61,13 @@ public abstract class Infectado extends Personaje {
 		particula.getVector().getPosicion().y = y;
 
 	}
+	@Override
+	public void desaparecer() {
+		super.desaparecer();
+		this.juego.getNivel().getColeccionDeInfectados().getListaDeInfectados().remove(this);
+		this.juego.verificarFinTanda();
 
-
+	}
 	public void impacto(int disparo) {
 		if(cargaViral-disparo>0) { 
 			this.cargaViral -=disparo;
