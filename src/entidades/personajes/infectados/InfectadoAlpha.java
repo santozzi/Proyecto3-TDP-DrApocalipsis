@@ -1,11 +1,16 @@
 package entidades.personajes.infectados;
 
 import java.awt.Point;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
+import entidades.Entidad;
 import entidades.Vector;
 import entidades.proyectiles.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import logica.Latencia;
 import visitor.*;
 import visitor.Visitor;
 
@@ -16,7 +21,7 @@ import visitor.Visitor;
  *
  */
 public class InfectadoAlpha extends Infectado{
-
+    private boolean hayJugador;
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
 
@@ -55,11 +60,61 @@ public class InfectadoAlpha extends Infectado{
 	@Override
 	public void impacto(int disparo) {
 		super.impacto(disparo);
-		
-		
-		if(cargaViral-disparo>0 && cargaViral-disparo<=20)
-			duplicarVelocidad();
+	    if(cargaViral-disparo>0 && cargaViral-disparo<=20)
+		   duplicarVelocidad();
 	}
+	public List<Entidad> detectarColisiones() {
+		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
+		List<Latencia> listaDeLatencia = juego.getLista();
+		boolean esta = false;
+		Entidad entidadDeLatencia;
+		Entidad entidadActual = this;
+		Entidad entVerificar;
+		Iterator<Entidad> itEntidades ;
+		for(Latencia latencia : listaDeLatencia) {
+			entidadDeLatencia = latencia.getEntidad();
+			itEntidades = listaDeColisiones.iterator();
+			
+			
+			if(entidadActual!=entidadDeLatencia&&hayColision(entidadDeLatencia)) {
+               //-----para que no haya repetidos----
+				while(itEntidades.hasNext()&&!esta) {
+					entVerificar = itEntidades.next();
+					esta= entVerificar == entidadDeLatencia;
+				}
+				//-------------------------------------
+				
+				if(!esta)
+					listaDeColisiones.add(entidadDeLatencia);
+				else
+					esta = false;
 
+			} 
+			
+		}
+		return listaDeColisiones;
+	}  
+	public void desplazarse() {
+		//this.posicion.y++;
+		//this.vector.setModulo(6);
+		this.vector.desplazarse();
+		//detectarColisiones();
+		accionar();
+		//detectarColisiones();
+		//pregunatar cuando se choca con el limite del mapa
+
+	}
+	public void accionar() {
+		
+		for(Entidad ent : detectarColisiones()) {
+		    ent.accept(v);
+		}
+
+        	 
+
+
+		
+
+	}
 
 }

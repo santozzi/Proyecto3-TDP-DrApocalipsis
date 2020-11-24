@@ -2,16 +2,22 @@ package entidades.personajes;
 
 
 
+import java.util.Random;
+
+import entidades.Entidad;
 import entidades.Vector;
 import entidades.personajes.infectados.Infectado;
 import entidades.personajes.infectados.InfectadoAlpha;
+import entidades.premios.Premio;
+import entidades.premios.no_temporales.Pocion;
+
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteHumano;
 import visitor.Visitor;
 
 public class Humano extends Personaje {
-	
+	protected Premio premio;
 	public Humano(Juego j) {
 		this.juego = j;
 		this.cargaViral = 0;
@@ -66,5 +72,51 @@ public class Humano extends Personaje {
 		Infectado ia = new InfectadoAlpha(this.juego);
 		ia.setPosicion(this.getPosicion().x, this.getPosicion().y);
 	}
+	/**
+	 *dejarCaerPremio
+	 *---------------
+	 *Genera un nuevo objerto de tipo premio
+	 *y lo agrega a la colección de entidades.
+	 */
+	public void dejarCaerPremio() {
+		Random random = new Random();
+		int randomInt = random.nextInt(3);
+		premio = new Pocion(juego);
+		
+		
+		/*
+		if(randomInt == 0)
+			premio = new SuperArma();
+		else if(randomInt == 1)
+			premio = new Cuarentena();
+		else
+			premio = new Pocion(juego);
+*/
+		premio.getPosicion().setLocation(getPosicion());
+		juego.agregarAEntidadesParaAgregar(premio);
+	}
+	public boolean hayColision(Entidad entidad) {
+		// entidad.getEntorno() this.entorno
+		//entorno = [x;x+anchoEntidad]
+		//entornoEnY= [[y;y+anchoEntidad]
+		int posEntidadActualX =this.vector.getPosicion().x;
+		int posEntidadActualY =this.vector.getPosicion().y;
+		int posEntidadParametroX =entidad.getVector().getPosicion().x;
+		int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
 
+		int posEntidadParametroY =entidad.getVector().getPosicion().y ;
+		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
+
+		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
+		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()==posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
+
+
+		return colisionEnX &&colisionEnY;
+		/*	
+				(
+				this.vector.getPosicion().y <= 
+			(entidad.getVector().getPosicion().y+entidad.getImagen().getIconHeight())&&
+						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
+		 */
+	}
 }

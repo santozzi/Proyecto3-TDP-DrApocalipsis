@@ -100,7 +100,13 @@ public class Jugador extends Personaje{
 		}
 	}
 
-
+    public void curar(int cantidad) {
+        if(cargaViral<=100-cantidad)
+    	    this.cargaViral +=cantidad;
+        else if(cargaViral<=100) {
+        	this.cargaViral = 100;
+        }
+    }
 	public void disparar() {
 		arma.disparar();
 		this.claveImagen = "recargar";

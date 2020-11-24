@@ -23,7 +23,7 @@ public class ParticulaAlpha extends Proyectil{
 		juego.agregarAEntidadesParaAgregar(this);
 		rangoParticula= 0;
 		this.infectado = infectado;
-		this.letalidad = 2;
+		this.letalidad = 5;
 	}
 
 	@Override
@@ -48,6 +48,8 @@ public class ParticulaAlpha extends Proyectil{
 		accionar();  
 		vector.desplazarse();
 	}
+	
+	
 	public void reiniciarParticula() {
 		rangoParticula=0;
 		vector.getPosicion().x = infectado.getVector().getPosicion().x+
@@ -67,7 +69,7 @@ public class ParticulaAlpha extends Proyectil{
 		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
 
 		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
-		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()>=posEntidadParametroY) && (+this.getPosicion().y<=posEntidadParametroY+10);
+		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()==posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
 
 
 		return colisionEnX &&colisionEnY;

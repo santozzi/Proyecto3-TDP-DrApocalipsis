@@ -75,6 +75,7 @@ abstract public class  Entidad {
 
 	public void desplazarse() {
 		//this.posicion.y++;
+		
 		this.vector.desplazarse();
 		//detectarColisiones();
 		accionar();
@@ -93,18 +94,23 @@ abstract public class  Entidad {
 		for(Latencia latencia : listaDeLatencia) {
 			entidadDeLatencia = latencia.getEntidad();
 			itEntidades = listaDeColisiones.iterator();
+			
+			
 			if(entidadActual!=entidadDeLatencia&&hayColision(entidadDeLatencia)) {
-
+               //-----para que no haya repetidos----
 				while(itEntidades.hasNext()&&!esta) {
 					entVerificar = itEntidades.next();
 					esta= entVerificar == entidadDeLatencia;
 				}
+				//-------------------------------------
+				
 				if(!esta)
 					listaDeColisiones.add(entidadDeLatencia);
 				else
 					esta = false;
 
-			}			 
+			} 
+			
 		}
 		return listaDeColisiones;
 	}  
@@ -115,6 +121,8 @@ abstract public class  Entidad {
 			//visitor
 			ent.accept(v);
 		}
+		
+		
 
 	}
 }

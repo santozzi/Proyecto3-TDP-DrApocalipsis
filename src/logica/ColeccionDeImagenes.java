@@ -58,6 +58,8 @@ public class ColeccionDeImagenes {
 		agregarRuta("particula", "/img/particula.png", 20, 20);
 		
 		agregarRuta("humano", "/img/Humano.png", 40, 60);
+		
+		agregarRuta("pocion","/img/pocion.png", 50, 50);
 
 
 	}

@@ -23,7 +23,7 @@ import visitor.Visitor;
 public abstract class Infectado extends Personaje {
 
 	protected ParticulaAlpha particula;
-	protected Premio premio;
+
 	protected int rango;
 
 	/**
@@ -48,25 +48,7 @@ public abstract class Infectado extends Personaje {
 		v.visitarJugador(juego.getJugador());
 	}
 
-	/**
-	 *dejarCaerPremio
-	 *---------------
-	 *Genera un nuevo objerto de tipo premio
-	 *y lo agrega a la colección de entidades.
-	 */
-	public void dejarCaerPremio() {
-		Random random = new Random();
-		int randomInt = random.nextInt(3);
 
-		if(randomInt == 0)
-			premio = new SuperArma();
-		else if(randomInt == 1)
-			premio = new Cuarentena();
-		else
-			premio = new Pocion();
-
-		premio.getPosicion().setLocation(getPosicion());
-	}
 	public void tirarParticula() {
     	this.particula= new ParticulaAlpha(juego,this);
     }
@@ -101,5 +83,29 @@ public abstract class Infectado extends Personaje {
 	
 	public int getRango() {
 		return rango;
+	}
+	public boolean hayColision(Entidad entidad) {
+		// entidad.getEntorno() this.entorno
+		//entorno = [x;x+anchoEntidad]
+		//entornoEnY= [[y;y+anchoEntidad]
+		int posEntidadActualX =this.vector.getPosicion().x;
+		int posEntidadActualY =this.vector.getPosicion().y;
+		int posEntidadParametroX =entidad.getVector().getPosicion().x;
+		int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
+
+		int posEntidadParametroY =entidad.getVector().getPosicion().y ;
+		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
+
+		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
+		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()==posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
+
+
+		return colisionEnX &&colisionEnY;
+		/*	
+				(
+				this.vector.getPosicion().y <= 
+			(entidad.getVector().getPosicion().y+entidad.getImagen().getIconHeight())&&
+						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
+		 */
 	}
 }
