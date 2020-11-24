@@ -65,6 +65,7 @@ public abstract class Infectado extends Personaje {
 	public void desaparecer() {
 		super.desaparecer();
 		this.juego.getNivel().getColeccionDeInfectados().getListaDeInfectados().remove(this);
+		this.juego.verificarFinTanda();
 
 	}
 	public void impacto(int disparo) {

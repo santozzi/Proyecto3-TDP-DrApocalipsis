@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import entidades.Entidad;
+import observador.IObservado;
+import observador.IObservador;
 
 public class CompositeInfectado {
 	

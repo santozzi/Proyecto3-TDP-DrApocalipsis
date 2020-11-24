@@ -16,7 +16,7 @@ import niveles.Nivel;
 public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 	public Nivel1InfectadosAlpha(Juego j, Nivel nivel) {
-		this(j, nivel, 20);
+		this(j, nivel, 200);
 	}
 
 	public Nivel1InfectadosAlpha(Juego j, Nivel nivel, int cantInfectados) {

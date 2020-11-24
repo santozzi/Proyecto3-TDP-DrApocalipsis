@@ -13,7 +13,7 @@ import niveles.Nivel1;
 import observador.IObservado;
 import observador.IObservador;
 
-public class Juego implements IObservado{
+public class Juego implements IObservado {
 	protected Nivel nivel;
 
 	protected List<Latencia> entidadesParaRecorido;
@@ -35,6 +35,7 @@ public class Juego implements IObservado{
 	protected static final int LATENCIA_MINIMA=5;
 	protected static final int LATENCIA_MAXIMA=10;
 	protected Jugador jugador;
+	protected boolean finDeLaTanda;
 
 	public Juego() {
 		
@@ -217,6 +218,14 @@ public class Juego implements IObservado{
 		for(IObservador obs: observadores)
 			obs.updateEnergiaJugador();
 		
+	}
+	public void verificarFinTanda() {
+		if(this.nivel.getColeccionDeInfectados().getListaDeInfectados().isEmpty()) {
+			finalizarTanda();
+		}
+	}
+	private void finalizarTanda() {
+		// termino la tanda actual y cargo una nueva
 	}
 
 }
