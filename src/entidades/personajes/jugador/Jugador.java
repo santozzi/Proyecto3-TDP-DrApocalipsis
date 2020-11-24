@@ -19,6 +19,7 @@ public class Jugador extends Personaje{
 	protected Arma arma;
 
 	public Jugador(Juego juego) {
+		
 		this.cargaViral = 100;
 		this.juego= juego;
 		this.vector = new Vector(1,0,3);
@@ -44,7 +45,7 @@ public class Jugador extends Personaje{
 		}
 
 	}
-	
+
 	public boolean estaInfectado() {
 		return cargaViral>=100;
 	}
@@ -100,13 +101,13 @@ public class Jugador extends Personaje{
 		}
 	}
 
-    public void curar(int cantidad) {
-        if(cargaViral<=100-cantidad)
-    	    this.cargaViral +=cantidad;
-        else if(cargaViral<=100) {
-        	this.cargaViral = 100;
-        }
-    }
+	public void curar(int cantidad) {
+		if(cargaViral<=100-cantidad)
+			this.cargaViral +=cantidad;
+		else if(cargaViral<=100) {
+			this.cargaViral = 100;
+		}
+	}
 	public void disparar() {
 		arma.disparar();
 		this.claveImagen = "recargar";
@@ -114,9 +115,9 @@ public class Jugador extends Personaje{
 		imagen.getImage().flush();
 	}
 
-@Override
-public void impacto(int disparo) {
-	super.impacto(disparo);
-	juego.notificarCargaViralDeJugador();
-}
+	@Override
+	public void impacto(int disparo) {
+		super.impacto(disparo);
+		juego.notificarCargaViralDeJugador();
+	}
 }
