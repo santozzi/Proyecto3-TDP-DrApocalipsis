@@ -65,7 +65,7 @@ public class InicioGUI extends JFrame {
 			    //Juego juego = new Juego();
 				Mapa mapa = new Mapa();
 				mapa.setVisible(true);
-				audio.stop();
+				//audio.stop();
 				dispose();
 			}
 		});
