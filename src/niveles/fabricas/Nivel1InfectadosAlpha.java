@@ -45,7 +45,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 					nuevoInfectado.getImagen().getIconWidth(),
 					nuevoInfectado.getImagen().getIconHeight(),
 					random.nextInt(Juego.ANCHO_DE_COMBATE-nuevoInfectado.getImagen().getIconWidth()),
-					random.nextInt(Juego.ALTO_DE_COMBATE*5),
+					random.nextInt(Juego.ALTO_DE_COMBATE),
 					random);
 			posiciones.add(posicion);
 			if(juego.getLimite().y>=posicion.y)
@@ -58,7 +58,6 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			nuevoInfectado.tirarParticula();
 			 */
 			nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
-			//estaba en 3
 			nuevoInfectado.getVector().setModulo(3);
 			//nuevoInfectado.getVector().cambioDeSentido();
 			compositeInfectados.add(nuevoInfectado);
@@ -78,7 +77,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		}
 
 		if(estaInsertado)
-			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE*5), random);
+			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE), random);
 		else
 			aRetornar = new Point(x, y);
 

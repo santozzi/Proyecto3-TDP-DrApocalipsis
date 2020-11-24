@@ -46,7 +46,6 @@ abstract public class  Entidad {
 	}
 	public void desaparecer() {
 		juego.agregarAEntidadesParaQuitar(this);
-
 	}
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
@@ -81,7 +80,6 @@ abstract public class  Entidad {
 		accionar();
 		//detectarColisiones();
 		//pregunatar cuando se choca con el limite del mapa
-
 	}
 	public List<Entidad> detectarColisiones() {
 		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();

@@ -82,7 +82,7 @@ public class Juego implements IObservado {
 
 					for(Latencia lat: entidadesParaRecorido){
 
-                        
+
 						entidad = lat.getEntidad();
 
 						int velocidad = entidad.getVector().getModulo();
@@ -142,9 +142,8 @@ public class Juego implements IObservado {
 			entidadesParaRecorido.remove(entidadA);
 			notificarQuitarEntidad(entidadA.getEntidad());
 		}
-  
+
 		entidadesParaQuitar.clear();
-		
 
 	}
 	public Point getLimite() {
@@ -220,6 +219,7 @@ public class Juego implements IObservado {
 			obs.updateEnergiaJugador();
 		
 	}
+	// pregunto si no quedan mas infectados en el nivel
 	public void verificarFinTanda() {
 		if(this.nivel.getColeccionDeInfectados().getListaDeInfectados().isEmpty()) {
 			finalizarTanda();

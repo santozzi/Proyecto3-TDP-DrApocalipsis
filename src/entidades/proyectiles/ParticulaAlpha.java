@@ -10,7 +10,7 @@ import visitor.Visitor;
 
 public class ParticulaAlpha extends Proyectil{
 	protected Infectado infectado;
-	protected int velocidad;
+
 	protected int rangoParticula;
 	public ParticulaAlpha(Juego juego,Infectado infectado) {
 		vector = new Vector(0,1,8);

@@ -4,10 +4,12 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,6 +56,10 @@ public class Mapa  extends JFrame implements IObservador{
 		addKeyListener(teclado);
 
 		getContentPane().setLayout(null);
+		setResizable(false);
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		
 		//panelDeEntidades = new JPanel();
 
@@ -248,14 +254,7 @@ public class Mapa  extends JFrame implements IObservador{
     	
     	if(etiquetaEliminada!=null)
        			panelFondo.remove(etiquetaEliminada);
-    	if(juego.getLista().size()==1) {
-			System.out.println("game over");
-		     //o cargar segunda tanda sin reiniciar el juego
-			juego = new Juego();
-		    juego.cargarJugador();
-		    // o cargar segunda tanda, o nivel dos o reiniciar el juego
-			juego.cargarNivel();
-    	}
+    	
     	
     } 
 	
@@ -268,7 +267,7 @@ public class Mapa  extends JFrame implements IObservador{
 	@Override
 	public void updateEnergiaJugador() {
 		progressBar.setValue(juego.getJugador().getEnergia());
-	
+		System.out.println("me pegaron");
 		
 	}
 	

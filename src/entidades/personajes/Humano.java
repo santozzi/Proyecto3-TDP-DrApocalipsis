@@ -4,6 +4,7 @@ package entidades.personajes;
 
 import java.util.Random;
 
+import entidades.CuadroDeDialogo;
 import entidades.Entidad;
 import entidades.Vector;
 import entidades.personajes.infectados.Infectado;
@@ -18,6 +19,8 @@ import visitor.Visitor;
 
 public class Humano extends Personaje {
 	protected Premio premio;
+	protected CuadroDeDialogo dialogo;
+	
 	public Humano(Juego j) {
 		this.juego = j;
 		this.cargaViral = 0;
@@ -26,7 +29,6 @@ public class Humano extends Personaje {
 		this.claveImagen = new String("humano");
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		this.v = new VisitanteHumano(this);
-		
 		
 	}
 
@@ -63,8 +65,7 @@ public class Humano extends Personaje {
 	} 
 	@Override
 	public void desplazarse() {
-		this.vector.desplazarse();
-		accionar();
+		super.desplazarse();
 		if(this.vector.getPosicion().y >= Juego.ALTO_DE_COMBATE)
 			this.desaparecer();
 	}
@@ -82,6 +83,7 @@ public class Humano extends Personaje {
 		//Random random = new Random();
 		//int randomInt = random.nextInt(3);
 		premio = new Cuarentena(juego);
+		dialogo = new CuadroDeDialogo(juego);
 		
 		
 		/*
@@ -92,10 +94,14 @@ public class Humano extends Personaje {
 		else
 			premio = new Pocion(juego);
 */
-		//premio.getPosicion().setLocation(this.getPosicion());
-		this.premio.getPosicion().x = this.getPosicion().x;
-		this.premio.getPosicion().y = this.getPosicion().y-50;
+		premio.getPosicion().setLocation(this.getPosicion());
+		//premio.getPosicion().x = getPosicion().x;
+		//premio.getPosicion().y = getPosicion().y-50;
+		dialogo.getPosicion().x = getPosicion().x+10;
+		dialogo.getPosicion().y = getPosicion().y-30;
+		this.dialogo.getVector().setModulo(8);
 		juego.agregarAEntidadesParaAgregar(premio);
+		juego.agregarAEntidadesParaAgregar(dialogo);
 	}
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
