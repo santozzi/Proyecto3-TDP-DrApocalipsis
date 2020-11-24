@@ -5,6 +5,7 @@ import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
 import entidades.personajes.jugador.Jugador;
 import entidades.premios.no_temporales.Pocion;
+import entidades.premios.temporales.Cuarentena;
 import entidades.proyectiles.ParticulaAlpha;
 import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
@@ -56,6 +57,12 @@ public class VisitanteParticulaAlpha extends Visitante {
 
 	@Override
 	public void visitarPocion(Pocion pos) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarCuarentena(Cuarentena cuarentena) {
 		// TODO Auto-generated method stub
 		
 	}

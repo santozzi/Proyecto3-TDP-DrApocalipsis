@@ -21,13 +21,13 @@ import visitor.Visitor;
  *
  */
 public class InfectadoAlpha extends Infectado{
-    private boolean hayJugador;
+	private boolean hayJugador;
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
 
 		this.vector = new Vector(0, 1, 6);
 		this.cargaViral = 80;
-	
+
 		this.claveImagen = new String("InfectadoAlpha_golpear");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 
@@ -45,12 +45,13 @@ public class InfectadoAlpha extends Infectado{
 	 * cuando este tiene menos del 20% de energia
 	 */
 	public void duplicarVelocidad() {
-       
-		vector.setModulo(8);
 
-		//vector.setModulo(vector.getModulo()*2);
-
-		particula.getVector().setModulo(9);
+		// si no esta afectado por la cuarentena entonces duplico su velocidad
+		if(this.vector.getModulo()>0) { 
+			vector.setModulo(8);
+			//vector.setModulo(vector.getModulo()*2);
+			particula.getVector().setModulo(9);
+		}
 	}
 	// v es de jugador
 	@Override
@@ -60,8 +61,8 @@ public class InfectadoAlpha extends Infectado{
 	@Override
 	public void impacto(int disparo) {
 		super.impacto(disparo);
-	    if(cargaViral-disparo>0 && cargaViral-disparo<=20)
-		   duplicarVelocidad();
+		if(cargaViral-disparo>0 && cargaViral-disparo<=20)
+			duplicarVelocidad();
 	}
 	public List<Entidad> detectarColisiones() {
 		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
@@ -74,23 +75,23 @@ public class InfectadoAlpha extends Infectado{
 		for(Latencia latencia : listaDeLatencia) {
 			entidadDeLatencia = latencia.getEntidad();
 			itEntidades = listaDeColisiones.iterator();
-			
-			
+
+
 			if(entidadActual!=entidadDeLatencia&&hayColision(entidadDeLatencia)) {
-               //-----para que no haya repetidos----
+				//-----para que no haya repetidos----
 				while(itEntidades.hasNext()&&!esta) {
 					entVerificar = itEntidades.next();
 					esta= entVerificar == entidadDeLatencia;
 				}
 				//-------------------------------------
-				
+
 				if(!esta)
 					listaDeColisiones.add(entidadDeLatencia);
 				else
 					esta = false;
 
 			} 
-			
+
 		}
 		return listaDeColisiones;
 	}  
@@ -105,15 +106,15 @@ public class InfectadoAlpha extends Infectado{
 
 	}
 	public void accionar() {
-		
+
 		for(Entidad ent : detectarColisiones()) {
-		    ent.accept(v);
+			ent.accept(v);
 		}
 
-        	 
 
 
-		
+
+
 
 	}
 

@@ -1,10 +1,5 @@
 package entidades.premios.no_temporales;
 
-import java.awt.Point;
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-
 import entidades.Vector;
 import logica.ColeccionDeImagenes;
 import logica.Juego;

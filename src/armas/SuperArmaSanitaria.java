@@ -1,14 +1,6 @@
 package armas;
 
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-
-import entidades.Vector;
-
-import entidades.Entidad;
 import logica.Juego;
-import visitor.Visitor;
 
 /**
  * Los proyectiles de esta arma causan mas daño

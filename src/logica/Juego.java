@@ -36,7 +36,6 @@ public class Juego implements IObservado{
 	protected static final int LATENCIA_MAXIMA=10;
 	protected Jugador jugador;
 
-
 	public Juego() {
 		
 		observadores = new LinkedList<IObservador>();
@@ -149,8 +148,9 @@ public class Juego implements IObservado{
 	public Point getLimite() {
 		return this.limite;
 	}
-
-
+	public Nivel getNivel() {
+		return nivel;
+	}
 	public void cargarNivel() {
 		for(Entidad entidad : nivel.primeraTanda()) {
 			entidadesParaAgregar.add(new Latencia(entidad));

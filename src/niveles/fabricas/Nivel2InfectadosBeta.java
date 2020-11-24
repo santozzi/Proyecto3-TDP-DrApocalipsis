@@ -17,7 +17,6 @@ public class Nivel2InfectadosBeta extends FabricaDeTandas {
 
 	public Nivel2InfectadosBeta(Juego j, int cantInfectados) {
 		this.juego = j;
-		this.entidades = new LinkedList<Entidad>();
 		this.cantidadInfectados = cantInfectados;
 	}
 
@@ -31,7 +30,7 @@ public class Nivel2InfectadosBeta extends FabricaDeTandas {
 			nuevoInfectado.getPosicion().x = r1.nextInt(Juego.ANCHO_DE_COMBATE) + Juego.DECORADO_IZQUIERDO;
 			nuevoInfectado.getPosicion().y =r1.nextInt(Juego.ALTO_DE_COMBATE);
 			nuevoInfectado.getVector().setModulo(500);
-			entidades.add(nuevoInfectado);
+			//entidades.add(nuevoInfectado);
 		}
 	}
 
@@ -45,7 +44,7 @@ public class Nivel2InfectadosBeta extends FabricaDeTandas {
 			nuevoInfectado.getPosicion().x = r1.nextInt(Juego.ANCHO_DE_COMBATE) + Juego.DECORADO_IZQUIERDO;
 			nuevoInfectado.getPosicion().y =r1.nextInt(Juego.ALTO_DE_COMBATE);
 			nuevoInfectado.getVector().setModulo(500);
-			entidades.add(nuevoInfectado);
+			//entidades.add(nuevoInfectado);
 		}
 	}
 }
