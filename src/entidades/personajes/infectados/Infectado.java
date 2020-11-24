@@ -113,4 +113,6 @@ public abstract class Infectado extends Personaje {
 						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
 		 */
 	}
+	
+	
 }

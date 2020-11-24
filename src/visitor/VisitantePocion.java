@@ -34,6 +34,8 @@ public class VisitantePocion extends Visitante {
 		pocion.ejecutar();
 		pocion.desplazarse();
         pocion.desaparecer();
+        
+        
 		//infectadoAlpha.detenerse();
 		
 	}

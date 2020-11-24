@@ -254,7 +254,14 @@ public class Mapa  extends JFrame implements IObservador{
     	
     	if(etiquetaEliminada!=null)
        			panelFondo.remove(etiquetaEliminada);
-    	
+    	if(juego.getLista().size()==1) {
+			System.out.println("game over");
+		     //o cargar segunda tanda sin reiniciar el juego
+			juego = new Juego();
+		    juego.cargarJugador();
+		    // o cargar segunda tanda, o nivel dos o reiniciar el juego
+			juego.cargarNivel();
+    	}
     	
     } 
 	
@@ -267,7 +274,7 @@ public class Mapa  extends JFrame implements IObservador{
 	@Override
 	public void updateEnergiaJugador() {
 		progressBar.setValue(juego.getJugador().getEnergia());
-		System.out.println("me pegaron");
+	
 		
 	}
 	
