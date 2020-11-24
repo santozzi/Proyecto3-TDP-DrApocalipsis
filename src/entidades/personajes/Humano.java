@@ -92,7 +92,9 @@ public class Humano extends Personaje {
 		else
 			premio = new Pocion(juego);
 */
-		premio.getPosicion().setLocation(getPosicion());
+		//premio.getPosicion().setLocation(this.getPosicion());
+		this.premio.getPosicion().x = this.getPosicion().x;
+		this.premio.getPosicion().y = this.getPosicion().y-50;
 		juego.agregarAEntidadesParaAgregar(premio);
 	}
 	public boolean hayColision(Entidad entidad) {
