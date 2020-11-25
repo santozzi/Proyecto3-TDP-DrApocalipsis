@@ -82,28 +82,26 @@ public class Humano extends Personaje {
 	 *y lo agrega a la colección de entidades.
 	 */
 	public void dejarCaerPremio() {
-		if(!soltoPremio) {
-			Random random = new Random();
-			int randomInt = random.nextInt(3);
-			dialogo = new CuadroDeDialogo(juego);
+		Random random = new Random();
+		int randomInt = random.nextInt(3);
+		dialogo = new CuadroDeDialogo(juego);
 
-			if(randomInt == 0)
-				premio = new Pocion(juego);
-			else if(randomInt == 1)
-				premio = new SuperArma(juego);
-			else
-				premio = new Cuarentena(juego);
+		if(randomInt == 0)
+			premio = new Pocion(juego);
+		else if(randomInt == 1)
+			premio = new SuperArma(juego);
+		else
+			premio = new Cuarentena(juego);
 
-			premio.getPosicion().setLocation(this.getPosicion());
-			//premio.getPosicion().x = getPosicion().x;
-			//premio.getPosicion().y = getPosicion().y-50;
-			dialogo.getPosicion().x = getPosicion().x+10;
-			dialogo.getPosicion().y = getPosicion().y-30;
-			this.dialogo.getVector().setModulo(8);
-			juego.agregarAEntidadesParaAgregar(premio);
-			juego.agregarAEntidadesParaAgregar(dialogo);
-			soltoPremio = true;
-		}
+		premio.getPosicion().setLocation(this.getPosicion());
+		//premio.getPosicion().x = getPosicion().x;
+		//premio.getPosicion().y = getPosicion().y-50;
+		dialogo.getPosicion().x = getPosicion().x+10;
+		dialogo.getPosicion().y = getPosicion().y-30;
+		this.dialogo.getVector().setModulo(8);
+		juego.agregarAEntidadesParaAgregar(premio);
+		juego.agregarAEntidadesParaAgregar(dialogo);
+		soltoPremio = true;
 	}
 	public boolean soltoPremio() {
 		return this.soltoPremio;
