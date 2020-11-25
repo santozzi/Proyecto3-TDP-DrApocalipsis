@@ -118,7 +118,8 @@ public class Mapa  extends JFrame implements IObservador{
 
 		juego.agregarObservador(this);
 		juego.cargarJugador();
-		juego.cargarNivel();
+		juego.cargarNivel(1);
+		System.out.println("nivel 1");
 		
 	}
 
@@ -254,6 +255,13 @@ public class Mapa  extends JFrame implements IObservador{
     	
     	if(etiquetaEliminada!=null)
        			panelFondo.remove(etiquetaEliminada);
+    	
+    	     System.out.println(juego.getLista().size());
+    		if(juego.getLista().size()==1) {
+    			System.out.println("inicio Segunda tanda");
+    			juego.finalizarTanda();
+    		}
+    	
     	
     	
     } 

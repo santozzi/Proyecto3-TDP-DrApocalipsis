@@ -26,8 +26,10 @@ public class Nivel1 extends Nivel{
 
 	@Override
 	public List<Entidad> segundaTanda() {
-		// TODO Auto-generated method stub
-		return null;
+		FabricaDeTandas  fdt = new Nivel1InfectadosAlpha(juego, this); 
+		fdt.primeraTanda();
+	//	this.entidades = fdt.getEntidades();
+		return this.compInf.getListaDeInfectados();
 	}
 
 	@Override

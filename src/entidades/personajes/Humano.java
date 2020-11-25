@@ -80,20 +80,21 @@ public class Humano extends Personaje {
 	 *y lo agrega a la colección de entidades.
 	 */
 	public void dejarCaerPremio() {
-		//Random random = new Random();
-		//int randomInt = random.nextInt(3);
+		Random random = new Random();
+		int randomInt = random.nextInt(2);
 		premio = new Cuarentena(juego);
 		dialogo = new CuadroDeDialogo(juego);
 		
 		
-		/*
+		
 		if(randomInt == 0)
-			premio = new SuperArma();
-		else if(randomInt == 1)
-			premio = new Cuarentena();
-		else
 			premio = new Pocion(juego);
-*/
+		else 
+			System.out.println("no hay premio");
+			//premio = new Cuarentena(juego);
+	  
+			
+
 		premio.getPosicion().setLocation(this.getPosicion());
 		//premio.getPosicion().x = getPosicion().x;
 		//premio.getPosicion().y = getPosicion().y-50;

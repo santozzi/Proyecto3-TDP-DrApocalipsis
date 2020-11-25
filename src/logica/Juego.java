@@ -10,6 +10,8 @@ import entidades.Entidad;
 import entidades.personajes.jugador.Jugador;
 import niveles.Nivel;
 import niveles.Nivel1;
+import niveles.Nivel2;
+import niveles.Nivel3;
 import observador.IObservado;
 import observador.IObservador;
 
@@ -36,14 +38,14 @@ public class Juego implements IObservado {
 	protected static final int LATENCIA_MAXIMA=10;
 	protected Jugador jugador;
 	protected boolean finDeLaTanda;
-
+    protected int nivelActual;
 	public Juego() {
-		
+		this.nivelActual = 0;
 		observadores = new LinkedList<IObservador>();
 
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		jugador = new Jugador(this);
-		nivel = new Nivel1(this);
+		//nivel = new Nivel1(this);
 
 		entidadesParaRecorido = new LinkedList<Latencia>();
 		entidadesParaAgregar = new LinkedList<Latencia>();
@@ -152,11 +154,43 @@ public class Juego implements IObservado {
 	public Nivel getNivel() {
 		return nivel;
 	}
-	public void cargarNivel() {
+	
+	
+	
+	
+	
+	
+	public void cargarNivel(int n) {
+		//Nivel[] niveles = new Nivel[3];
+     	if(n==1) {
+			this.nivel = new Nivel1(this);
+			
+	/*	}else if(n==2) {
+			this.nivel = new Nivel2(this);
+		}else if(n==3) {
+			this.nivel = new Nivel3(this);*/
+		}else {
+			System.out.println("game over");
+		    nivel= null;
+		}
+		
+		if(nivel!=null) {
 		for(Entidad entidad : nivel.primeraTanda()) {
 			entidadesParaAgregar.add(new Latencia(entidad));
 		}
+		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public void notificarEntidad(Entidad entidad) {
 		for(IObservador obs: observadores)
@@ -225,8 +259,12 @@ public class Juego implements IObservado {
 			finalizarTanda();
 		}
 	}
-	private void finalizarTanda() {
-		// termino la tanda actual y cargo una nueva
+	public void finalizarTanda() {
+		for(Entidad entidad : nivel.segundaTanda()) {
+			entidadesParaAgregar.add(new Latencia(entidad));
+		}
+		//cargarNivel(nivelActual+1);
+		
 	}
 
 }
