@@ -1,24 +1,33 @@
 package entidades.proyectiles;
 
 import entidades.Entidad;
+import entidades.Vector;
 import logica.HiloSecundario;
+import logica.Juego;
 
 public abstract class Proyectil extends Entidad {
 	protected int letalidad;
-
+    
+	
+	public Proyectil(Juego juego){
+		this.juego = juego;
+		this.vector = new Vector(0,-1,9);
+		this.letalidad = 5;
+		jugador= juego.getJugador();
+		vector.getPosicion().x= jugador.getVector().getPosicion().x+24;
+		vector.getPosicion().y= jugador.getVector().getPosicion().y-10;
+		juego.agregarAEntidadesParaAgregar(this);
+	
+	}	
 	public int getLetalidad() {
 		return this.letalidad;
 	}
+	
 	@Override
 	public void actuar() {
 		int vueltasAEsperar;
-
 		int velocidad = vector.getModulo();
-
 		vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
-
-
-
 		if(vueltasAEsperar>0&&vueltasAEsperar<HiloSecundario.LATENCIA_MAXIMA) {
 			if(latencia>=vueltasAEsperar) {
 				desplazarse();
@@ -29,12 +38,11 @@ public abstract class Proyectil extends Entidad {
 				latencia++;
 			}
 		}
-
 	}
+
 	@Override
 	public void desplazarse() {
 		this.vector.desplazarse();
-		//accionar();
 		if(this.vector.getPosicion().y<=0)
 			this.desaparecer();
 
