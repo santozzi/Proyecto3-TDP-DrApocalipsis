@@ -30,6 +30,7 @@ public class ColeccionDeImagenes {
 		agregarRuta("InfectadoAlpha_golpear", "/img/z_ataque_abajo.gif", 40, 60);
 		
 		agregarRuta("Jugador_dispara", "/img/pistola_idle.png", 70, 50);
+		agregarRuta("Jugador_dispara_sa", "/img/superArma.png", 70, 50);
 		
 		agregarRuta("Jugador_caminarDerecha", "/img/Jugador_caminarDerecha.gif", 70, 60);
 		
@@ -60,6 +61,7 @@ public class ColeccionDeImagenes {
 		agregarRuta("humano", "/img/Humano.png", 40, 60);
 		
 		agregarRuta("pocion","/img/pocion.png", 50, 50);
+		agregarRuta("superArmaSanitaria","/img/superArmaSanitaria.jpg", 50, 50);
 		
 		agregarRuta("cuarentena","/img/cuarentena.png", 40, 40);
 		

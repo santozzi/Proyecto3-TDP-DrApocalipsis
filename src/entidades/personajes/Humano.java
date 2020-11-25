@@ -4,6 +4,7 @@ package entidades.personajes;
 
 import java.util.Random;
 
+import armas.ArmaSanitaria;
 import entidades.CuadroDeDialogo;
 import entidades.Entidad;
 import entidades.Vector;
@@ -12,6 +13,7 @@ import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
+import entidades.premios.temporales.SuperArma;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
@@ -91,7 +93,7 @@ public class Humano extends Personaje {
 		if(randomInt == 0)
 			premio = new Pocion(juego);
 		else 
-			System.out.println("no hay premio");
+			premio = new SuperArma(juego);
 			//premio = new Cuarentena(juego);
 	  
 			

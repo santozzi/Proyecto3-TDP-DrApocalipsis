@@ -14,7 +14,7 @@ public class SuperArmaSanitaria extends Arma{
 
 	public SuperArmaSanitaria(Juego juego) {
 		super(juego);
-		this.claveImagen= "Jugador_dispara";
+		this.claveImagen= "Jugador_dispara_sa";
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		
 	}
