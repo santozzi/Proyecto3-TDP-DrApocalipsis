@@ -22,7 +22,7 @@ import visitor.Visitor;
  *
  */
 public class InfectadoAlpha extends Infectado{
-	protected int tiempoDeEspera;
+	
 	protected final int VELOCIDAD_BASE = 6;
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;

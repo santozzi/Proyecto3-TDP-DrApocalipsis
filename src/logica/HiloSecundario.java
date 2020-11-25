@@ -32,7 +32,6 @@ public class HiloSecundario extends Thread{
 			itListaParaRecorrer = listaParaRecorrer.iterator();
             while(itListaParaRecorrer.hasNext()) {
             	entidadParaAccionar = itListaParaRecorrer.next();
-            	if(entidadParaAccionar!= juego.getJugador())
             	   entidadParaAccionar.actuar();
             }
            

@@ -31,7 +31,7 @@ public class Jugador extends Personaje{
 		// this.posicion = new Point(225,550);
 		//imagen.setAlto(50);
 		//imagen.setAncho(30);
-
+		tiempoDeEspera = 1000;
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 
 		v = new VisitanteJugador(this);
@@ -124,7 +124,14 @@ public class Jugador extends Personaje{
 
 	@Override
 	public void actuar() {
-		// TODO Auto-generated method stub
+		if(estadoTemporal) {
+			if(latencia>=tiempoDeEspera) {
+				arma = new ArmaSanitaria(juego);
+				estadoTemporal = false;
+				latencia = 1;
+			}else
+				latencia++;
+		}
 		
 	}
 	public void cambiarArma(Arma arma) {

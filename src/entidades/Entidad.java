@@ -24,8 +24,8 @@ abstract public class  Entidad {
 	protected ImageIcon imagen;
 	protected String claveImagen;
 	protected boolean estadoTemporal;
-
-
+	protected int tiempoDeEspera;
+ 
 	abstract public void accept(Visitor v);
 	public ImageIcon getImagen() {
 		return this.imagen;
