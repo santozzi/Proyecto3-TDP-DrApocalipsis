@@ -1,10 +1,7 @@
 package entidades.personajes;
 
-
-
 import java.util.Random;
 
-import armas.ArmaSanitaria;
 import entidades.CuadroDeDialogo;
 import entidades.Entidad;
 import entidades.Vector;
@@ -23,16 +20,18 @@ import visitor.Visitor;
 public class Humano extends Personaje {
 	protected Premio premio;
 	protected CuadroDeDialogo dialogo;
-	
+	protected boolean soltoPremio;
+
 	public Humano(Juego j) {
 		this.juego = j;
 		this.cargaViral = 0;
-	
+
 		this.vector = new Vector(0, 1, 7);
 		this.claveImagen = new String("humano");
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		this.v = new VisitanteHumano(this);
-		
+		this.soltoPremio = false;
+
 	}
 
 	/*
@@ -40,7 +39,7 @@ public class Humano extends Personaje {
 	 *---------------
 	 *Genera un nuevo objerto de tipo premio
 	 *y lo agrega a la colección de entidades.
-	 
+
 	public void dejarCaerPremio() {
 		Random random = new Random();
 		int randomInt = random.nextInt(3);
@@ -54,7 +53,7 @@ public class Humano extends Personaje {
 
 		premio.getPosicion().setLocation(posicion);
 	}
-	*/
+	 */
 
 	public void accept(Visitor v) {
 		v.visitarHumano(this);
@@ -83,30 +82,31 @@ public class Humano extends Personaje {
 	 *y lo agrega a la colección de entidades.
 	 */
 	public void dejarCaerPremio() {
-		Random random = new Random();
-		int randomInt = random.nextInt(3);
-		premio = new Cuarentena(juego);
-		dialogo = new CuadroDeDialogo(juego);
-		
-		
-		
-		if(randomInt == 0)
-			premio = new Pocion(juego);
-		else if(randomInt == 1)
-			premio = new SuperArma(juego);
-		
-		else
-			System.out.println("cuarntena");
-			
+		if(!soltoPremio) {
+			Random random = new Random();
+			int randomInt = random.nextInt(3);
+			dialogo = new CuadroDeDialogo(juego);
 
-		premio.getPosicion().setLocation(this.getPosicion());
-		//premio.getPosicion().x = getPosicion().x;
-		//premio.getPosicion().y = getPosicion().y-50;
-		dialogo.getPosicion().x = getPosicion().x+10;
-		dialogo.getPosicion().y = getPosicion().y-30;
-		this.dialogo.getVector().setModulo(8);
-		juego.agregarAEntidadesParaAgregar(premio);
-		juego.agregarAEntidadesParaAgregar(dialogo);
+			if(randomInt == 0)
+				premio = new Pocion(juego);
+			else if(randomInt == 1)
+				premio = new SuperArma(juego);
+			else
+				premio = new Cuarentena(juego);
+
+			premio.getPosicion().setLocation(this.getPosicion());
+			//premio.getPosicion().x = getPosicion().x;
+			//premio.getPosicion().y = getPosicion().y-50;
+			dialogo.getPosicion().x = getPosicion().x+10;
+			dialogo.getPosicion().y = getPosicion().y-30;
+			this.dialogo.getVector().setModulo(8);
+			juego.agregarAEntidadesParaAgregar(premio);
+			juego.agregarAEntidadesParaAgregar(dialogo);
+			soltoPremio = true;
+		}
+	}
+	public boolean soltoPremio() {
+		return this.soltoPremio;
 	}
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
@@ -139,8 +139,6 @@ public class Humano extends Personaje {
 		int velocidad = vector.getModulo();
 
 		vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
-
-
 
 		if(vueltasAEsperar>0&&vueltasAEsperar<HiloSecundario.LATENCIA_MAXIMA) {
 			if(latencia>=vueltasAEsperar) {
