@@ -84,7 +84,7 @@ public class Humano extends Personaje {
 	 */
 	public void dejarCaerPremio() {
 		Random random = new Random();
-		int randomInt = random.nextInt(2);
+		int randomInt = random.nextInt(3);
 		premio = new Cuarentena(juego);
 		dialogo = new CuadroDeDialogo(juego);
 		
@@ -92,10 +92,11 @@ public class Humano extends Personaje {
 		
 		if(randomInt == 0)
 			premio = new Pocion(juego);
-		else 
+		else if(randomInt == 1)
 			premio = new SuperArma(juego);
-			//premio = new Cuarentena(juego);
-	  
+		
+		else
+			System.out.println("cuarntena");
 			
 
 		premio.getPosicion().setLocation(this.getPosicion());
