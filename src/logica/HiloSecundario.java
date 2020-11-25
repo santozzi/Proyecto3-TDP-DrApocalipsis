@@ -1,0 +1,72 @@
+package logica;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import entidades.Entidad;
+
+public class HiloSecundario extends Thread{
+	protected Queue<Entidad> colaParaAgregar;
+	protected Queue<Entidad> colaParaQuitar;
+	protected List<Entidad> listaParaRecorrer;
+	protected Juego juego;
+	public static final int LATENCIA_MAXIMA = 10;
+	public HiloSecundario(Juego juego) {
+		this.juego = juego;
+		colaParaAgregar = new ConcurrentLinkedQueue<Entidad>();
+		colaParaQuitar = new ConcurrentLinkedQueue<Entidad>();
+		listaParaRecorrer = new LinkedList<Entidad>();
+	}
+	
+	@Override
+	public void run() {
+      Iterator<Entidad> itListaParaRecorrer;
+      Entidad entidadParaAccionar;
+		while(true) {
+			
+			juego.notificarObservadores();
+			esperar(5);
+			itListaParaRecorrer = listaParaRecorrer.iterator();
+            while(itListaParaRecorrer.hasNext()) {
+            	entidadParaAccionar = itListaParaRecorrer.next();
+            	if(entidadParaAccionar!= juego.getJugador())
+            	   entidadParaAccionar.actuar();
+            }
+           
+            agregarYQuitarEntidades();
+      }
+	}
+	
+    private void esperar(int segundos) {
+    	try {Thread.sleep(segundos);} catch (InterruptedException e) {e.getMessage();}
+    }
+	private void agregarYQuitarEntidades() {
+	   
+		while(!colaParaAgregar.isEmpty()) {
+		   Entidad entParaAgregar = colaParaAgregar.poll();
+		   listaParaRecorrer.add(entParaAgregar);
+		   juego.notificarEntidad(entParaAgregar);
+	   }
+		while(!colaParaQuitar.isEmpty()) {
+			
+		   Entidad entParaQuitar =colaParaQuitar.poll();
+			System.out.println("borrado "+ listaParaRecorrer.remove(entParaQuitar));
+		   juego.notificarQuitarEntidad(entParaQuitar);
+	   }
+		
+	}
+	public void agregarAColaParaAgregar(Entidad entidad) {
+	
+		colaParaAgregar.add(entidad);
+		
+	}
+	public void agregarAColaParaQuitar(Entidad entidad) {
+		colaParaQuitar.add(entidad);
+	}
+	public List<Entidad> listaDeRecorrido(){
+		return listaParaRecorrer;
+	}
+}

@@ -19,10 +19,11 @@ abstract public class  Entidad {
 	 * El vector contiene la velocidad y la direccion de la entidad
 	 */
 	protected Vector vector;
-
+    protected int latencia;
 	protected Juego juego;
 	protected ImageIcon imagen;
 	protected String claveImagen;
+	protected boolean estadoTemporal;
 
 
 	abstract public void accept(Visitor v);
@@ -76,6 +77,7 @@ abstract public class  Entidad {
 		//this.posicion.y++;
 		
 		this.vector.desplazarse();
+		juego.actualizarEntidad(this);
 		//detectarColisiones();
 		accionar();
 		//detectarColisiones();
@@ -83,14 +85,12 @@ abstract public class  Entidad {
 	}
 	public List<Entidad> detectarColisiones() {
 		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
-		List<Latencia> listaDeLatencia = juego.getLista();
+		List<Entidad> listaDeLatencia = juego.getLista();
 		boolean esta = false;
-		Entidad entidadDeLatencia;
 		Entidad entidadActual = this;
 		Entidad entVerificar;
 		Iterator<Entidad> itEntidades ;
-		for(Latencia latencia : listaDeLatencia) {
-			entidadDeLatencia = latencia.getEntidad();
+		for(Entidad entidadDeLatencia : listaDeLatencia) {
 			itEntidades = listaDeColisiones.iterator();
 			
 			
@@ -122,5 +122,9 @@ abstract public class  Entidad {
 		
 		
 
+	}
+	public abstract void actuar();
+	public void cambiarEstadoTemporal() {
+		estadoTemporal= true;
 	}
 }

@@ -9,4 +9,10 @@ public class SuperProyectilSanitario extends Proyectil {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void actuar() {
+		// TODO Auto-generated method stub
+		
+	}
 }

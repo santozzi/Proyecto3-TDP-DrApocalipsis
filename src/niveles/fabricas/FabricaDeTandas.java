@@ -16,6 +16,7 @@ public abstract class FabricaDeTandas {
 	protected Nivel nivel;
 	
 	abstract public void primeraTanda();
+	public List<Entidad> pTanda() {return null;}
 	abstract public void segundaTanda();
 	//abstract public void generar();
 

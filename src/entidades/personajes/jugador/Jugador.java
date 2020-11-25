@@ -120,4 +120,10 @@ public class Jugador extends Personaje{
 		super.impacto(disparo);
 		juego.notificarCargaViralDeJugador();
 	}
+
+	@Override
+	public void actuar() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -47,8 +47,12 @@ public class ProyectilSanitario extends Proyectil{
 	@Override
 	public void desplazarse() {
 		this.vector.desplazarse();
-		accionar();
+		//accionar();
 		if(this.vector.getPosicion().y<=0)
 			this.desaparecer();
+		
+		juego.actualizarEntidad(this);
 	}
+
+
 }

@@ -53,4 +53,5 @@ public class Pocion extends NoTemporal {
 						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
 		 */
 	}
+
 }

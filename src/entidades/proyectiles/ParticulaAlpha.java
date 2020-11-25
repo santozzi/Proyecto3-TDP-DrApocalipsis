@@ -4,6 +4,7 @@ import entidades.Entidad;
 import entidades.Vector;
 import entidades.personajes.infectados.Infectado;
 import logica.ColeccionDeImagenes;
+import logica.HiloSecundario;
 import logica.Juego;
 import visitor.VisitanteParticulaAlpha;
 import visitor.Visitor;
@@ -41,15 +42,16 @@ public class ParticulaAlpha extends Proyectil{
 		//this.vector.setY(++y);
 		 */
 		if(rangoParticula==infectado.getRango()) {
-		   reiniciarParticula();
+			reiniciarParticula();
 		}else {
 			rangoParticula++;
 		}
 		accionar();  
 		vector.desplazarse();
+		juego.actualizarEntidad(this);
 	}
-	
-	
+
+
 	public void reiniciarParticula() {
 		rangoParticula=0;
 		vector.getPosicion().x = infectado.getVector().getPosicion().x+
@@ -80,5 +82,6 @@ public class ParticulaAlpha extends Proyectil{
 						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
 		 */
 	}
+
 	
 }

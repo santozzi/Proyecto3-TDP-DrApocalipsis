@@ -12,4 +12,5 @@ public class SuperArma extends Temporal {
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
 	}
+
 }

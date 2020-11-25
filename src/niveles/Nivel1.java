@@ -7,6 +7,7 @@ import logica.CompositeInfectado;
 import logica.Juego;
 import niveles.fabricas.FabricaDeTandas;
 import niveles.fabricas.Nivel1InfectadosAlpha;
+import niveles.fabricas.Nivel3InfectadosMixto;
 
 public class Nivel1 extends Nivel{
     protected Juego juego;
@@ -18,16 +19,15 @@ public class Nivel1 extends Nivel{
 
 	@Override
 	public List<Entidad> primeraTanda() {
-		FabricaDeTandas  fdt = new Nivel1InfectadosAlpha(juego, this); 
-		fdt.primeraTanda();
-	//	this.entidades = fdt.getEntidades();
+		FabricaDeTandas  fdt =  new Nivel1InfectadosAlpha(juego, this); 
+	     fdt.primeraTanda();
 		return this.compInf.getListaDeInfectados();
 	}
 
 	@Override
 	public List<Entidad> segundaTanda() {
 		FabricaDeTandas  fdt = new Nivel1InfectadosAlpha(juego, this); 
-		fdt.primeraTanda();
+
 	//	this.entidades = fdt.getEntidades();
 		return this.compInf.getListaDeInfectados();
 	}

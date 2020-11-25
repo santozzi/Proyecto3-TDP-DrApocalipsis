@@ -20,7 +20,7 @@ public class Cuarentena extends Temporal{
 	@Override
 	public void ejecutar() {
 		for(Entidad entidad : this.juego.getNivel().getColeccionDeInfectados().getListaDeInfectados()) {
-			entidad.detenerse();
+			entidad.cambiarEstadoTemporal();
 		}
 	}
 
@@ -53,4 +53,6 @@ public class Cuarentena extends Temporal{
 						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
 		 */
 	}
+
+
 }

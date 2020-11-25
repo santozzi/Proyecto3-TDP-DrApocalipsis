@@ -65,18 +65,11 @@ public class Mapa  extends JFrame implements IObservador{
 
 		mapeoEntidades = new HashMap<Entidad, JLabel>();
 
-		/*
-		try {
-			AudioClip clip = Applet.newAudioClip(new URL("file: C:\\Users\\Lucio\\Desktop\\workspace\\Proyecto-3-TDP\\src\\audio\\Digadig.mp3"));
-			clip.play();
-			} catch (MalformedURLException murle) {
-			System.out.println(murle);
-			}
-		 */
 
-		//ap = new AudioPlayer("/audio/Digadig.mp3");
-		//audio = new Thread(ap);
-		//audio.start();
+
+		ap = new AudioPlayer("/audio/Digadig.mp3");
+		audio = new Thread(ap);
+		audio.start();
 
 		setTitle("Dr. Apocalipsis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,7 +112,7 @@ public class Mapa  extends JFrame implements IObservador{
 		juego.agregarObservador(this);
 		juego.cargarJugador();
 		juego.cargarNivel(1);
-		System.out.println("nivel 1");
+
 		
 	}
 
@@ -256,12 +249,8 @@ public class Mapa  extends JFrame implements IObservador{
     	if(etiquetaEliminada!=null)
        			panelFondo.remove(etiquetaEliminada);
     	
-    	     System.out.println(juego.getLista().size());
-    		if(juego.getLista().size()==1) {
-    			System.out.println("inicio Segunda tanda");
-    			juego.finalizarTanda();
-    		}
-    	
+    	    
+   
     	
     	
     } 

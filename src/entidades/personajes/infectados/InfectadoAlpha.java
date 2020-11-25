@@ -9,6 +9,7 @@ import entidades.Entidad;
 import entidades.Vector;
 import entidades.proyectiles.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
+import logica.HiloSecundario;
 import logica.Juego;
 import logica.Latencia;
 import visitor.*;
@@ -21,7 +22,8 @@ import visitor.Visitor;
  *
  */
 public class InfectadoAlpha extends Infectado{
-	private boolean hayJugador;
+	protected int tiempoDeEspera;
+	protected final int VELOCIDAD_BASE = 6;
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
 
@@ -30,7 +32,8 @@ public class InfectadoAlpha extends Infectado{
 
 		this.claveImagen = new String("InfectadoAlpha_golpear");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
-
+		estadoTemporal= false;
+		tiempoDeEspera = 1000;
 
 		this.rango = 100;
 		v = new VisitanteInfectadoAlpha(this);
@@ -64,16 +67,16 @@ public class InfectadoAlpha extends Infectado{
 		if(cargaViral-disparo>0 && cargaViral-disparo<=20)
 			duplicarVelocidad();
 	}
+
 	public List<Entidad> detectarColisiones() {
 		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
-		List<Latencia> listaDeLatencia = juego.getLista();
+		List<Entidad> listaDeLatencia = juego.getLista();
 		boolean esta = false;
-		Entidad entidadDeLatencia;
+	
 		Entidad entidadActual = this;
 		Entidad entVerificar;
 		Iterator<Entidad> itEntidades ;
-		for(Latencia latencia : listaDeLatencia) {
-			entidadDeLatencia = latencia.getEntidad();
+		for(Entidad entidadDeLatencia : listaDeLatencia) {
 			itEntidades = listaDeColisiones.iterator();
 
 
@@ -99,23 +102,44 @@ public class InfectadoAlpha extends Infectado{
 		//this.posicion.y++;
 		//this.vector.setModulo(6);
 		this.vector.desplazarse();
+		juego.actualizarEntidad(this);
 		//detectarColisiones();
-		accionar();
+		//accionar();
 		//detectarColisiones();
 		//pregunatar cuando se choca con el limite del mapa
 
 	}
 	public void accionar() {
-
 		for(Entidad ent : detectarColisiones()) {
 			ent.accept(v);
 		}
 
+	}
 
-
-
-
-
+	@Override
+	public void actuar() {
+      int vueltasAEsperar;
+		if(estadoTemporal) {
+			vueltasAEsperar = tiempoDeEspera;
+		}else {
+			int velocidad = vector.getModulo();
+			// {
+				vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
+				
+			
+		}
+		
+   if(vueltasAEsperar>0) {
+		if(latencia>=vueltasAEsperar) {
+		   desplazarse();
+		   juego.actualizarEntidad(this);
+		   accionar();
+		   latencia= 1;
+		   estadoTemporal= false;
+		}else {
+		   latencia++;
+		}
+   }
 	}
 
 }

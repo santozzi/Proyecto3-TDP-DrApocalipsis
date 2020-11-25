@@ -18,16 +18,13 @@ import observador.IObservador;
 public class Juego implements IObservado {
 	protected Nivel nivel;
 
-	protected List<Latencia> entidadesParaRecorido;
-	protected List<Latencia> entidadesParaAgregar;
-	protected List<Latencia> entidadesParaQuitar;
 	protected Mapa mapa;
 
 
 	protected List<IObservador> observadores;
 	public static final int ANCHO_DE_COMBATE=444;
 	public static final int ALTO_DE_COMBATE=619;
-
+	protected HiloSecundario hiloSecundario;
 	//public static final int DECORADO_IZQUIERDO=62;
 	//public static final int DECORADO_DERECHO=62;
 	public static final int DECORADO_IZQUIERDO=184;
@@ -38,26 +35,21 @@ public class Juego implements IObservado {
 	protected static final int LATENCIA_MAXIMA=10;
 	protected Jugador jugador;
 	protected boolean finDeLaTanda;
-    protected int nivelActual;
+	protected int nivelActual;
 	public Juego() {
-		this.nivelActual = 0;
+		this.nivelActual = 1;
 		observadores = new LinkedList<IObservador>();
+		hiloSecundario = new HiloSecundario(this);
 
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		jugador = new Jugador(this);
-		//nivel = new Nivel1(this);
 
-		entidadesParaRecorido = new LinkedList<Latencia>();
-		entidadesParaAgregar = new LinkedList<Latencia>();
-		entidadesParaQuitar = new LinkedList<Latencia>();
-		//mapa = new Mapa(this);
-		//mapa.setVisible(true);
+		hiloSecundario.start();
 
-		hiloRecorredorDeEntidades();
 
 	}
 	public void cargarJugador() {
-		entidadesParaAgregar.add(new Latencia(jugador)) ;	
+		agregarAEntidadesParaAgregar(jugador);
 	}
 
 
@@ -70,31 +62,8 @@ public class Juego implements IObservado {
 			public void run() {
 
 				while(true) {
-					try {
-						Thread.sleep(LATENCIA_MINIMA);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 
-					notificarObservadores();
-
-
-					Entidad entidad;
-
-					for(Latencia lat: entidadesParaRecorido){
-
-
-						entidad = lat.getEntidad();
-
-						int velocidad = entidad.getVector().getModulo();
-						if(velocidad>0 && velocidad<LATENCIA_MAXIMA) {
-							//velocidad cuanto mas cercano a uno sea mas rapido va a ir
-
-							int latencia = LATENCIA_MAXIMA-velocidad;
-	
-							if(entidad!=jugador) {
-
+					/*
 								if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
 
 									if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
@@ -104,93 +73,65 @@ public class Juego implements IObservado {
 										limite.y = limite.y = entidad.getVector().getPosicion().y;
 										limite.x += entidad.getImagen().getIconWidth();
 									}
+}
+					 */
+					//System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
 
 
-									//System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
-								}
 
-								if(latencia<=lat.getLatencia()) {
-									//	System.out.println("entre en el hilo: "+entidad.getVector().getModulo());
-									entidad.desplazarse();
-									actualizarEntidad(entidad);
-									lat.reiniciarLatencia();
-								}else {
-									
-									lat.incrementarLatencia();
-								}
-							}
-						}
-					}
-					cargarColaDeEntidades();
+
 
 				}
+
+
 			}
+
 		};
-		hiloVerificar.start();
+
 
 	}
-	public void agregarEntidad(Entidad entidad) {
-		entidadesParaRecorido.add(new Latencia(entidad));
-		notificarEntidad(entidad);
-	}
-	private void cargarColaDeEntidades() {
-		for(Latencia entidadA : entidadesParaAgregar) {
-			agregarEntidad(entidadA.getEntidad());
-			//	System.out.println("agrego latencia "+entidadA);
-		}
-		entidadesParaAgregar.clear();
 
-		for(Latencia entidadA : entidadesParaQuitar) {
-			entidadesParaRecorido.remove(entidadA);
-			notificarQuitarEntidad(entidadA.getEntidad());
-		}
 
-		entidadesParaQuitar.clear();
-
-	}
+	
 	public Point getLimite() {
 		return this.limite;
 	}
 	public Nivel getNivel() {
 		return nivel;
 	}
-	
-	
-	
-	
-	
-	
-	public void cargarNivel(int n) {
+
+    public void cargarNivel(int n) {
 		//Nivel[] niveles = new Nivel[3];
-     	if(n==1) {
+		if(n==1) {
+			System.out.println("estoy en cargar nivel "+n);
 			this.nivel = new Nivel1(this);
-			
-	/*	}else if(n==2) {
+
+			/*	}else if(n==2) {
 			this.nivel = new Nivel2(this);
 		}else if(n==3) {
 			this.nivel = new Nivel3(this);*/
 		}else {
 			System.out.println("game over");
-		    nivel= null;
+			nivel= null;
 		}
-		
+
 		if(nivel!=null) {
-		for(Entidad entidad : nivel.primeraTanda()) {
-			entidadesParaAgregar.add(new Latencia(entidad));
-		}
+			for(Entidad entidad : nivel.primeraTanda()) {
+				hiloSecundario.agregarAColaParaAgregar(entidad);
+			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 	@Override
 	public void notificarEntidad(Entidad entidad) {
 		for(IObservador obs: observadores)
@@ -204,10 +145,7 @@ public class Juego implements IObservado {
 	public Jugador getJugador() {
 		return this.jugador;
 	}
-	public List<Latencia> getLista(){
-		return entidadesParaRecorido;
-	}
-
+	
 	@Override
 	public void agregarObservador(IObservador obs) {
 		observadores.add(obs);
@@ -225,21 +163,13 @@ public class Juego implements IObservado {
 
 	}
 	public void agregarAEntidadesParaAgregar(Entidad entidad) {
-
-		entidadesParaAgregar.add(new Latencia(entidad));
+        hiloSecundario.agregarAColaParaAgregar(entidad);
+		
 	}
 
 	public void agregarAEntidadesParaQuitar(Entidad entidad) {
-		Latencia lat = null;
-		Iterator<Latencia> itLat = entidadesParaRecorido.iterator();
-		boolean esta = false;
-
-		while(!esta&&itLat.hasNext()) {
-			lat= itLat.next();
-			if(lat.getEntidad()==entidad) {
-				entidadesParaQuitar.add(lat);
-			}
-		}
+       hiloSecundario.agregarAColaParaQuitar(entidad);
+       notificarQuitarEntidad(entidad);
 	}
 	@Override
 	public void notificarQuitarEntidad(Entidad entidad) {
@@ -251,7 +181,7 @@ public class Juego implements IObservado {
 	public void notificarCargaViralDeJugador() {
 		for(IObservador obs: observadores)
 			obs.updateEnergiaJugador();
-		
+
 	}
 	// pregunto si no quedan mas infectados en el nivel
 	public void verificarFinTanda() {
@@ -260,11 +190,12 @@ public class Juego implements IObservado {
 		}
 	}
 	public void finalizarTanda() {
-		for(Entidad entidad : nivel.segundaTanda()) {
-			entidadesParaAgregar.add(new Latencia(entidad));
-		}
-		//cargarNivel(nivelActual+1);
-		
+	
+
 	}
+	public List<Entidad> getLista(){
+		return hiloSecundario.listaDeRecorrido();
+	}
+	
 
 }
