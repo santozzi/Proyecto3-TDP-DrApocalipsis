@@ -40,7 +40,7 @@ public class Jugador extends Personaje{
 	}
 
 	public void detenerse() {
-		if(!this.claveImagen.equals("Jugador_dispara")) {
+		if(!this.claveImagen.equals(arma.getClaveImagen())) {
 			this.claveImagen = arma.getClaveImagen();
 			imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		}
