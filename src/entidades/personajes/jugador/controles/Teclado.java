@@ -4,10 +4,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Teclado implements KeyListener{
-    static public boolean llave;
-    static public boolean derecha;
-    static public boolean izquierda;
-    static public boolean disparar;
+    protected boolean llave;
+    protected boolean derecha;
+    protected boolean izquierda;
+    protected boolean disparar;
 
     
 	@Override
@@ -42,6 +42,38 @@ public class Teclado implements KeyListener{
 			disparar=false;
 			llave=true;
 		}
+	}
+
+	public boolean isLlave() {
+		return llave;
+	}
+
+	public void setLlave(boolean llave) {
+		this.llave = llave;
+	}
+
+	public boolean isDerecha() {
+		return derecha;
+	}
+
+	public void setDerecha(boolean derecha) {
+		this.derecha = derecha;
+	}
+
+	public boolean isIzquierda() {
+		return izquierda;
+	}
+
+	public void setIzquierda(boolean izquierda) {
+		this.izquierda = izquierda;
+	}
+
+	public boolean isDisparar() {
+		return disparar;
+	}
+
+	public void setDisparar(boolean disparar) {
+		this.disparar = disparar;
 	}
 
 	

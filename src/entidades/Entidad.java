@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 
 import logica.ColeccionDeImagenes;
 import logica.Juego;
-import logica.Latencia;
 import visitor.Visitante;
 import visitor.Visitor;
 

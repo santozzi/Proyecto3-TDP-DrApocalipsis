@@ -11,7 +11,6 @@ import entidades.proyectiles.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
-import logica.Latencia;
 import visitor.*;
 import visitor.Visitor;
 

@@ -144,15 +144,15 @@ public class Mapa  extends JFrame implements IObservador{
 
 		IComando comando;
 		Jugador gamer = juego.getJugador();
-		if(teclado.derecha) {
+		if(teclado.isDerecha()) {
 			comando = new CaminarDerecha(gamer);
-		}else if(teclado.izquierda) {
+		}else if(teclado.isIzquierda()) {
 
 			comando = new CaminarIzquierda(gamer);
 
-		}else if(teclado.disparar&&teclado.llave) {
+		}else if(teclado.isDisparar()&&teclado.isLlave()) {
 			comando = new Disparar(gamer);
-			teclado.llave=false;
+			teclado.setLlave(false);
 
 
 		}else {
@@ -258,7 +258,7 @@ public class Mapa  extends JFrame implements IObservador{
 	@Override
 	public void updateEnergiaJugador() {
 		progressBar.setValue(juego.getJugador().getEnergia());
-		System.out.println("me pegaron");
+	
 
 	}
 

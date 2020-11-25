@@ -4,13 +4,10 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 
-import GUI.Mapa;
 import entidades.Entidad;
 import entidades.personajes.jugador.Jugador;
 import niveles.Nivel;
 import niveles.Nivel1;
-import niveles.Nivel2;
-import niveles.Nivel3;
 import observador.IObservado;
 import observador.IObservador;
 

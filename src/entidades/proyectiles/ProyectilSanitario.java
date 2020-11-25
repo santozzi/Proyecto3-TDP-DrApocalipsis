@@ -1,20 +1,11 @@
 package entidades.proyectiles;
 import logica.Juego;
-import logica.Latencia;
 
-import java.awt.Image;
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-import javax.swing.ImageIcon;
 
 import entidades.Vector;
 import entidades.personajes.jugador.Jugador;
-import entidades.Entidad;
 import logica.ColeccionDeImagenes;
-import visitor.VisitanteJugador;
 import visitor.VisitanteProyectilSanitario;
 import visitor.Visitor;
 

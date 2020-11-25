@@ -74,7 +74,7 @@ public class HiloSecundario extends Thread{
 		while(!colaParaQuitar.isEmpty()) {
 
 			Entidad entParaQuitar =colaParaQuitar.poll();
-			System.out.println("borrado "+ listaParaRecorrer.remove(entParaQuitar));
+			listaParaRecorrer.remove(entParaQuitar);
 			juego.notificarQuitarEntidad(entParaQuitar);
 		}
 
