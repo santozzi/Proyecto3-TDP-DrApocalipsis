@@ -1,5 +1,6 @@
 package niveles.fabricas;
 
+import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -20,31 +21,33 @@ public class Nivel2InfectadosBeta extends FabricaDeTandas {
 		this.cantidadInfectados = cantInfectados;
 	}
 
-	@Override
+
 	public void primeraTanda() {
 		Infectado nuevoInfectado;
 		Random r1 = new Random();
 		for(int i=0 ; i<cantidadInfectados ; i++) {
 			nuevoInfectado = new InfectadoBeta(this.juego);
 			
-			nuevoInfectado.getPosicion().x = r1.nextInt(Juego.ANCHO_DE_COMBATE) + Juego.DECORADO_IZQUIERDO;
-			nuevoInfectado.getPosicion().y =r1.nextInt(Juego.ALTO_DE_COMBATE);
+			nuevoInfectado.getPosicion().x = (i/2)+1  + Juego.DECORADO_IZQUIERDO;
+			nuevoInfectado.getPosicion().y = i;
 			nuevoInfectado.getVector().setModulo(500);
 			//entidades.add(nuevoInfectado);
 		}
 	}
 
-	@Override
+
 	public void segundaTanda() {
 		Infectado nuevoInfectado;
 		Random r1 = new Random();
 		for(int i=0 ; i<cantidadInfectados*2 ; i++) {
 			nuevoInfectado = new InfectadoBeta(this.juego);
 			
-			nuevoInfectado.getPosicion().x = r1.nextInt(Juego.ANCHO_DE_COMBATE) + Juego.DECORADO_IZQUIERDO;
-			nuevoInfectado.getPosicion().y =r1.nextInt(Juego.ALTO_DE_COMBATE);
+			nuevoInfectado.getPosicion().x = (i/2)+1 + Juego.DECORADO_IZQUIERDO;
+			nuevoInfectado.getPosicion().y = i;
 			nuevoInfectado.getVector().setModulo(500);
-			//entidades.add(nuevoInfectado);
+			
+			
 		}
 	}
+
 }

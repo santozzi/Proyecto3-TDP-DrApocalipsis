@@ -1,5 +1,5 @@
 package entidades.personajes.infectados;
-
+import entidades.proyectiles.*;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,8 +22,9 @@ import visitor.Visitor;
 
 public abstract class Infectado extends Personaje {
 
-	protected ParticulaAlpha particula;
 
+	protected Proyectil particula;
+	
 	protected int rango;
 
 	/**
@@ -49,10 +50,8 @@ public abstract class Infectado extends Personaje {
 	}
 
 
-	public void tirarParticula() {
-    	this.particula= new ParticulaAlpha(juego,this);
-    }
-	@Override
+	public abstract void tirarParticula();
+	
 	public void setPosicion(int x, int y) {
 		vector.getPosicion().x= x;
 		vector.getPosicion().y= y;

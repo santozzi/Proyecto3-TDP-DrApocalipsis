@@ -10,9 +10,10 @@ import visitor.VisitanteParticulaAlpha;
 import visitor.Visitor;
 
 public class ParticulaAlpha extends Proyectil{
+	
 	protected Infectado infectado;
-
-	protected int rangoParticula;
+    protected int rangoParticula;
+	
 	public ParticulaAlpha(Juego juego,Infectado infectado) {
 		vector = new Vector(0,1,8);
 		vector.getPosicion().x= infectado.getVector().getPosicion().x;
@@ -26,12 +27,12 @@ public class ParticulaAlpha extends Proyectil{
 		this.letalidad = 5;
 	}
 
-	@Override
+
 	public void accept(Visitor v) {
 		v.visitarParticulaAlpha(this);
 	}
 
-	@Override
+	
 	public void desplazarse() {
 		/*int y = this.vector.getY();
 
