@@ -47,7 +47,6 @@ public class Juego implements IObservado {
 	public void cargarJugador() {
 		agregarAEntidadesParaAgregar(jugador);
 	}
-
 	/*hilo paralelo
 	private void hiloRecorredorDeEntidades() {
 		Thread hiloVerificar = new Thread(){
@@ -72,7 +71,6 @@ public class Juego implements IObservado {
 		};
 	}
 	*/
-	
 	public Point getLimite() {
 		return this.limite;
 	}
@@ -80,16 +78,10 @@ public class Juego implements IObservado {
 		return nivel;
 	}
 
-    public void cargarNivel(int n) {
+	public void cargarNivel(int n) {
 		//Nivel[] niveles = new Nivel[3];
 		if(n==1) {
-			System.out.println("estoy en cargar nivel "+n);
 			this.nivel = new Nivel1(this);
-
-			/*	}else if(n==2) {
-			this.nivel = new Nivel2(this);
-		}else if(n==3) {
-			this.nivel = new Nivel3(this);*/
 		}else {
 			System.out.println("game over");
 			nivel= null;
@@ -101,7 +93,43 @@ public class Juego implements IObservado {
 			}
 		}
 	}
+	public Jugador getJugador() {
+		return this.jugador;
+	}
 
+
+
+	// pregunto si no quedan mas infectados en el nivel
+	public void verificarFinTanda() {
+		if(this.nivel.getColeccionDeInfectados().getListaDeInfectados().isEmpty()) {
+			finalizarTanda();
+		}
+	}
+	public void finalizarTanda() {
+       System.out.println("Finalizar tanda");
+
+	}
+	public List<Entidad> getLista(){
+		return hiloSecundario.listaDeRecorrido();
+	}
+	
+	
+	
+	//--------Agregar y quitar entidades--------------
+	public void agregarAEntidadesParaAgregar(Entidad entidad) {
+		hiloSecundario.agregarAColaParaAgregar(entidad);
+
+	}
+
+	public void agregarAEntidadesParaQuitar(Entidad entidad) {
+		hiloSecundario.agregarAColaParaQuitar(entidad);
+		notificarQuitarEntidad(entidad);
+	}
+	//------------------------------------------------
+
+	
+	
+	//--------------Inicio de observado----------------
 	@Override
 	public void notificarEntidad(Entidad entidad) {
 		for(IObservador obs: observadores)
@@ -112,10 +140,7 @@ public class Juego implements IObservado {
 		for(IObservador obs: observadores)
 			obs.updateEntidad(entidad);
 	}
-	public Jugador getJugador() {
-		return this.jugador;
-	}
-	
+
 	@Override
 	public void agregarObservador(IObservador obs) {
 		observadores.add(obs);
@@ -132,15 +157,7 @@ public class Juego implements IObservado {
 			obs.update();
 
 	}
-	public void agregarAEntidadesParaAgregar(Entidad entidad) {
-        hiloSecundario.agregarAColaParaAgregar(entidad);
-		
-	}
 
-	public void agregarAEntidadesParaQuitar(Entidad entidad) {
-       hiloSecundario.agregarAColaParaQuitar(entidad);
-       notificarQuitarEntidad(entidad);
-	}
 	@Override
 	public void notificarQuitarEntidad(Entidad entidad) {
 		for(IObservador obs: observadores)
@@ -153,19 +170,7 @@ public class Juego implements IObservado {
 			obs.updateEnergiaJugador();
 
 	}
-	// pregunto si no quedan mas infectados en el nivel
-	public void verificarFinTanda() {
-		if(this.nivel.getColeccionDeInfectados().getListaDeInfectados().isEmpty()) {
-			finalizarTanda();
-		}
-	}
-	public void finalizarTanda() {
-	
 
-	}
-	public List<Entidad> getLista(){
-		return hiloSecundario.listaDeRecorrido();
-	}
-	
+	//-------------------fin de observado------------------------------
 
 }
