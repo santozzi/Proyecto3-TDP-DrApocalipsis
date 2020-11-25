@@ -1,34 +1,25 @@
 package logica;
 
 import java.awt.Point;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import GUI.Mapa;
 import entidades.Entidad;
 import entidades.personajes.jugador.Jugador;
 import niveles.Nivel;
 import niveles.Nivel1;
-import niveles.Nivel2;
-import niveles.Nivel3;
 import observador.IObservado;
 import observador.IObservador;
 
 public class Juego implements IObservado {
 	protected Nivel nivel;
 
-	protected Mapa mapa;
-
-
 	protected List<IObservador> observadores;
 	public static final int ANCHO_DE_COMBATE=444;
 	public static final int ALTO_DE_COMBATE=619;
-	protected HiloSecundario hiloSecundario;
-	//public static final int DECORADO_IZQUIERDO=62;
-	//public static final int DECORADO_DERECHO=62;
 	public static final int DECORADO_IZQUIERDO=184;
 	public static final int DECORADO_DERECHO=184;
+	protected HiloSecundario hiloSecundario;
 
 	protected Point limite;
 	protected static final int LATENCIA_MINIMA=5;
@@ -36,37 +27,47 @@ public class Juego implements IObservado {
 	protected Jugador jugador;
 	protected boolean finDeLaTanda;
 	protected int nivelActual;
+	
 	public Juego() {
 		this.nivelActual = 1;
 		observadores = new LinkedList<IObservador>();
-		hiloSecundario = new HiloSecundario(this);
+		//hiloSecundario = new HiloSecundario(this);
+		hiloSecundario = HiloSecundario.getHiloSecundario(this);
+		hiloSecundario.iniciar();
+		//hiloSecundario.reiniciarHilo();
 
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		jugador = new Jugador(this);
 
 		hiloSecundario.start();
-
-
 	}
 	public void cargarJugador() {
 		agregarAEntidadesParaAgregar(jugador);
 	}
-
-	/*
-								if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
-
-									if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
-										limite.y = limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
-										limite.x = 0;
-									}else {
-										limite.y = limite.y = entidad.getVector().getPosicion().y;
-										limite.x += entidad.getImagen().getIconWidth();
-									}
-}
-	 */
-	//System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
-
-
+	/*hilo paralelo
+	private void hiloRecorredorDeEntidades() {
+		Thread hiloVerificar = new Thread(){
+			//  Iterator<Latencia> itLat ;
+			@Override 
+			public void run() {
+				while(true) {
+					
+					if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
+						if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
+							limite.y = limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
+							limite.x = 0;
+						}else {
+							limite.y = limite.y = entidad.getVector().getPosicion().y;
+							limite.x += entidad.getImagen().getIconWidth();
+						}
+					 
+					System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
+					
+				}
+			}
+		};
+	}
+	*/
 	public Point getLimite() {
 		return this.limite;
 	}
@@ -89,7 +90,6 @@ public class Juego implements IObservado {
 			}
 		}
 	}
-
 	public Jugador getJugador() {
 		return this.jugador;
 	}

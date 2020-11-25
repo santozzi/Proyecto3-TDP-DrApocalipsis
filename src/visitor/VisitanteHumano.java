@@ -14,9 +14,9 @@ import entidades.proyectiles.ProyectilSanitario;
 import entidades.proyectiles.SuperProyectilSanitario;
 
 public class VisitanteHumano extends Visitante {
-	
+
 	private Humano humano;
-	
+
 	public VisitanteHumano(Humano ps) {
 		this.humano = ps;
 	}
@@ -24,26 +24,27 @@ public class VisitanteHumano extends Visitante {
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ia) {
 
-		
+
 	}
 
 	@Override
 	public void visitarInfectadoBeta(InfectadoBeta ib) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitarJugador(Jugador j) {
-		humano.dejarCaerPremio();
-		humano.getVector().setModulo(8);
-		
+		if(!humano.soltoPremio()) {
+			humano.dejarCaerPremio();
+			humano.getVector().setModulo(8);
+		}
 	}
 
 	@Override
 	public void visitarProyectilSanitario(ProyectilSanitario p) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -51,45 +52,45 @@ public class VisitanteHumano extends Visitante {
 	@Override
 	public void visitarHumano(Humano hum) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitarParticulaAlpha(ParticulaAlpha par) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitarPocion(Pocion pos) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitarCuarentena(Cuarentena cuarentena) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitarParticulaBeta(ParticulaBeta par) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitarSuperProyectilSanitario(SuperProyectilSanitario sps) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitarSuperArma(SuperArma sarm) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
+
 
 }

@@ -1,5 +1,6 @@
 package entidades.proyectiles;
 
+<<<<<<< HEAD
 import entidades.Entidad;
 import entidades.Vector;
 import entidades.personajes.infectados.Infectado;
@@ -7,9 +8,18 @@ import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteParticulaAlpha;
 import visitor.VisitanteParticulaBeta;
+=======
+import entidades.personajes.infectados.Infectado;
+import logica.Juego;
+>>>>>>> a51f6a8fb36937cbdb6f6c9960a62c8b2393a320
 import visitor.Visitor;
 
-public class ParticulaBeta extends Proyectil{
+public class ParticulaBeta extends Particula{
+
+	public ParticulaBeta(Juego juego, Infectado infectado) {
+		super(juego, infectado);
+		
+	}
 
 	protected Infectado infectado;
     protected int rangoParticula;

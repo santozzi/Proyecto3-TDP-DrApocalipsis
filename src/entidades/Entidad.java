@@ -7,9 +7,9 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import entidades.personajes.jugador.Jugador;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
-import logica.Latencia;
 import visitor.Visitante;
 import visitor.Visitor;
 
@@ -25,7 +25,7 @@ abstract public class  Entidad {
 	protected String claveImagen;
 	protected boolean estadoTemporal;
 	protected int tiempoDeEspera;
- 
+    protected Jugador jugador;
 	abstract public void accept(Visitor v);
 	public ImageIcon getImagen() {
 		return this.imagen;

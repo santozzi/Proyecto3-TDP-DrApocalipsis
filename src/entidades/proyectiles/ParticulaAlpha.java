@@ -1,30 +1,28 @@
 package entidades.proyectiles;
 
-import entidades.Entidad;
-import entidades.Vector;
 import entidades.personajes.infectados.Infectado;
 import logica.ColeccionDeImagenes;
-import logica.HiloSecundario;
 import logica.Juego;
 import visitor.VisitanteParticulaAlpha;
 import visitor.Visitor;
 
+<<<<<<< HEAD
 public class ParticulaAlpha extends Proyectil{
 	
 	protected Infectado infectado;
     protected int rangoParticula;
 	
+=======
+public class ParticulaAlpha extends Particula{
+
+>>>>>>> a51f6a8fb36937cbdb6f6c9960a62c8b2393a320
 	public ParticulaAlpha(Juego juego,Infectado infectado) {
-		vector = new Vector(0,1,8);
-		vector.getPosicion().x= infectado.getVector().getPosicion().x;
-		vector.getPosicion().y= infectado.getVector().getPosicion().y+100;
-		this.juego = juego;
+	    super(juego,infectado);
+		vector.setModulo(8);
+        this.letalidad = 5;
+        rangoParticula= 0;
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("particula");
 		v = new VisitanteParticulaAlpha(this);	
-		juego.agregarAEntidadesParaAgregar(this);
-		rangoParticula= 0;
-		this.infectado = infectado;
-		this.letalidad = 5;
 	}
 
 
@@ -32,6 +30,7 @@ public class ParticulaAlpha extends Proyectil{
 		v.visitarParticulaAlpha(this);
 	}
 
+<<<<<<< HEAD
 	
 	public void desplazarse() {
 		/*int y = this.vector.getY();
@@ -51,37 +50,9 @@ public class ParticulaAlpha extends Proyectil{
 		juego.actualizarEntidad(this);
 	}
 
+=======
+>>>>>>> a51f6a8fb36937cbdb6f6c9960a62c8b2393a320
 
-	public void reiniciarParticula() {
-		rangoParticula=0;
-		vector.getPosicion().x = infectado.getVector().getPosicion().x+
-				(infectado.getImagen().getIconWidth()/4);
-		vector.getPosicion().y = infectado.getVector().getPosicion().y+10;
-	}
-	public boolean hayColision(Entidad entidad) {
-		// entidad.getEntorno() this.entorno
-		//entorno = [x;x+anchoEntidad]
-		//entornoEnY= [[y;y+anchoEntidad]
-		int posEntidadActualX =this.vector.getPosicion().x;
-		int posEntidadActualY =this.vector.getPosicion().y;
-		int posEntidadParametroX =entidad.getVector().getPosicion().x;
-		int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
-
-		int posEntidadParametroY =entidad.getVector().getPosicion().y ;
-		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
-
-		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
-		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()==posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
-
-
-		return colisionEnX &&colisionEnY;
-		/*	
-				(
-				this.vector.getPosicion().y <= 
-			(entidad.getVector().getPosicion().y+entidad.getImagen().getIconHeight())&&
-						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
-		 */
-	}
 
 	
 }

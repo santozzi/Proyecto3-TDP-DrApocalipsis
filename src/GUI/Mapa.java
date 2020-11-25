@@ -44,23 +44,23 @@ public class Mapa  extends JFrame implements IObservador{
 	protected JPanel panelFondo;
 	protected JPanel panelDeEntidades;
 	protected Teclado teclado;
-    protected JProgressBar progressBar;
+	protected JProgressBar progressBar;
 	private Thread audio;
 	private AudioPlayer ap;
 	private Map<Entidad,JLabel> mapeoEntidades;
 
 	public Mapa() {
-        juego = new Juego();
+		juego = new Juego();
 
 		teclado = new Teclado();
 		addKeyListener(teclado);
 
 		getContentPane().setLayout(null);
 		setResizable(false);
-		
+
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-		
+
 		//panelDeEntidades = new JPanel();
 
 		mapeoEntidades = new HashMap<Entidad, JLabel>();
@@ -69,7 +69,7 @@ public class Mapa  extends JFrame implements IObservador{
 
 		ap = new AudioPlayer("/audio/Digadig.mp3");
 		audio = new Thread(ap);
-		audio.start();
+		//audio.start();
 
 		setTitle("Dr. Apocalipsis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -106,14 +106,14 @@ public class Mapa  extends JFrame implements IObservador{
 
 		lblMapaIzquierda.setIcon(barandaIzquierda);
 		getContentPane().add(lblMapaIzquierda);
-		
+
 		getContentPane().add(panelFondo);
 
 		juego.agregarObservador(this);
 		juego.cargarJugador();
 		juego.cargarNivel(1);
 
-		
+
 	}
 
 
@@ -144,15 +144,15 @@ public class Mapa  extends JFrame implements IObservador{
 
 		IComando comando;
 		Jugador gamer = juego.getJugador();
-		if(teclado.derecha) {
+		if(teclado.isDerecha()) {
 			comando = new CaminarDerecha(gamer);
-		}else if(teclado.izquierda) {
+		}else if(teclado.isIzquierda()) {
 
 			comando = new CaminarIzquierda(gamer);
 
-		}else if(teclado.disparar&&teclado.llave) {
+		}else if(teclado.isDisparar()&&teclado.isLlave()) {
 			comando = new Disparar(gamer);
-			teclado.llave=false;
+			teclado.setLlave(false);
 
 
 		}else {
@@ -166,16 +166,14 @@ public class Mapa  extends JFrame implements IObservador{
 
 
 	public void updateEntidades(Entidad entidad)  {
-       // System.out.println(entidad.getImagen());
+		// System.out.println(entidad.getImagen());
 		JLabel etiquetaDeEntidad;
 
 		//System.out.println("posicion en entidad: ("+entidad.getPosicion().x+";"+entidad.getPosicion().y+")");
 		etiquetaDeEntidad = new JLabel();
 
-	//	System.out.println(entidad.toString());
+		//	System.out.println(entidad.toString());
 		etiquetaDeEntidad.setBounds(
-
-
 				entidad.getVector().getPosicion().x,
 				entidad.getVector().getPosicion().y,
 				entidad.getImagen().getIconWidth(),
@@ -195,27 +193,9 @@ public class Mapa  extends JFrame implements IObservador{
 		if(lblEntidad!=null) {
 			// esto es para que el infectado re aparezca por arriba una vez que salio del mapa
 			// hay que tener en cuenta que hacer con los premios
-			if(entidad.getVector().getPosicion().y>Juego.ALTO_DE_COMBATE) {
-				
-				if(juego.getLimite().x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
-					entidad.getVector().getPosicion().y =  juego.getLimite().y-entidad.getImagen().getIconHeight();
-					juego.getLimite().x = 0;
-				}
-				else {
-					entidad.getVector().getPosicion().x = juego.getLimite().x;
-					entidad.getVector().getPosicion().y = juego.getLimite().y;
-					juego.getLimite().x += entidad.getImagen().getIconWidth();
-				}
-				
-				//entidad.getVector().getPosicion().x = juego.getLimite().x;
-				//entidad.getVector().getPosicion().y = juego.getLimite().y;
-				
-			//	System.out.println("Limite: X=" + juego.getLimite().x + " ; Y=" + juego.getLimite().y + " (Mapa)");
-			}
-
-
+			actualizarLimiteVirtual(entidad);
 			lblEntidad.setIcon(entidad.getImagen());
-	
+
 			lblEntidad.setBounds(
 					entidad.getVector().getPosicion().x,
 					entidad.getVector().getPosicion().y,
@@ -225,6 +205,23 @@ public class Mapa  extends JFrame implements IObservador{
 			lblEntidad.updateUI();
 		}
 	}
+	private void actualizarLimiteVirtual(Entidad entidad) {
+		if(entidad.getVector().getPosicion().y>Juego.ALTO_DE_COMBATE) {
+
+			if(juego.getLimite().x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
+				entidad.getVector().getPosicion().y =  juego.getLimite().y-entidad.getImagen().getIconHeight();
+				juego.getLimite().x = 0;
+			}
+			else {
+				entidad.getVector().getPosicion().x = juego.getLimite().x;
+				entidad.getVector().getPosicion().y = juego.getLimite().y;
+				juego.getLimite().x += entidad.getImagen().getIconWidth();
+			}
+		}
+		//entidad.getVector().getPosicion().x = juego.getLimite().x;
+		//entidad.getVector().getPosicion().y = juego.getLimite().y;
+		//System.out.println("Limite: X=" + juego.getLimite().x + " ; Y=" + juego.getLimite().y + " (Mapa)");
+	}
 
 	private class FondoPanel extends JPanel{
 
@@ -232,7 +229,7 @@ public class Mapa  extends JFrame implements IObservador{
 
 		@Override
 		public void paint(Graphics grafico) {
-			
+
 			imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("nivel1").getImage();
 			grafico.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
 			setOpaque(false);
@@ -243,29 +240,26 @@ public class Mapa  extends JFrame implements IObservador{
 
 	}
 
-    public void quitarEntidad(Entidad entidad) {
-    	JLabel etiquetaEliminada = mapeoEntidades.remove(entidad);
-    	
-    	if(etiquetaEliminada!=null)
-       			panelFondo.remove(etiquetaEliminada);
-    	
-    	    
-   
-    	
-    	
-    } 
-	
+	public void quitarEntidad(Entidad entidad) {
+		JLabel etiquetaEliminada = mapeoEntidades.remove(entidad);
+
+		if(etiquetaEliminada!=null) {
+			panelFondo.remove(etiquetaEliminada);
+			panelFondo.repaint();
+		}
+	} 
+
+	/*
 	public void setMapeoEntidades(Map<Entidad, JLabel> mapeoEntidades) {
 		this.mapeoEntidades = mapeoEntidades;
 	}
-
-
+	*/
 
 	@Override
 	public void updateEnergiaJugador() {
 		progressBar.setValue(juego.getJugador().getEnergia());
-		System.out.println("me pegaron");
-		
-	}
 	
+
+	}
+
 }

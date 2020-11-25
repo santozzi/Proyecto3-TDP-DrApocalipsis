@@ -1,14 +1,9 @@
 package entidades.personajes.infectados;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
 
-import javax.swing.ImageIcon;
 
 import entidades.Vector;
+<<<<<<< HEAD
 import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
@@ -18,9 +13,10 @@ import entidades.proyectiles.ParticulaBeta;
 import entidades.proyectiles.Proyectil;
 import entidades.Entidad;
 import logica.ColeccionDeImagenes;
+=======
+
+>>>>>>> a51f6a8fb36937cbdb6f6c9960a62c8b2393a320
 import logica.Juego;
-import logica.Latencia;
-import visitor.VisitanteInfectadoAlpha;
 import visitor.VisitanteInfectadoBeta;
 import visitor.Visitor;
 
