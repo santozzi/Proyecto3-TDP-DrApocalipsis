@@ -1,16 +1,10 @@
 package entidades.premios.temporales;
 
-import java.awt.Point;
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-
 import entidades.Vector;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import entidades.Entidad;
 import visitor.VisitanteCuarentena;
-import visitor.VisitantePocion;
 import visitor.Visitor;
 
 public class Cuarentena extends Temporal{

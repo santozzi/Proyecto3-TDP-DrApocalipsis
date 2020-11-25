@@ -55,9 +55,9 @@ public class InicioGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		//ap = new AudioPlayer("");
-		//audio = new Thread(ap);
-		//audio.start();
+		ap = new AudioPlayer("/audio/fnv.mp3");
+		audio = new Thread(ap);
+		audio.start();
 
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -65,7 +65,7 @@ public class InicioGUI extends JFrame {
 			    //Juego juego = new Juego();
 				Mapa mapa = new Mapa();
 				mapa.setVisible(true);
-				//audio.stop();
+				audio.stop();
 				dispose();
 			}
 		});
