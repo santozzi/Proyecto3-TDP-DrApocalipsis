@@ -13,17 +13,22 @@ import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
 import entidades.proyectiles.SuperProyectilSanitario;
 
-public class VisitanteCuarentena extends Visitante {
+public class VisitanteSuperProyectilSanitario extends Visitante {
 	
-	private Cuarentena cuarentena;
+	private SuperProyectilSanitario superProyectilSanitario;
 	
-	public VisitanteCuarentena(Cuarentena c) {
-		this.cuarentena = c;
+    
+
+	public VisitanteSuperProyectilSanitario(SuperProyectilSanitario superProyectilSanitario) {
+		this.superProyectilSanitario = superProyectilSanitario;
 	}
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ia) {
-
+		 ia.impacto(superProyectilSanitario.getLetalidad());
+		  //  System.out.println("infectadoAlpha energia "+ia.getEnergia());
+			superProyectilSanitario.detenerse();
+			superProyectilSanitario.desaparecer();
 		
 	}
 
@@ -35,9 +40,7 @@ public class VisitanteCuarentena extends Visitante {
 
 	@Override
 	public void visitarJugador(Jugador j) {
-		cuarentena.ejecutar();
-		cuarentena.desplazarse();
-        cuarentena.desaparecer();
+		
 	}
 
 	@Override

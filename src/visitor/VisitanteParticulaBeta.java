@@ -13,17 +13,16 @@ import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
 import entidades.proyectiles.SuperProyectilSanitario;
 
-public class VisitanteCuarentena extends Visitante {
+public class VisitanteParticulaBeta extends Visitante {
 	
-	private Cuarentena cuarentena;
+	private ParticulaBeta particulaBeta;
 	
-	public VisitanteCuarentena(Cuarentena c) {
-		this.cuarentena = c;
+	public VisitanteParticulaBeta(ParticulaBeta pb) {
+		this.particulaBeta = pb;
 	}
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ia) {
-
 		
 	}
 
@@ -35,14 +34,13 @@ public class VisitanteCuarentena extends Visitante {
 
 	@Override
 	public void visitarJugador(Jugador j) {
-		cuarentena.ejecutar();
-		cuarentena.desplazarse();
-        cuarentena.desaparecer();
+		j.impacto(particulaBeta.getLetalidad());
+	
+		
 	}
 
 	@Override
 	public void visitarProyectilSanitario(ProyectilSanitario p) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -90,6 +88,6 @@ public class VisitanteCuarentena extends Visitante {
 		
 	}
 
-	
+
 
 }

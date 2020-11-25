@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 import entidades.Entidad;
 import entidades.Vector;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteJugador;
 import visitor.Visitor;
@@ -17,7 +18,8 @@ public class ArmaSanitaria extends Arma{
 	
 	public ArmaSanitaria(Juego juego) {
 		super(juego);
-		
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("Jugador_dispara");
+		this.claveImagen= "Jugador_dispara";
 	}
 
 	@Override
@@ -27,6 +29,8 @@ public class ArmaSanitaria extends Arma{
 		
 		
 	}
+
+
 
 
 }

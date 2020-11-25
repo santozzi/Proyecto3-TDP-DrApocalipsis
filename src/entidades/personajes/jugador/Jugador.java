@@ -19,14 +19,14 @@ public class Jugador extends Personaje{
 	protected Arma arma;
 
 	public Jugador(Juego juego) {
-		
+		arma = new ArmaSanitaria(juego);
 		this.cargaViral = 100;
 		this.juego= juego;
 		this.vector = new Vector(1,0,3);
 		this.vector.getPosicion().x=225;
 		this.vector.getPosicion().y=550;
-		this.claveImagen = new String("Jugador_dispara");
-
+		//this.claveImagen = new String("Jugador_dispara");
+		this.claveImagen = arma.getClaveImagen();
 		// this.posicion = new Point(225,550);
 		//imagen.setAlto(50);
 		//imagen.setAncho(30);
@@ -35,12 +35,12 @@ public class Jugador extends Personaje{
 
 		v = new VisitanteJugador(this);
 
-		arma = new ArmaSanitaria(juego);
+		
 	}
 
 	public void detenerse() {
-		if(!this.claveImagen.equals("Jugador_dispara") && !this.claveImagen.equals("recargar")) {
-			this.claveImagen = "Jugador_dispara";
+		if(!this.claveImagen.equals("Jugador_dispara")) {
+			this.claveImagen = arma.getClaveImagen();
 			imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		}
 
@@ -125,5 +125,8 @@ public class Jugador extends Personaje{
 	public void actuar() {
 		// TODO Auto-generated method stub
 		
+	}
+	public void cambiarArma(Arma arma) {
+		this.arma= arma;
 	}
 }

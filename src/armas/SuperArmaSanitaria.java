@@ -1,5 +1,8 @@
 package armas;
 
+import entidades.proyectiles.ProyectilSanitario;
+import entidades.proyectiles.SuperProyectilSanitario;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
 
 /**
@@ -11,12 +14,14 @@ public class SuperArmaSanitaria extends Arma{
 
 	public SuperArmaSanitaria(Juego juego) {
 		super(juego);
-		// TODO Auto-generated constructor stub
+		this.claveImagen= "Jugador_dispara";
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
+		
 	}
 
 	@Override
 	public void disparar() {
-		// TODO Auto-generated method stub
+		proyectil = new SuperProyectilSanitario(juego);
 		
 	}
 

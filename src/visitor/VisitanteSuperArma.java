@@ -13,12 +13,12 @@ import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
 import entidades.proyectiles.SuperProyectilSanitario;
 
-public class VisitanteCuarentena extends Visitante {
+public class VisitanteSuperArma extends Visitante {
 	
-	private Cuarentena cuarentena;
+	private SuperArma superArma;
 	
-	public VisitanteCuarentena(Cuarentena c) {
-		this.cuarentena = c;
+	public VisitanteSuperArma(SuperArma sa) {
+		this.superArma = sa;
 	}
 
 	@Override
@@ -35,9 +35,9 @@ public class VisitanteCuarentena extends Visitante {
 
 	@Override
 	public void visitarJugador(Jugador j) {
-		cuarentena.ejecutar();
-		cuarentena.desplazarse();
-        cuarentena.desaparecer();
+		superArma.ejecutar();
+		superArma.desplazarse();
+		superArma.desaparecer();
 	}
 
 	@Override

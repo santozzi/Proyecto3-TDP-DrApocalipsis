@@ -17,7 +17,6 @@ public class ParticulaAlpha extends Proyectil{
 		vector = new Vector(0,1,8);
 		vector.getPosicion().x= infectado.getVector().getPosicion().x;
 		vector.getPosicion().y= infectado.getVector().getPosicion().y+100;
-		//	System.out.println("En particula: ("+vector.getPosicion().x+";"+vector.getPosicion().y+")");
 		this.juego = juego;
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("particula");
 		v = new VisitanteParticulaAlpha(this);	
