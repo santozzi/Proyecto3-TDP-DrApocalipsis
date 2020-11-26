@@ -9,6 +9,7 @@ import java.util.Random;
 import entidades.Entidad;
 import entidades.personajes.infectados.Infectado;
 import entidades.personajes.infectados.InfectadoAlpha;
+import entidades.personajes.infectados.InfectadoBeta;
 import logica.CompositeInfectado;
 import logica.Juego;
 import niveles.Nivel;
@@ -28,18 +29,16 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 	}
 
-	@Override
 	public void primeraTanda() {
+
 		Point posicion;
 		Infectado nuevoInfectado;
 		Random random = new Random();
 		List<Point> posiciones = new LinkedList<Point>();
 		List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
 
-		for(int i=0 ; i<cantidadInfectados ; i++) {
-
-			nuevoInfectado = new InfectadoAlpha(this.juego);
-
+		for(int i=0 ; i<cantidadInfectados; i++) {
+            nuevoInfectado = new InfectadoAlpha(this.juego);
 			posicion = asignarPosicion(
 					posiciones,
 					nuevoInfectado.getImagen().getIconWidth(),

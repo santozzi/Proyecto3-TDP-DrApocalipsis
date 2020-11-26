@@ -6,7 +6,9 @@ import logica.Juego;
 import visitor.VisitanteParticulaAlpha;
 import visitor.Visitor;
 
+
 public class ParticulaAlpha extends Particula{
+
 
 	public ParticulaAlpha(Juego juego,Infectado infectado) {
 	    super(juego,infectado);
@@ -17,10 +19,11 @@ public class ParticulaAlpha extends Particula{
 		v = new VisitanteParticulaAlpha(this);	
 	}
 
-	@Override
+
 	public void accept(Visitor v) {
 		v.visitarParticulaAlpha(this);
 	}
+
 
 
 
