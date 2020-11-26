@@ -89,11 +89,18 @@ public class Mapa  extends JFrame implements IObservador{
 		panelFondo.setLayout(null);
 		//lblFondo.setBounds(Juego.DECORADO_IZQUIERDO, 0, Juego.ANCHO_DE_COMBATE, Juego.ALTO_DE_COMBATE);
 		panelFondo.setBounds(Juego.DECORADO_IZQUIERDO, 0, Juego.ANCHO_DE_COMBATE, Juego.ALTO_DE_COMBATE);
+		
+		JLabel lblAuto = new JLabel("");
+		lblAuto.setBounds(722, 295, 75, 156);
+		getContentPane().add(lblAuto);
+		
+		ImageIcon autoEnLlamas = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("autoEnLlamas");
+		lblAuto.setIcon(autoEnLlamas);
+		
+		ImageIcon barandaDerecha = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoDerecha");
 
 		JLabel lblMapaDerecha = new JLabel("");
 		lblMapaDerecha.setBounds(Juego.ANCHO_DE_COMBATE+Juego.DECORADO_IZQUIERDO, 0, Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
-
-		ImageIcon barandaDerecha = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoDerecha");
 
 		lblMapaDerecha.setIcon(barandaDerecha);
 		getContentPane().add(lblMapaDerecha);
@@ -261,5 +268,4 @@ public class Mapa  extends JFrame implements IObservador{
 	
 
 	}
-
 }
