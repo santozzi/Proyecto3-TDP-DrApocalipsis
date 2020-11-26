@@ -27,11 +27,33 @@ public class Humano extends Personaje {
 		this.cargaViral = 0;
 
 		this.vector = new Vector(0, 1, 7);
-		this.claveImagen = new String("humano");
-		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
+		//this.claveImagen = new String("humano");
+		//this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		this.v = new VisitanteHumano(this);
 		this.soltoPremio = false;
+		
+		crearPremio();
 
+	}
+
+	private void crearPremio() {
+		Random random = new Random();
+		int randomInt = random.nextInt(3);
+		this.claveImagen = new String();
+		
+		if(randomInt == 0) {
+			premio = new Pocion(juego);
+			this.claveImagen = "humanoPocion";
+		}
+		else if(randomInt == 1) {
+			premio = new SuperArma(juego);
+			this.claveImagen = "humanoSuperArma";
+		}
+		else {
+			premio = new Cuarentena(juego);
+			this.claveImagen = "humanoCuarentena";
+		}
+		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 	}
 
 	/*
@@ -82,17 +104,9 @@ public class Humano extends Personaje {
 	 *y lo agrega a la colección de entidades.
 	 */
 	public void dejarCaerPremio() {
-		Random random = new Random();
-		int randomInt = random.nextInt(3);
 		dialogo = new CuadroDeDialogo(juego);
-
-		if(randomInt == 0)
-			premio = new Pocion(juego);
-		else if(randomInt == 1)
-			premio = new SuperArma(juego);
-		else
-			premio = new Cuarentena(juego);
-
+		this.claveImagen = "humanoCorrer";
+		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		premio.getPosicion().setLocation(this.getPosicion());
 		//premio.getPosicion().x = getPosicion().x;
 		//premio.getPosicion().y = getPosicion().y-50;

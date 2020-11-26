@@ -30,6 +30,7 @@ public class ColeccionDeImagenes {
 		agregarRuta("InfectadoAlpha_golpear", "/img/z_ataque_abajo.gif", 40, 60);
 		
 		agregarRuta("Jugador_dispara", "/img/pistola_idle.png", 70, 50);
+		
 		agregarRuta("Jugador_dispara_sa", "/img/superArma.png", 70, 50);
 		
 		agregarRuta("Jugador_caminarDerecha", "/img/Jugador_caminarDerecha.gif", 70, 60);
@@ -54,6 +55,8 @@ public class ColeccionDeImagenes {
 		
 		agregarRuta("proyectilSanitario", "/img/Jeringa2.png", 20, 50);
 		
+		agregarRuta("superProyectilSanitario", "/img/Super_jeringa.png", 20, 50);
+		
 		agregarRuta("recargar", "/img/recargar.gif", 70, 50);
 	
 		agregarRuta("particula", "/img/particula.png", 20, 20);
@@ -61,14 +64,24 @@ public class ColeccionDeImagenes {
 		agregarRuta("humano", "/img/Humano.png", 40, 60);
 		
 		agregarRuta("pocion","/img/pocion.png", 50, 50);
-		agregarRuta("superArmaSanitaria","/img/superArmaSanitaria.jpg", 50, 50);
+		
+		agregarRuta("superArmaSanitaria","/img/ak47.png", 50, 20);
 		
 		agregarRuta("cuarentena","/img/cuarentena.png", 40, 40);
 		
 		agregarRuta("dialogo","/img/dialogo.png", 80, 40);
 		
+
 		agregarRuta("superProyectil","/img/Super_jeringa.png", 40, 40);
 		
+
+		agregarRuta("humanoCuarentena","/img/Humano_cuarentena.png", 40, 60);
+		
+		agregarRuta("humanoSuperArma","/img/Humano_superArma.png", 40, 60);
+		
+		agregarRuta("humanoPocion","/img/Humano_pocion.png", 40, 60);
+		
+		agregarRuta("humanoCorrer","/img/Humano_correr.png", 40, 60);
 
 
 	}

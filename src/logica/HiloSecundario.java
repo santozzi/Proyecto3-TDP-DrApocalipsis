@@ -15,7 +15,6 @@ public class HiloSecundario extends Thread{
 	protected Juego juego;
 	public static final int LATENCIA_MAXIMA = 10;
 	private static HiloSecundario hiloSecundario;
-	private boolean correr;
 	
 	//Singleton
 	public static HiloSecundario getHiloSecundario(Juego juego) {
@@ -30,15 +29,6 @@ public class HiloSecundario extends Thread{
 		colaParaAgregar = new ConcurrentLinkedQueue<Entidad>();
 		colaParaQuitar = new ConcurrentLinkedQueue<Entidad>();
 		listaParaRecorrer = new LinkedList<Entidad>();
-		correr = false;
-	}
-	public void iniciar() {
-		//this.start();
-		correr = true;
-	}
-	public void suspender() {
-		//this.suspend();
-		correr = false;
 	}
 	public void reiniciarHilo() {
 		this.stop();
@@ -49,8 +39,8 @@ public class HiloSecundario extends Thread{
 	public void run() {
 		Iterator<Entidad> itListaParaRecorrer;
 		Entidad entidadParaAccionar;
-		while(correr) {
-
+		while(true) {
+			
 			juego.notificarObservadores();
 			esperar(5);
 			itListaParaRecorrer = listaParaRecorrer.iterator();
