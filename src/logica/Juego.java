@@ -33,7 +33,6 @@ public class Juego implements IObservado {
 		observadores = new LinkedList<IObservador>();
 		//hiloSecundario = new HiloSecundario(this);
 		hiloSecundario = HiloSecundario.getHiloSecundario(this);
-		hiloSecundario.iniciar();
 		//hiloSecundario.reiniciarHilo();
 
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -71,9 +70,6 @@ public class Juego implements IObservado {
 	public Point getLimite() {
 		return this.limite;
 	}
-	public Nivel getNivel() {
-		return nivel;
-	}
 
 	public void cargarNivel(int n) {
 		//Nivel[] niveles = new Nivel[3];
@@ -96,11 +92,20 @@ public class Juego implements IObservado {
 
 
 
+	public void cuarentena() {
+		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
+		
+		for(Entidad entidad : listaDeInfectados)
+			entidad.cambiarEstadoTemporal();
+	}
 	// pregunto si no quedan mas infectados en el nivel
-	public void verificarFinTanda() {
-		if(this.nivel.getColeccionDeInfectados().getListaDeInfectados().isEmpty()) {
+	public void notificarBajaDeInfectado(Entidad infectado) {
+		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
+		
+		listaDeInfectados.remove(infectado);
+		
+		if(listaDeInfectados.isEmpty())
 			finalizarTanda();
-		}
 	}
 	public void finalizarTanda() {
        System.out.println("Finalizar tanda");
