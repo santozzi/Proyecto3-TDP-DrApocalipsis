@@ -15,6 +15,7 @@ public class HiloSecundario extends Thread{
 	protected Juego juego;
 	public static final int LATENCIA_MAXIMA = 10;
 	private static HiloSecundario hiloSecundario;
+	private boolean correr;
 	
 	public static HiloSecundario getHiloSecundario(Juego juego) {
 		if(hiloSecundario == null)
@@ -28,9 +29,10 @@ public class HiloSecundario extends Thread{
 		colaParaAgregar = new ConcurrentLinkedQueue<Entidad>();
 		colaParaQuitar = new ConcurrentLinkedQueue<Entidad>();
 		listaParaRecorrer = new LinkedList<Entidad>();
+		this.correr = true;
 	}
-	public void reiniciarHilo() {
-		this.stop();
+	public void terminarEjecucion() {
+		this.correr = false;
 		hiloSecundario = null;
 	}
 
@@ -38,7 +40,7 @@ public class HiloSecundario extends Thread{
 	public void run() {
 		Iterator<Entidad> itListaParaRecorrer;
 		Entidad entidadParaAccionar;
-		while(true) {
+		while(correr) {
 			
 			juego.notificarObservadores();
 			esperar(5);

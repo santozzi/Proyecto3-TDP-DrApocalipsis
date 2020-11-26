@@ -1,6 +1,5 @@
 package logica;
 
-import java.awt.Image;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +7,6 @@ import javax.swing.ImageIcon;
 
 public class ColeccionDeImagenes {
 
-	//private Imagen [] imagenes;
 	private Map<Integer, ImageIcon> ruta;
 	private static ColeccionDeImagenes colDeImg;
 	private int contador;// es para probar, despues se borra
@@ -22,8 +20,6 @@ public class ColeccionDeImagenes {
 
 	private ColeccionDeImagenes() {
 
-
-		//System.out.println("Ejecuto constructor de ColeccionDeImagenes");
 		this.contador = 0;
 		this.ruta = new HashMap<Integer, ImageIcon>();
 		
@@ -90,9 +86,9 @@ public class ColeccionDeImagenes {
 		
 	}
 
-	public ImageIcon getImagen(String ruta) {
+	public ImageIcon getImagen(String clave) {
 		//System.out.println("Buscar imagen " + ruta + " " + this.contador++);
-		return this.ruta.get(ruta.hashCode());
+		return this.ruta.get(clave.hashCode());
 	}
 	
 }

@@ -33,7 +33,6 @@ public class Juego implements IObservado {
 		observadores = new LinkedList<IObservador>();
 		//hiloSecundario = new HiloSecundario(this);
 		hiloSecundario = HiloSecundario.getHiloSecundario(this);
-		//hiloSecundario.reiniciarHilo();
 
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		jugador = new Jugador(this);
@@ -109,6 +108,7 @@ public class Juego implements IObservado {
 	}
 	public void finalizarTanda() {
        System.out.println("Finalizar tanda");
+       //hiloSecundario.terminarEjecucion();
 
 	}
 	public List<Entidad> getLista(){
