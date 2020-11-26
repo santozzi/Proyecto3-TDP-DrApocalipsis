@@ -67,6 +67,10 @@ public class ColeccionDeImagenes {
 		
 		agregarRuta("dialogo","/img/dialogo.png", 80, 40);
 		
+
+		agregarRuta("superProyectil","/img/Super_jeringa.png", 40, 40);
+		
+
 		agregarRuta("humanoCuarentena","/img/Humano_cuarentena.png", 40, 60);
 		
 		agregarRuta("humanoSuperArma","/img/Humano_superArma.png", 40, 60);
@@ -76,6 +80,7 @@ public class ColeccionDeImagenes {
 		agregarRuta("humanoCorrer","/img/Humano_correr.png", 40, 60);
 		
 		agregarRuta("autoEnLlamas","/img/autoEnLlamas.gif", 75, 120);
+
 
 	}
 	

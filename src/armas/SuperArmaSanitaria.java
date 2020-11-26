@@ -16,8 +16,10 @@ public class SuperArmaSanitaria extends Arma{
 		this.claveImagen= "Jugador_dispara_sa";
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 	}
+	
 	@Override
 	public void disparar() {
 		proyectil = new SuperProyectilSanitario(juego);
 	}
+	
 }

@@ -42,6 +42,7 @@ public class Juego implements IObservado {
 	public void cargarJugador() {
 		agregarAEntidadesParaAgregar(jugador);
 	}
+	
 	/*hilo paralelo
 	private void hiloRecorredorDeEntidades() {
 		Thread hiloVerificar = new Thread(){
@@ -132,11 +133,13 @@ public class Juego implements IObservado {
 	
 	
 	//--------------Inicio de observado----------------
+	//Agrega las entidades en el mapa
 	@Override
 	public void notificarEntidad(Entidad entidad) {
 		for(IObservador obs: observadores)
 			obs.updateEntidades(entidad);
 	}
+	//Actualiza las entidades del mapa
 	@Override
 	public void actualizarEntidad(Entidad entidad) {
 		for(IObservador obs: observadores)

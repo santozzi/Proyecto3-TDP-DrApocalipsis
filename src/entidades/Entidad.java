@@ -124,6 +124,7 @@ abstract public class  Entidad {
 
 	}
 	public abstract void actuar();
+	
 	public void cambiarEstadoTemporal() {
 		estadoTemporal= true;
 	}

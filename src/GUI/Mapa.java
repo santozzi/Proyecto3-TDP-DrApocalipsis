@@ -187,7 +187,9 @@ public class Mapa  extends JFrame implements IObservador{
 				entidad.getImagen().getIconHeight());
 		etiquetaDeEntidad.setIcon(entidad.getImagen());
 
+		
 		mapeoEntidades.put(entidad,etiquetaDeEntidad);
+		
 		panelFondo.add(etiquetaDeEntidad);
 		//getContentPane().add(lblFondo);
 		//getContentPane().add(panelFondo);
@@ -256,12 +258,8 @@ public class Mapa  extends JFrame implements IObservador{
 		}
 	} 
 
-	/*
-	public void setMapeoEntidades(Map<Entidad, JLabel> mapeoEntidades) {
-		this.mapeoEntidades = mapeoEntidades;
-	}
-	*/
 
+    //cambia la barrra de energia
 	@Override
 	public void updateEnergiaJugador() {
 		progressBar.setValue(juego.getJugador().getEnergia());

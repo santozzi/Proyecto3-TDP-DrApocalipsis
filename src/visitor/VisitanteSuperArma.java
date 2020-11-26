@@ -35,6 +35,7 @@ public class VisitanteSuperArma extends Visitante {
 
 	@Override
 	public void visitarJugador(Jugador j) {
+		//pudo haberse hecho directamente con j
 		superArma.ejecutar();
 		superArma.desplazarse();
 		superArma.desaparecer();

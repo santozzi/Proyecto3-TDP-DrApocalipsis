@@ -17,6 +17,7 @@ public class HiloSecundario extends Thread{
 	private static HiloSecundario hiloSecundario;
 	private boolean correr;
 	
+	//Singleton
 	public static HiloSecundario getHiloSecundario(Juego juego) {
 		if(hiloSecundario == null)
 			hiloSecundario = new HiloSecundario(juego);

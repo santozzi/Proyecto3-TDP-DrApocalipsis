@@ -13,7 +13,9 @@ public class SuperProyectilSanitario extends Proyectil {
     	vector.getPosicion().x= jugador.getVector().getPosicion().x+24;
 		vector.getPosicion().y= jugador.getVector().getPosicion().y-10;
 		
+
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("superProyectilSanitario");
+
     	v = new VisitanteSuperProyectilSanitario(this);
     	
     }
