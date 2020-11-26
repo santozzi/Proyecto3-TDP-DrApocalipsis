@@ -82,6 +82,8 @@ public class ColeccionDeImagenes {
 		agregarRuta("humanoPocion","/img/Humano_pocion.png", 40, 60);
 		
 		agregarRuta("humanoCorrer","/img/Humano_correr.png", 40, 60);
+		
+		agregarRuta("autoEnLlamas","/img/autoEnLlamas.gif", 75, 120);
 
 
 	}
