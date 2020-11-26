@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.swing.ImageIcon;
 
-public class ColeccionDeImagenes {
+public class ColeccionDeImagenes extends Imagenes{
 
 	private Map<Integer, ImageIcon> ruta;
 	private static ColeccionDeImagenes colDeImg;
@@ -94,6 +94,12 @@ public class ColeccionDeImagenes {
 	public ImageIcon getImagen(String clave) {
 		//System.out.println("Buscar imagen " + ruta + " " + this.contador++);
 		return this.ruta.get(clave.hashCode());
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "infectados";
 	}
 	
 }
