@@ -55,6 +55,8 @@ public class ColeccionDeImagenes {
 		
 		agregarRuta("proyectilSanitario", "/img/Jeringa2.png", 20, 50);
 		
+		agregarRuta("superProyectilSanitario", "/img/Super_jeringa.png", 20, 50);
+		
 		agregarRuta("recargar", "/img/recargar.gif", 70, 50);
 	
 		agregarRuta("particula", "/img/particula.png", 20, 20);
