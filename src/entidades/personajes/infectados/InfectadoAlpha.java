@@ -23,7 +23,6 @@ import visitor.Visitor;
 public class InfectadoAlpha extends Infectado{
 	
 	protected final int VELOCIDAD_BASE = 6;
-	
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
 
@@ -56,11 +55,6 @@ public class InfectadoAlpha extends Infectado{
 			particula.getVector().setModulo(9);
 		}
 	}
-	
-	public void tirarParticula() {
-    	this.particula= new ParticulaAlpha(juego,this);
-    }
-	
 	// v es de jugador
 	@Override
 	public void accept(Visitor v) {
