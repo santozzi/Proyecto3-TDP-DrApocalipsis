@@ -66,6 +66,9 @@ public class ColeccionDeImagenes {
 		agregarRuta("cuarentena","/img/cuarentena.png", 40, 40);
 		
 		agregarRuta("dialogo","/img/dialogo.png", 80, 40);
+		
+		agregarRuta("superProyectil","/img/Super_jeringa.png", 40, 40);
+		
 
 
 	}

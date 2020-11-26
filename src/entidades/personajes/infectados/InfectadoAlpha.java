@@ -23,6 +23,7 @@ import visitor.Visitor;
 public class InfectadoAlpha extends Infectado{
 	
 	protected final int VELOCIDAD_BASE = 6;
+	
 	public InfectadoAlpha(Juego juego) {
 		this.juego = juego;
 
@@ -117,8 +118,11 @@ public class InfectadoAlpha extends Infectado{
 
 	@Override
 	public void actuar() {
-      int vueltasAEsperar;
+    
+		int vueltasAEsperar;
+		
 		if(estadoTemporal) {
+			//tiempo de espera es 1000
 			vueltasAEsperar = tiempoDeEspera;
 		}else {
 			int velocidad = vector.getModulo();
