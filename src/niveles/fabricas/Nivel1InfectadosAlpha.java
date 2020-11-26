@@ -9,6 +9,7 @@ import java.util.Random;
 import entidades.Entidad;
 import entidades.personajes.infectados.Infectado;
 import entidades.personajes.infectados.InfectadoAlpha;
+import entidades.personajes.infectados.InfectadoBeta;
 import logica.CompositeInfectado;
 import logica.Juego;
 import niveles.Nivel;

@@ -1,9 +1,8 @@
 package entidades.personajes.infectados;
 
 
-
+import java.util.Random;
 import entidades.Vector;
-<<<<<<< HEAD
 import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
@@ -13,9 +12,7 @@ import entidades.proyectiles.ParticulaBeta;
 import entidades.proyectiles.Proyectil;
 import entidades.Entidad;
 import logica.ColeccionDeImagenes;
-=======
-
->>>>>>> a51f6a8fb36937cbdb6f6c9960a62c8b2393a320
+import logica.HiloSecundario;
 import logica.Juego;
 import visitor.VisitanteInfectadoBeta;
 import visitor.Visitor;
@@ -29,14 +26,14 @@ public class InfectadoBeta extends Infectado{
 	
 	public InfectadoBeta(Juego juego) {
 		this.juego = juego;
-		this.vector = new Vector(0, -1, 5);
+		this.vector = new Vector(0, 1, 5);
 		this.cargaViral = 100;
 		this.rango = 100;
 		//particula = new ParticulaAlpha(juego,this);
 		this.claveImagen = new String("InfectadoBeta");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		tirarParticula();
-		particula.desplazarse();
+		//particula.desplazarse();
     	v = new VisitanteInfectadoBeta(this);
 	}
 	
@@ -44,10 +41,6 @@ public class InfectadoBeta extends Infectado{
 		v.visitarInfectadoBeta(this);
 	}
 	
-	public void actuar() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public void tirarParticula() {
     	this.particula= new ParticulaBeta(juego,this);
@@ -64,9 +57,39 @@ public class InfectadoBeta extends Infectado{
 		}
 	}
 	
-	public void desplazarse() {
-		
+	public void accionar() {
+		for(Entidad ent : detectarColisiones()) {
+			ent.accept(v);
+		}
+
 	}
+
+	@Override
+	public void actuar() {
+      int vueltasAEsperar;
+		if(estadoTemporal) {
+			vueltasAEsperar = tiempoDeEspera;
+		}else {
+			int velocidad = vector.getModulo();
+			// {
+				vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
+				
+			
+		}
+		
+   if(vueltasAEsperar>0) {
+		if(latencia>=vueltasAEsperar) {
+		   desplazarse();
+		   juego.actualizarEntidad(this);
+		   accionar();
+		   latencia= 1;
+		   estadoTemporal= false;
+		}else {
+		   latencia++;
+		}
+   }
+	}
+	
 	
 	
 }

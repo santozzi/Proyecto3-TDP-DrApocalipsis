@@ -26,7 +26,7 @@ public class ColeccionDeImagenes {
 		//System.out.println("Ejecuto constructor de ColeccionDeImagenes");
 		this.contador = 0;
 		this.ruta = new HashMap<Integer, ImageIcon>();
-		agregarRuta("InfectadoBeta","/img/InfectadoBeta.gif",50,50);
+		agregarRuta("InfectadoBeta","/img/infectadoBeta.gif",50,50);
 		agregarRuta("ParticulaBeta","/img/ParticulaBeta.png",50,50);
 		
 		agregarRuta("InfectadoAlpha_golpear", "/img/z_ataque_abajo.gif", 40, 60);

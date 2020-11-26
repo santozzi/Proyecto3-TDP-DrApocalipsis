@@ -23,6 +23,7 @@ import visitor.Visitor;
 public abstract class Infectado extends Personaje {
 
 
+	
 	protected Proyectil particula;
 	
 	protected int rango;

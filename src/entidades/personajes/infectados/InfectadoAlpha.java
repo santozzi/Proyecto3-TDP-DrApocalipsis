@@ -21,7 +21,7 @@ import visitor.Visitor;
  *
  */
 public class InfectadoAlpha extends Infectado{
-	protected ParticulaAlpha particula;
+	
 	protected final int VELOCIDAD_BASE = 6;
 	
 	public InfectadoAlpha(Juego juego) {

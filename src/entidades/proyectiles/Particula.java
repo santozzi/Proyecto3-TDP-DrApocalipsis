@@ -6,9 +6,11 @@ import entidades.personajes.infectados.Infectado;
 import logica.Juego;
 
 public abstract class Particula extends Proyectil{
-    protected Infectado infectado;
+    
+	protected Infectado infectado;
     protected int rangoParticula;
-	public Particula(Juego juego,Infectado infectado) {
+	
+    public Particula(Juego juego,Infectado infectado) {
             super(juego);
             vector.getDireccion().setLocation(0, 1);
     		vector.getPosicion().x= infectado.getVector().getPosicion().x;

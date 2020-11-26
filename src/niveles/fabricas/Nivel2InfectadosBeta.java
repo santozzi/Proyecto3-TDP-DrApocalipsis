@@ -7,6 +7,7 @@ import java.util.Random;
 
 import entidades.Entidad;
 import entidades.personajes.infectados.Infectado;
+import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
 import logica.Juego;
 
@@ -26,11 +27,10 @@ public class Nivel2InfectadosBeta extends FabricaDeTandas {
 		Infectado nuevoInfectado;
 		Random r1 = new Random();
 		for(int i=0 ; i<cantidadInfectados ; i++) {
-			nuevoInfectado = new InfectadoBeta(this.juego);
+			nuevoInfectado = new InfectadoAlpha(this.juego);
 			
-			nuevoInfectado.getPosicion().x = (i/2)+1  + Juego.DECORADO_IZQUIERDO;
-			nuevoInfectado.getPosicion().y = i;
-			nuevoInfectado.getVector().setModulo(500);
+			nuevoInfectado.setPosicion(50, 50);
+			nuevoInfectado.getVector().setModulo(8);
 			//entidades.add(nuevoInfectado);
 		}
 	}
