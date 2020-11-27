@@ -24,7 +24,7 @@ abstract public class InfectadoBoss extends Infectado {
 	public InfectadoBoss(Juego juego) {
 		super(juego);
 		contarTiempoDeDireccion=0;
-		this.rango = 100;
+		this.rango = Juego.ALTO_DE_COMBATE;
 		tiempoDeDireccion= 300;
 		cambioDireccionOpuesta=false;
 	
