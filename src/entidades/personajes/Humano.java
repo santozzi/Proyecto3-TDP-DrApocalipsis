@@ -1,5 +1,6 @@
 package entidades.personajes;
 
+import java.awt.Point;
 import java.util.Random;
 
 import entidades.CuadroDeDialogo;
@@ -31,7 +32,9 @@ public class Humano extends Personaje {
 		crearPremio();
 
 	}
-
+	public Point getPosicion() {
+		return this.vector.getPosicion();
+	}
 	private void crearPremio() {
 		Random random = new Random();
 		int randomInt = random.nextInt(3);
@@ -104,8 +107,7 @@ public class Humano extends Personaje {
 		this.claveImagen = "humanoCorrer";
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		premio.getPosicion().setLocation(this.getPosicion());
-		//premio.getPosicion().x = getPosicion().x;
-		//premio.getPosicion().y = getPosicion().y-50;
+
 		dialogo.getPosicion().x = getPosicion().x+10;
 		dialogo.getPosicion().y = getPosicion().y-30;
 		this.dialogo.getVector().setModulo(8);
@@ -115,6 +117,26 @@ public class Humano extends Personaje {
 	}
 	public boolean soltoPremio() {
 		return this.soltoPremio;
+	}
+	
+	public void actuar() {
+		int vueltasAEsperar;
+
+		int velocidad = vector.getModulo();
+
+		vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
+
+		if(vueltasAEsperar>0&&vueltasAEsperar<HiloSecundario.LATENCIA_MAXIMA) {
+			if(latencia>=vueltasAEsperar) {
+				desplazarse();
+				juego.actualizarEntidad(this);
+				accionar();
+				latencia= 1;
+			}else {
+				latencia++;
+			}
+		}
+
 	}
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
@@ -139,25 +161,5 @@ public class Humano extends Personaje {
 			(entidad.getVector().getPosicion().y+entidad.getImagen().getIconHeight())&&
 						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
 		 */
-	}
-
-	public void actuar() {
-		int vueltasAEsperar;
-
-		int velocidad = vector.getModulo();
-
-		vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
-
-		if(vueltasAEsperar>0&&vueltasAEsperar<HiloSecundario.LATENCIA_MAXIMA) {
-			if(latencia>=vueltasAEsperar) {
-				desplazarse();
-				juego.actualizarEntidad(this);
-				accionar();
-				latencia= 1;
-			}else {
-				latencia++;
-			}
-		}
-
 	}
 }

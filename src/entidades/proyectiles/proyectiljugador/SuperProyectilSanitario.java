@@ -1,11 +1,12 @@
-package entidades.proyectiles;
+package entidades.proyectiles.proyectiljugador;
 
+import entidades.proyectiles.Proyectil;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteSuperProyectilSanitario;
 import visitor.Visitor;
 
-public class SuperProyectilSanitario extends Proyectil {
+public class SuperProyectilSanitario extends ProyectilJugador {
     public SuperProyectilSanitario(Juego juego) {
     	super(juego);
     	

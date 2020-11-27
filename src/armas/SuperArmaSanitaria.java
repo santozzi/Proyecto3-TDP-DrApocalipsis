@@ -1,6 +1,6 @@
 package armas;
 
-import entidades.proyectiles.SuperProyectilSanitario;
+import entidades.proyectiles.proyectiljugador.SuperProyectilSanitario;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 

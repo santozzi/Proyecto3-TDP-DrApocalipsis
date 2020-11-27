@@ -7,7 +7,6 @@ public abstract class NoTemporal extends Premio {
 
 	public NoTemporal(Juego juego) {
 		super(juego);
-		// TODO Auto-generated constructor stub
 	}
 
 }

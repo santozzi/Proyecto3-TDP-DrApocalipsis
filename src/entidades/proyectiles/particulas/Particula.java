@@ -1,8 +1,9 @@
-package entidades.proyectiles;
+package entidades.proyectiles.particulas;
 
 import entidades.Entidad;
 import entidades.Vector;
 import entidades.personajes.infectados.Infectado;
+import entidades.proyectiles.Proyectil;
 import logica.Juego;
 
 public abstract class Particula extends Proyectil{
@@ -38,21 +39,5 @@ public abstract class Particula extends Proyectil{
 				(infectado.getImagen().getIconWidth()/4);
 		vector.getPosicion().y = infectado.getVector().getPosicion().y+10;
 	}
-	public boolean hayColision(Entidad entidad) {
-		
-		int posEntidadActualX =this.vector.getPosicion().x;
-		int posEntidadActualY =this.vector.getPosicion().y;
-		int posEntidadParametroX =entidad.getVector().getPosicion().x;
-		int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
-
-		int posEntidadParametroY =entidad.getVector().getPosicion().y ;
-		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
-
-		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
-		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()==posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
-
-
-		return colisionEnX &&colisionEnY;
 	
-	}
 }

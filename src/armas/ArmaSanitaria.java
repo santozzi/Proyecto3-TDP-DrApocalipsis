@@ -1,5 +1,6 @@
 package armas;
 import entidades.proyectiles.*;
+import entidades.proyectiles.proyectiljugador.ProyectilSanitario;
 
 import java.awt.Point;
 import java.util.ArrayList;

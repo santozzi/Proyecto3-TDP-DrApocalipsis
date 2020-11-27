@@ -17,8 +17,8 @@ import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
-import entidades.proyectiles.Particula;
-import entidades.proyectiles.ParticulaAlpha;
+import entidades.proyectiles.particulas.Particula;
+import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
@@ -139,30 +139,7 @@ public abstract class Infectado extends Personaje {
 
 
 
-	public boolean hayColision(Entidad entidad) {
-		// entidad.getEntorno() this.entorno
-		//entorno = [x;x+anchoEntidad]
-		//entornoEnY= [[y;y+anchoEntidad]
-		int posEntidadActualX =this.vector.getPosicion().x;
-		int posEntidadActualY =this.vector.getPosicion().y;
-		int posEntidadParametroX =entidad.getVector().getPosicion().x;
-		int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
-
-		int posEntidadParametroY =entidad.getVector().getPosicion().y ;
-		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
-
-		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
-		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()==posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
-
-
-		return colisionEnX &&colisionEnY;
-		/*	
-				(
-				this.vector.getPosicion().y <= 
-			(entidad.getVector().getPosicion().y+entidad.getImagen().getIconHeight())&&
-						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
-		 */
-	}
+	
 	@Override
 	public void actuar() {
 

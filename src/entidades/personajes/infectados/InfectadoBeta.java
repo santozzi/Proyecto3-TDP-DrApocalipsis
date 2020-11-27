@@ -1,7 +1,7 @@
 package entidades.personajes.infectados;
 
-import entidades.proyectiles.ParticulaAlpha;
-import entidades.proyectiles.ParticulaBeta;
+import entidades.proyectiles.particulas.ParticulaAlpha;
+import entidades.proyectiles.particulas.ParticulaBeta;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteInfectadoBeta;

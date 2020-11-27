@@ -27,18 +27,22 @@ abstract public class  Entidad {
 	protected int tiempoDeEspera;
     protected Jugador jugador;
 	abstract public void accept(Visitor v);
-	public ImageIcon getImagen() {
-		return this.imagen;
-	}
+	
 	public Entidad (Juego juego) {
 		this.juego = juego;
 		this.estadoTemporal= false;
 		
-		
-		
-		
-		
 	}
+	public ImageIcon getImagen() {
+		return this.imagen;
+	}
+	
+		
+		
+		
+		
+		
+	
 	public Vector getVector() {
 		return this.vector;
 	}
@@ -55,6 +59,8 @@ abstract public class  Entidad {
 	public void desaparecer() {
 		juego.agregarAEntidadesParaQuitar(this);
 	}
+	
+	//detecta de arriba hacia abajo
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
 		//entorno = [x;x+anchoEntidad]
@@ -68,7 +74,7 @@ abstract public class  Entidad {
 		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
 
 		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
-		boolean colisionEnY = (posEntidadActualY<=posEntidadConAltoY) && (posEntidadParametroY>=posEntidadParametroY-10);
+		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()==posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
 
 
 		return colisionEnX &&colisionEnY;

@@ -7,7 +7,7 @@ import java.util.List;
 
 import entidades.Entidad;
 import entidades.Vector;
-import entidades.proyectiles.ParticulaAlpha;
+import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;

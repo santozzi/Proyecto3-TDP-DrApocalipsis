@@ -10,11 +10,11 @@ import entidades.personajes.jugador.Jugador;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
-import entidades.proyectiles.ParticulaAlpha;
-import entidades.proyectiles.ParticulaBeta;
 import entidades.proyectiles.Proyectil;
-import entidades.proyectiles.ProyectilSanitario;
-import entidades.proyectiles.SuperProyectilSanitario;
+import entidades.proyectiles.particulas.ParticulaAlpha;
+import entidades.proyectiles.particulas.ParticulaBeta;
+import entidades.proyectiles.proyectiljugador.ProyectilSanitario;
+import entidades.proyectiles.proyectiljugador.SuperProyectilSanitario;
 
 public class VisitantePocion extends Visitante {
 	

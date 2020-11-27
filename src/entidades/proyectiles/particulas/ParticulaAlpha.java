@@ -1,4 +1,4 @@
-package entidades.proyectiles;
+package entidades.proyectiles.particulas;
 
 import entidades.personajes.infectados.Infectado;
 import logica.ColeccionDeImagenes;

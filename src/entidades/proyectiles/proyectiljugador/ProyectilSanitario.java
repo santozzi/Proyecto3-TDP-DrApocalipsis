@@ -1,15 +1,16 @@
-package entidades.proyectiles;
+package entidades.proyectiles.proyectiljugador;
 import logica.Juego;
 
 
 
 import entidades.Vector;
 import entidades.personajes.jugador.Jugador;
+import entidades.proyectiles.Proyectil;
 import logica.ColeccionDeImagenes;
 import visitor.VisitanteProyectilSanitario;
 import visitor.Visitor;
 
-public class ProyectilSanitario extends Proyectil{
+public class ProyectilSanitario extends ProyectilJugador{
 
 	
 	protected Jugador jugador;
