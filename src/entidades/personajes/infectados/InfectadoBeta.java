@@ -1,9 +1,8 @@
 package entidades.personajes.infectados;
 
-
-
-import entidades.Vector;
-
+import entidades.proyectiles.ParticulaAlpha;
+import entidades.proyectiles.ParticulaBeta;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteInfectadoBeta;
 import visitor.Visitor;
@@ -16,19 +15,18 @@ import visitor.Visitor;
 public class InfectadoBeta extends Infectado {
 	
 	public InfectadoBeta(Juego juego) {
-		this.juego = juego;
-		this.vector = new Vector(0, -1, 5);
-		this.cargaViral = 200;
-		tirarParticula();
+        super(juego);
+		this.rango = 100;
+		this.claveImagen = new String("InfectadoBeta");
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoBeta(this);
+		
 	}
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+		v.visitarInfectadoBeta(this);
 	}
-	@Override
-	public void actuar() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void tirarParticula() {
+    	this.particula= new ParticulaBeta(juego,this);
+    }
 }

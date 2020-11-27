@@ -23,9 +23,7 @@ public class VisitanteProyectilSanitario extends Visitante {
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ia) {
-	//	ia.detenerse();
 	    ia.impacto(proyectilSanitario.getLetalidad());
-	  //  System.out.println("infectadoAlpha energia "+ia.getEnergia());
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
 		
@@ -33,7 +31,9 @@ public class VisitanteProyectilSanitario extends Visitante {
 
 	@Override
 	public void visitarInfectadoBeta(InfectadoBeta ib) {
-		// TODO Auto-generated method stub
+	    ib.impacto(proyectilSanitario.getLetalidad());
+		proyectilSanitario.detenerse();
+		proyectilSanitario.desaparecer();
 		
 	}
 

@@ -2,6 +2,9 @@ package entidades.personajes.infectados;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -14,18 +17,30 @@ import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
+import entidades.proyectiles.Particula;
 import entidades.proyectiles.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
+import logica.HiloSecundario;
 import logica.Juego;
 import visitor.VisitanteInfectadoAlpha;
 import visitor.Visitor;
 
 public abstract class Infectado extends Personaje {
 
-	protected ParticulaAlpha particula;
-
+	protected Particula particula;
 	protected int rango;
 
+	public Infectado(Juego juego) {
+		super(juego);
+		this.vector = new Vector(0,1,6);
+		this.tiempoDeEspera = 1000;
+		this.rango = 100;
+		this.cargaViral = 100;
+		tirarParticula();
+	}
+	
+	
+	
 	/**
 	 * tirarParticulas
 	 * ---------------
@@ -50,7 +65,6 @@ public abstract class Infectado extends Personaje {
 
 
 	public void tirarParticula() {
-    	this.particula= new ParticulaAlpha(juego,this);
     }
 	@Override
 	public void setPosicion(int x, int y) {
@@ -87,6 +101,40 @@ public abstract class Infectado extends Personaje {
 	public int getRango() {
 		return rango;
 	}
+	
+	public List<Entidad> detectarColisiones() {
+		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
+		List<Entidad> listaDeLatencia = juego.getLista();
+		boolean esta = false;
+	
+		Entidad entidadActual = this;
+		Entidad entVerificar;
+		Iterator<Entidad> itEntidades ;
+		for(Entidad entidadDeLatencia : listaDeLatencia) {
+			itEntidades = listaDeColisiones.iterator();
+
+
+			if(entidadActual!=entidadDeLatencia&&hayColision(entidadDeLatencia)) {
+				//-----para que no haya repetidos----
+				while(itEntidades.hasNext()&&!esta) {
+					entVerificar = itEntidades.next();
+					esta= entVerificar == entidadDeLatencia;
+				}
+				//-------------------------------------
+
+				if(!esta)
+					listaDeColisiones.add(entidadDeLatencia);
+				else
+					esta = false;
+
+			} 
+
+		}
+		return listaDeColisiones;
+	}  
+	
+	
+	
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
 		//entorno = [x;x+anchoEntidad]
@@ -110,5 +158,50 @@ public abstract class Infectado extends Personaje {
 			(entidad.getVector().getPosicion().y+entidad.getImagen().getIconHeight())&&
 						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
 		 */
+	}
+	@Override
+	public void actuar() {
+    
+		int vueltasAEsperar;
+		
+		if(estadoTemporal) {
+			//tiempo de espera es 1000
+			vueltasAEsperar = tiempoDeEspera;
+		}else {
+			int velocidad = vector.getModulo();
+			// {
+				vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
+				
+			
+		}
+		
+   if(vueltasAEsperar>0) {
+		if(latencia>=vueltasAEsperar) {
+		   desplazarse();
+		   juego.actualizarEntidad(this);
+		   accionar();
+		   latencia= 1;
+		   estadoTemporal= false;
+		}else {
+		   latencia++;
+		}
+   }
+	}
+	public void accionar() {
+		for(Entidad ent : detectarColisiones()) {
+			ent.accept(v);
+		}
+
+	}
+	public void desplazarse() {
+		//this.posicion.y++;
+		//this.vector.setModulo(6);
+		this.vector.desplazarse();
+		juego.actualizarEntidad(this);
+		//detectarColisiones();
+		//accionar();
+		//detectarColisiones();
+		//pregunatar cuando se choca con el limite del mapa
+
 	}
 }

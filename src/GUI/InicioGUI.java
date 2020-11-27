@@ -57,7 +57,7 @@ public class InicioGUI extends JFrame {
 
 		ap = new AudioPlayer("/audio/fnv.mp3");
 		audio = new Thread(ap);
-		audio.start();
+		//audio.start();
 
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {

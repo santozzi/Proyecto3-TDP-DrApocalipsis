@@ -9,7 +9,8 @@ import visitor.Visitor;
 
 public class Pocion extends NoTemporal {
     public Pocion(Juego juego) {
-    	this.juego = juego;
+    	
+    	super(juego);
     	vector = new Vector(0,1,1);
     	v= new VisitantePocion(this);
     	imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("pocion");

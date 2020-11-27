@@ -33,7 +33,7 @@ public class ColeccionDeImagenes extends Imagenes{
 		
 		agregarRuta("Jugador_caminarIzquierda", "/img/Jugador_caminarIzquierda.gif", 70, 60);
 		
-		agregarRuta("nivel1", "/img/calle.jpg", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
+		agregarRuta("nivel1", "/img/calle_desierto.png", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
 		
 		agregarRuta("fondoPresentacion", "/img/drApocalipsis.png", 562, 411);
 		
@@ -41,13 +41,13 @@ public class ColeccionDeImagenes extends Imagenes{
 		
 		agregarRuta("plagueInc", "/img/plagueInc.PNG", 80, 130);
 		
-		agregarRuta("mapaDerecha", "/img/baranda_der.jpg", Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
+		agregarRuta("mapaDerecha", "/img/fondoDerecho_desierto_reDimensionado.png", Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
 		
-		agregarRuta("mapaIzquierda", "/img/baranda_izq.jpg", Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
+		agregarRuta("mapaIzquierda", "/img/fondoIzquierdo_desierto_reDimensionado.png", Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
 		
-		agregarRuta("fondoIzquierda", "/img/fondo_izq.jpg", Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
+		agregarRuta("fondoIzquierda", "/img/fondoIzquierdo_desierto_reDimensionado.png", Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
 		
-		agregarRuta("fondoDerecha", "/img/fondo_der.jpg", Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
+		agregarRuta("fondoDerecha", "/img/fondoDerecho_desierto_reDimensionado.png", Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
 		
 		agregarRuta("proyectilSanitario", "/img/Jeringa2.png", 20, 50);
 		
@@ -56,6 +56,7 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("recargar", "/img/recargar.gif", 70, 50);
 	
 		agregarRuta("particula", "/img/particula.png", 20, 20);
+		agregarRuta("particulaBeta", "/img/particulaBeta.png", 20, 20);
 		
 		agregarRuta("humano", "/img/Humano.png", 40, 60);
 		
@@ -80,6 +81,8 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("humanoCorrer","/img/Humano_correr.png", 40, 60);
 		
 		agregarRuta("autoEnLlamas","/img/autoEnLlamas.gif", 75, 120);
+		
+		agregarRuta("InfectadoBeta","/img/infectadoBeta_caminar.gif", 40, 60);
 
 
 	}

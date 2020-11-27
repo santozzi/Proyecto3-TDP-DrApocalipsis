@@ -30,8 +30,15 @@ abstract public class  Entidad {
 	public ImageIcon getImagen() {
 		return this.imagen;
 	}
-	//abstract public List<Entidad> detectarColisiones();
-	//abstract public void accionar();
+	public Entidad (Juego juego) {
+		this.juego = juego;
+		this.estadoTemporal= false;
+		
+		
+		
+		
+		
+	}
 	public Vector getVector() {
 		return this.vector;
 	}

@@ -22,24 +22,14 @@ import visitor.Visitor;
  */
 public class InfectadoAlpha extends Infectado{
 	
-	protected final int VELOCIDAD_BASE = 6;
-	
-	public InfectadoAlpha(Juego juego) {
-		this.juego = juego;
-
-		this.vector = new Vector(0, 1, 6);
-		this.cargaViral = 80;
-
+		public InfectadoAlpha(Juego juego) {
+		super(juego);
+	   	this.cargaViral = 80;
 		this.claveImagen = new String("InfectadoAlpha_golpear");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
-		estadoTemporal= false;
-		tiempoDeEspera = 1000;
-
-		this.rango = 100;
 		v = new VisitanteInfectadoAlpha(this);
-		tirarParticula();
+		
 	}
-	//tiene que existir particulaAlpha y particulaBeta;
 
 	/**
 	 * duplicarVelocidad
@@ -68,81 +58,12 @@ public class InfectadoAlpha extends Infectado{
 			duplicarVelocidad();
 	}
 
-	public List<Entidad> detectarColisiones() {
-		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
-		List<Entidad> listaDeLatencia = juego.getLista();
-		boolean esta = false;
+	public void tirarParticula() {
+    	this.particula= new ParticulaAlpha(juego,this);
+    }
+
 	
-		Entidad entidadActual = this;
-		Entidad entVerificar;
-		Iterator<Entidad> itEntidades ;
-		for(Entidad entidadDeLatencia : listaDeLatencia) {
-			itEntidades = listaDeColisiones.iterator();
 
-
-			if(entidadActual!=entidadDeLatencia&&hayColision(entidadDeLatencia)) {
-				//-----para que no haya repetidos----
-				while(itEntidades.hasNext()&&!esta) {
-					entVerificar = itEntidades.next();
-					esta= entVerificar == entidadDeLatencia;
-				}
-				//-------------------------------------
-
-				if(!esta)
-					listaDeColisiones.add(entidadDeLatencia);
-				else
-					esta = false;
-
-			} 
-
-		}
-		return listaDeColisiones;
-	}  
-	public void desplazarse() {
-		//this.posicion.y++;
-		//this.vector.setModulo(6);
-		this.vector.desplazarse();
-		juego.actualizarEntidad(this);
-		//detectarColisiones();
-		//accionar();
-		//detectarColisiones();
-		//pregunatar cuando se choca con el limite del mapa
-
-	}
-	public void accionar() {
-		for(Entidad ent : detectarColisiones()) {
-			ent.accept(v);
-		}
-
-	}
-
-	@Override
-	public void actuar() {
-    
-		int vueltasAEsperar;
-		
-		if(estadoTemporal) {
-			//tiempo de espera es 1000
-			vueltasAEsperar = tiempoDeEspera;
-		}else {
-			int velocidad = vector.getModulo();
-			// {
-				vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
-				
-			
-		}
-		
-   if(vueltasAEsperar>0) {
-		if(latencia>=vueltasAEsperar) {
-		   desplazarse();
-		   juego.actualizarEntidad(this);
-		   accionar();
-		   latencia= 1;
-		   estadoTemporal= false;
-		}else {
-		   latencia++;
-		}
-   }
-	}
+	
 
 }

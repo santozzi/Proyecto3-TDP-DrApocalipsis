@@ -13,6 +13,7 @@ public abstract class Particula extends Proyectil{
             vector.getDireccion().setLocation(0, 1);
     		vector.getPosicion().x= infectado.getVector().getPosicion().x;
     		vector.getPosicion().y= infectado.getVector().getPosicion().y+100;
+    		this.letalidad = 2;
     		this.infectado = infectado;
     }
 	

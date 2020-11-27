@@ -10,7 +10,7 @@ public abstract class Proyectil extends Entidad {
     
 	
 	public Proyectil(Juego juego){
-		this.juego = juego;
+        super(juego);
 		this.vector = new Vector(0,-1,9);
 		this.letalidad = 5;
 		jugador= juego.getJugador();

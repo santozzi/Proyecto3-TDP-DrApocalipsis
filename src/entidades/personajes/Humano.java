@@ -23,15 +23,11 @@ public class Humano extends Personaje {
 	protected boolean soltoPremio;
 
 	public Humano(Juego j) {
-		this.juego = j;
+		super(j);
 		this.cargaViral = 0;
-
 		this.vector = new Vector(0, 1, 7);
-		//this.claveImagen = new String("humano");
-		//this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		this.v = new VisitanteHumano(this);
 		this.soltoPremio = false;
-		
 		crearPremio();
 
 	}

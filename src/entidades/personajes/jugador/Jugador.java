@@ -20,6 +20,7 @@ public class Jugador extends Personaje{
 	protected Arma arma;
 
 	public Jugador(Juego juego) {
+		super(juego);
 		arma = new ArmaSanitaria(juego);
 		this.cargaViral = 100;
 		this.juego= juego;

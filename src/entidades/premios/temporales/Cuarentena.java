@@ -10,7 +10,7 @@ import visitor.Visitor;
 public class Cuarentena extends Temporal{
     
 	public Cuarentena(Juego juego) {
-    	this.juego= juego;
+    	super(juego);
     	vector = new Vector(0,1,1);
     	v= new VisitanteCuarentena(this);
     	this.claveImagen = new String("cuarentena");
