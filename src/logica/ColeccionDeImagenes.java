@@ -22,6 +22,11 @@ public class ColeccionDeImagenes extends Imagenes{
 
 		this.contador = 0;
 		this.ruta = new HashMap<Integer, ImageIcon>();
+		//Nivel 1
+		
+		//Nivel 2
+		
+		//InfectadosAlpha
 		
 		agregarRuta("InfectadoAlpha_golpear", "/img/z_ataque_abajo.gif", 40, 60);
 		
@@ -34,6 +39,8 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("Jugador_caminarIzquierda", "/img/Jugador_caminarIzquierda.gif", 70, 60);
 		
 		agregarRuta("nivel1", "/img/calle_desierto.png", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
+		agregarRuta("nivel2", "/img/calle.jpg", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
+		
 		
 		agregarRuta("fondoPresentacion", "/img/drApocalipsis.png", 562, 411);
 		

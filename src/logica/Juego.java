@@ -27,13 +27,15 @@ public class Juego implements IObservado {
 	protected Jugador jugador;
 	protected boolean finDeLaTanda;
 	protected int nivelActual;
+	protected int score;
 	
 	public Juego() {
 		this.nivelActual = 1;
+		this.score = 0;
 		observadores = new LinkedList<IObservador>();
 		//hiloSecundario = new HiloSecundario(this);
 		hiloSecundario = HiloSecundario.getHiloSecundario(this);
-
+      //  nivel = new Nivel1(this);
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		jugador = new Jugador(this);
 
@@ -73,6 +75,7 @@ public class Juego implements IObservado {
 
 	public void cargarNivel() {
 		//Nivel[] niveles = new Nivel[3];
+		
 		if(nivelActual==1) {
 			this.nivel = new Nivel1(this);
 		}else {
@@ -85,6 +88,7 @@ public class Juego implements IObservado {
 				hiloSecundario.agregarAColaParaAgregar(entidad);
 			}
 		}
+		notificarNivel();
 	}
 	public Jugador getJugador() {
 		return this.jugador;
@@ -101,7 +105,7 @@ public class Juego implements IObservado {
 	// pregunto si no quedan mas infectados en el nivel
 	public void notificarBajaDeInfectado(Entidad infectado) {
 		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
-		
+		score++;
 		listaDeInfectados.remove(infectado);
 		
 		if(listaDeInfectados.isEmpty())
@@ -177,6 +181,13 @@ public class Juego implements IObservado {
 		for(IObservador obs: observadores)
 			obs.updateEnergiaJugador();
 
+	}
+	@Override
+	public void notificarNivel() {
+		for(IObservador obs: observadores) {
+			obs.updateNivel(nivel.getImagenIzq(), nivel.getImagenFondo(), nivel.getImagenDer());
+		}
+		
 	}
 
 	//-------------------fin de observado------------------------------

@@ -41,14 +41,15 @@ public class Mapa  extends JFrame implements IObservador{
 	protected Juego juego;
 	protected JLabel jugador;
 	protected JLabel lblFondo;
-	protected JPanel panelFondo;
+	protected FondoPanel panelFondo;
 	protected JPanel panelDeEntidades;
 	protected Teclado teclado;
 	protected JProgressBar progressBar;
 	private Thread audio;
 	private AudioPlayer ap;
 	private Map<Entidad,JLabel> mapeoEntidades;
-
+    protected JLabel lblMapaDerecha;
+    protected JLabel lblMapaIzquierda;
 	public Mapa() {
 		juego = new Juego();
 
@@ -92,26 +93,26 @@ public class Mapa  extends JFrame implements IObservador{
 		
 		JLabel lblAuto = new JLabel("");
 		lblAuto.setBounds(722, 295, 75, 156);
-		getContentPane().add(lblAuto);
+		//getContentPane().add(lblAuto);
 		
 		ImageIcon autoEnLlamas = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("autoEnLlamas");
 		lblAuto.setIcon(autoEnLlamas);
 		
-		ImageIcon barandaDerecha = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoDerecha");
+		//ImageIcon barandaDerecha = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoDerecha");
 
-		JLabel lblMapaDerecha = new JLabel("");
+		lblMapaDerecha = new JLabel("");
 		lblMapaDerecha.setBounds(Juego.ANCHO_DE_COMBATE+Juego.DECORADO_IZQUIERDO, 0, Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
 
-		lblMapaDerecha.setIcon(barandaDerecha);
+		
 		getContentPane().add(lblMapaDerecha);
 
-		JLabel lblMapaIzquierda = new JLabel("");
+		lblMapaIzquierda = new JLabel("");
 		lblMapaIzquierda.setBounds(0, 0, Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
-		ImageIcon barandaIzquierda = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoIzquierda");
+		//ImageIcon barandaIzquierda = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoIzquierda");
 
 		//barandaIzquierda.setImagen("mapaIzquierda");
 
-		lblMapaIzquierda.setIcon(barandaIzquierda);
+
 		getContentPane().add(lblMapaIzquierda);
 
 		getContentPane().add(panelFondo);
@@ -239,12 +240,16 @@ public class Mapa  extends JFrame implements IObservador{
 		@Override
 		public void paint(Graphics grafico) {
 
-			imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("nivel1").getImage();
+			//imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("nivel1").getImage();
 			grafico.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
 			setOpaque(false);
 			super.paint(grafico);
 			setVisible(true);
 
+		}
+		public void setImagenDeFondo(ImageIcon imagen) {
+			this.imagen = imagen.getImage();
+			
 		}
 
 	}
@@ -265,5 +270,16 @@ public class Mapa  extends JFrame implements IObservador{
 		progressBar.setValue(juego.getJugador().getEnergia());
 	
 
+	}
+
+
+
+	@Override
+	public void updateNivel(ImageIcon izq, ImageIcon fondo, ImageIcon der) {
+		panelFondo.setImagenDeFondo(fondo);
+		panelFondo.repaint();
+		lblMapaDerecha.setIcon(der);
+		lblMapaIzquierda.setIcon(izq);
+		
 	}
 }

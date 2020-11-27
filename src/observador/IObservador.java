@@ -1,5 +1,7 @@
 package observador;
 
+import javax.swing.ImageIcon;
+
 import entidades.Entidad;
 
 public interface IObservador {
@@ -13,5 +15,6 @@ public interface IObservador {
    public void updateEntidad(Entidad entidad);
    public void quitarEntidad(Entidad entidad);
    public void updateEnergiaJugador();
+   public void updateNivel(ImageIcon izq,ImageIcon fondo,ImageIcon der);
    
 }

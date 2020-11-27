@@ -27,5 +27,6 @@ public void notificarEntidad(Entidad entidad);
 public void actualizarEntidad(Entidad entidad);
 public void notificarQuitarEntidad(Entidad entidad);
 public void notificarCargaViralDeJugador();
+public void notificarNivel();
 
 }
