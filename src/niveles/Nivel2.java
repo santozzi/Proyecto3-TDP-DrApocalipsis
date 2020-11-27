@@ -40,5 +40,10 @@ public class Nivel2 extends Nivel {
 		fdt.segundaTanda();
 		return this.compInf.getListaDeInfectados();
 	}
+	 public List<Entidad> elJefe(){
+	    	FabricaDeTandas  fdt = new Nivel3InfectadosBeta(juego, this);
+	    	fdt.elJefe();
+	    	return this.compInf.getListaDeInfectados();
+	    }
 
 }

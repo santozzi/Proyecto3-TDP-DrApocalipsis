@@ -12,6 +12,10 @@ import niveles.Nivel1;
 import niveles.Nivel2;
 import observador.IObservado;
 import observador.IObservador;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Juego implements IObservado {
 	protected Nivel nivel;
@@ -22,7 +26,7 @@ public class Juego implements IObservado {
 	public static final int DECORADO_IZQUIERDO=184;
 	public static final int DECORADO_DERECHO=184;
 	protected HiloSecundario hiloSecundario;
-    protected Contabilidad score;
+	protected Contabilidad score;
 	protected Point limite;
 	protected static final int LATENCIA_MINIMA=5;
 	protected static final int LATENCIA_MAXIMA=10;
@@ -30,16 +34,31 @@ public class Juego implements IObservado {
 	protected boolean finDeLaTanda;
 	protected int nivelActual;
 	protected boolean ifinalizarTanda;
+	protected boolean finalizaBoss;
+	protected static Logger Logger;
 
-	
+
 	public Juego() {
-		this.nivelActual = 1;
 		
+		if(Logger==null) {
+			Logger = Logger.getLogger(Juego.class.getName());
+			Handler hnd = new ConsoleHandler();
+
+			hnd.setLevel(Level.FINE);
+			Logger.addHandler(hnd);
+			Logger.setLevel(Level.FINE);
+			Logger rootLogger = Logger.getParent();
+			for(Handler h: rootLogger.getHandlers()) {
+				h.setLevel(Level.OFF);
+			}
+		}
+		this.nivelActual = 1;
+		finalizaBoss= false;
 		this.score = new Contabilidad();
 		observadores = new LinkedList<IObservador>();
 		//hiloSecundario = new HiloSecundario(this);
 		hiloSecundario = HiloSecundario.getHiloSecundario(this);
-      //  nivel = new Nivel1(this);
+		//  nivel = new Nivel1(this);
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		jugador = new Jugador(this);
 		ifinalizarTanda= false;
@@ -48,7 +67,7 @@ public class Juego implements IObservado {
 	public void cargarJugador() {
 		agregarAEntidadesParaAgregar(jugador);
 	}
-	
+
 	/*hilo paralelo
 	private void hiloRecorredorDeEntidades() {
 		Thread hiloVerificar = new Thread(){
@@ -56,7 +75,7 @@ public class Juego implements IObservado {
 			@Override 
 			public void run() {
 				while(true) {
-					
+
 					if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
 						if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
 							limite.y = limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
@@ -65,27 +84,29 @@ public class Juego implements IObservado {
 							limite.y = limite.y = entidad.getVector().getPosicion().y;
 							limite.x += entidad.getImagen().getIconWidth();
 						}
-					 
+
 					System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
-					
+
 				}
 			}
 		};
 	}
-	*/
+	 */
 	public Point getLimite() {
 		return this.limite;
 	}
 
 	public void cargarNivel() {
 		//Nivel[] niveles = new Nivel[3];
-		
+
 		if(nivelActual==1) {
+			Logger.fine("Cargando nivel 1");
 			this.nivel = new Nivel1(this);
 		}else if(nivelActual==2){
+			Logger.fine("Cargando nivel 2");
 			nivel= new Nivel2(this);
 		}else {
-			System.out.println("game over");
+			Logger.fine("Fin del juego");
 			nivel= null;
 		}
 
@@ -93,21 +114,26 @@ public class Juego implements IObservado {
 			for(Entidad entidad : nivel.primeraTanda()) {
 				hiloSecundario.agregarAColaParaAgregar(entidad);
 			}
-		notificarNivel();	
+			notificarNivel();	
 		}
-		
+
 	}
 	public Jugador getJugador() {
 		return this.jugador;
 	}
+	public void cargarJefe() {
+		for(Entidad entidad : nivel.elJefe()) {
+			hiloSecundario.agregarAColaParaAgregar(entidad);
+		}
+		finalizaBoss= true;
+	}
 
-
-    public void agregarItem(String clave,int puntos) {
-    	score.agregarItem(clave, puntos);
-    }
+	public void agregarItem(String clave,int puntos) {
+		score.agregarItem(clave, puntos);
+	}
 	public void cuarentena() {
 		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
-		
+
 		for(Entidad entidad : listaDeInfectados)
 			entidad.cambiarEstadoTemporal();
 	}
@@ -116,33 +142,42 @@ public class Juego implements IObservado {
 		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
 		//score++;
 		listaDeInfectados.remove(infectado);
-		
+
 		if(listaDeInfectados.isEmpty()) {
-			if(ifinalizarTanda) {
+			if(finalizaBoss) {
+				Logger.fine("Entrando a la carga del nuevo nivel despues de matar al boss");
 				nivelActual++;
-				System.out.println("Nivel Actual "+nivelActual);
-				System.out.println(score);
-				ifinalizarTanda=false;
 				cargarNivel();
-			}else
-				finalizarTanda();
+				System.out.println(score);
+				finalizaBoss=false;
+			}else {
+				if(ifinalizarTanda) {
+					Logger.fine("Cargando al boss");
+					cargarJefe();
+					
+					ifinalizarTanda=false;
+
+				}else {
+					Logger.fine("Fonalizando tanda");
+					finalizarTanda();
+				
+				}
+			}
 		}
-			
+
 	}
 	public void finalizarTanda() {
-       System.out.println("Finalizar tanda");
-       //hiloSecundario.terminarEjecucion();
-       for(Entidad entidad : nivel.segundaTanda()) {
+		for(Entidad entidad : nivel.segundaTanda()) {
 			hiloSecundario.agregarAColaParaAgregar(entidad);
 		}
-        ifinalizarTanda=true;
+		ifinalizarTanda=true;
 	}
 	public List<Entidad> getLista(){
 		return hiloSecundario.listaDeRecorrido();
 	}
-	
-	
-	
+
+
+
 	//--------Agregar y quitar entidades--------------
 	public void agregarAEntidadesParaAgregar(Entidad entidad) {
 		hiloSecundario.agregarAColaParaAgregar(entidad);
@@ -155,8 +190,8 @@ public class Juego implements IObservado {
 	}
 	//------------------------------------------------
 
-	
-	
+
+
 	//--------------Inicio de observado----------------
 	//Agrega las entidades en el mapa
 	@Override
@@ -205,7 +240,7 @@ public class Juego implements IObservado {
 		for(IObservador obs: observadores) {
 			obs.updateNivel(nivel.getImagenIzq(), nivel.getImagenFondo(), nivel.getImagenDer());
 		}
-		
+
 	}
 
 	//-------------------fin de observado------------------------------

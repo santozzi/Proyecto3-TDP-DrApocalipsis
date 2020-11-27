@@ -29,6 +29,8 @@ public class ColeccionDeImagenes extends Imagenes{
 		//InfectadosAlpha
 		
 		agregarRuta("InfectadoAlpha_golpear", "/img/z_ataque_abajo.gif", 40, 60);
+		agregarRuta("InfectadoBossAlpha", "/img/z_ataque_abajo.gif", 140, 160);
+		agregarRuta("InfectadoBossBeta","/img/infectadoBeta_caminar.gif", 140, 160);
 		
 		agregarRuta("Jugador_dispara", "/img/pistola_idle.png", 70, 50);
 		

@@ -39,7 +39,11 @@ public class Nivel1 extends Nivel{
 		// TODO Auto-generated method stub
 		
 	}
-
+	 public List<Entidad> elJefe(){
+	    	FabricaDeTandas  fdt = new Nivel1InfectadosAlpha(juego, this);
+	    	fdt.elJefe();
+	    	return this.compInf.getListaDeInfectados();
+	    }
 	
 
 

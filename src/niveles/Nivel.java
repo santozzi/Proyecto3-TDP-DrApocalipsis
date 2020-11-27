@@ -30,7 +30,7 @@ public abstract class Nivel {
 	public CompositeInfectado getColeccionDeInfectados() {
 		return this.compInf;
 	}
-	
+	public List<Entidad> elJefe(){return null;}
 	public String getClaveIzq() {
 		return claveIzq;
 	}

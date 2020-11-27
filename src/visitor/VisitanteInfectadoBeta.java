@@ -3,6 +3,9 @@ package visitor;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
+import entidades.personajes.infectados.InfectadoBoss;
+import entidades.personajes.infectados.InfectadoBossAlpha;
+import entidades.personajes.infectados.InfectadoBossBeta;
 import entidades.personajes.jugador.Jugador;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
@@ -85,6 +88,20 @@ public class VisitanteInfectadoBeta extends Visitante {
 
 	@Override
 	public void visitarSuperArma(SuperArma sarm) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void visitarInfectadoBossAlpha(InfectadoBossAlpha ifboss) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarInfectadoBossBeta(InfectadoBossBeta ifboss) {
 		// TODO Auto-generated method stub
 		
 	}

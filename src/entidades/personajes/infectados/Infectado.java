@@ -37,23 +37,23 @@ public abstract class Infectado extends Personaje {
 		this.tiempoDeEspera = 1000;
 		this.rango = 100;
 		this.cargaViral = 100;
-		
+
 		tirarParticula();
 	}
-	
-	
-	
+
+
+
 	/**
 	 * tirarParticulas
 	 * ---------------
 	 * Son las particulas que lanza el infectado
 	 * estas particulas son de tipo Proyectil
 	 */
-	
-	 public boolean estaCurado() {
-		   return cargaViral<=0;
-	   }
-	 
+
+	public boolean estaCurado() {
+		return cargaViral<=0;
+	}
+
 	/**
 	 * atacar
 	 * ------
@@ -67,15 +67,16 @@ public abstract class Infectado extends Personaje {
 
 
 	public void tirarParticula() {
-    }
+	}
 	@Override
 	public void setPosicion(int x, int y) {
 		vector.getPosicion().x= x;
 		vector.getPosicion().y= y;
 
-		particula.getVector().getPosicion().x = x;
-		particula.getVector().getPosicion().y = y;
-
+		if(particula!=null) {
+			particula.getVector().getPosicion().x = x;
+			particula.getVector().getPosicion().y = y;
+		}
 	}
 	@Override
 	public void desaparecer() {
@@ -86,30 +87,30 @@ public abstract class Infectado extends Personaje {
 	public void impacto(int disparo) {
 		if(cargaViral-disparo>0) { 
 			this.cargaViral -=disparo;
-		
+
 		}else
 			curar();
 	} 
 	public void curar() {
 		Entidad humano = new Humano(juego);
 		humano.setPosicion(vector.getPosicion().x, vector.getPosicion().y);
-		
-		
+
+
 		juego.agregarAEntidadesParaAgregar(humano);
 		particula.desaparecer();
 		this.desaparecer();
-		
+
 	}
-	
+
 	public int getRango() {
 		return rango;
 	}
-	
+
 	public List<Entidad> detectarColisiones() {
 		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
 		List<Entidad> listaDeLatencia = juego.getLista();
 		boolean esta = false;
-	
+
 		Entidad entidadActual = this;
 		Entidad entVerificar;
 		Iterator<Entidad> itEntidades ;
@@ -135,9 +136,9 @@ public abstract class Infectado extends Personaje {
 		}
 		return listaDeColisiones;
 	}  
-	
-	
-	
+
+
+
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
 		//entorno = [x;x+anchoEntidad]
@@ -164,31 +165,31 @@ public abstract class Infectado extends Personaje {
 	}
 	@Override
 	public void actuar() {
-    
+
 		int vueltasAEsperar;
-		
+
 		if(estadoTemporal) {
 			//tiempo de espera es 1000
 			vueltasAEsperar = tiempoDeEspera;
 		}else {
 			int velocidad = vector.getModulo();
 			// {
-				vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
-				
-			
+			vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
+
+
 		}
-		
-   if(vueltasAEsperar>0) {
-		if(latencia>=vueltasAEsperar) {
-		   desplazarse();
-		   juego.actualizarEntidad(this);
-		   accionar();
-		   latencia= 1;
-		   estadoTemporal= false;
-		}else {
-		   latencia++;
+
+		if(vueltasAEsperar>0) {
+			if(latencia>=vueltasAEsperar) {
+				desplazarse();
+				juego.actualizarEntidad(this);
+				accionar();
+				latencia= 1;
+				estadoTemporal= false;
+			}else {
+				latencia++;
+			}
 		}
-   }
 	}
 	public void accionar() {
 		for(Entidad ent : detectarColisiones()) {

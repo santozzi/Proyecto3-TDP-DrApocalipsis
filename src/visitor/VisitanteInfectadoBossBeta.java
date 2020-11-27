@@ -16,17 +16,22 @@ import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.ProyectilSanitario;
 import entidades.proyectiles.SuperProyectilSanitario;
 
-public class VisitanteJugador extends Visitante {
-	private Jugador j;
+public class VisitanteInfectadoBossBeta extends Visitante {
+	
+	private InfectadoBossBeta infectadoBossBeta;
+	
 
-	public VisitanteJugador(Jugador j) {
-		this.j = j;
+
+
+
+	public VisitanteInfectadoBossBeta(InfectadoBossBeta infectadoBossBeta) {
+		this.infectadoBossBeta = infectadoBossBeta;
 	}
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha ea) {
-	//	System.out.println("jugador choca a alpha");
-			
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -35,13 +40,11 @@ public class VisitanteJugador extends Visitante {
 		
 	}
 
-
 	@Override
 	public void visitarJugador(Jugador J) {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 	@Override
 	public void visitarProyectilSanitario(ProyectilSanitario p) {
@@ -50,14 +53,15 @@ public class VisitanteJugador extends Visitante {
 	}
 
 
+
 	@Override
-	public void visitarParticulaAlpha(ParticulaAlpha par) {
+	public void visitarHumano(Humano hum) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarHumano(Humano hum) {
+	public void visitarParticulaAlpha(ParticulaAlpha par) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -93,7 +97,6 @@ public class VisitanteJugador extends Visitante {
 	}
 
 
-
 	@Override
 	public void visitarInfectadoBossAlpha(InfectadoBossAlpha ifboss) {
 		// TODO Auto-generated method stub
@@ -109,4 +112,3 @@ public class VisitanteJugador extends Visitante {
 
 
 }
-

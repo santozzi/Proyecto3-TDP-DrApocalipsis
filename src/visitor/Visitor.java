@@ -3,6 +3,9 @@ package visitor;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
+import entidades.personajes.infectados.InfectadoBoss;
+import entidades.personajes.infectados.InfectadoBossAlpha;
+import entidades.personajes.infectados.InfectadoBossBeta;
 import entidades.personajes.jugador.Jugador;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
@@ -35,6 +38,7 @@ public abstract class Visitor
 	abstract public void visitarCuarentena(Cuarentena cuarentena);
 	abstract public void visitarSuperProyectilSanitario(SuperProyectilSanitario sps);
 	abstract public void visitarSuperArma(SuperArma sarm);
-	
+	abstract public void visitarInfectadoBossAlpha(InfectadoBossAlpha ifboss);	
+	abstract public void visitarInfectadoBossBeta(InfectadoBossBeta ifboss);
 }
 

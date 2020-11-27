@@ -10,6 +10,8 @@ import entidades.Entidad;
 import entidades.personajes.infectados.Infectado;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
+import entidades.personajes.infectados.InfectadoBoss;
+import entidades.personajes.infectados.InfectadoBossBeta;
 import logica.CompositeInfectado;
 import logica.Juego;
 import niveles.Nivel;
@@ -118,5 +120,13 @@ public class Nivel3InfectadosBeta extends FabricaDeTandas{
 			//nuevoInfectado.getVector().cambioDeSentido();
 			compositeInfectados.add(nuevoInfectado);
 		}
+	}
+	public void  elJefe() {
+		List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
+		InfectadoBoss jefe = new InfectadoBossBeta(juego);
+		jefe.setPosicion(200, 200);
+		jefe.getVector().setModulo(3);
+		
+		compositeInfectados.add(jefe);
 	}
 }

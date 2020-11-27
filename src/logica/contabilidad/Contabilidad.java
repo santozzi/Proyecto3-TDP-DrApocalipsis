@@ -12,7 +12,7 @@ public class Contabilidad {
    public void agregarItem(String clave, int score) {
 	   Item valor = items.get(clave);
 	   if(valor==null) {
-		   items.put(clave, new Item(clave,score,0));
+		   items.put(clave, new Item(clave,score,1));
 	   }else {
 		   int puntos = valor.getScore();
 		   int cantidad = valor.getCantidad();
