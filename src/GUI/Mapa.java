@@ -118,7 +118,7 @@ public class Mapa  extends JFrame implements IObservador{
 
 		juego.agregarObservador(this);
 		juego.cargarJugador();
-		juego.cargarNivel(1);
+		juego.cargarNivel();
 
 
 	}

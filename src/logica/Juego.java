@@ -71,9 +71,9 @@ public class Juego implements IObservado {
 		return this.limite;
 	}
 
-	public void cargarNivel(int n) {
+	public void cargarNivel() {
 		//Nivel[] niveles = new Nivel[3];
-		if(n==1) {
+		if(nivelActual==1) {
 			this.nivel = new Nivel1(this);
 		}else {
 			System.out.println("game over");
@@ -110,6 +110,9 @@ public class Juego implements IObservado {
 	public void finalizarTanda() {
        System.out.println("Finalizar tanda");
        //hiloSecundario.terminarEjecucion();
+       for(Entidad entidad : nivel.segundaTanda()) {
+			hiloSecundario.agregarAColaParaAgregar(entidad);
+		}
 
 	}
 	public List<Entidad> getLista(){

@@ -14,15 +14,15 @@ import logica.CompositeInfectado;
 import logica.Juego;
 import niveles.Nivel;
 
-public class Nivel1InfectadosAlpha extends FabricaDeTandas{
+public class Nivel3InfectadosBeta extends FabricaDeTandas{
 
 
-	public Nivel1InfectadosAlpha(Juego j, Nivel nivel) {
+	public Nivel3InfectadosBeta(Juego j, Nivel nivel) {
 		this(j, nivel, 50);
 
 	}
 
-	public Nivel1InfectadosAlpha(Juego j, Nivel nivel, int cantInfectados) {
+	public Nivel3InfectadosBeta(Juego j, Nivel nivel, int cantInfectados) {
 		this.juego = j;
 		this.cantidadInfectados = cantInfectados;
 		this.nivel = nivel;
@@ -39,7 +39,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 		for(int i=0 ; i<cantidadInfectados ; i++) {
 
-			nuevoInfectado = new InfectadoAlpha(this.juego);
+			nuevoInfectado = new InfectadoBeta(this.juego);
 
 			posicion = asignarPosicion(
 					posiciones,
@@ -86,37 +86,15 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 	}
 	@Override
 	public void segundaTanda() {
-		Point posicion;
 		Infectado nuevoInfectado;
-		Random random = new Random();
-		List<Point> posiciones = new LinkedList<Point>();
-		List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
+		Random r1 = new Random();
+		for(int i=0 ; i<cantidadInfectados*2 ; i++) {
+			nuevoInfectado = new InfectadoAlpha(this.juego);
 
-		for(int i=0 ; i<cantidadInfectados ; i++) {
-
-			nuevoInfectado = new InfectadoBeta(this.juego);
-
-			posicion = asignarPosicion(
-					posiciones,
-					nuevoInfectado.getImagen().getIconWidth(),
-					nuevoInfectado.getImagen().getIconHeight(),
-					random.nextInt(Juego.ANCHO_DE_COMBATE-nuevoInfectado.getImagen().getIconWidth()),
-					random.nextInt(Juego.ALTO_DE_COMBATE),
-					random);
-			posiciones.add(posicion);
-			if(juego.getLimite().y>=posicion.y)
-				juego.getLimite().y = posicion.y - nuevoInfectado.getImagen().getIconHeight();
-			//nuevoInfectado.getVector().getDireccion().y=1;
-			//nuevoInfectado.getVector().getDireccion().x=1;
-			/*
- 			nuevoInfectado.getVector().getPosicion().x = posicion.x;
-			nuevoInfectado.getVector().getPosicion().y = - posicion.y - nuevoInfectado.getImagen().getIconHeight();
-			nuevoInfectado.tirarParticula();
-			 */
-			nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
-			nuevoInfectado.getVector().setModulo(3);
-			//nuevoInfectado.getVector().cambioDeSentido();
-			compositeInfectados.add(nuevoInfectado);
+			nuevoInfectado.getVector().getPosicion().x = r1.nextInt(Juego.ANCHO_DE_COMBATE) + Juego.DECORADO_IZQUIERDO;
+			nuevoInfectado.getVector().getPosicion().y =r1.nextInt(Juego.ALTO_DE_COMBATE);
+			nuevoInfectado.getVector().setModulo(500);
+			//entidades.add(nuevoInfectado);
 		}
 	}
 }
