@@ -25,6 +25,7 @@ public class InfectadoAlpha extends Infectado{
 		public InfectadoAlpha(Juego juego) {
 		super(juego);
 	   	this.cargaViral = 80;
+	   	this.puntos = 10;
 		this.claveImagen = new String("InfectadoAlpha_golpear");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoAlpha(this);

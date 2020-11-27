@@ -17,6 +17,7 @@ public class InfectadoBeta extends Infectado {
 	public InfectadoBeta(Juego juego) {
         super(juego);
 		this.rango = 100;
+		this.puntos = 15;
 		this.claveImagen = new String("InfectadoBeta");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoBeta(this);

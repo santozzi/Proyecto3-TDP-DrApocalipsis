@@ -18,7 +18,7 @@ public class Nivel3InfectadosBeta extends FabricaDeTandas{
 
 
 	public Nivel3InfectadosBeta(Juego j, Nivel nivel) {
-		this(j, nivel, 50);
+		this(j, nivel, 10);
 
 	}
 
@@ -31,6 +31,61 @@ public class Nivel3InfectadosBeta extends FabricaDeTandas{
 
 	@Override
 	public void primeraTanda() {
+		Point posicion;
+		Infectado nuevoInfectado;
+		Random random = new Random();
+		List<Point> posiciones = new LinkedList<Point>();
+		List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
+
+		for(int i=0 ; i<cantidadInfectados/2 ; i++) {
+
+			nuevoInfectado = new InfectadoBeta(this.juego);
+
+			posicion = asignarPosicion(
+					posiciones,
+					nuevoInfectado.getImagen().getIconWidth(),
+					nuevoInfectado.getImagen().getIconHeight(),
+					random.nextInt(Juego.ANCHO_DE_COMBATE-nuevoInfectado.getImagen().getIconWidth()),
+					random.nextInt(Juego.ALTO_DE_COMBATE),
+					random);
+			posiciones.add(posicion);
+			if(juego.getLimite().y>=posicion.y)
+				juego.getLimite().y = posicion.y - nuevoInfectado.getImagen().getIconHeight();
+			//nuevoInfectado.getVector().getDireccion().y=1;
+			//nuevoInfectado.getVector().getDireccion().x=1;
+			/*
+ 			nuevoInfectado.getVector().getPosicion().x = posicion.x;
+			nuevoInfectado.getVector().getPosicion().y = - posicion.y - nuevoInfectado.getImagen().getIconHeight();
+			nuevoInfectado.tirarParticula();
+			 */
+			nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
+			nuevoInfectado.getVector().setModulo(3);
+			//nuevoInfectado.getVector().cambioDeSentido();
+			compositeInfectados.add(nuevoInfectado);
+		}
+	}
+	private Point asignarPosicion(List<Point> posiciones, int anchoInfectado, int altoInfectado, int x, int y, Random random) {
+		Iterator<Point> itPosiciones;
+		Point aRetornar;
+		Point elem;
+		boolean estaInsertado = false; 
+		itPosiciones = posiciones.iterator();
+
+		while(itPosiciones.hasNext() && !estaInsertado) {
+			elem = itPosiciones.next();
+			estaInsertado = (x <= (elem.x + anchoInfectado) && x >= (elem.x - anchoInfectado))
+					&& (y <= (elem.y + altoInfectado) && y >= (elem.y - altoInfectado));
+		}
+
+		if(estaInsertado)
+			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE), random);
+		else
+			aRetornar = new Point(x, y);
+
+		return aRetornar;
+	}
+	@Override
+	public void segundaTanda() {
 		Point posicion;
 		Infectado nuevoInfectado;
 		Random random = new Random();
@@ -62,39 +117,6 @@ public class Nivel3InfectadosBeta extends FabricaDeTandas{
 			nuevoInfectado.getVector().setModulo(3);
 			//nuevoInfectado.getVector().cambioDeSentido();
 			compositeInfectados.add(nuevoInfectado);
-		}
-	}
-	private Point asignarPosicion(List<Point> posiciones, int anchoInfectado, int altoInfectado, int x, int y, Random random) {
-		Iterator<Point> itPosiciones;
-		Point aRetornar;
-		Point elem;
-		boolean estaInsertado = false;
-		itPosiciones = posiciones.iterator();
-
-		while(itPosiciones.hasNext() && !estaInsertado) {
-			elem = itPosiciones.next();
-			estaInsertado = (x <= (elem.x + anchoInfectado) && x >= (elem.x - anchoInfectado))
-					&& (y <= (elem.y + altoInfectado) && y >= (elem.y - altoInfectado));
-		}
-
-		if(estaInsertado)
-			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE), random);
-		else
-			aRetornar = new Point(x, y);
-
-		return aRetornar;
-	}
-	@Override
-	public void segundaTanda() {
-		Infectado nuevoInfectado;
-		Random r1 = new Random();
-		for(int i=0 ; i<cantidadInfectados*2 ; i++) {
-			nuevoInfectado = new InfectadoAlpha(this.juego);
-
-			nuevoInfectado.getVector().getPosicion().x = r1.nextInt(Juego.ANCHO_DE_COMBATE) + Juego.DECORADO_IZQUIERDO;
-			nuevoInfectado.getVector().getPosicion().y =r1.nextInt(Juego.ALTO_DE_COMBATE);
-			nuevoInfectado.getVector().setModulo(500);
-			//entidades.add(nuevoInfectado);
 		}
 	}
 }

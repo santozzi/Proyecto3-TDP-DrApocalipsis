@@ -18,7 +18,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 
 	public Nivel1InfectadosAlpha(Juego j, Nivel nivel) {
-		this(j, nivel, 50);
+		this(j, nivel, 10);
 
 	}
 
@@ -37,7 +37,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		List<Point> posiciones = new LinkedList<Point>();
 		List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
 
-		for(int i=0 ; i<cantidadInfectados ; i++) {
+		for(int i=0 ; i<cantidadInfectados/2 ; i++) {
 
 			nuevoInfectado = new InfectadoAlpha(this.juego);
 
@@ -94,7 +94,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 		for(int i=0 ; i<cantidadInfectados ; i++) {
 
-			nuevoInfectado = new InfectadoBeta(this.juego);
+			nuevoInfectado = new InfectadoAlpha(this.juego);
 
 			posicion = asignarPosicion(
 					posiciones,

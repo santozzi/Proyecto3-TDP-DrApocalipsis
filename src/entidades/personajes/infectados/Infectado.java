@@ -29,6 +29,7 @@ public abstract class Infectado extends Personaje {
 
 	protected Particula particula;
 	protected int rango;
+	protected int puntos;
 
 	public Infectado(Juego juego) {
 		super(juego);
@@ -36,6 +37,7 @@ public abstract class Infectado extends Personaje {
 		this.tiempoDeEspera = 1000;
 		this.rango = 100;
 		this.cargaViral = 100;
+		
 		tirarParticula();
 	}
 	
@@ -78,6 +80,7 @@ public abstract class Infectado extends Personaje {
 	@Override
 	public void desaparecer() {
 		super.desaparecer();
+		this.juego.agregarItem(claveImagen, puntos);
 		this.juego.notificarBajaDeInfectado(this);
 	}
 	public void impacto(int disparo) {
