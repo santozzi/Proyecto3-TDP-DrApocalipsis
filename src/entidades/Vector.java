@@ -16,9 +16,7 @@ public class Vector {
 		
 		
 	}
-    public Vector() {
-    	this(0,0,0);
-    }
+ 
 	public int getX() {
 		return (int)direccion.getX();
 	}

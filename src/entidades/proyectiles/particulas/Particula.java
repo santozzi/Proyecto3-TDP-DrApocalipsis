@@ -1,7 +1,6 @@
 package entidades.proyectiles.particulas;
 
-import entidades.Entidad;
-import entidades.Vector;
+
 import entidades.personajes.infectados.Infectado;
 import entidades.proyectiles.Proyectil;
 import logica.Juego;

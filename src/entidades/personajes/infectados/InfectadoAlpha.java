@@ -1,15 +1,8 @@
 package entidades.personajes.infectados;
 
-import java.awt.Point;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
-import entidades.Entidad;
-import entidades.Vector;
 import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
-import logica.HiloSecundario;
 import logica.Juego;
 import visitor.*;
 import visitor.Visitor;

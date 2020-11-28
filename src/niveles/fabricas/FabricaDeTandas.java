@@ -18,7 +18,7 @@ public abstract class FabricaDeTandas {
 	abstract public void primeraTanda();
 	public List<Entidad> pTanda() {return null;}
 	abstract public void segundaTanda();
-	public void  elJefe() {};
+	abstract public void  elJefe();
 	//abstract public void generar();
 
 }

@@ -58,4 +58,10 @@ public class Nivel3InfectadosMixto extends FabricaDeTandas {
 			//entidades.add(nuevoInfectado);
 		}
 	}
+
+	@Override
+	public void elJefe() {
+		// TODO Auto-generated method stub
+		
+	}
 }

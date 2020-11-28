@@ -1,12 +1,10 @@
 package entidades.personajes.jugador;
 
-import java.awt.Point;
 
 import javax.swing.ImageIcon;
 
 import armas.Arma;
 import armas.ArmaSanitaria;
-import armas.SuperArmaSanitaria;
 import entidades.Vector;
 import entidades.personajes.Personaje;
 import logica.ColeccionDeImagenes;

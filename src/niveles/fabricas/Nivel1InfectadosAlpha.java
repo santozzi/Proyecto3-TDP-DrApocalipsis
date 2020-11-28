@@ -12,6 +12,7 @@ import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
 import entidades.personajes.infectados.InfectadoBoss;
 import entidades.personajes.infectados.InfectadoBossAlpha;
+import entidades.personajes.infectados.InfectadoBossBeta;
 import logica.CompositeInfectado;
 import logica.Juego;
 import niveles.Nivel;
@@ -53,16 +54,9 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			posiciones.add(posicion);
 			if(juego.getLimite().y>=posicion.y)
 				juego.getLimite().y = posicion.y - nuevoInfectado.getImagen().getIconHeight();
-			//nuevoInfectado.getVector().getDireccion().y=1;
-			//nuevoInfectado.getVector().getDireccion().x=1;
-			/*
- 			nuevoInfectado.getVector().getPosicion().x = posicion.x;
-			nuevoInfectado.getVector().getPosicion().y = - posicion.y - nuevoInfectado.getImagen().getIconHeight();
-			nuevoInfectado.tirarParticula();
-			 */
+	
 			nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
 			nuevoInfectado.getVector().setModulo(3);
-			//nuevoInfectado.getVector().cambioDeSentido();
 			compositeInfectados.add(nuevoInfectado);
 		}
 	}
@@ -108,16 +102,9 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			posiciones.add(posicion);
 			if(juego.getLimite().y>=posicion.y)
 				juego.getLimite().y = posicion.y - nuevoInfectado.getImagen().getIconHeight();
-			//nuevoInfectado.getVector().getDireccion().y=1;
-			//nuevoInfectado.getVector().getDireccion().x=1;
-			/*
- 			nuevoInfectado.getVector().getPosicion().x = posicion.x;
-			nuevoInfectado.getVector().getPosicion().y = - posicion.y - nuevoInfectado.getImagen().getIconHeight();
-			nuevoInfectado.tirarParticula();
-			 */
+	
 			nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
 			nuevoInfectado.getVector().setModulo(3);
-			//nuevoInfectado.getVector().cambioDeSentido();
 			compositeInfectados.add(nuevoInfectado);
 		}
 	}
@@ -128,5 +115,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		jefe.getVector().setModulo(3);
 		
 		compositeInfectados.add(jefe);
+		
+
 	}
 }

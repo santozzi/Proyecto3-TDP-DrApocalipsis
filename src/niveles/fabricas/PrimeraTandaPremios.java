@@ -53,5 +53,10 @@ public class PrimeraTandaPremios extends PrimerTanda{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void elJefe() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
