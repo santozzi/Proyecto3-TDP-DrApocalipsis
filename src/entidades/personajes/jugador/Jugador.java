@@ -1,10 +1,12 @@
 package entidades.personajes.jugador;
 
+import java.awt.Point;
 
 import javax.swing.ImageIcon;
 
 import armas.Arma;
 import armas.ArmaSanitaria;
+import armas.SuperArmaSanitaria;
 import entidades.Vector;
 import entidades.personajes.Personaje;
 import logica.ColeccionDeImagenes;
@@ -16,28 +18,21 @@ import visitor.Visitor;
 public class Jugador extends Personaje{
 
 	protected Arma arma;
-	protected int velocidad;
 
 	public Jugador(Juego juego) {
 		super(juego);
 		arma = new ArmaSanitaria(juego);
 		this.cargaViral = 100;
 		this.juego= juego;
-		this.velocidad = 3;
-		this.vector = new Vector(1,0,velocidad);
+		this.vector = new Vector(1,0,3);
 		this.vector.getPosicion().x=225;
 		this.vector.getPosicion().y=550;
-		//this.claveImagen = new String("Jugador_dispara");
 		this.claveImagen = arma.getClaveImagen();
-		// this.posicion = new Point(225,550);
-		//imagen.setAlto(50);
-		//imagen.setAncho(30);
 		tiempoDeEspera = 1000;
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 
 		v = new VisitanteJugador(this);
 
-		
 	}
 
 	public void detenerse() {
@@ -45,11 +40,10 @@ public class Jugador extends Personaje{
 			this.claveImagen = arma.getClaveImagen();
 			imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		}
-
 	}
 
 	public boolean estaInfectado() {
-		return cargaViral>=100;
+		return cargaViral<=0;
 	}
 
 	@Override
@@ -60,19 +54,15 @@ public class Jugador extends Personaje{
 
 	@Override
 	public ImageIcon getImagen() {
-
 		return imagen;
 	}
-
-
-
 
 	@Override
 	public Vector getVector() {
 		return this.vector;
 	}
 	public void desplazarseIzquierda() {
-		if(this.vector.getPosicion().x>=-15) {
+		if(this.vector.getPosicion().x>=-15 && this.cargaViral>0) {
 			if(vector.getDireccion().x==1) {
 				vector.cambioDeSentido();
 
@@ -87,7 +77,7 @@ public class Jugador extends Personaje{
 
 	}
 	public void desplazarseDerecha() {
-		if(this.vector.getPosicion().x<=Juego.ANCHO_DE_COMBATE-55) {
+		if(this.vector.getPosicion().x<=Juego.ANCHO_DE_COMBATE-55 && this.cargaViral>0) {
 			if(vector.getDireccion().x==-1) {
 				vector.cambioDeSentido();
 			}
@@ -116,10 +106,15 @@ public class Jugador extends Personaje{
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		imagen.getImage().flush();
 	}
-
 	@Override
 	public void impacto(int disparo) {
-		super.impacto(disparo);
+		if(cargaViral-disparo>0) {
+			this.cargaViral -= disparo;
+
+		}else {
+			this.cargaViral = 0;
+			desaparecer();
+		}
 		juego.notificarCargaViralDeJugador();
 	}
 
@@ -133,16 +128,9 @@ public class Jugador extends Personaje{
 			}else
 				latencia++;
 		}
-		
+
 	}
 	public void cambiarArma(Arma arma) {
 		this.arma= arma;
-	}
-
-	public void congelar() {
-		this.vector.setModulo(0);
-	}
-	public void desCongelar() {
-		this.vector.setModulo(this.velocidad);
 	}
 }

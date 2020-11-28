@@ -11,8 +11,8 @@ public class Disparar implements IComando {
 
 	@Override
 	public void ejecutar() {
-		jugador.disparar();
-
+		if(!jugador.estaInfectado())
+			jugador.disparar();
 	}
 
 }

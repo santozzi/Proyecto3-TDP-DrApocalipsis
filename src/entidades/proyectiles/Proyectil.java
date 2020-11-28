@@ -42,10 +42,11 @@ public abstract class Proyectil extends Entidad {
 
 	@Override
 	public void desplazarse() {
-	   super.desplazarse();
-	   if(this.vector.getPosicion().y<=0)
+		this.vector.desplazarse();
+		if(this.vector.getPosicion().y<=0)
 			this.desaparecer();
 
+		juego.actualizarEntidad(this);
 	}
 
 

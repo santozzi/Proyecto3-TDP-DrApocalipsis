@@ -29,7 +29,7 @@ public abstract class Infectado extends Personaje {
 
 	protected Particula particula;
 	protected int rango;
-	
+	protected int puntos;
 
 	public Infectado(Juego juego) {
 		super(juego);
@@ -41,10 +41,24 @@ public abstract class Infectado extends Personaje {
 		tirarParticula();
 	}
 
+
+
+	/**
+	 * tirarParticulas
+	 * ---------------
+	 * Son las particulas que lanza el infectado
+	 * estas particulas son de tipo Proyectil
+	 */
+
 	public boolean estaCurado() {
 		return cargaViral<=0;
 	}
 
+	/**
+	 * atacar
+	 * ------
+	 * Genera daño a lo que tenga adelante.
+	 */
 	public void atacar() {
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("infectado_atacar");
 
@@ -52,8 +66,8 @@ public abstract class Infectado extends Personaje {
 	}
 
 
-abstract public void tirarParticula() ;
-protected int puntos;
+	public void tirarParticula() {
+	}
 	@Override
 	public void setPosicion(int x, int y) {
 		vector.getPosicion().x= x;
@@ -69,10 +83,14 @@ protected int puntos;
 		super.desaparecer();
 		this.juego.agregarItem(claveImagen, puntos);
 		this.juego.notificarBajaDeInfectado(this);
-		curar();
 	}
-	
+	public void impacto(int disparo) {
+		if(cargaViral-disparo>0) { 
+			this.cargaViral -=disparo;
 
+		}else
+			curar();
+	} 
 	public void curar() {
 		Entidad humano = new Humano(juego);
 		humano.setPosicion(vector.getPosicion().x, vector.getPosicion().y);
@@ -80,13 +98,14 @@ protected int puntos;
 
 		juego.agregarAEntidadesParaAgregar(humano);
 		particula.desaparecer();
+		this.desaparecer();
 
 	}
 
 	public int getRango() {
 		return rango;
 	}
-/*
+
 	public List<Entidad> detectarColisiones() {
 		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
 		List<Entidad> listaDeLatencia = juego.getLista();
@@ -118,7 +137,7 @@ protected int puntos;
 		return listaDeColisiones;
 	}  
 
-*/
+
 
 	
 	@Override
@@ -149,7 +168,6 @@ protected int puntos;
 			}
 		}
 	}
-	
 	public void accionar() {
 		for(Entidad ent : detectarColisiones()) {
 			ent.accept(v);
