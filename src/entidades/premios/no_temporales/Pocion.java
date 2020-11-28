@@ -7,7 +7,7 @@ import entidades.Entidad;
 import visitor.VisitantePocion;
 import visitor.Visitor;
 
-public class Pocion extends NoTemporal {
+public class Pocion extends ObjetoPrecioso {
     public Pocion(Juego juego) {
     	super(juego);
     	v= new VisitantePocion(this);

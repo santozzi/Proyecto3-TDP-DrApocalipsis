@@ -22,6 +22,8 @@ public class InfectadoBeta extends Infectado {
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoBeta(this);
 		
+		this.getClass().getCanonicalName();
+		
 	}
 	@Override
 	public void accept(Visitor v) {

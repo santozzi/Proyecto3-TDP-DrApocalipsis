@@ -17,24 +17,15 @@ public class Nivel1 extends Nivel{
 		this.claveDer= "fondoDerecha";
 		this.claveIzq= "fondoIzquierda";
 		this.claveFondo= "nivel1";
+		this.fabrica = new Nivel1InfectadosAlpha(juego, this);
 	}
 
 	@Override
-	public List<Entidad> primeraTanda() {
-		FabricaDeTandas  fdt =  new Nivel1InfectadosAlpha(juego, this); 
-		fdt.primeraTanda();
-		return this.compInf.getListaDeInfectados();
+	public void crearTanda() {
+		this.fabrica.crearTanda(4);
 	}
 	@Override
-	public List<Entidad> segundaTanda() {
-		FabricaDeTandas  fdt = new Nivel1InfectadosAlpha(juego, this); 
-		fdt.segundaTanda();
-		return this.compInf.getListaDeInfectados();
-	}
-	@Override
-	public List<Entidad> elJefe(){
-		FabricaDeTandas  fdt = new Nivel1InfectadosAlpha(juego, this);
-		fdt.elJefe();
-		return this.compInf.getListaDeInfectados();
+	public void losJefes() {
+		this.fabrica.losJefes(1);
 	}
 }

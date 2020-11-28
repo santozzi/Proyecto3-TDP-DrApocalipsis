@@ -30,6 +30,8 @@ public class InfectadoAlpha extends Infectado{
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoAlpha(this);
 		
+		this.getClass().getCanonicalName();
+		
 	}
 
 	/**

@@ -111,7 +111,9 @@ public class Juego implements IObservado {
 		}
 
 		if(nivel!=null) {
-			for(Entidad entidad : nivel.primeraTanda()) {
+			nivel.crearTanda();
+			List<Entidad> infectados = nivel.getColeccionDeInfectados().getListaDeInfectados();
+			for(Entidad entidad : infectados) {
 				hiloSecundario.agregarAColaParaAgregar(entidad);
 			}
 			notificarNivel();	
@@ -122,7 +124,9 @@ public class Juego implements IObservado {
 		return this.jugador;
 	}
 	public void cargarJefe() {
-		for(Entidad entidad : nivel.elJefe()) {
+		nivel.losJefes();
+		List<Entidad> infectados = nivel.getColeccionDeInfectados().getListaDeInfectados();
+		for(Entidad entidad : infectados) {
 			hiloSecundario.agregarAColaParaAgregar(entidad);
 		}
 		finalizaBoss= true;
@@ -167,7 +171,9 @@ public class Juego implements IObservado {
 
 	}
 	public void finalizarTanda() {
-		for(Entidad entidad : nivel.segundaTanda()) {
+		nivel.crearTanda();
+		List<Entidad> infectados = nivel.getColeccionDeInfectados().getListaDeInfectados();
+		for(Entidad entidad : infectados) {
 			hiloSecundario.agregarAColaParaAgregar(entidad);
 		}
 		ifinalizarTanda=true;

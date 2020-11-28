@@ -19,18 +19,14 @@ public abstract class Nivel {
     protected ImageIcon imagenDer;
     protected ImageIcon imagenFondo;
     
-	protected int cantidadInfectados;
-	protected Nivel nivel;
 	protected FabricaDeTandas fabrica;
 	protected CompositeInfectado compInf;
 	
-	abstract public List<Entidad> primeraTanda();
-	abstract public List<Entidad> segundaTanda();
-	public void crearTanda() {}
+	abstract public void crearTanda();
 	public CompositeInfectado getColeccionDeInfectados() {
 		return this.compInf;
 	}
-	abstract public List<Entidad> elJefe();
+	abstract public void losJefes();
 	public String getClaveIzq() {
 		return claveIzq;
 	}

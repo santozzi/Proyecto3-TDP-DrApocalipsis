@@ -1,35 +1,25 @@
 package niveles;
 
-import java.util.List;
-
-import entidades.Entidad;
+import logica.CompositeInfectado;
+import logica.Juego;
+import niveles.fabricas.Nivel3InfectadosMixto;
 
 public class Nivel3 extends Nivel {
-
-	
+	public Nivel3(Juego juego) {
+		this.juego = juego;
+		this.compInf = new CompositeInfectado();
+		this.claveDer= "fondoDerecha";
+		this.claveIzq= "fondoIzquierda";
+		this.claveFondo= "nivel2";
+		this.fabrica = new Nivel3InfectadosMixto(juego, this);
+	}
 
 	@Override
 	public void crearTanda() {
-		// TODO Auto-generated method stub
-		
+		this.fabrica.crearTanda(4);
 	}
-
 	@Override
-	public List<Entidad> primeraTanda() {
-		// TODO Auto-generated method stub
-		return null;
+	public void losJefes() {
+		this.fabrica.losJefes(1);
 	}
-
-	@Override
-	public List<Entidad> segundaTanda() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Entidad> elJefe() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
