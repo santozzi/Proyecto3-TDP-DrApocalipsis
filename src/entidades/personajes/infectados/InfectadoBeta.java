@@ -1,5 +1,6 @@
 package entidades.personajes.infectados;
 
+import entidades.proyectiles.particulas.ParticulaAlpha;
 import entidades.proyectiles.particulas.ParticulaBeta;
 import logica.ColeccionDeImagenes;
 import logica.Juego;

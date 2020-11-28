@@ -19,33 +19,33 @@ abstract public class  Entidad {
 	 * El vector contiene la velocidad y la direccion de la entidad
 	 */
 	protected Vector vector;
-	protected int latencia;
+    protected int latencia;
 	protected Juego juego;
 	protected ImageIcon imagen;
 	protected String claveImagen;
 	protected boolean estadoTemporal;
 	protected int tiempoDeEspera;
-	//sacar jugador
-	protected Jugador jugador;
-
+    protected Jugador jugador;
+	abstract public void accept(Visitor v);
+	
 	public Entidad (Juego juego) {
 		this.juego = juego;
 		this.estadoTemporal= false;
-
+		
 	}
-	abstract public void accept(Visitor v);
-
-
 	public ImageIcon getImagen() {
 		return this.imagen;
 	}
-
-
-	public Vector getVector() {
+	
 		
+		
+		
+		
+		
+	
+	public Vector getVector() {
 		return this.vector;
 	}
-	
 	public Point getPosicion() {
 		return this.vector.getPosicion();
 	}
@@ -53,14 +53,13 @@ abstract public class  Entidad {
 		this.vector.getPosicion().x = x;
 		this.vector.getPosicion().y = y;
 	}
-	
 	public void detenerse() {
 		vector.setModulo(0);
 	}
 	public void desaparecer() {
 		juego.agregarAEntidadesParaQuitar(this);
 	}
-
+	
 	//detecta de arriba hacia abajo
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
@@ -88,11 +87,15 @@ abstract public class  Entidad {
 	}
 
 	public void desplazarse() {
+		//this.posicion.y++;
+		
 		this.vector.desplazarse();
 		juego.actualizarEntidad(this);
-	//	accionar();
+		//detectarColisiones();
+		accionar();
+		//detectarColisiones();
+		//pregunatar cuando se choca con el limite del mapa
 	}
-	
 	public List<Entidad> detectarColisiones() {
 		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
 		List<Entidad> listaDeLatencia = juego.getLista();
@@ -102,23 +105,23 @@ abstract public class  Entidad {
 		Iterator<Entidad> itEntidades ;
 		for(Entidad entidadDeLatencia : listaDeLatencia) {
 			itEntidades = listaDeColisiones.iterator();
-
-
+			
+			
 			if(entidadActual!=entidadDeLatencia&&hayColision(entidadDeLatencia)) {
-				//-----para que no haya repetidos----
+               //-----para que no haya repetidos----
 				while(itEntidades.hasNext()&&!esta) {
 					entVerificar = itEntidades.next();
 					esta= entVerificar == entidadDeLatencia;
 				}
 				//-------------------------------------
-
+				
 				if(!esta)
 					listaDeColisiones.add(entidadDeLatencia);
 				else
 					esta = false;
 
 			} 
-
+			
 		}
 		return listaDeColisiones;
 	}  
@@ -129,12 +132,12 @@ abstract public class  Entidad {
 			//visitor
 			ent.accept(v);
 		}
-
-
+		
+		
 
 	}
 	public abstract void actuar();
-
+	
 	public void cambiarEstadoTemporal() {
 		estadoTemporal= true;
 	}

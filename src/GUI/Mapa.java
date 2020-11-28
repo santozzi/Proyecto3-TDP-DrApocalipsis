@@ -48,8 +48,8 @@ public class Mapa  extends JFrame implements IObservador{
 	private Thread audio;
 	private AudioPlayer ap;
 	private Map<Entidad,JLabel> mapeoEntidades;
-    protected JLabel lblMapaDerecha;
-    protected JLabel lblMapaIzquierda;
+	protected JLabel lblMapaDerecha;
+	protected JLabel lblMapaIzquierda;
 	public Mapa() {
 		juego = new Juego();
 
@@ -90,20 +90,20 @@ public class Mapa  extends JFrame implements IObservador{
 		panelFondo.setLayout(null);
 		//lblFondo.setBounds(Juego.DECORADO_IZQUIERDO, 0, Juego.ANCHO_DE_COMBATE, Juego.ALTO_DE_COMBATE);
 		panelFondo.setBounds(Juego.DECORADO_IZQUIERDO, 0, Juego.ANCHO_DE_COMBATE, Juego.ALTO_DE_COMBATE);
-		
+
 		JLabel lblAuto = new JLabel("");
 		lblAuto.setBounds(722, 295, 75, 156);
 		//getContentPane().add(lblAuto);
-		
+
 		ImageIcon autoEnLlamas = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("autoEnLlamas");
 		lblAuto.setIcon(autoEnLlamas);
-		
+
 		//ImageIcon barandaDerecha = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoDerecha");
 
 		lblMapaDerecha = new JLabel("");
 		lblMapaDerecha.setBounds(Juego.ANCHO_DE_COMBATE+Juego.DECORADO_IZQUIERDO, 0, Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
 
-		
+
 		getContentPane().add(lblMapaDerecha);
 
 		lblMapaIzquierda = new JLabel("");
@@ -152,22 +152,24 @@ public class Mapa  extends JFrame implements IObservador{
 
 		IComando comando;
 		Jugador gamer = juego.getJugador();
-		if(teclado.isDerecha()) {
-			comando = new CaminarDerecha(gamer);
-		}else if(teclado.isIzquierda()) {
+		if(!gamer.estaInfectado()) {
+			if(teclado.isDerecha()) {
+				comando = new CaminarDerecha(gamer);
+			}else if(teclado.isIzquierda()) {
 
-			comando = new CaminarIzquierda(gamer);
+				comando = new CaminarIzquierda(gamer);
 
-		}else if(teclado.isDisparar()&&teclado.isLlave()) {
-			comando = new Disparar(gamer);
-			teclado.setLlave(false);
+			}else if(teclado.isDisparar()&&teclado.isLlave()) {
+				comando = new Disparar(gamer);
+				teclado.setLlave(false);
 
 
-		}else {
-			comando = new Detenerse(gamer);
+			}else {
+				comando = new Detenerse(gamer);
 
+			}
+			comando.ejecutar();
 		}
-		comando.ejecutar();
 
 		cargarEntidades();
 	}
@@ -188,9 +190,9 @@ public class Mapa  extends JFrame implements IObservador{
 				entidad.getImagen().getIconHeight());
 		etiquetaDeEntidad.setIcon(entidad.getImagen());
 
-		
+
 		mapeoEntidades.put(entidad,etiquetaDeEntidad);
-		
+
 		panelFondo.add(etiquetaDeEntidad);
 		//getContentPane().add(lblFondo);
 		//getContentPane().add(panelFondo);
@@ -249,7 +251,7 @@ public class Mapa  extends JFrame implements IObservador{
 		}
 		public void setImagenDeFondo(ImageIcon imagen) {
 			this.imagen = imagen.getImage();
-			
+
 		}
 
 	}
@@ -264,15 +266,19 @@ public class Mapa  extends JFrame implements IObservador{
 	} 
 
 
-    //cambia la barrra de energia
+	//cambia la barra de energia
 	@Override
 	public void updateEnergiaJugador() {
-		progressBar.setValue(juego.getJugador().getEnergia());
-	
-		if(juego.getJugador().estaInfectado()) {
-			JLabel lblJugador = mapeoEntidades.get(juego.getJugador());
-			lblJugador.setIcon(ColeccionDeImagenes.getColeccionDeImagenes().getImagen("Jugador_muerto"));
-			juego.getJugador().congelar();
+		Jugador jugador = juego.getJugador();
+		progressBar.setValue(jugador.getCargaViral());
+
+		if(jugador.estaInfectado()) {
+			JLabel lblJugador = new JLabel("");
+			ImageIcon jugadorMuerto = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("Jugador_muerto");
+			lblJugador.setBounds(jugador.getPosicion().x, jugador.getPosicion().y, jugadorMuerto.getIconWidth(), jugadorMuerto.getIconHeight());
+			lblJugador.setIcon(jugadorMuerto);
+			panelFondo.add(lblJugador);
+			panelFondo.repaint();
 		}
 	}
 
@@ -284,6 +290,6 @@ public class Mapa  extends JFrame implements IObservador{
 		panelFondo.repaint();
 		lblMapaDerecha.setIcon(der);
 		lblMapaIzquierda.setIcon(izq);
-		
+
 	}
 }
