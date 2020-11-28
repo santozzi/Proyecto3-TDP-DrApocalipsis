@@ -42,7 +42,7 @@ public class ColeccionDeImagenes extends Imagenes{
 		
 		agregarRuta("Jugador_caminarIzquierda", "/img/Jugador_caminarIzquierda.gif", 70, 60);
 		
-		agregarRuta("nivel1", "/img/calle_desierto.png", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
+		agregarRuta("nivel1", "/img/calle_desierto_reDimensionada.png", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
 		
 		agregarRuta("nivel2", "/img/calle.jpg", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
 		
@@ -94,9 +94,11 @@ public class ColeccionDeImagenes extends Imagenes{
 		
 		agregarRuta("InfectadoBeta","/img/infectadoBeta_caminar.gif", 40, 60);
 		
-		agregarRuta("Jugador_noqueado", "/img/personaje_noqueado.png", 70, 80);
+		agregarRuta("Jugador_noqueado", "/img/personaje_noqueado.png", 80, 80);
 		
-		agregarRuta("Jugador_muerto", "/img/personaje_muerto.png", 80, 80);
+		agregarRuta("Jugador_muerto", "/img/personaje_muerto.png", 80, 85);
+		
+		agregarRuta("gameOver", "/img/game_over.png", Juego.DECORADO_IZQUIERDO+Juego.ANCHO_DE_COMBATE+Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
 
 	}
 	

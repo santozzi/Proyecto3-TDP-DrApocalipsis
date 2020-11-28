@@ -275,10 +275,18 @@ public class Mapa  extends JFrame implements IObservador{
 		if(jugador.estaInfectado()) {
 			JLabel lblJugador = new JLabel("");
 			ImageIcon jugadorMuerto = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("Jugador_muerto");
-			lblJugador.setBounds(jugador.getPosicion().x, jugador.getPosicion().y, jugadorMuerto.getIconWidth(), jugadorMuerto.getIconHeight());
+			lblJugador.setBounds(jugador.getPosicion().x, jugador.getPosicion().y-5, jugadorMuerto.getIconWidth(), jugadorMuerto.getIconHeight());
 			lblJugador.setIcon(jugadorMuerto);
 			panelFondo.add(lblJugador);
+			
+			JLabel lblGameOver = new JLabel("");
+			ImageIcon gameOver = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("gameOver");
+			lblGameOver.setBounds(0, 0, gameOver.getIconWidth(), gameOver.getIconHeight());
+			getContentPane().add(lblGameOver);
+			lblMapaIzquierda.repaint();
 			panelFondo.repaint();
+			lblMapaDerecha.repaint();
+			
 		}
 	}
 

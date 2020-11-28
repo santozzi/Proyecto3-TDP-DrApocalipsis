@@ -22,14 +22,14 @@ public class Jugador extends Personaje{
 	public Jugador(Juego juego) {
 		super(juego);
 		arma = new ArmaSanitaria(juego);
-		this.cargaViral = 100;
+		this.cargaViral = 1;
 		this.juego= juego;
 		this.vector = new Vector(1,0,3);
-		this.vector.getPosicion().x=225;
-		this.vector.getPosicion().y=550;
 		this.claveImagen = arma.getClaveImagen();
-		tiempoDeEspera = 1000;
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
+		this.vector.getPosicion().x=(Juego.ANCHO_DE_COMBATE-imagen.getIconWidth())/2;
+		this.vector.getPosicion().y=Juego.ALTO_DE_COMBATE-imagen.getIconHeight()-20;
+		tiempoDeEspera = 1000;
 
 		v = new VisitanteJugador(this);
 
