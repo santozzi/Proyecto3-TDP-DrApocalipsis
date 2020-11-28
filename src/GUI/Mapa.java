@@ -269,7 +269,11 @@ public class Mapa  extends JFrame implements IObservador{
 	public void updateEnergiaJugador() {
 		progressBar.setValue(juego.getJugador().getEnergia());
 	
-
+		if(juego.getJugador().estaInfectado()) {
+			JLabel lblJugador = mapeoEntidades.get(juego.getJugador());
+			lblJugador.setIcon(ColeccionDeImagenes.getColeccionDeImagenes().getImagen("Jugador_muerto"));
+			juego.getJugador().congelar();
+		}
 	}
 
 

@@ -41,4 +41,3 @@ public abstract class Visitor
 	abstract public void visitarInfectadoBossAlpha(InfectadoBossAlpha ifboss);	
 	abstract public void visitarInfectadoBossBeta(InfectadoBossBeta ifboss);
 }
-

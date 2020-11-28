@@ -3,7 +3,6 @@ package entidades;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
-import visitor.VisitanteCuadroDeDialogo;
 import visitor.Visitor;
 
 public class CuadroDeDialogo extends Entidad {
@@ -11,12 +10,10 @@ public class CuadroDeDialogo extends Entidad {
 	public CuadroDeDialogo(Juego j) {
 		super(j);
 		
-		
-		
 		this.claveImagen = new String("dialogo");
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		vector = new Vector(0, 1, 1);
-		this.v = new VisitanteCuadroDeDialogo(this);
+		//this.v = new VisitanteCuadroDeDialogo(this);
 	}
 	
 	@Override

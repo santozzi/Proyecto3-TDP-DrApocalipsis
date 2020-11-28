@@ -47,4 +47,8 @@ public class Nivel2InfectadosBeta extends FabricaDeTandas {
 			//entidades.add(nuevoInfectado);
 		}
 	}
+
+	@Override
+	public void elJefe() {		
+	}
 }

@@ -18,13 +18,15 @@ import visitor.Visitor;
 public class Jugador extends Personaje{
 
 	protected Arma arma;
+	protected int velocidad;
 
 	public Jugador(Juego juego) {
 		super(juego);
 		arma = new ArmaSanitaria(juego);
 		this.cargaViral = 100;
 		this.juego= juego;
-		this.vector = new Vector(1,0,3);
+		this.velocidad = 3;
+		this.vector = new Vector(1,0,velocidad);
 		this.vector.getPosicion().x=225;
 		this.vector.getPosicion().y=550;
 		//this.claveImagen = new String("Jugador_dispara");
@@ -137,5 +139,12 @@ public class Jugador extends Personaje{
 	}
 	public void cambiarArma(Arma arma) {
 		this.arma= arma;
+	}
+
+	public void congelar() {
+		this.vector.setModulo(0);
+	}
+	public void desCongelar() {
+		this.vector.setModulo(this.velocidad);
 	}
 }

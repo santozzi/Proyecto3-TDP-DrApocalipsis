@@ -26,11 +26,11 @@ public abstract class Nivel {
 	
 	abstract public List<Entidad> primeraTanda();
 	abstract public List<Entidad> segundaTanda();
-	abstract public void crearTanda();
+	public void crearTanda() {}
 	public CompositeInfectado getColeccionDeInfectados() {
 		return this.compInf;
 	}
-	public List<Entidad> elJefe(){return null;}
+	abstract public List<Entidad> elJefe();
 	public String getClaveIzq() {
 		return claveIzq;
 	}

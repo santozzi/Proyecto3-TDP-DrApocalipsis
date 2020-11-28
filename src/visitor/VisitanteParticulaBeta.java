@@ -20,8 +20,8 @@ public class VisitanteParticulaBeta extends Visitante {
 	
 	private ParticulaBeta particulaBeta;
 	
-	public VisitanteParticulaBeta(ParticulaBeta pb) {
-		this.particulaBeta = pb;
+	public VisitanteParticulaBeta(ParticulaBeta particulaBeta2) {
+		this.particulaBeta = particulaBeta2;
 	}
 
 	@Override

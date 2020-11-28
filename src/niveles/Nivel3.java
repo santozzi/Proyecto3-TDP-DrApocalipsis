@@ -26,4 +26,10 @@ public class Nivel3 extends Nivel {
 		return null;
 	}
 
+	@Override
+	public List<Entidad> elJefe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

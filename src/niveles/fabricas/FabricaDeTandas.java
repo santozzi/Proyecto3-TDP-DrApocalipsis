@@ -1,9 +1,5 @@
 package niveles.fabricas;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import entidades.Entidad;
 import logica.Juego;
 import niveles.Nivel;
 
@@ -16,9 +12,6 @@ public abstract class FabricaDeTandas {
 	protected Nivel nivel;
 	
 	abstract public void primeraTanda();
-	public List<Entidad> pTanda() {return null;}
 	abstract public void segundaTanda();
-	public void  elJefe() {};
-	//abstract public void generar();
-
+	abstract public void  elJefe();
 }
