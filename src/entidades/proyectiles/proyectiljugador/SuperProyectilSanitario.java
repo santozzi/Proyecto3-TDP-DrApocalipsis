@@ -1,6 +1,5 @@
 package entidades.proyectiles.proyectiljugador;
 
-import entidades.proyectiles.Proyectil;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteSuperProyectilSanitario;

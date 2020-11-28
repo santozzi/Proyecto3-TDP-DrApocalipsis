@@ -49,6 +49,7 @@ public class Nivel2InfectadosBeta extends FabricaDeTandas {
 	}
 
 	@Override
-	public void elJefe() {		
+	public void elJefe() {
+		// TODO Auto-generated method stub
 	}
 }

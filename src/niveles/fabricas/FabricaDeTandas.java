@@ -14,4 +14,5 @@ public abstract class FabricaDeTandas {
 	abstract public void primeraTanda();
 	abstract public void segundaTanda();
 	abstract public void  elJefe();
+	//abstract public void generar();
 }
