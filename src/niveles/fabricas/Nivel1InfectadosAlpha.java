@@ -112,7 +112,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 		List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
 		InfectadoBoss jefe = new InfectadoBossAlpha(juego);
 		jefe.setPosicion(200, 200);
-		jefe.getVector().setModulo(3);
+		jefe.getVector().setModulo(8);
 		
 		compositeInfectados.add(jefe);
 		

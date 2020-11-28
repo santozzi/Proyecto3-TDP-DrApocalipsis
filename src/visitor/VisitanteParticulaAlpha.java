@@ -36,6 +36,10 @@ public class VisitanteParticulaAlpha extends Visitante {
 	@Override
 	public void visitarJugador(Jugador j) {
 		j.impacto(particulaAlpha.getLetalidad());
+		particulaAlpha.detenerse();
+		particulaAlpha.desaparecer();
+		
+		
 	
 		
 	}

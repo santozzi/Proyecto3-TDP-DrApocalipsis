@@ -47,7 +47,6 @@ abstract public class  Entidad {
 	}
 	
 	public Point getPosicion() {
-		System.out.println(this+" vector "+this.vector);
 		return this.vector.getPosicion();
 	}
 	public void setPosicion(int x, int y) {
@@ -76,7 +75,7 @@ abstract public class  Entidad {
 		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
 
 		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
-		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()==posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
+		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()>=posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
 
 
 		return colisionEnX &&colisionEnY;

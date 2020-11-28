@@ -32,7 +32,7 @@ public abstract class Particula extends Proyectil{
 	}
 
 
-	private void reiniciarParticula() {
+	public void reiniciarParticula() {
 		rangoParticula=0;
 		vector.getPosicion().x = infectado.getVector().getPosicion().x+
 				(infectado.getImagen().getIconWidth()/4);
