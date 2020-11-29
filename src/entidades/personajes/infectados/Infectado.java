@@ -225,5 +225,5 @@ public abstract class Infectado extends Personaje {
 	public void setLetalidadFisica(int letalidadFisica) {
 		this.letalidadFisica = letalidadFisica;
 	}
-	
+	abstract public Infectado clone();
 }

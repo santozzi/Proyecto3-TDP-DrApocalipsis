@@ -23,7 +23,6 @@ public abstract class Particula extends Proyectil{
 	public void desplazarse() {
 
 		if(rangoParticula==infectado.getRango()) {
-			System.out.println(vector.getModulo());
 			detenerse();
 			desaparecer();	
 			
@@ -32,6 +31,8 @@ public abstract class Particula extends Proyectil{
 		}
 		accionar();  
 		vector.desplazarse();
+		if(vector.getPosicion().y>=Juego.ALTO_DE_COMBATE)
+			desaparecer();
 		juego.actualizarEntidad(this);
 	}
 

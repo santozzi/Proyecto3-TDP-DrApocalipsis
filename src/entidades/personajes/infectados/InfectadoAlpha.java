@@ -63,6 +63,12 @@ public class InfectadoAlpha extends Infectado{
     	this.particula= new ParticulaAlpha(juego,this);
     }
 
+	@Override
+	public InfectadoAlpha clone() {
+		// TODO Auto-generated method stub
+		return new InfectadoAlpha(juego);
+	}
+
 	
 
 	

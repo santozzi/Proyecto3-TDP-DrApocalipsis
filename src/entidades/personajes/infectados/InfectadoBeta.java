@@ -29,4 +29,9 @@ public class InfectadoBeta extends Infectado {
 	public void tirarParticula() {
     	this.particula= new ParticulaBeta(juego,this);
     }
+	@Override
+	public InfectadoBeta clone() {
+		// TODO Auto-generated method stub
+		return new InfectadoBeta(juego);
+	}
 }

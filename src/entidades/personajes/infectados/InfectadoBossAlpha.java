@@ -24,7 +24,7 @@ public class InfectadoBossAlpha extends InfectadoBoss {
 		this.puntos = 1500;
 		this.cargaViral=750;
 		this.letalidadFisica=10;
-	
+	    this.getVector().setModulo(8);
 		this.claveImagen = new String("InfectadoBossAlpha");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoBossAlpha(this);
@@ -34,6 +34,12 @@ public class InfectadoBossAlpha extends InfectadoBoss {
 	@Override
 	public void accept(Visitor v) {
 	   	v.visitarInfectadoBossAlpha(this);
+	}
+
+	@Override
+	public InfectadoBossAlpha clone() {
+		// TODO Auto-generated method stub
+		return new InfectadoBossAlpha(juego);
 	}
 
 

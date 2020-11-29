@@ -41,9 +41,11 @@ abstract public class InfectadoBoss extends Infectado {
 	}
 
     private void cambioDeDireccion() {
-    	Random ranDir = new Random();
-    	int direccionX = ranDir.nextInt(2)-1;
-    	int direccionY = ranDir.nextInt(2)-1;
+    	int direccionX = ran.nextInt(2)-1;
+    	int direccionY = ran.nextInt(2)-1;
+    	if(vector.getPosicion().y<=0)
+    		vector.getDireccion().setLocation(0, 1);
+    	else {
     	if(contarTiempoDeDireccion>=tiempoDeDireccion) {
     		vector.getDireccion().setLocation(direccionX, direccionY);
     		contarTiempoDeDireccion=0;
@@ -55,6 +57,7 @@ abstract public class InfectadoBoss extends Infectado {
     				||vector.getPosicion().y<=0) {
     			vector.cambioDeSentido();
     		}
+    	}
     	}
     }
 	public void actuar() {
