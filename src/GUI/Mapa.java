@@ -155,6 +155,14 @@ public class Mapa  extends JFrame implements IObservador{
 		lblScore.setForeground(Color.GREEN);
 		lblScore.setBounds(309, 11, 133, 21);
 		panelAbajo.add(lblScore);
+        
+        
+        JLabel lblScore_1 = new JLabel();
+        lblScore_1.setText("PTS.");
+        lblScore_1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblScore_1.setForeground(Color.GREEN);
+        lblScore_1.setBounds(270, 11, 31, 21);
+        panelAbajo.add(lblScore_1);
         panelAbajo.add(lblPanelScore);
 		juego.agregarObservador(this);
 		juego.cargarJugador();
