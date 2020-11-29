@@ -3,11 +3,13 @@ package entidades.premios;
 import entidades.Entidad;
 import logica.HiloSecundario;
 import logica.Juego;
+import logica.Vector;
 
 public abstract class Premio extends Entidad {
    abstract public void ejecutar() ;
    public Premio (Juego juego) {
 	   super(juego);
+	   vector = new Vector(0,1,1);
    }
    @Override
    public void desplazarse() {

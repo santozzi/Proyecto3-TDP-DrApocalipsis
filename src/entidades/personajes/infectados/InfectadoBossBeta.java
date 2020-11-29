@@ -1,14 +1,7 @@
 package entidades.personajes.infectados;
 
-import java.util.Random;
-
-import entidades.proyectiles.particulas.ParticulaAlpha;
-import entidades.proyectiles.particulas.ParticulaBeta;
 import logica.ColeccionDeImagenes;
-import logica.HiloSecundario;
 import logica.Juego;
-import visitor.VisitanteInfectadoBeta;
-import visitor.VisitanteInfectadoBossAlpha;
 import visitor.VisitanteInfectadoBossBeta;
 import visitor.Visitor;
 
@@ -39,7 +32,6 @@ public class InfectadoBossBeta extends InfectadoBoss {
 
 	@Override
 	public InfectadoBossBeta clone() {
-		// TODO Auto-generated method stub
 		return new InfectadoBossBeta(juego);
 	}
 

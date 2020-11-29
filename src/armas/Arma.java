@@ -1,11 +1,9 @@
 package armas;
+
 import entidades.proyectiles.*;
 import logica.Juego;
 
 import javax.swing.ImageIcon;
-
-import entidades.Entidad;
-import entidades.personajes.jugador.Jugador;
 
 public abstract class Arma{
 	protected Proyectil proyectil;
@@ -25,7 +23,6 @@ public abstract class Arma{
 	abstract public void disparar();
 
 	public ImageIcon getImagen() {
-		// TODO Auto-generated method stub
 		return imagen;
 	}
 	public String getClaveImagen() {

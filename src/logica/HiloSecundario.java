@@ -16,71 +16,50 @@ public class HiloSecundario extends Thread{
 	protected Juego juego;
 	public static final int LATENCIA_MAXIMA = 10;
 	private static HiloSecundario hiloSecundario;
-	private boolean correr;
-	
-	//Singleton
-	public static HiloSecundario getHiloSecundario(Juego juego) {
-		if(hiloSecundario == null)
-			hiloSecundario = new HiloSecundario(juego);
-		
-		return hiloSecundario;
-	}
-	
-	private HiloSecundario(Juego juego) {
+
+	public HiloSecundario(Juego juego) {
 		this.juego = juego;
 		colaParaAgregar = new ConcurrentLinkedQueue<Entidad>();
 		colaParaQuitar = new ConcurrentLinkedQueue<Entidad>();
 		listaParaRecorrer = new LinkedList<Entidad>();
-		this.correr = true;
-	}
-	public void terminarEjecucion() {
-		this.correr = false;
-		hiloSecundario = null;
 	}
 
 	@Override
 	public void run() {
 		Iterator<Entidad> itListaParaRecorrer;
 		Entidad entidadParaAccionar;
-		while(correr) {
-			
-			
+		while(true) {
 
 			juego.notificarObservadores();
 			esperar(5);
 			itListaParaRecorrer = listaParaRecorrer.iterator();
 			while(itListaParaRecorrer.hasNext()) {
 				entidadParaAccionar = itListaParaRecorrer.next();
-				
+
 				actualizarLimiteVirtual(entidadParaAccionar);
-				
-				
-				
-				
-				
-				
+
 				entidadParaAccionar.actuar();
 			}
 			agregarYQuitarEntidades();
 		}
 	}
-	
-    private void actualizarLimiteVirtual(Entidad entidad) {
-    	
-    	
-    	Point limite = juego.getLimite(); 
-    	if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
+
+	private void actualizarLimiteVirtual(Entidad entidad) {
+
+		Point limite = juego.getLimite();
+		Point posEntidad = entidad.getVector().getPosicion();
+
+		if(posEntidad.y<limite.y && posEntidad.y<0) {
+
 			if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
-				limite.y = limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
+				limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
 				limite.x = 0;
 			}else {
-				limite.y = limite.y = entidad.getVector().getPosicion().y;
+				limite.y = posEntidad.y;
 				limite.x += entidad.getImagen().getIconWidth();
 			}
-    	}
-    	
-    	
-    }
+		}
+	}
 	private void esperar(int segundos) {
 		try {Thread.sleep(segundos);} catch (InterruptedException e) {e.getMessage();}
 	}

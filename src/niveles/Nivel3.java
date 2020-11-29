@@ -4,7 +4,6 @@ import java.util.List;
 
 import entidades.Entidad;
 import niveles.fabricas.FabricaDeTandas;
-import niveles.fabricas.Nivel2InfectadosBeta;
 import niveles.fabricas.Nivel3InfectadosMixto;
 
 public class Nivel3 extends Nivel {

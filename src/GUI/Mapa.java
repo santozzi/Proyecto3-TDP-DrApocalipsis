@@ -3,12 +3,9 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +25,6 @@ import entidades.personajes.jugador.comandos.Detenerse;
 import entidades.personajes.jugador.comandos.Disparar;
 import entidades.personajes.jugador.comandos.IComando;
 import entidades.personajes.jugador.controles.Teclado;
-import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import observador.IObservador;
@@ -59,15 +55,11 @@ public class Mapa  extends JFrame implements IObservador{
 		getContentPane().setLayout(null);
 		setResizable(false);
 
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-
 		//panelDeEntidades = new JPanel();
 
 		mapeoEntidades = new HashMap<Entidad, JLabel>();
 
-
-
+		
 		ap = new AudioPlayer("/audio/Digadig.mp3");
 		audio = new Thread(ap);
 		//audio.start();
@@ -75,6 +67,9 @@ public class Mapa  extends JFrame implements IObservador{
 		setTitle("Dr. Apocalipsis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20, Juego.ALTO_DE_COMBATE + 80);
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
 
 		//ImageIcon imagendDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("nivel1");
 
@@ -205,7 +200,7 @@ public class Mapa  extends JFrame implements IObservador{
 		if(lblEntidad!=null) {
 			// esto es para que el infectado re aparezca por arriba una vez que salio del mapa
 			// hay que tener en cuenta que hacer con los premios
-			actualizarLimiteVirtual(entidad);
+			//actualizarLimiteVirtual(entidad);
 			lblEntidad.setIcon(entidad.getImagen());
 
 			lblEntidad.setBounds(
