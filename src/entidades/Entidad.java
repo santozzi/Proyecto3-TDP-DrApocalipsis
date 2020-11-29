@@ -8,7 +8,6 @@ import java.util.List;
 import javax.swing.ImageIcon;
 
 import entidades.personajes.jugador.Jugador;
-import logica.ColeccionDeImagenes;
 import logica.Juego;
 import logica.Vector;
 import visitor.Visitante;

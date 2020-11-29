@@ -3,7 +3,6 @@ package entidades.premios.temporales;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import logica.Vector;
-import entidades.Entidad;
 import visitor.VisitanteCuarentena;
 import visitor.Visitor;
 

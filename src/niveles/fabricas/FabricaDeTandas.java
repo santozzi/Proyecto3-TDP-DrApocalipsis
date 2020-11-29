@@ -19,7 +19,7 @@ public abstract class FabricaDeTandas {
 	protected int altoInfectado ;
 	protected Nivel nivel;
 	
-	List<Point> posiciones;
+	protected List<Point> posiciones;
 	
 	
 	public FabricaDeTandas(Juego j, Nivel nivel, int cantInfectados) {
@@ -37,7 +37,6 @@ public abstract class FabricaDeTandas {
 			Random random = new Random();
 			posiciones = new LinkedList<Point>();
 			List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
-			int randomInt;
 
 			for(int i=0 ; i<cantidadInfectados ; i++) {
              	nuevoInfectado =tipoInfectado.clone();
@@ -58,13 +57,13 @@ public abstract class FabricaDeTandas {
 					juego.getLimite().y = posicion.y - nuevoInfectado.getImagen().getIconHeight();
 				
 				nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
-				nuevoInfectado.getVector().setModulo(3);
+				nuevoInfectado.getVector().setModulo(9);
 				compositeInfectados.add(nuevoInfectado);
 			}
 		}
 		
 	
-	protected Point asignarPosicion(List<Point> posiciones, int anchoInfectado, int altoInfectado, int x, int y, Random random) {
+	private Point asignarPosicion(List<Point> posiciones, int anchoInfectado, int altoInfectado, int x, int y, Random random) {
 		Iterator<Point> itPosiciones;
 		Point aRetornar;
 		Point elem;

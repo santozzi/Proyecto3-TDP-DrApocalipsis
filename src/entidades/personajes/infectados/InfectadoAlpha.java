@@ -1,16 +1,8 @@
 package entidades.personajes.infectados;
 
-import java.awt.Point;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
-import entidades.Entidad;
 import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
-import logica.HiloSecundario;
 import logica.Juego;
-import logica.Vector;
 import visitor.*;
 import visitor.Visitor;
 
@@ -65,7 +57,6 @@ public class InfectadoAlpha extends Infectado{
 
 	@Override
 	public InfectadoAlpha clone() {
-		// TODO Auto-generated method stub
 		return new InfectadoAlpha(juego);
 	}
 
