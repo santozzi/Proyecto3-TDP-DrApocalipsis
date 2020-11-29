@@ -375,7 +375,15 @@ public class Mapa  extends JFrame implements IObservador{
 		dispose();
 		
 	}
+	
+	
 	public void reiniciarJuego() {
 		iniciar();
+	}
+
+	@Override
+	public void cerrar() {
+		dispose();
+		
 	}
 }

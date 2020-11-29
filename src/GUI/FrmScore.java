@@ -226,7 +226,11 @@ public class FrmScore extends JFrame implements IObservador{
 		JButton btnReinicio_1 = new JButton("Volver a jugar");
 		btnReinicio_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				obs.iniciar();
+				obs.cerrar();
+				Mapa mapa = new Mapa();
+				mapa.setVisible(true);
+				dispose();
+				
 			}
 		});
 		btnReinicio_1.setBounds(500, 588, 128, 23);
@@ -304,5 +308,10 @@ public class FrmScore extends JFrame implements IObservador{
 	public void iniciar() {
 		setVisible(true);
 
+	}
+
+	@Override
+	public void cerrar() {
+           dispose();		
 	}
 }

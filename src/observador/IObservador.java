@@ -23,6 +23,7 @@ public interface IObservador {
    public void updateScore(int score);
    public void updateEstedistica(Collection<Item> datos);
    public void iniciar();
+   public void cerrar() ;
    
    
 }
