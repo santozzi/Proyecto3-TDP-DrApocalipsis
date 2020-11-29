@@ -30,7 +30,7 @@ public abstract class FabricaDeTandas {
 	}
 
 	
-	protected void crearTanda(int cantidadInfectados, Infectado tipoInfectado) {
+	protected void crearTanda(int cantidadInfectados, Infectado tipoInfectado,int modulo ) {
 
 			Point posicion;
 			Infectado nuevoInfectado = null;//new InfectadoAlpha(this.juego);
@@ -58,7 +58,7 @@ public abstract class FabricaDeTandas {
 					juego.getLimite().y = posicion.y - nuevoInfectado.getImagen().getIconHeight();
 				
 				nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
-				nuevoInfectado.getVector().setModulo(3);
+				nuevoInfectado.getVector().setModulo(modulo);
 				compositeInfectados.add(nuevoInfectado);
 			}
 		}

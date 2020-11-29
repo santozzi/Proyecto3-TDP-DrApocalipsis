@@ -136,8 +136,9 @@ public class Juego implements IObservado {
 		score.agregarItem(clave, puntos);
 	}
 	public void cuarentena() {
+		if(nivel!=null) {
 		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
-		if(listaDeInfectados!=null) {
+		
 			for(Entidad entidad : listaDeInfectados)
 				entidad.cambiarEstadoTemporal();
 		}

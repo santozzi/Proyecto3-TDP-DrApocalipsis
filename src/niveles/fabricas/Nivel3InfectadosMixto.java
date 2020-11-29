@@ -18,22 +18,22 @@ public class Nivel3InfectadosMixto extends FabricaDeTandas {
 
 	@Override
 	public void primeraTanda() {
-		crearTanda(cantidadInfectados, new InfectadoAlpha(juego));
-		crearTanda(cantidadInfectados, new InfectadoBeta(juego));
+		crearTanda(cantidadInfectados, new InfectadoAlpha(juego),4);
+		crearTanda(cantidadInfectados, new InfectadoBeta(juego),5);
 	}
 
 	@Override
 	public void segundaTanda() {
-		crearTanda(cantidadInfectados, new InfectadoAlpha(juego));
-		crearTanda(cantidadInfectados, new InfectadoBeta(juego));
-		crearTanda(1,new InfectadoBossAlpha(juego));
+		crearTanda(cantidadInfectados, new InfectadoAlpha(juego),4);
+		crearTanda(cantidadInfectados, new InfectadoBeta(juego),5);
+		crearTanda(1,new InfectadoBossAlpha(juego),9);
 		
 	}
 
 	@Override
 	public void elJefe() {
-		crearTanda(1,new InfectadoBossAlpha(juego));
-		crearTanda(1,new InfectadoBossBeta(juego));
+		crearTanda(1,new InfectadoBossAlpha(juego),9);
+		crearTanda(1,new InfectadoBossBeta(juego),9);
 		
 	}
 }
