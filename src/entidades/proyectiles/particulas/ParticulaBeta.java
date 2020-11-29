@@ -21,4 +21,10 @@ public class ParticulaBeta extends Particula{
 		
 	}
 
+	@Override
+	public void impacto(int letalidad) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

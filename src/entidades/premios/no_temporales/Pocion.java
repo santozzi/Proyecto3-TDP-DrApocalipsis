@@ -1,13 +1,13 @@
 package entidades.premios.no_temporales;
 
-import entidades.Vector;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import logica.Vector;
 import entidades.Entidad;
 import visitor.VisitantePocion;
 import visitor.Visitor;
 
-public class Pocion extends NoTemporal {
+public class Pocion extends ObjetoPrecioso {
     public Pocion(Juego juego) {
     	super(juego);
     	v= new VisitantePocion(this);
@@ -23,6 +23,11 @@ public class Pocion extends NoTemporal {
 	@Override
 	public void accept(Visitor v) {
 		v.visitarPocion(this);
+		
+	}
+	@Override
+	public void impacto(int letalidad) {
+		// TODO Auto-generated method stub
 		
 	}
 	

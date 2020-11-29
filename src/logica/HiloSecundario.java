@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.Point;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,17 +44,43 @@ public class HiloSecundario extends Thread{
 		Entidad entidadParaAccionar;
 		while(correr) {
 			
+			
+
 			juego.notificarObservadores();
 			esperar(5);
 			itListaParaRecorrer = listaParaRecorrer.iterator();
 			while(itListaParaRecorrer.hasNext()) {
 				entidadParaAccionar = itListaParaRecorrer.next();
+				
+				actualizarLimiteVirtual(entidadParaAccionar);
+				
+				
+				
+				
+				
+				
 				entidadParaAccionar.actuar();
 			}
 			agregarYQuitarEntidades();
 		}
 	}
-
+	
+    private void actualizarLimiteVirtual(Entidad entidad) {
+    	
+    	
+    	Point limite = juego.getLimite(); 
+    	if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
+			if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
+				limite.y = limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
+				limite.x = 0;
+			}else {
+				limite.y = limite.y = entidad.getVector().getPosicion().y;
+				limite.x += entidad.getImagen().getIconWidth();
+			}
+    	}
+    	
+    	
+    }
 	private void esperar(int segundos) {
 		try {Thread.sleep(segundos);} catch (InterruptedException e) {e.getMessage();}
 	}

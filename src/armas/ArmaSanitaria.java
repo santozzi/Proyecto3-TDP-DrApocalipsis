@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import entidades.Entidad;
-import entidades.Vector;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import logica.Vector;
 import visitor.VisitanteJugador;
 import visitor.Visitor;
 

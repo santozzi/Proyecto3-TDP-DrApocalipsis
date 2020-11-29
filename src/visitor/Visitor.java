@@ -1,5 +1,6 @@
 package visitor;
 
+import entidades.CuadroDeDialogo;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
@@ -40,4 +41,5 @@ public abstract class Visitor
 	abstract public void visitarSuperArma(SuperArma sarm);
 	abstract public void visitarInfectadoBossAlpha(InfectadoBossAlpha ifboss);	
 	abstract public void visitarInfectadoBossBeta(InfectadoBossBeta ifboss);
+	abstract public void visitarCuadroDeDialogo(CuadroDeDialogo cd);
 }

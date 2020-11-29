@@ -25,6 +25,11 @@ public class SuperProyectilSanitario extends ProyectilJugador {
 		v.visitarSuperProyectilSanitario(this);
 		
 	}
+	@Override
+	public void impacto(int letalidad) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

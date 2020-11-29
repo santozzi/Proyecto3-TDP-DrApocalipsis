@@ -1,5 +1,6 @@
 package visitor;
 
+import entidades.CuadroDeDialogo;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
@@ -112,6 +113,12 @@ public class VisitanteSuperProyectilSanitario extends Visitante {
 		 ifboss.impacto(superProyectilSanitario.getLetalidad());
 			superProyectilSanitario.detenerse();
 			superProyectilSanitario.desaparecer();
+		
+	}
+
+	@Override
+	public void visitarCuadroDeDialogo(CuadroDeDialogo cd) {
+		// TODO Auto-generated method stub
 		
 	}
 

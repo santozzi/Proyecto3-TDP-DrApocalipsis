@@ -24,6 +24,7 @@ public class InfectadoBossBeta extends InfectadoBoss {
 		super(juego);
 		this.puntos = 2000;
 		this.cargaViral=1000;
+		this.letalidadFisica=15;
 		this.claveImagen = new String("InfectadoBossBeta");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoBossBeta(this);

@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import entidades.personajes.jugador.Jugador;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import logica.Vector;
 import visitor.Visitante;
 import visitor.Visitor;
 
@@ -125,7 +126,7 @@ abstract public class  Entidad {
 		}
 		return listaDeColisiones;
 	}  
-
+    abstract public void impacto(int letalidad);
 
 	public void accionar() {
 		for(Entidad ent : detectarColisiones()) {

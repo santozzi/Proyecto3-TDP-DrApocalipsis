@@ -1,44 +1,41 @@
 package entidades.personajes.infectados;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-
-import javax.swing.ImageIcon;
-
 import entidades.Entidad;
-import entidades.Vector;
 import entidades.personajes.Humano;
 import entidades.personajes.Personaje;
-import entidades.premios.Premio;
-import entidades.premios.no_temporales.Pocion;
-import entidades.premios.temporales.Cuarentena;
-import entidades.premios.temporales.SuperArma;
 import entidades.proyectiles.particulas.Particula;
-import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
-import visitor.VisitanteInfectadoAlpha;
-import visitor.Visitor;
+import logica.Vector;
 
 public abstract class Infectado extends Personaje {
-
+	   protected int tiempoDeParticula;
+       protected int contarTiempoDeParticula;
+       protected int tiempoDeAtaque;
+       protected int contarTiempoDeAtaque;
+       protected boolean atacar;
+       
 	protected Particula particula;
 	protected int rango;
 	protected int puntos;
+	protected int letalidadFisica;
+	protected Entidad entidad;
+	
 
 	public Infectado(Juego juego) {
 		super(juego);
-		this.vector = new Vector(0,1,6);
+		this.vector = new Vector(0,1,4);
 		this.tiempoDeEspera = 1000;
-		this.rango = 100;
-		this.cargaViral = 100;
-
-		tirarParticula();
+		this.rango = 150;
+		this.cargaViral = 150;
+		tiempoDeParticula=300;
+		contarTiempoDeParticula=0;
+		tiempoDeAtaque=300;
+		contarTiempoDeAtaque=0;
+		this.letalidadFisica=5;
+		atacar= false;
+		entidad = null;
 	}
 
 
@@ -53,21 +50,18 @@ public abstract class Infectado extends Personaje {
 	public boolean estaCurado() {
 		return cargaViral<=0;
 	}
+/*
 
-	/**
-	 * atacar
-	 * ------
-	 * Genera daño a lo que tenga adelante.
-	 */
 	public void atacar() {
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("infectado_atacar");
 
 		v.visitarJugador(juego.getJugador());
 	}
+*/
 
-
-	public void tirarParticula() {
-	}
+	abstract public void tirarParticula();
+	
+	
 	@Override
 	public void setPosicion(int x, int y) {
 		vector.getPosicion().x= x;
@@ -97,7 +91,8 @@ public abstract class Infectado extends Personaje {
 
 
 		juego.agregarAEntidadesParaAgregar(humano);
-		particula.desaparecer();
+		if(particula!=null)
+		   particula.desaparecer();
 		this.desaparecer();
 
 	}
@@ -105,7 +100,7 @@ public abstract class Infectado extends Personaje {
 	public int getRango() {
 		return rango;
 	}
-
+/*
 	public List<Entidad> detectarColisiones() {
 		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
 		List<Entidad> listaDeLatencia = juego.getLista();
@@ -137,9 +132,18 @@ public abstract class Infectado extends Personaje {
 		return listaDeColisiones;
 	}  
 
+*/
 
-
-	
+    protected void intervaloDeTirarParticula() {
+    
+    	if(contarTiempoDeParticula>=tiempoDeParticula) {
+    		tirarParticula();
+    		contarTiempoDeParticula=0;
+    	}else {
+    		contarTiempoDeParticula++;
+    	
+    	}
+    }
 	@Override
 	public void actuar() {
 
@@ -163,10 +167,17 @@ public abstract class Infectado extends Personaje {
 				accionar();
 				latencia= 1;
 				estadoTemporal= false;
+				
 			}else {
 				latencia++;
 			}
 		}
+		intervaloDeTirarParticula();
+		if(entidad!=null&&atacar)
+		 intervaloDeAtaque();
+	
+		
+		
 	}
 	public void accionar() {
 		for(Entidad ent : detectarColisiones()) {
@@ -185,4 +196,34 @@ public abstract class Infectado extends Personaje {
 		//pregunatar cuando se choca con el limite del mapa
 
 	}
+
+	
+    private void intervaloDeAtaque() {
+        
+    	if(contarTiempoDeAtaque>=tiempoDeAtaque) {
+    		 entidad.impacto(letalidadFisica);
+    		contarTiempoDeAtaque=0;
+    	}else {
+    		contarTiempoDeAtaque++;
+    	
+    	}
+    	this.atacar = false;
+    	entidad= null;
+    }
+    public void atacar(Entidad ent) {
+    	this.atacar=true;
+    	this.entidad= ent;
+    	
+    }
+
+	public int getLetalidadFisica() {
+		return letalidadFisica;
+	}
+
+
+
+	public void setLetalidadFisica(int letalidadFisica) {
+		this.letalidadFisica = letalidadFisica;
+	}
+	
 }

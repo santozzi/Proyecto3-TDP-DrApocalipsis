@@ -1,4 +1,4 @@
-package entidades;
+package logica;
 
 import java.awt.Point;
 

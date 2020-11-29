@@ -1,9 +1,9 @@
 package entidades.proyectiles;
 
 import entidades.Entidad;
-import entidades.Vector;
 import logica.HiloSecundario;
 import logica.Juego;
+import logica.Vector;
 
 public abstract class Proyectil extends Entidad {
 	protected int letalidad;

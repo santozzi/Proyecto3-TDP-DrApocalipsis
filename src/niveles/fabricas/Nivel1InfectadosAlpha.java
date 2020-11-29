@@ -61,7 +61,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 			nuevoInfectado.tirarParticula();
 			 */
 			nuevoInfectado.setPosicion(posicion.x, - posicion.y - nuevoInfectado.getImagen().getIconHeight());
-			nuevoInfectado.getVector().setModulo(9);
+			nuevoInfectado.getVector().setModulo(5);
 			//nuevoInfectado.getVector().cambioDeSentido();
 			compositeInfectados.add(nuevoInfectado);
 		}

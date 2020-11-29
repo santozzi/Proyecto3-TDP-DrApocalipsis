@@ -5,7 +5,6 @@ import java.util.Random;
 
 import entidades.CuadroDeDialogo;
 import entidades.Entidad;
-import entidades.Vector;
 import entidades.personajes.infectados.Infectado;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.premios.Premio;
@@ -15,6 +14,7 @@ import entidades.premios.temporales.SuperArma;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
+import logica.Vector;
 import visitor.VisitanteHumano;
 import visitor.Visitor;
 
@@ -77,6 +77,7 @@ public class Humano extends Personaje {
 	 */
 
 	public void accept(Visitor v) {
+			
 		v.visitarHumano(this);
 	}
 	@Override
@@ -138,28 +139,5 @@ public class Humano extends Personaje {
 		}
 
 	}
-	public boolean hayColision(Entidad entidad) {
-		// entidad.getEntorno() this.entorno
-		//entorno = [x;x+anchoEntidad]
-		//entornoEnY= [[y;y+anchoEntidad]
-		int posEntidadActualX =this.vector.getPosicion().x;
-		int posEntidadActualY =this.vector.getPosicion().y;
-		int posEntidadParametroX =entidad.getVector().getPosicion().x;
-		int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
-
-		int posEntidadParametroY =entidad.getVector().getPosicion().y ;
-		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
-
-		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
-		boolean colisionEnY = (posEntidadActualY+this.getImagen().getIconHeight()==posEntidadParametroY);// && (+this.getPosicion().y<=posEntidadParametroY);
-
-
-		return colisionEnX &&colisionEnY;
-		/*	
-				(
-				this.vector.getPosicion().y <= 
-			(entidad.getVector().getPosicion().y+entidad.getImagen().getIconHeight())&&
-						this.vector.getPosicion().y >= (entidad.getVector().getPosicion().y));
-		 */
-	}
+	
 }

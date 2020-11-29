@@ -7,10 +7,10 @@ import javax.swing.ImageIcon;
 import armas.Arma;
 import armas.ArmaSanitaria;
 import armas.SuperArmaSanitaria;
-import entidades.Vector;
 import entidades.personajes.Personaje;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import logica.Vector;
 import visitor.VisitanteJugador;
 import visitor.Visitor;
 

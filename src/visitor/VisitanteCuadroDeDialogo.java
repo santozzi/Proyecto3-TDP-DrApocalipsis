@@ -106,6 +106,12 @@ public class VisitanteCuadroDeDialogo extends Visitante {
 		
 	}
 
+	@Override
+	public void visitarCuadroDeDialogo(CuadroDeDialogo cd) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }

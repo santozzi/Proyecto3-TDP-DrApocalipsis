@@ -1,7 +1,7 @@
 package entidades.premios.no_temporales;
 
-import entidades.Vector;
 import logica.Juego;
+import logica.Vector;
 
 abstract public class ObjetoPrecioso extends NoTemporal {
 

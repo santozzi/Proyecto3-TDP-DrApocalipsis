@@ -3,6 +3,8 @@ package entidades;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
+import logica.Vector;
+import visitor.VisitanteCuadroDeDialogo;
 import visitor.Visitor;
 
 public class CuadroDeDialogo extends Entidad {
@@ -13,7 +15,7 @@ public class CuadroDeDialogo extends Entidad {
 		this.claveImagen = new String("dialogo");
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		vector = new Vector(0, 1, 1);
-		//this.v = new VisitanteCuadroDeDialogo(this);
+		this.v = new VisitanteCuadroDeDialogo(this);
 	}
 	
 	@Override
@@ -25,7 +27,7 @@ public class CuadroDeDialogo extends Entidad {
 
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+		v.visitarCuadroDeDialogo(this);
 
 	}
 
@@ -49,6 +51,12 @@ public class CuadroDeDialogo extends Entidad {
 			}
 		}
 
+	}
+
+	@Override
+	public void impacto(int letalidad) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

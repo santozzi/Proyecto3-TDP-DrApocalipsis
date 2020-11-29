@@ -1,9 +1,6 @@
 package entidades.proyectiles.proyectiljugador;
 import logica.Juego;
-
-
-
-import entidades.Vector;
+import logica.Vector;
 import entidades.personajes.jugador.Jugador;
 import entidades.proyectiles.Proyectil;
 import logica.ColeccionDeImagenes;
@@ -27,6 +24,12 @@ public class ProyectilSanitario extends ProyectilJugador{
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
 		v.visitarProyectilSanitario(this);
+	}
+
+	@Override
+	public void impacto(int letalidad) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -1,5 +1,6 @@
 package visitor;
 
+import entidades.CuadroDeDialogo;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
@@ -38,7 +39,7 @@ public class VisitantePocion extends Visitante {
 	@Override
 	public void visitarJugador(Jugador j) {
 		pocion.ejecutar();
-		pocion.desplazarse();
+		pocion.detenerse();
         pocion.desaparecer();
 		//infectadoAlpha.detenerse();
 		
@@ -103,6 +104,12 @@ public class VisitantePocion extends Visitante {
 
 	@Override
 	public void visitarInfectadoBossBeta(InfectadoBossBeta ifboss) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarCuadroDeDialogo(CuadroDeDialogo cd) {
 		// TODO Auto-generated method stub
 		
 	}

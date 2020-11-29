@@ -20,6 +20,7 @@ abstract public class InfectadoBoss extends Infectado {
         protected boolean cambioDireccionOpuesta;
         protected int tiempoDeDireccion;
         protected int contarTiempoDeDireccion;
+        protected Random ran;
         
 	public InfectadoBoss(Juego juego) {
 		super(juego);
@@ -27,18 +28,18 @@ abstract public class InfectadoBoss extends Infectado {
 		this.rango = Juego.ALTO_DE_COMBATE;
 		tiempoDeDireccion= 300;
 		cambioDireccionOpuesta=false;
-	
+		 ran = new Random();
 	}
 
 	public void tirarParticula() {
-		Random ran = new Random();
+	
 		int azar = ran.nextInt(3);
 		if(azar==0)
 			this.particula= new ParticulaAlpha(juego,this);
 		else
 			this.particula= new ParticulaBeta(juego,this);
 	}
-	
+
     private void cambioDeDireccion() {
     	Random ranDir = new Random();
     	int direccionX = ranDir.nextInt(2)-1;
@@ -81,7 +82,9 @@ abstract public class InfectadoBoss extends Infectado {
 			}else {
 				latencia++;
 			}
+			
 		}
+		intervaloDeTirarParticula();
 	}
 	
 }

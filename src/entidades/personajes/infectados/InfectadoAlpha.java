@@ -6,11 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import entidades.Entidad;
-import entidades.Vector;
 import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
+import logica.Vector;
 import visitor.*;
 import visitor.Visitor;
 
