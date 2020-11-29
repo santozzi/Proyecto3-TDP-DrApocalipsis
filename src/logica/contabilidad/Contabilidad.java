@@ -5,9 +5,10 @@ import java.util.Map;
 
 public class Contabilidad {
    protected Map<String,Item> items;
+   protected int score;
    public Contabilidad() {
 	   items = new HashMap<String, Item>();
-	   
+	   this.score= 0;
    }
    public void agregarItem(String clave, int score) {
 	   Item valor = items.get(clave);
@@ -20,6 +21,8 @@ public class Contabilidad {
 		   valor.setCantidad(cantidad+1);
 		   items.put(clave,valor);
 	   }
+	   this.score +=score;
+	   
    }
 public String toString() {
 	String resultado = "";
@@ -28,5 +31,8 @@ public String toString() {
 	}
 	
 	return resultado;
+}
+public int getScore() {
+	return this.score;
 }
 }

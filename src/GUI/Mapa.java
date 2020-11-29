@@ -35,6 +35,7 @@ import observador.IObservador;
 
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
 
 public class Mapa  extends JFrame implements IObservador{
 
@@ -50,6 +51,8 @@ public class Mapa  extends JFrame implements IObservador{
 	private Map<Entidad,JLabel> mapeoEntidades;
 	protected JLabel lblMapaDerecha;
 	protected JLabel lblMapaIzquierda;
+	private JLabel lblSalud;
+	private JLabel lblScore;
 	public Mapa() {
 		juego = new Juego();
 
@@ -74,7 +77,9 @@ public class Mapa  extends JFrame implements IObservador{
 
 		setTitle("Dr. Apocalipsis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20, Juego.ALTO_DE_COMBATE + 80);
+		int anchoDelFrame = Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20;
+		System.out.println(anchoDelFrame);
+		setBounds(0, 0, anchoDelFrame, Juego.ALTO_DE_COMBATE + 80);
 
 		//ImageIcon imagendDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("nivel1");
 
@@ -82,8 +87,8 @@ public class Mapa  extends JFrame implements IObservador{
 		progressBar.setValue(100);
 		progressBar.setForeground(new Color(124, 252, 0));
 		progressBar.setBackground(Color.RED);
-		progressBar.setBounds(289, 620, 155, 33);
-		getContentPane().add(progressBar);
+		progressBar.setBounds(598, 11, 110, 22);
+		//getContentPane().add(progressBar);
 
 		//lblFondo = new JLabel(imagendDeFondo);
 		panelFondo = new FondoPanel();
@@ -116,7 +121,41 @@ public class Mapa  extends JFrame implements IObservador{
 		getContentPane().add(lblMapaIzquierda);
 
 		getContentPane().add(panelFondo);
-
+		
+		JPanel panelAbajo = new JPanel();
+		panelAbajo.setBackground(Color.BLACK);
+		
+		panelAbajo.setBounds(0, 620, 826, 50);
+		panelAbajo.setLayout(null);
+		JLabel lblPanelScore = new JLabel();
+		ImageIcon panelDeAbajoIcon = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("panelDeScore");
+		lblPanelScore.setBounds(125, 0, 619, 39);
+		lblPanelScore.setIcon(panelDeAbajoIcon);
+	
+		
+		
+		
+		panelAbajo.add(progressBar);
+		
+		
+		
+		getContentPane().add(panelAbajo);
+		
+		lblSalud = new JLabel("Salud");
+		lblSalud.setBackground(Color.WHITE);
+		lblSalud.setForeground(Color.GREEN);
+		lblSalud.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSalud.setBounds(487, 11, 110, 22);
+		panelAbajo.add(lblSalud);
+		
+		
+		lblScore = new JLabel();
+		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
+		lblScore.setText("0");
+		lblScore.setForeground(Color.GREEN);
+		lblScore.setBounds(309, 11, 133, 21);
+		panelAbajo.add(lblScore);
+        panelAbajo.add(lblPanelScore);
 		juego.agregarObservador(this);
 		juego.cargarJugador();
 		juego.cargarNivel();
@@ -291,5 +330,13 @@ public class Mapa  extends JFrame implements IObservador{
 		lblMapaDerecha.setIcon(der);
 		lblMapaIzquierda.setIcon(izq);
 
+	}
+
+
+
+	@Override
+	public void updateScore(int score) {
+		lblScore.setText(score+"");
+		
 	}
 }

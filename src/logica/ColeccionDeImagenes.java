@@ -31,7 +31,12 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("nivel2", "/img/calle_nivel2.jpg", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
 		agregarRuta("fondoIzquierda_nivel2", "/img/ladoIzquirdo_nivel2.jpg", Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
 		agregarRuta("fondoDerecha_nivel2", "/img/ladoDerecho_nivel2.jpg", Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
-
+        //Nivel 3
+		agregarRuta("nivel3", "/img/calle_nivel3.jpg", Juego.ANCHO_DE_COMBATE+10, Juego.ALTO_DE_COMBATE);
+		agregarRuta("fondoIzquierda_nivel3", "/img/ladoIzquirdo_nivel3.jpg", Juego.DECORADO_IZQUIERDO, Juego.ALTO_DE_COMBATE);
+		agregarRuta("fondoDerecha_nivel3", "/img/ladoDerecho_nivel3.jpg", Juego.DECORADO_DERECHO, Juego.ALTO_DE_COMBATE);
+      
+		
 		//InfectadosAlpha
 		agregarRuta("InfectadoAlpha_golpear", "/img/z_ataque_abajo.gif", 40, 60);
 		//InfectadosBeta
@@ -65,7 +70,9 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("pocion","/img/pocion.png", 50, 50);
 		agregarRuta("superArmaSanitaria","/img/ak47.png", 50, 20);
 		agregarRuta("cuarentena","/img/cuarentena.png", 40, 40);
-
+        //bara de score y energia
+		agregarRuta("panelDeScore","/img/panelScore.jpg", 619, 40);
+		
 		
 
 		agregarRuta("superProyectil","/img/Super_jeringa.png", 40, 40);

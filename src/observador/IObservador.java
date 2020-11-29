@@ -16,5 +16,5 @@ public interface IObservador {
    public void quitarEntidad(Entidad entidad);
    public void updateEnergiaJugador();
    public void updateNivel(ImageIcon izq,ImageIcon fondo,ImageIcon der);
-   
+   public void updateScore(int score);
 }

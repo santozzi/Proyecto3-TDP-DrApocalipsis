@@ -10,6 +10,7 @@ import logica.contabilidad.Contabilidad;
 import niveles.Nivel;
 import niveles.Nivel1;
 import niveles.Nivel2;
+import niveles.Nivel3;
 import observador.IObservado;
 import observador.IObservador;
 import java.util.logging.ConsoleHandler;
@@ -39,7 +40,7 @@ public class Juego implements IObservado {
 
 
 	public Juego() {
-		
+
 		if(Logger==null) {
 			Logger = Logger.getLogger(Juego.class.getName());
 			Handler hnd = new ConsoleHandler();
@@ -105,6 +106,9 @@ public class Juego implements IObservado {
 		}else if(nivelActual==2){
 			Logger.fine("Cargando nivel 2");
 			nivel= new Nivel2(this);
+		}else if(nivelActual==3){
+			Logger.fine("Cargando nivel 3");
+			nivel= new Nivel3(this);
 		}else {
 			Logger.fine("Fin del juego");
 			nivel= null;
@@ -133,9 +137,10 @@ public class Juego implements IObservado {
 	}
 	public void cuarentena() {
 		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
-
-		for(Entidad entidad : listaDeInfectados)
-			entidad.cambiarEstadoTemporal();
+		if(listaDeInfectados!=null) {
+			for(Entidad entidad : listaDeInfectados)
+				entidad.cambiarEstadoTemporal();
+		}
 	}
 	// pregunto si no quedan mas infectados en el nivel
 	public void notificarBajaDeInfectado(Entidad infectado) {
@@ -154,17 +159,17 @@ public class Juego implements IObservado {
 				if(ifinalizarTanda) {
 					Logger.fine("Cargando al boss");
 					cargarJefe();
-					
+
 					ifinalizarTanda=false;
 
 				}else {
 					Logger.fine("Fonalizando tanda");
 					finalizarTanda();
-				
+
 				}
 			}
 		}
-
+		notificarScore();
 	}
 	public void finalizarTanda() {
 		for(Entidad entidad : nivel.segundaTanda()) {
@@ -241,6 +246,12 @@ public class Juego implements IObservado {
 			obs.updateNivel(nivel.getImagenIzq(), nivel.getImagenFondo(), nivel.getImagenDer());
 		}
 
+	}
+	@Override
+	public void notificarScore() {
+		for(IObservador obs: observadores) {
+			obs.updateScore(this.score.getScore());	
+		}
 	}
 
 	//-------------------fin de observado------------------------------
