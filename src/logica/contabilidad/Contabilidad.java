@@ -1,6 +1,8 @@
 package logica.contabilidad;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Contabilidad {
@@ -34,5 +36,8 @@ public String toString() {
 }
 public int getScore() {
 	return this.score;
+}
+public Collection<Item> listaDeItems(){
+	return items.values();
 }
 }

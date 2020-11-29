@@ -30,6 +30,7 @@ public class Jugador extends Personaje{
 		this.claveImagen = arma.getClaveImagen();
 		tiempoDeEspera = 1000;
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
+		
 
 		v = new VisitanteJugador(this);
 
@@ -132,5 +133,11 @@ public class Jugador extends Personaje{
 	}
 	public void cambiarArma(Arma arma) {
 		this.arma= arma;
+	}
+	public void desaparecer() {
+		super.desaparecer();
+		//juego.agregarAEntidadesParaQuitar(this);
+		juego.matarJugador();
+		juego.finalizarJuego();
 	}
 }

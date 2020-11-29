@@ -17,32 +17,30 @@ public class HiloSecundario extends Thread{
 	public static final int LATENCIA_MAXIMA = 10;
 	private static HiloSecundario hiloSecundario;
 	private boolean correr;
+	private boolean correr2;
 	
-	//Singleton
-	public static HiloSecundario getHiloSecundario(Juego juego) {
-		if(hiloSecundario == null)
-			hiloSecundario = new HiloSecundario(juego);
-		
-		return hiloSecundario;
-	}
+
 	
-	private HiloSecundario(Juego juego) {
+	public HiloSecundario(Juego juego) {
 		this.juego = juego;
 		colaParaAgregar = new ConcurrentLinkedQueue<Entidad>();
 		colaParaQuitar = new ConcurrentLinkedQueue<Entidad>();
 		listaParaRecorrer = new LinkedList<Entidad>();
 		this.correr = true;
+		this.correr2 = false;
+		
 	}
 	public void terminarEjecucion() {
 		this.correr = false;
-		hiloSecundario = null;
+		//this.stop();
+		
 	}
 
 	@Override
 	public void run() {
 		Iterator<Entidad> itListaParaRecorrer;
 		Entidad entidadParaAccionar;
-		while(correr) {
+		while(correr||!correr2) {
 			
 			
 
@@ -97,6 +95,20 @@ public class HiloSecundario extends Thread{
 			listaParaRecorrer.remove(entParaQuitar);
 			juego.notificarQuitarEntidad(entParaQuitar);
 		}
+		/*
+		juego.Logger.fine("paraAgregar "+colaParaAgregar.size()+
+				" paraQuitar "+colaParaQuitar.size()+" listaParaRecorrer "+
+				listaParaRecorrer.size()+ " correr "+correr+
+				" jugadorVive "+juego.jugadorVive);
+				*/
+		if((colaParaAgregar.isEmpty()
+				&&colaParaQuitar.isEmpty()
+				&&!correr)||!juego.jugadorVive) {
+			
+			
+			juego.notificarEstadistica();
+			this.correr2 = true;
+		}
 
 	}
 	public void agregarAColaParaAgregar(Entidad entidad) {
@@ -110,4 +122,11 @@ public class HiloSecundario extends Thread{
 	public List<Entidad> listaDeRecorrido(){
 		return listaParaRecorrer;
 	}
+	public boolean isCorrer() {
+		return correr;
+	}
+	public void setCorrer(boolean correr) {
+		this.correr = correr;
+	}
+	
 }

@@ -29,5 +29,6 @@ public void notificarQuitarEntidad(Entidad entidad);
 public void notificarCargaViralDeJugador();
 public void notificarNivel();
 public void notificarScore();
+public void notificarEstadistica();
 
 }

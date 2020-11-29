@@ -29,6 +29,6 @@ public class Item {
 	}
 	
     public String toString() {
-    	return clave +" - "+score+" - "+cantidad;
+    	return clave +" - "+cantidad+ " -  "+score;
     }
 }

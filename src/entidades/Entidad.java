@@ -38,12 +38,7 @@ abstract public class  Entidad {
 		return this.imagen;
 	}
 	
-		
-		
-		
-		
-		
-	
+
 	public Vector getVector() {
 		return this.vector;
 	}
@@ -58,6 +53,7 @@ abstract public class  Entidad {
 		vector.setModulo(0);
 	}
 	public void desaparecer() {
+		
 		juego.agregarAEntidadesParaQuitar(this);
 	}
 	

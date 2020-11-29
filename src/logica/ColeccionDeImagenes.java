@@ -51,7 +51,7 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("Jugador_caminarIzquierda", "/img/Jugador_caminarIzquierda.gif", 70, 60);
 		//----------
         //presentacion
-		agregarRuta("fondoPresentacion", "/img/drApocalipsis.png", 562, 411);
+		agregarRuta("fondoPresentacion", "/img/drApocalipsis.png", 245, 390);
 		agregarRuta("ruinas", "/img/ruinas.gif", 785, 700);
 		agregarRuta("plagueInc", "/img/plagueInc.PNG", 80, 130);
         //proyectil sanitario
@@ -87,7 +87,7 @@ public class ColeccionDeImagenes extends Imagenes{
 
 		agregarRuta("autoEnLlamas","/img/autoEnLlamas.gif", 75, 120);
 
-		agregarRuta("InfectadoBeta","/img/infectadoBeta_caminar.gif", 40, 60);
+		agregarRuta("InfectadoBeta","/img/infectadoBeta_caminar.gif", 50, 70);
 
 		agregarRuta("Jugador_noqueado", "/img/personaje_noqueado.png", 70, 80);
 

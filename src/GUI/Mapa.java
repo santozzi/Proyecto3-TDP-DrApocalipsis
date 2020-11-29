@@ -10,7 +10,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
@@ -31,6 +34,7 @@ import entidades.personajes.jugador.controles.Teclado;
 import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import logica.contabilidad.Item;
 import observador.IObservador;
 
 import javax.swing.JLabel;
@@ -42,7 +46,8 @@ public class Mapa  extends JFrame implements IObservador{
 	protected Juego juego;
 	protected JLabel jugador;
 	protected JLabel lblFondo;
-	protected FondoPanel panelFondo;
+	protected Panel panelFondo;
+	
 	protected JPanel panelDeEntidades;
 	protected Teclado teclado;
 	protected JProgressBar progressBar;
@@ -53,8 +58,19 @@ public class Mapa  extends JFrame implements IObservador{
 	protected JLabel lblMapaIzquierda;
 	private JLabel lblSalud;
 	private JLabel lblScore;
+	protected Container contenedor;
+	protected IObservador estadistica;
 	public Mapa() {
-		juego = new Juego();
+		iniciar();
+
+	}
+
+    public void  iniciar() {
+    	setVisible(true);
+    	getContentPane().update(getGraphics());
+    	estadistica = new FrmScore(this,juego);
+   
+    	juego = new Juego();
 
 		teclado = new Teclado();
 		addKeyListener(teclado);
@@ -78,7 +94,7 @@ public class Mapa  extends JFrame implements IObservador{
 		setTitle("Dr. Apocalipsis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int anchoDelFrame = Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20;
-		System.out.println(anchoDelFrame);
+		
 		setBounds(0, 0, anchoDelFrame, Juego.ALTO_DE_COMBATE + 80);
 
 		//ImageIcon imagendDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("nivel1");
@@ -165,13 +181,11 @@ public class Mapa  extends JFrame implements IObservador{
         panelAbajo.add(lblPts);
           panelAbajo.add(lblPanelScore);
 		juego.agregarObservador(this);
+		juego.agregarObservador(estadistica);
 		juego.cargarJugador();
 		juego.cargarNivel();
 
-
-	}
-
-
+    }
 
 	public void cargarEntidades() {
 		// pintarEntidades();
@@ -282,7 +296,7 @@ public class Mapa  extends JFrame implements IObservador{
 		//System.out.println("Limite: X=" + juego.getLimite().x + " ; Y=" + juego.getLimite().y + " (Mapa)");
 	}
 
-	private class FondoPanel extends JPanel{
+	private class FondoPanel extends Panel{
 
 		private Image imagen;
 
@@ -335,6 +349,8 @@ public class Mapa  extends JFrame implements IObservador{
 	public void updateNivel(ImageIcon izq, ImageIcon fondo, ImageIcon der) {
 		panelFondo.setImagenDeFondo(fondo);
 		panelFondo.repaint();
+		//panelFondo = new PnlScore();
+		//panelFondo.repaint();
 		lblMapaDerecha.setIcon(der);
 		lblMapaIzquierda.setIcon(izq);
 
@@ -346,5 +362,18 @@ public class Mapa  extends JFrame implements IObservador{
 	public void updateScore(int score) {
 		lblScore.setText(score+"");
 		
+	}
+
+
+
+	@Override
+	public void updateEstedistica(Collection<Item> datos) {
+		
+		estadistica.iniciar();
+		dispose();
+		
+	}
+	public void reiniciarJuego() {
+		iniciar();
 	}
 }

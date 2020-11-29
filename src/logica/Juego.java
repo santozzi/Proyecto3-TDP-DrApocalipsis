@@ -18,6 +18,8 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import GUI.FrmScore;
+
 public class Juego implements IObservado {
 	protected Nivel nivel;
 
@@ -37,10 +39,11 @@ public class Juego implements IObservado {
 	protected boolean ifinalizarTanda;
 	protected boolean finalizaBoss;
 	protected static Logger Logger;
+	protected boolean jugadorVive;
 
 
 	public Juego() {
-
+		jugadorVive= false;
 		if(Logger==null) {
 			Logger = Logger.getLogger(Juego.class.getName());
 			Handler hnd = new ConsoleHandler();
@@ -58,15 +61,32 @@ public class Juego implements IObservado {
 		this.score = new Contabilidad();
 		observadores = new LinkedList<IObservador>();
 		//hiloSecundario = new HiloSecundario(this);
-		hiloSecundario = HiloSecundario.getHiloSecundario(this);
+		hiloSecundario = new HiloSecundario(this);
 		//  nivel = new Nivel1(this);
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		jugador = new Jugador(this);
 		ifinalizarTanda= false;
+		//hiloSecundario.stop();
+		Logger.fine("Iniciando Hilo secundario");
 		hiloSecundario.start();
+		if(hiloSecundario.isAlive()) {
+			Logger.fine("Hilo secundario iniciado con exito");
+		}else
+			Logger.warning("Error al iniciar hilo secundario");
+		
+		
+	
+		
+		
+		
+	}
+	public void finalizarJuego() {
+		hiloSecundario.terminarEjecucion();
 	}
 	public void cargarJugador() {
+		jugadorVive= true;
 		agregarAEntidadesParaAgregar(jugador);
+		
 	}
 
 	/*hilo paralelo
@@ -111,6 +131,7 @@ public class Juego implements IObservado {
 			nivel= new Nivel3(this);
 		}else {
 			Logger.fine("Fin del juego");
+			finalizarJuego();
 			nivel= null;
 		}
 
@@ -120,7 +141,7 @@ public class Juego implements IObservado {
 			}
 			notificarNivel();	
 		}
-
+         
 	}
 	public Jugador getJugador() {
 		return this.jugador;
@@ -154,7 +175,7 @@ public class Juego implements IObservado {
 				Logger.fine("Entrando a la carga del nuevo nivel despues de matar al boss");
 				nivelActual++;
 				cargarNivel();
-				System.out.println(score);
+				
 				finalizaBoss=false;
 			}else {
 				if(ifinalizarTanda) {
@@ -186,6 +207,7 @@ public class Juego implements IObservado {
 
 	//--------Agregar y quitar entidades--------------
 	public void agregarAEntidadesParaAgregar(Entidad entidad) {
+		
 		hiloSecundario.agregarAColaParaAgregar(entidad);
 
 	}
@@ -254,7 +276,26 @@ public class Juego implements IObservado {
 			obs.updateScore(this.score.getScore());	
 		}
 	}
+	@Override
+	public void notificarEstadistica() {
+		for(IObservador obs: observadores) {
+			obs.updateEstedistica(score.listaDeItems());
+		}
+		
+	}
 
 	//-------------------fin de observado------------------------------
-
+    public boolean isHiloSecundarioCorriendo() {
+    	return hiloSecundario.isAlive();
+    }
+	public void detenerHiloSecundario() {
+		hiloSecundario.terminarEjecucion();
+		
+	}
+	public boolean isJugadorVive() {
+		return jugadorVive;
+	}
+	public void matarJugador() {
+		jugadorVive= false;
+	}
 }

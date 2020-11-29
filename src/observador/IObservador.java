@@ -1,8 +1,12 @@
 package observador;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 
 import entidades.Entidad;
+import logica.contabilidad.Item;
 
 public interface IObservador {
    /**
@@ -17,4 +21,8 @@ public interface IObservador {
    public void updateEnergiaJugador();
    public void updateNivel(ImageIcon izq,ImageIcon fondo,ImageIcon der);
    public void updateScore(int score);
+   public void updateEstedistica(Collection<Item> datos);
+   public void iniciar();
+   
+   
 }
