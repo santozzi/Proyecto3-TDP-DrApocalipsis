@@ -82,6 +82,7 @@ public class Juego implements IObservado {
 	}
 	public void finalizarJuego() {
 		hiloSecundario.terminarEjecucion();
+		Logger.fine("Fin del juego");
 	}
 	public void cargarJugador() {
 		jugadorVive= true;
@@ -130,7 +131,7 @@ public class Juego implements IObservado {
 			Logger.fine("Cargando nivel 3");
 			nivel= new Nivel3(this);
 		}else {
-			Logger.fine("Fin del juego");
+			
 			finalizarJuego();
 			nivel= null;
 		}
@@ -292,6 +293,7 @@ public class Juego implements IObservado {
 		hiloSecundario.terminarEjecucion();
 		
 	}
+	
 	public boolean isJugadorVive() {
 		return jugadorVive;
 	}

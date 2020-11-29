@@ -294,10 +294,12 @@ public class Mapa  extends JFrame implements IObservador{
 		//entidad.getVector().getPosicion().x = juego.getLimite().x;
 		//entidad.getVector().getPosicion().y = juego.getLimite().y;
 		//System.out.println("Limite: X=" + juego.getLimite().x + " ; Y=" + juego.getLimite().y + " (Mapa)");
+	
+        
 	}
 
 	private class FondoPanel extends Panel{
-
+       
 		private Image imagen;
 
 		@Override

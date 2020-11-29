@@ -29,6 +29,7 @@ public class Humano extends Personaje {
 		this.vector = new Vector(0, 1, 7);
 		this.v = new VisitanteHumano(this);
 		this.soltoPremio = false;
+	
 		crearPremio();
 
 	}

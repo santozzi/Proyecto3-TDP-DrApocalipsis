@@ -33,6 +33,7 @@ abstract public class  Entidad {
 		this.juego = juego;
 		this.estadoTemporal= false;
 		
+		
 	}
 	public ImageIcon getImagen() {
 		return this.imagen;
