@@ -1,6 +1,7 @@
 package entidades.premios.temporales;
 
 import armas.SuperArmaSanitaria;
+import entidades.Entidad;
 import entidades.personajes.jugador.Jugador;
 import logica.ColeccionDeImagenes;
 import logica.Juego;

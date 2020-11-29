@@ -6,6 +6,7 @@ import entidades.Entidad;
 import logica.CompositeInfectado;
 import logica.Juego;
 import niveles.fabricas.FabricaDeTandas;
+import niveles.fabricas.Nivel2InfectadosBeta;
 import niveles.fabricas.Nivel3InfectadosMixto;
 
 public class Nivel3 extends Nivel {

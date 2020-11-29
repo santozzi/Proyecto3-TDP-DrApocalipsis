@@ -4,6 +4,7 @@ import entidades.Entidad;
 import entidades.personajes.Humano;
 import entidades.personajes.Personaje;
 import entidades.proyectiles.particulas.Particula;
+import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
 import logica.Vector;

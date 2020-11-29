@@ -2,11 +2,13 @@ package niveles;
 
 import java.util.List;
 
+
 import entidades.Entidad;
 import logica.CompositeInfectado;
 import logica.Juego;
 import niveles.fabricas.FabricaDeTandas;
 import niveles.fabricas.Nivel1InfectadosAlpha;
+import niveles.fabricas.Nivel3InfectadosMixto;
 
 public class Nivel1 extends Nivel{
 

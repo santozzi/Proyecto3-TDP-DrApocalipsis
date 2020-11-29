@@ -57,7 +57,8 @@ public class Juego implements IObservado {
 		finalizaBoss= false;
 		this.score = new Contabilidad();
 		observadores = new LinkedList<IObservador>();
-		hiloSecundario = new HiloSecundario(this);
+		//hiloSecundario = new HiloSecundario(this);
+		hiloSecundario = HiloSecundario.getHiloSecundario(this);
 		//  nivel = new Nivel1(this);
 		this.limite = new Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		jugador = new Jugador(this);

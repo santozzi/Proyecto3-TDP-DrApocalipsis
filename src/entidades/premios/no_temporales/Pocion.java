@@ -2,6 +2,8 @@ package entidades.premios.no_temporales;
 
 import logica.ColeccionDeImagenes;
 import logica.Juego;
+import logica.Vector;
+import entidades.Entidad;
 import visitor.VisitantePocion;
 import visitor.Visitor;
 

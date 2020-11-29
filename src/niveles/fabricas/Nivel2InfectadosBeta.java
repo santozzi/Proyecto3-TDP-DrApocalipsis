@@ -18,18 +18,15 @@ public class Nivel2InfectadosBeta extends FabricaDeTandas {
 	@Override
 	public void primeraTanda() {
 		crearTanda(cantidadInfectados, new InfectadoBeta(juego));
-		posiciones.clear();
 	}
 
 	@Override
 	public void segundaTanda() {
 		crearTanda(cantidadInfectados*2, new InfectadoBeta(juego));
-		posiciones.clear();
 	}
 
 	@Override
 	public void elJefe() {	
 		crearTanda(1,new InfectadoBossBeta(juego));
-		posiciones.clear();
 	}
 }
