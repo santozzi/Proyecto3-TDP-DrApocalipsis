@@ -29,7 +29,6 @@ public class InfectadoAlpha extends Infectado{
 		this.claveImagen = new String("InfectadoAlpha_golpear");
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoAlpha(this);
-		
 	}
 
 	/**
@@ -46,7 +45,11 @@ public class InfectadoAlpha extends Infectado{
 			//vector.setModulo(vector.getModulo()*2);
 			particula.getVector().setModulo(9);
 		}
+		
+	
+		
 	}
+
 	// v es de jugador
 	@Override
 	public void accept(Visitor v) {

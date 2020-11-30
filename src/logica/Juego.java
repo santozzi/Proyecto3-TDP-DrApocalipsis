@@ -55,7 +55,9 @@ public class Juego implements IObservado {
 			for(Handler h: rootLogger.getHandlers()) {
 				h.setLevel(Level.OFF);
 			}
+			
 		}
+		
 		this.nivelActual = 1;
 		finalizaBoss= false;
 		this.score = new Contabilidad();

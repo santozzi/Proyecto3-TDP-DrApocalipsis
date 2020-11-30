@@ -11,7 +11,7 @@ import niveles.Nivel;
 public class Nivel3InfectadosMixto extends FabricaDeTandas {
 
 	public Nivel3InfectadosMixto(Juego j,Nivel nivel) {
-		super(j,nivel,5);
+		super(j,nivel,20);
 	}
 
 
