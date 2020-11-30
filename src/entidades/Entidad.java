@@ -27,13 +27,15 @@ abstract public class  Entidad {
 	protected boolean estadoTemporal;
 	protected int tiempoDeEspera;
     protected Jugador jugador;
+    
 	abstract public void accept(Visitor v);
 	
 	public Entidad (Juego juego) {
 		this.juego = juego;
 		this.estadoTemporal= false;
-		
-		
+		this.vector = new Vector(0, 1, 1);
+		this.claveImagen = this.getClass().getSimpleName();
+		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 	}
 	public ImageIcon getImagen() {
 		return this.imagen;
@@ -138,5 +140,8 @@ abstract public class  Entidad {
 	
 	public void cambiarEstadoTemporal() {
 		estadoTemporal= true;
+	}
+	public String getClaveImagen() {
+		return this.claveImagen;
 	}
 }

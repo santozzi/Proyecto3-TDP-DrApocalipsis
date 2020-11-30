@@ -78,14 +78,9 @@ public class Mapa  extends JFrame implements IObservador{
 		getContentPane().setLayout(null);
 		setResizable(false);
 
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-
 		//panelDeEntidades = new JPanel();
 
 		mapeoEntidades = new HashMap<Entidad, JLabel>();
-
-
 
 		ap = new AudioPlayer("/audio/Digadig.mp3");
 		audio = new Thread(ap);
@@ -96,6 +91,9 @@ public class Mapa  extends JFrame implements IObservador{
 		int anchoDelFrame = Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20;
 		
 		setBounds(0, 0, anchoDelFrame, Juego.ALTO_DE_COMBATE + 80);
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
 		//ImageIcon imagendDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("nivel1");
 
@@ -337,7 +335,7 @@ public class Mapa  extends JFrame implements IObservador{
 
 		if(jugador.estaInfectado()) {
 			JLabel lblJugador = new JLabel("");
-			ImageIcon jugadorMuerto = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("Jugador_muerto");
+			ImageIcon jugadorMuerto = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(jugador.getClass().getSimpleName()+"_Muerto");
 			lblJugador.setBounds(jugador.getPosicion().x, jugador.getPosicion().y, jugadorMuerto.getIconWidth(), jugadorMuerto.getIconHeight());
 			lblJugador.setIcon(jugadorMuerto);
 			panelFondo.add(lblJugador);

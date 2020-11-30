@@ -1,7 +1,6 @@
 package entidades.personajes.infectados;
 
 import entidades.proyectiles.particulas.ParticulaBeta;
-import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteInfectadoBeta;
 import visitor.Visitor;
@@ -17,8 +16,6 @@ public class InfectadoBeta extends Infectado {
         super(juego);
 		this.rango = 100;
 		this.puntos = 15;
-		this.claveImagen = new String("InfectadoBeta");
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoBeta(this);
 		
 	}
@@ -26,12 +23,12 @@ public class InfectadoBeta extends Infectado {
 	public void accept(Visitor v) {
 		v.visitarInfectadoBeta(this);
 	}
+	@Override
 	public void tirarParticula() {
     	this.particula= new ParticulaBeta(juego,this);
     }
 	@Override
 	public InfectadoBeta clone() {
-		// TODO Auto-generated method stub
 		return new InfectadoBeta(juego);
 	}
 }

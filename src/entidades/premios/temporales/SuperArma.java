@@ -1,11 +1,8 @@
 package entidades.premios.temporales;
 
 import armas.SuperArmaSanitaria;
-import entidades.Entidad;
 import entidades.personajes.jugador.Jugador;
-import logica.ColeccionDeImagenes;
 import logica.Juego;
-import logica.Vector;
 import visitor.VisitanteSuperArma;
 import visitor.Visitor;
 
@@ -13,13 +10,8 @@ public class SuperArma extends Temporal {
 	protected Jugador jugador;
     public SuperArma (Juego juego) {
         super(juego);
-    	
     	this.jugador = juego.getJugador();
-    	vector = new Vector(0,1,1);
     	v= new VisitanteSuperArma(this);
-    	
-    	this.claveImagen = new String("superArmaSanitaria");
-    	imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
     }
 	@Override
 	public void ejecutar() {
@@ -33,7 +25,6 @@ public class SuperArma extends Temporal {
 	}
 	@Override
 	public void impacto(int letalidad) {
-		// TODO Auto-generated method stub
 		
 	}
 	

@@ -1,7 +1,5 @@
-package entidades.proyectiles.proyectiljugador;
+package entidades.proyectiles.proyectil_jugador;
 
-import entidades.proyectiles.Proyectil;
-import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteSuperProyectilSanitario;
 import visitor.Visitor;
@@ -10,13 +8,8 @@ public class SuperProyectilSanitario extends ProyectilJugador {
     public SuperProyectilSanitario(Juego juego) {
     	super(juego);
     	
-    	this.letalidad = 80;
-    	vector.getPosicion().x= jugador.getVector().getPosicion().x+24;
-		vector.getPosicion().y= jugador.getVector().getPosicion().y-10;
+    	this.letalidad = 50;
 		
-
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("superProyectilSanitario");
-
     	v = new VisitanteSuperProyectilSanitario(this);
     	
     }
@@ -27,7 +20,6 @@ public class SuperProyectilSanitario extends ProyectilJugador {
 	}
 	@Override
 	public void impacto(int letalidad) {
-		// TODO Auto-generated method stub
 		
 	}
 

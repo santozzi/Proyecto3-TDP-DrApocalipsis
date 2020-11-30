@@ -12,7 +12,6 @@ public abstract class Proyectil extends Entidad {
 	public Proyectil(Juego juego){
         super(juego);
 		this.vector = new Vector(0,-1,9);
-		this.letalidad = 5;
 		jugador= juego.getJugador();
 		vector.getPosicion().x= jugador.getVector().getPosicion().x+24;
 		vector.getPosicion().y= jugador.getVector().getPosicion().y-10;

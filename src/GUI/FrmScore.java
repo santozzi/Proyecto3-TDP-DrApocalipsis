@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -18,6 +19,7 @@ import observador.IObservador;
 
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,6 +45,8 @@ public class FrmScore extends JFrame implements IObservador{
 		int anchoDelFrame = Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20;
 
 		setBounds(0, 0, anchoDelFrame, Juego.ALTO_DE_COMBATE + 80);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -56,7 +60,7 @@ public class FrmScore extends JFrame implements IObservador{
 
 		JLabel lblDrApocalipsis = new JLabel("");
 		lblDrApocalipsis.setBounds(22, 179, 238, 364);
-		ImageIcon drApocalipsis = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("fondoPresentacion");
+		ImageIcon drApocalipsis = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.getClass().getSimpleName()+"_FondoPresentacion");
 		lblDrApocalipsis.setIcon(drApocalipsis);
 		panel.add(lblDrApocalipsis);
 

@@ -1,11 +1,10 @@
 package armas;
+
 import entidades.proyectiles.*;
+import logica.ColeccionDeImagenes;
 import logica.Juego;
 
 import javax.swing.ImageIcon;
-
-import entidades.Entidad;
-import entidades.personajes.jugador.Jugador;
 
 public abstract class Arma{
 	protected Proyectil proyectil;
@@ -15,6 +14,8 @@ public abstract class Arma{
 
 	public Arma(Juego juego) {
 		this.juego = juego;
+		this.claveImagen = this.getClass().getSimpleName();
+		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 	}
 
 	/**

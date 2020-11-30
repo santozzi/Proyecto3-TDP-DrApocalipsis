@@ -4,10 +4,8 @@ import entidades.Entidad;
 import entidades.personajes.Humano;
 import entidades.personajes.Personaje;
 import entidades.proyectiles.particulas.Particula;
-import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
-import logica.Vector;
 
 public abstract class Infectado extends Personaje {
 	   protected int tiempoDeParticula;
@@ -25,7 +23,7 @@ public abstract class Infectado extends Personaje {
 
 	public Infectado(Juego juego) {
 		super(juego);
-		this.vector = new Vector(0,1,4);
+		this.vector.setModulo(4);
 		this.tiempoDeEspera = 1000;
 		this.rango = 150;
 		this.cargaViral = 150;
@@ -178,12 +176,6 @@ public abstract class Infectado extends Personaje {
 	
 		
 		
-	}
-	public void accionar() {
-		for(Entidad ent : detectarColisiones()) {
-			ent.accept(v);
-		}
-
 	}
 	public void desplazarse() {
 		//this.posicion.y++;
