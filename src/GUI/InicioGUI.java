@@ -46,8 +46,8 @@ public class InicioGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public InicioGUI() {
-		
-		
+
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 562, 411);
@@ -66,7 +66,7 @@ public class InicioGUI extends JFrame {
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    //Juego juego = new Juego();
+				//Juego juego = new Juego();
 				Mapa mapa = new Mapa();
 				mapa.setVisible(true);
 				audio.stop();
@@ -79,11 +79,11 @@ public class InicioGUI extends JFrame {
 
 		btnNewButton.setBounds(587, 574, 160, 45);
 		contentPane.add(btnNewButton);
-		
+
 		JLabel lblLogo = new JLabel("");
 		//lblLogo.setBounds(311, 187, 54, 77);
 		lblLogo.setBounds(0, 541, 80, 130);
-		ImageIcon logoInc = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.getClass().getSimpleName()+"_PlagueInc");
+		ImageIcon logoInc = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("InicioGUI_PlagueInc");
 		lblLogo.setIcon(logoInc);
 
 		contentPane.add(lblLogo);
@@ -93,7 +93,7 @@ public class InicioGUI extends JFrame {
 	private void cargarFondo() {
 		JLabel lblFondo = new JLabel("");
 
-		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.getClass().getSimpleName()+"_Ruinas");
+		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("InicioGUI_Ruinas");
 		lblFondo.setIcon(imagenDeFondo);
 		lblFondo.setBounds(0, 0, getWidth(), getHeight());
 		contentPane.add(lblFondo);

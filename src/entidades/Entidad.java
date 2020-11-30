@@ -20,16 +20,16 @@ abstract public class  Entidad {
 	 * El vector contiene la velocidad y la direccion de la entidad
 	 */
 	protected Vector vector;
-    protected int latencia;
+	protected int latencia;
 	protected Juego juego;
 	protected ImageIcon imagen;
 	protected String claveImagen;
 	protected boolean estadoTemporal;
 	protected int tiempoDeEspera;
-    protected Jugador jugador;
-    
+	protected Jugador jugador;
+
 	abstract public void accept(Visitor v);
-	
+
 	public Entidad (Juego juego) {
 		this.juego = juego;
 		this.estadoTemporal= false;
@@ -40,7 +40,7 @@ abstract public class  Entidad {
 	public ImageIcon getImagen() {
 		return this.imagen;
 	}
-	
+
 
 	public Vector getVector() {
 		return this.vector;
@@ -56,10 +56,10 @@ abstract public class  Entidad {
 		vector.setModulo(0);
 	}
 	public void desaparecer() {
-		
+
 		juego.agregarAEntidadesParaQuitar(this);
 	}
-	
+
 	//detecta de arriba hacia abajo
 	public boolean hayColision(Entidad entidad) {
 		// entidad.getEntorno() this.entorno
@@ -88,7 +88,7 @@ abstract public class  Entidad {
 
 	public void desplazarse() {
 		//this.posicion.y++;
-		
+
 		this.vector.desplazarse();
 		juego.actualizarEntidad(this);
 		//detectarColisiones();
@@ -105,39 +105,39 @@ abstract public class  Entidad {
 		Iterator<Entidad> itEntidades ;
 		for(Entidad entidadDeLatencia : listaDeLatencia) {
 			itEntidades = listaDeColisiones.iterator();
-			
-			
+
+
 			if(entidadActual!=entidadDeLatencia&&hayColision(entidadDeLatencia)) {
-               //-----para que no haya repetidos----
+				//-----para que no haya repetidos----
 				while(itEntidades.hasNext()&&!esta) {
 					entVerificar = itEntidades.next();
 					esta= entVerificar == entidadDeLatencia;
 				}
 				//-------------------------------------
-				
+
 				if(!esta)
 					listaDeColisiones.add(entidadDeLatencia);
 				else
 					esta = false;
 
 			} 
-			
+
 		}
 		return listaDeColisiones;
 	}  
-    abstract public void impacto(int letalidad);
+	abstract public void impacto(int letalidad);
 
 	public void accionar() {
 		for(Entidad ent : detectarColisiones()) {
 			//visitor
 			ent.accept(v);
 		}
-		
-		
+
+
 
 	}
 	public abstract void actuar();
-	
+
 	public void cambiarEstadoTemporal() {
 		estadoTemporal= true;
 	}

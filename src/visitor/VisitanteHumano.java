@@ -41,7 +41,6 @@ public class VisitanteHumano extends Visitante {
 	public void visitarJugador(Jugador j) {
 		if(!humano.soltoPremio()) {
 			humano.dejarCaerPremio();
-			humano.getVector().setModulo(8);
 		}
 	}
 

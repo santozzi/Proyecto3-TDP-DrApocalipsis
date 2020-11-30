@@ -17,7 +17,6 @@ public class SuperArma extends Temporal {
 	public void ejecutar() {
 	    jugador.cambiarEstadoTemporal();
 		jugador.cambiarArma(new SuperArmaSanitaria(juego));
-		
 	}
 	@Override
 	public void accept(Visitor v) {

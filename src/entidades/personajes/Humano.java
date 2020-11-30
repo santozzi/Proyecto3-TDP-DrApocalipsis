@@ -76,7 +76,8 @@ public class Humano extends Personaje {
 
 		dialogo.getPosicion().x = getPosicion().x+10;
 		dialogo.getPosicion().y = getPosicion().y-30;
-		this.dialogo.getVector().setModulo(8);
+		vector.setModulo(8);
+		dialogo.getVector().setModulo(vector.getModulo());
 		juego.agregarAEntidadesParaAgregar(premio);
 		juego.agregarAEntidadesParaAgregar(dialogo);
 		soltoPremio = true;

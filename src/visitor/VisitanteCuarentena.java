@@ -40,7 +40,7 @@ public class VisitanteCuarentena extends Visitante {
 	public void visitarJugador(Jugador j) {
 		cuarentena.ejecutar();
 		cuarentena.detenerse();
-        cuarentena.desaparecer();
+		cuarentena.desaparecer();
 	}
 
 	@Override

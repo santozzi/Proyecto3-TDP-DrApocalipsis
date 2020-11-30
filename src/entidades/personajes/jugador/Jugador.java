@@ -25,9 +25,7 @@ public class Jugador extends Personaje{
 		this.vector.getPosicion().x=225;
 		this.vector.getPosicion().y=550;
 		tiempoDeEspera = 1000;
-		this.claveImagen = arma.getClaveImagen();
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
-		
+		setImagen(arma.getClaveImagen());
 
 		v = new VisitanteJugador(this);
 
@@ -35,8 +33,7 @@ public class Jugador extends Personaje{
 	@Override
 	public void detenerse() {
 		if(!this.claveImagen.equals(arma.getClaveImagen())) {
-			this.claveImagen = arma.getClaveImagen();
-			imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
+			setImagen(arma.getClaveImagen());
 		}
 	}
 
@@ -65,9 +62,8 @@ public class Jugador extends Personaje{
 				vector.cambioDeSentido();
 
 			}
-			if(!this.claveImagen.equals("Jugador_caminarIzquierda")) {
-				this.claveImagen = "Jugador_caminarIzquierda";
-				imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
+			if(!this.claveImagen.equals("Jugador_CaminarIzquierda")) {
+				setImagen("Jugador_CaminarIzquierda");
 
 			}
 			desplazarse();
@@ -81,9 +77,8 @@ public class Jugador extends Personaje{
 			}
 
 
-			if(!this.claveImagen.equals("Jugador_caminarDerecha")) {
-				this.claveImagen = "Jugador_caminarDerecha";
-				imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
+			if(!this.claveImagen.equals("Jugador_CaminarDerecha")) {
+				setImagen("Jugador_CaminarDerecha");
 			}
 
 			desplazarse();
@@ -100,6 +95,7 @@ public class Jugador extends Personaje{
 	}
 	public void disparar() {
 		arma.disparar();
+		setImagen(arma.getClaveImagen());
 		imagen.getImage().flush();
 	}
 	@Override
@@ -135,7 +131,7 @@ public class Jugador extends Personaje{
 		juego.matarJugador();
 		juego.finalizarJuego();
 	}
-	public void setImagen(String comando) {
+	private void setImagen(String comando) {
 		this.claveImagen = comando;
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 	}

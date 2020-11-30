@@ -40,7 +40,7 @@ public class VisitantePocion extends Visitante {
 	public void visitarJugador(Jugador j) {
 		pocion.ejecutar();
 		pocion.detenerse();
-        pocion.desaparecer();
+		pocion.desaparecer();
 		//infectadoAlpha.detenerse();
 		
 	}

@@ -5,10 +5,11 @@ import logica.HiloSecundario;
 import logica.Juego;
 
 public abstract class Premio extends Entidad {
-   abstract public void ejecutar() ;
+   
    public Premio (Juego juego) {
 	   super(juego);
    }
+   abstract public void ejecutar();
    @Override
    public void desplazarse() {
 		super.desplazarse();

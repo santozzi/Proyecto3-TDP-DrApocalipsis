@@ -39,10 +39,6 @@ public class VisitanteParticulaAlpha extends Visitante {
 		j.impacto(particulaAlpha.getLetalidad());
 		particulaAlpha.detenerse();
 		particulaAlpha.desaparecer();
-		
-		
-	
-		
 	}
 
 	@Override
