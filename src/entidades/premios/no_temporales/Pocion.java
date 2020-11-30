@@ -1,9 +1,6 @@
 package entidades.premios.no_temporales;
 
-import logica.ColeccionDeImagenes;
 import logica.Juego;
-import logica.Vector;
-import entidades.Entidad;
 import visitor.VisitantePocion;
 import visitor.Visitor;
 
@@ -11,7 +8,6 @@ public class Pocion extends ObjetoPrecioso {
     public Pocion(Juego juego) {
     	super(juego);
     	v= new VisitantePocion(this);
-    	imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("pocion");
     	
     }
 	@Override

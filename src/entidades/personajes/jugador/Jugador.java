@@ -1,12 +1,9 @@
 package entidades.personajes.jugador;
 
-import java.awt.Point;
-
 import javax.swing.ImageIcon;
 
 import armas.Arma;
 import armas.ArmaSanitaria;
-import armas.SuperArmaSanitaria;
 import entidades.personajes.Personaje;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
@@ -22,20 +19,20 @@ public class Jugador extends Personaje{
 	public Jugador(Juego juego) {
 		super(juego);
 		arma = new ArmaSanitaria(juego);
+		this.vector = new Vector(1, 0, 3);
 		this.cargaViral = 100;
 		this.juego= juego;
-		this.vector = new Vector(1,0,3);
 		this.vector.getPosicion().x=225;
 		this.vector.getPosicion().y=550;
-		this.claveImagen = arma.getClaveImagen();
 		tiempoDeEspera = 1000;
+		this.claveImagen = arma.getClaveImagen();
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		
 
 		v = new VisitanteJugador(this);
 
 	}
-
+	@Override
 	public void detenerse() {
 		if(!this.claveImagen.equals(arma.getClaveImagen())) {
 			this.claveImagen = arma.getClaveImagen();
@@ -103,8 +100,6 @@ public class Jugador extends Personaje{
 	}
 	public void disparar() {
 		arma.disparar();
-		this.claveImagen = "recargar";
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 		imagen.getImage().flush();
 	}
 	@Override
@@ -139,5 +134,9 @@ public class Jugador extends Personaje{
 		//juego.agregarAEntidadesParaQuitar(this);
 		juego.matarJugador();
 		juego.finalizarJuego();
+	}
+	public void setImagen(String comando) {
+		this.claveImagen = comando;
+		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 	}
 }

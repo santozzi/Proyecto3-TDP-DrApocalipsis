@@ -4,12 +4,8 @@ import java.util.Random;
 
 import entidades.proyectiles.particulas.ParticulaAlpha;
 import entidades.proyectiles.particulas.ParticulaBeta;
-import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
-import visitor.VisitanteInfectadoBeta;
-import visitor.VisitanteInfectadoBossAlpha;
-import visitor.Visitor;
 
 /**
  * Este infectado tiene mayor resistencia
@@ -28,9 +24,9 @@ abstract public class InfectadoBoss extends Infectado {
 		this.rango = Juego.ALTO_DE_COMBATE;
 		tiempoDeDireccion= 300;
 		cambioDireccionOpuesta=false;
-		 ran = new Random();
+		ran = new Random();
 	}
-
+	@Override
 	public void tirarParticula() {
 	
 		int azar = ran.nextInt(3);
@@ -60,6 +56,7 @@ abstract public class InfectadoBoss extends Infectado {
     	}
     	}
     }
+    @Override
 	public void actuar() {
 
 		int vueltasAEsperar;

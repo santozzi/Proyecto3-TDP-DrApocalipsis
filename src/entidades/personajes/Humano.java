@@ -1,12 +1,8 @@
 package entidades.personajes;
 
-import java.awt.Point;
 import java.util.Random;
 
 import entidades.CuadroDeDialogo;
-import entidades.Entidad;
-import entidades.personajes.infectados.Infectado;
-import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.premios.Premio;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
@@ -14,7 +10,6 @@ import entidades.premios.temporales.SuperArma;
 import logica.ColeccionDeImagenes;
 import logica.HiloSecundario;
 import logica.Juego;
-import logica.Vector;
 import visitor.VisitanteHumano;
 import visitor.Visitor;
 
@@ -26,61 +21,33 @@ public class Humano extends Personaje {
 	public Humano(Juego j) {
 		super(j);
 		this.cargaViral = 0;
-		this.vector = new Vector(0, 1, 7);
+		this.vector.setModulo(7);
 		this.v = new VisitanteHumano(this);
 		this.soltoPremio = false;
-	
+
 		crearPremio();
 
-	}
-	public Point getPosicion() {
-		return this.vector.getPosicion();
 	}
 	private void crearPremio() {
 		Random random = new Random();
 		int randomInt = random.nextInt(3);
 		this.claveImagen = new String();
-		
-		if(randomInt == 0) {
+
+		if(randomInt == 0)
 			premio = new Pocion(juego);
-			this.claveImagen = "humanoPocion";
-		}
-		else if(randomInt == 1) {
+		else if(randomInt == 1)
 			premio = new SuperArma(juego);
-			this.claveImagen = "humanoSuperArma";
-		}
-		else {
+		else
 			premio = new Cuarentena(juego);
-			this.claveImagen = "humanoCuarentena";
-		}
+
+		this.claveImagen = this.getClass().getSimpleName()+"_"+premio.getClaveImagen();
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 	}
 
-	/*
-	 *dejarCaerPremio
-	 *---------------
-	 *Genera un nuevo objerto de tipo premio
-	 *y lo agrega a la colección de entidades.
-
-	public void dejarCaerPremio() {
-		Random random = new Random();
-		int randomInt = random.nextInt(3);
-
-		if(randomInt == 0)
-			premio = new SuperArma();
-		else if(randomInt == 1)
-			premio = new Cuarentena();
-		else
-			premio = new Pocion();
-
-		premio.getPosicion().setLocation(posicion);
-	}
-	 */
-
 	public void accept(Visitor v) {
-			
 		v.visitarHumano(this);
 	}
+	/*
 	@Override
 	public void impacto(int infeccion) {
 		if(cargaViral+infeccion<100) 
@@ -88,15 +55,12 @@ public class Humano extends Personaje {
 		else
 			infectar();
 	} 
+	 */
 	@Override
 	public void desplazarse() {
 		super.desplazarse();
 		if(this.vector.getPosicion().y >= Juego.ALTO_DE_COMBATE)
 			this.desaparecer();
-	}
-	private void infectar() {
-		Infectado ia = new InfectadoAlpha(this.juego);
-		ia.setPosicion(this.getPosicion().x, this.getPosicion().y);
 	}
 	/**
 	 *dejarCaerPremio
@@ -106,7 +70,7 @@ public class Humano extends Personaje {
 	 */
 	public void dejarCaerPremio() {
 		dialogo = new CuadroDeDialogo(juego);
-		this.claveImagen = "humanoCorrer";
+		this.claveImagen = this.getClass().getSimpleName()+"_Correr";
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		premio.getPosicion().setLocation(this.getPosicion());
 
@@ -120,7 +84,7 @@ public class Humano extends Personaje {
 	public boolean soltoPremio() {
 		return this.soltoPremio;
 	}
-	
+
 	public void actuar() {
 		int vueltasAEsperar;
 
@@ -140,5 +104,5 @@ public class Humano extends Personaje {
 		}
 
 	}
-	
+
 }

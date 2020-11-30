@@ -11,10 +11,12 @@ import logica.ColeccionDeImagenes;
 
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -50,6 +52,8 @@ public class InicioGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 562, 411);
 		setBounds(0, 0, 800, 700);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -75,11 +79,11 @@ public class InicioGUI extends JFrame {
 
 		btnNewButton.setBounds(587, 574, 160, 45);
 		contentPane.add(btnNewButton);
-
+		
 		JLabel lblLogo = new JLabel("");
 		//lblLogo.setBounds(311, 187, 54, 77);
 		lblLogo.setBounds(0, 541, 80, 130);
-		ImageIcon logoInc = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("plagueInc");
+		ImageIcon logoInc = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.getClass().getSimpleName()+"_PlagueInc");
 		lblLogo.setIcon(logoInc);
 
 		contentPane.add(lblLogo);
@@ -89,7 +93,7 @@ public class InicioGUI extends JFrame {
 	private void cargarFondo() {
 		JLabel lblFondo = new JLabel("");
 
-		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("ruinas");
+		ImageIcon imagenDeFondo = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.getClass().getSimpleName()+"_Ruinas");
 		lblFondo.setIcon(imagenDeFondo);
 		lblFondo.setBounds(0, 0, getWidth(), getHeight());
 		contentPane.add(lblFondo);

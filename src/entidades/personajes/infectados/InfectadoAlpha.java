@@ -1,16 +1,7 @@
 package entidades.personajes.infectados;
 
-import java.awt.Point;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
-import entidades.Entidad;
 import entidades.proyectiles.particulas.ParticulaAlpha;
-import logica.ColeccionDeImagenes;
-import logica.HiloSecundario;
 import logica.Juego;
-import logica.Vector;
 import visitor.*;
 import visitor.Visitor;
 
@@ -26,10 +17,7 @@ public class InfectadoAlpha extends Infectado{
 		super(juego);
 	   	this.cargaViral = 80;
 	   	this.puntos = 10;
-		this.claveImagen = new String("InfectadoAlpha_golpear");
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		v = new VisitanteInfectadoAlpha(this);
-		
 	}
 
 	/**

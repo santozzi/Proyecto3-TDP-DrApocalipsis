@@ -1,4 +1,4 @@
-package entidades.proyectiles.proyectiljugador;
+package entidades.proyectiles.proyectil_jugador;
 
 import entidades.Entidad;
 import entidades.proyectiles.Proyectil;

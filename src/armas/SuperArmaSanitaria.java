@@ -1,7 +1,6 @@
 package armas;
 
-import entidades.proyectiles.proyectiljugador.SuperProyectilSanitario;
-import logica.ColeccionDeImagenes;
+import entidades.proyectiles.proyectil_jugador.SuperProyectilSanitario;
 import logica.Juego;
 
 /**
@@ -13,8 +12,6 @@ public class SuperArmaSanitaria extends Arma{
 
 	public SuperArmaSanitaria(Juego juego) {
 		super(juego);
-		this.claveImagen= "Jugador_dispara_sa";
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 	}
 	
 	@Override

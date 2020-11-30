@@ -14,7 +14,6 @@ public class CaminarIzquierda implements IComando {
 	@Override
 	public void ejecutar() {
 		jugador.desplazarseIzquierda();
-
 	}
 
 }

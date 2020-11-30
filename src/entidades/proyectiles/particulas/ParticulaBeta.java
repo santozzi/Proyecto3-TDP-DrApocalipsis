@@ -1,7 +1,6 @@
 package entidades.proyectiles.particulas;
 
 import entidades.personajes.infectados.Infectado;
-import logica.ColeccionDeImagenes;
 import logica.Juego;
 import visitor.VisitanteParticulaBeta;
 import visitor.Visitor;
@@ -11,7 +10,7 @@ public class ParticulaBeta extends Particula{
 	public ParticulaBeta(Juego juego, Infectado infectado) {
 		super(juego, infectado);
 		rangoParticula= 0;
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("particulaBeta");
+		this.letalidad = 2;
 		v = new VisitanteParticulaBeta(this);
 	}
 

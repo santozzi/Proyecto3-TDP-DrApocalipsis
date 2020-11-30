@@ -1,9 +1,6 @@
-package entidades.proyectiles.proyectiljugador;
+package entidades.proyectiles.proyectil_jugador;
 import logica.Juego;
-import logica.Vector;
 import entidades.personajes.jugador.Jugador;
-import entidades.proyectiles.Proyectil;
-import logica.ColeccionDeImagenes;
 import visitor.VisitanteProyectilSanitario;
 import visitor.Visitor;
 
@@ -16,7 +13,7 @@ public class ProyectilSanitario extends ProyectilJugador{
 	public ProyectilSanitario(Juego juego) {
 	    super(juego);
 		vector.setModulo(9);
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("proyectilSanitario");
+		this.letalidad = 5;
 		v = new VisitanteProyectilSanitario(this);
 	}
 	

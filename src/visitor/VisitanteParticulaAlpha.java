@@ -12,8 +12,8 @@ import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
 import entidades.proyectiles.particulas.ParticulaAlpha;
 import entidades.proyectiles.particulas.ParticulaBeta;
-import entidades.proyectiles.proyectiljugador.ProyectilSanitario;
-import entidades.proyectiles.proyectiljugador.SuperProyectilSanitario;
+import entidades.proyectiles.proyectil_jugador.ProyectilSanitario;
+import entidades.proyectiles.proyectil_jugador.SuperProyectilSanitario;
 
 public class VisitanteParticulaAlpha extends Visitante {
 	
