@@ -20,6 +20,7 @@ public class Ambiente {
 
 	public static void parar() {
 		if(audio!=null && audio.hilo.isAlive()) {
+			audio.hilo.interrupt();
 			audio.hilo.stop();
 			audio = null;
 		}
