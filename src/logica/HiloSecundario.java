@@ -13,6 +13,7 @@ public class HiloSecundario extends Thread{
 	protected Queue<Entidad> colaParaAgregar;
 	protected Queue<Entidad> colaParaQuitar;
 	protected List<Entidad> listaParaRecorrer;
+	protected List<Entidad> copiaDeListaParaRecorrer;
 	protected Juego juego;
 	public static final int LATENCIA_MAXIMA = 10;
 	private static HiloSecundario hiloSecundario;
@@ -26,6 +27,7 @@ public class HiloSecundario extends Thread{
 		colaParaAgregar = new ConcurrentLinkedQueue<Entidad>();
 		colaParaQuitar = new ConcurrentLinkedQueue<Entidad>();
 		listaParaRecorrer = new LinkedList<Entidad>();
+		copiaDeListaParaRecorrer = new LinkedList<Entidad>();
 		this.correr = true;
 		this.correr2 = false;
 		
@@ -77,7 +79,7 @@ public class HiloSecundario extends Thread{
 		try {Thread.sleep(segundos);} catch (InterruptedException e) {e.getMessage();}
 	}
 	private void agregarYQuitarEntidades() {
-      
+      //para evitar error de recorrer cuando es modificada
 		while(!colaParaAgregar.isEmpty()) {
 			Entidad entParaAgregar = colaParaAgregar.poll();
 			listaParaRecorrer.add(entParaAgregar);
@@ -90,13 +92,20 @@ public class HiloSecundario extends Thread{
 			juego.notificarQuitarEntidad(entParaQuitar);
 		}
 		
-		
+	
+		copiaDeListaParaRecorrer.clear();
+		for(Entidad entidad : listaParaRecorrer) {
+			copiaDeListaParaRecorrer.add(entidad);
+		}
+		//----------------------------------------------------
 	/*	
 		juego.Logger.fine("paraAgregar "+colaParaAgregar.size()+
 				" paraQuitar "+colaParaQuitar.size()+" listaParaRecorrer "+
 				listaParaRecorrer.size()+ " correr "+correr+" correr2 "+correr2 +
 				" jugadorVive "+juego.jugadorVive);
 				*/
+		
+		//para entrar en la pantalla score.
 		if((colaParaAgregar.isEmpty()
 				&&colaParaQuitar.isEmpty()
 				&&listaParaRecorrer.size()<=1
@@ -115,7 +124,7 @@ public class HiloSecundario extends Thread{
 		colaParaQuitar.add(entidad);
 	}
 	public List<Entidad> listaDeRecorrido(){
-		return listaParaRecorrer;
+		return copiaDeListaParaRecorrer;
 	}
 	public boolean isCorrer() {
 		return correr;

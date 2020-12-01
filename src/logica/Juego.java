@@ -62,7 +62,7 @@ public class Juego implements IObservado {
 			
 		}
 		
-		this.nivelActual = 3;
+		this.nivelActual = 1;
 		finalizaBoss= false;
 		this.score = new Contabilidad();
 		observadores = new LinkedList<IObservador>();
