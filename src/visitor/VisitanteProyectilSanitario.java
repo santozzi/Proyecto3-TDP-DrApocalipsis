@@ -1,5 +1,7 @@
 package visitor;
 
+import java.util.Random;
+
 import entidades.CuadroDeDialogo;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
@@ -16,13 +18,16 @@ import entidades.proyectiles.particulas.ParticulaAlpha;
 import entidades.proyectiles.particulas.ParticulaBeta;
 import entidades.proyectiles.proyectil_jugador.ProyectilSanitario;
 import entidades.proyectiles.proyectil_jugador.SuperProyectilSanitario;
+import reproductor_de_audio.Sonidos;
 
 public class VisitanteProyectilSanitario extends Visitante {
 	
 	private ProyectilSanitario proyectilSanitario;
+	private Random random;
 	
 	public VisitanteProyectilSanitario(ProyectilSanitario ps) {
 		this.proyectilSanitario = ps;
+		this.random = new Random();
 	}
 
 	@Override
@@ -31,6 +36,9 @@ public class VisitanteProyectilSanitario extends Visitante {
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
 		
+		int randomInt = random.nextInt(2)+1;
+		Sonidos.reproducir("zo_pain"+randomInt);
+		
 	}
 
 	@Override
@@ -38,6 +46,9 @@ public class VisitanteProyectilSanitario extends Visitante {
 	    ib.impacto(proyectilSanitario.getLetalidad());
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
+		
+		int randomInt = random.nextInt(2)+1;
+		Sonidos.reproducir("zo_pain"+randomInt);
 		
 	}
 
@@ -105,6 +116,9 @@ public class VisitanteProyectilSanitario extends Visitante {
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
 		
+		int randomInt = random.nextInt(2)+1;
+		Sonidos.reproducir("x_pain"+randomInt);
+		
 	}
 
 	@Override
@@ -112,6 +126,9 @@ public class VisitanteProyectilSanitario extends Visitante {
 		ifboss.impacto(proyectilSanitario.getLetalidad());
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
+		
+		int randomInt = random.nextInt(2)+1;
+		Sonidos.reproducir("x_pain"+randomInt);
 		
 	}
 

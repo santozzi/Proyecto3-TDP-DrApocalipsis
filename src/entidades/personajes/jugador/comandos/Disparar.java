@@ -12,7 +12,6 @@ public class Disparar implements IComando {
 	@Override
 	public void ejecutar() {
 		jugador.disparar();
-		jugador.setImagen(this.getClass().getSimpleName());
 	}
 
 }

@@ -6,6 +6,7 @@ import entidades.proyectiles.particulas.ParticulaAlpha;
 import entidades.proyectiles.particulas.ParticulaBeta;
 import logica.HiloSecundario;
 import logica.Juego;
+import reproductor_de_audio.Sonidos;
 
 /**
  * Este infectado tiene mayor resistencia

@@ -3,6 +3,7 @@ package logica;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import entidades.Entidad;
 import entidades.personajes.jugador.Jugador;
@@ -13,6 +14,9 @@ import niveles.Nivel2;
 import niveles.Nivel3;
 import observador.IObservado;
 import observador.IObservador;
+import reproductor_de_audio.Ambiente;
+import reproductor_de_audio.Musica;
+
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -76,15 +80,11 @@ public class Juego implements IObservado {
 		}else
 			Logger.warning("Error al iniciar hilo secundario");
 		
-		
-	
-		
-		
-		
 	}
 	public void finalizarJuego() {
 		hiloSecundario.terminarEjecucion();
 		Logger.fine("Fin del juego");
+		Musica.parar();
 	}
 	
 	
@@ -94,30 +94,6 @@ public class Juego implements IObservado {
 		
 	}
 
-	/*hilo paralelo
-	private void hiloRecorredorDeEntidades() {
-		Thread hiloVerificar = new Thread(){
-			//  Iterator<Latencia> itLat ;
-			@Override 
-			public void run() {
-				while(true) {
-
-					if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
-						if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
-							limite.y = limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
-							limite.x = 0;
-						}else {
-							limite.y = limite.y = entidad.getVector().getPosicion().y;
-							limite.x += entidad.getImagen().getIconWidth();
-						}
-
-					System.out.println("Limite: X=" + limite.x + " ; Y=" + limite.y + " (Juego)");
-
-				}
-			}
-		};
-	}
-	 */
 	public Point getLimite() {
 		return this.limite;
 	}
@@ -128,12 +104,15 @@ public class Juego implements IObservado {
 		if(nivelActual==1) {
 			Logger.fine("Cargando nivel 1");
 			this.nivel = new Nivel1(this);
+			
 		}else if(nivelActual==2){
 			Logger.fine("Cargando nivel 2");
 			nivel= new Nivel2(this);
+			
 		}else if(nivelActual==3){
 			Logger.fine("Cargando nivel 3");
 			nivel= new Nivel3(this);
+			
 		}else {
 			
 			finalizarJuego();
@@ -144,7 +123,15 @@ public class Juego implements IObservado {
 			for(Entidad entidad : nivel.primeraTanda()) {
 				hiloSecundario.agregarAColaParaAgregar(entidad);
 			}
-			notificarNivel();	
+			notificarNivel();
+			
+			Random random = new Random();
+			int randomInt;
+			String pista = new String("intro");
+			
+			randomInt = random.nextInt(3)+1;
+			Ambiente.reproducir(pista+randomInt);
+			Musica.reproducir("Digadig");
 		}
          
 	}
@@ -156,6 +143,7 @@ public class Juego implements IObservado {
 			hiloSecundario.agregarAColaParaAgregar(entidad);
 		}
 		finalizaBoss= true;
+
 	}
 
 	public void agregarItem(String clave,int puntos) {
@@ -176,33 +164,49 @@ public class Juego implements IObservado {
 		listaDeInfectados.remove(infectado);
 
 		if(listaDeInfectados.isEmpty()) {
+			
 			if(finalizaBoss) {
 				Logger.fine("Entrando a la carga del nuevo nivel despues de matar al boss");
 				nivelActual++;
 				cargarNivel();
+				
+				Musica.parar();
+				Musica.reproducir("Digadig");
 				
 				finalizaBoss=false;
 			}else {
 				if(ifinalizarTanda) {
 					Logger.fine("Cargando al boss");
 					cargarJefe();
+					
+					Musica.parar();
+					Musica.reproducir(new String("poltergeist"));
+					Ambiente.reproducir("nil_win");
 
 					ifinalizarTanda=false;
 
 				}else {
-					Logger.fine("Fonalizando tanda");
+					Logger.fine("Finalizando tanda");
 					finalizarTanda();
-
 				}
 			}
 		}
 		notificarScore();
 	}
 	public void finalizarTanda() {
+		
 		for(Entidad entidad : nivel.segundaTanda()) {
 			hiloSecundario.agregarAColaParaAgregar(entidad);
 		}
 		ifinalizarTanda=true;
+		
+		Random random = new Random();
+		int randomInt;
+		String pista = new String("intro");
+		
+		randomInt = random.nextInt(3)+1;
+		Ambiente.reproducir(pista+randomInt);
+	
 	}
 	public List<Entidad> getLista(){
 		return hiloSecundario.listaDeRecorrido();

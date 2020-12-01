@@ -12,6 +12,7 @@ public class ArmaSanitaria extends Arma{
 
 	@Override
 	public void disparar() {
+		super.disparar();
 		proyectil = new ProyectilSanitario(juego);
 	}
 

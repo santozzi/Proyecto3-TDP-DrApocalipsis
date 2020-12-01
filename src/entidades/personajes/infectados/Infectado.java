@@ -1,11 +1,14 @@
 package entidades.personajes.infectados;
 
+import java.util.Random;
+
 import entidades.Entidad;
 import entidades.personajes.Humano;
 import entidades.personajes.Personaje;
 import entidades.proyectiles.particulas.Particula;
 import logica.HiloSecundario;
 import logica.Juego;
+import reproductor_de_audio.Sonidos;
 
 public abstract class Infectado extends Personaje {
 	   protected int tiempoDeParticula;
