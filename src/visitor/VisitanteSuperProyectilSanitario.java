@@ -1,5 +1,7 @@
 package visitor;
 
+import java.util.Random;
+
 import entidades.CuadroDeDialogo;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
@@ -16,15 +18,17 @@ import entidades.proyectiles.particulas.ParticulaAlpha;
 import entidades.proyectiles.particulas.ParticulaBeta;
 import entidades.proyectiles.proyectil_jugador.ProyectilSanitario;
 import entidades.proyectiles.proyectil_jugador.SuperProyectilSanitario;
+import reproductor_de_audio.Sonidos;
 
 public class VisitanteSuperProyectilSanitario extends Visitante {
 	
 	private SuperProyectilSanitario superProyectilSanitario;
-	
+	private Random random;
     
 
 	public VisitanteSuperProyectilSanitario(SuperProyectilSanitario superProyectilSanitario) {
 		this.superProyectilSanitario = superProyectilSanitario;
+		this.random = new Random();
 	}
 
 	@Override
@@ -32,6 +36,9 @@ public class VisitanteSuperProyectilSanitario extends Visitante {
 		 ia.impacto(superProyectilSanitario.getLetalidad());
 			superProyectilSanitario.detenerse();
 			superProyectilSanitario.desaparecer();
+			
+			int randomInt = random.nextInt(2)+1;
+			Sonidos.reproducir("zo_pain"+randomInt);
 		
 	}
 
@@ -40,6 +47,9 @@ public class VisitanteSuperProyectilSanitario extends Visitante {
 		 ib.impacto(superProyectilSanitario.getLetalidad());
 			superProyectilSanitario.detenerse();
 			superProyectilSanitario.desaparecer();
+			
+			int randomInt = random.nextInt(2)+1;
+			Sonidos.reproducir("zo_pain"+randomInt);
 		
 	}
 
@@ -105,6 +115,9 @@ public class VisitanteSuperProyectilSanitario extends Visitante {
 		 ifboss.impacto(superProyectilSanitario.getLetalidad());
 			superProyectilSanitario.detenerse();
 			superProyectilSanitario.desaparecer();
+			
+			int randomInt = random.nextInt(2)+1;
+			Sonidos.reproducir("x_pain"+randomInt);
 		
 	}
 
@@ -113,6 +126,9 @@ public class VisitanteSuperProyectilSanitario extends Visitante {
 		 ifboss.impacto(superProyectilSanitario.getLetalidad());
 			superProyectilSanitario.detenerse();
 			superProyectilSanitario.desaparecer();
+			
+			int randomInt = random.nextInt(2)+1;
+			Sonidos.reproducir("x_pain"+randomInt);
 		
 	}
 

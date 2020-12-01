@@ -5,24 +5,17 @@ package GUI;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-
-import audio.AudioPlayer;
 import entidades.Entidad;
 import entidades.personajes.jugador.Jugador;
 import entidades.personajes.jugador.comandos.CaminarDerecha;
@@ -31,11 +24,11 @@ import entidades.personajes.jugador.comandos.Detenerse;
 import entidades.personajes.jugador.comandos.Disparar;
 import entidades.personajes.jugador.comandos.IComando;
 import entidades.personajes.jugador.controles.Teclado;
-import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
 import logica.contabilidad.Item;
 import observador.IObservador;
+import reproductor_de_audio.Musica;
 
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
@@ -51,8 +44,6 @@ public class Mapa  extends JFrame implements IObservador{
 	protected JPanel panelDeEntidades;
 	protected Teclado teclado;
 	protected JProgressBar progressBar;
-	private Thread audio;
-	private AudioPlayer ap;
 	private Map<Entidad,JLabel> mapeoEntidades;
 	protected JLabel lblMapaDerecha;
 	protected JLabel lblMapaIzquierda;
@@ -81,10 +72,6 @@ public class Mapa  extends JFrame implements IObservador{
 		//panelDeEntidades = new JPanel();
 
 		mapeoEntidades = new HashMap<Entidad, JLabel>();
-
-		ap = new AudioPlayer("/audio/Digadig.mp3");
-		audio = new Thread(ap);
-		//audio.start();
 
 		setTitle("Dr. Apocalipsis");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
