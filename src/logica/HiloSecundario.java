@@ -51,12 +51,6 @@ public class HiloSecundario extends Thread{
 				entidadParaAccionar = itListaParaRecorrer.next();
 				
 				actualizarLimiteVirtual(entidadParaAccionar);
-				
-				
-				
-				
-				
-				
 				entidadParaAccionar.actuar();
 			}
 			agregarYQuitarEntidades();
@@ -83,7 +77,7 @@ public class HiloSecundario extends Thread{
 		try {Thread.sleep(segundos);} catch (InterruptedException e) {e.getMessage();}
 	}
 	private void agregarYQuitarEntidades() {
-
+      
 		while(!colaParaAgregar.isEmpty()) {
 			Entidad entParaAgregar = colaParaAgregar.poll();
 			listaParaRecorrer.add(entParaAgregar);
@@ -95,26 +89,27 @@ public class HiloSecundario extends Thread{
 			listaParaRecorrer.remove(entParaQuitar);
 			juego.notificarQuitarEntidad(entParaQuitar);
 		}
-		/*
+		
+		
+	/*	
 		juego.Logger.fine("paraAgregar "+colaParaAgregar.size()+
 				" paraQuitar "+colaParaQuitar.size()+" listaParaRecorrer "+
-				listaParaRecorrer.size()+ " correr "+correr+
+				listaParaRecorrer.size()+ " correr "+correr+" correr2 "+correr2 +
 				" jugadorVive "+juego.jugadorVive);
 				*/
 		if((colaParaAgregar.isEmpty()
 				&&colaParaQuitar.isEmpty()
-				&&!correr)||!juego.jugadorVive) {
+				&&listaParaRecorrer.size()<=1
+				&&!correr)||!juego.jugadorVive&&!correr) {
 			
 			
 			juego.notificarEstadistica();
 			this.correr2 = true;
-		}
+			}
 
 	}
 	public void agregarAColaParaAgregar(Entidad entidad) {
-
 		colaParaAgregar.add(entidad);
-
 	}
 	public void agregarAColaParaQuitar(Entidad entidad) {
 		colaParaQuitar.add(entidad);

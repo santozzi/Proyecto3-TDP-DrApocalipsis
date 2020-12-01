@@ -30,7 +30,7 @@ public abstract class Infectado extends Personaje {
 		tiempoDeParticula=300;
 		contarTiempoDeParticula=0;
 		tiempoDeAtaque=300;
-		contarTiempoDeAtaque=0;
+		contarTiempoDeAtaque=300;
 		this.letalidadFisica=5;
 		atacar= false;
 		entidad = null;
@@ -89,6 +89,7 @@ public abstract class Infectado extends Personaje {
 
 
 		juego.agregarAEntidadesParaAgregar(humano);
+		
 		if(particula!=null)
 		   particula.desaparecer();
 		this.desaparecer();
@@ -190,11 +191,12 @@ public abstract class Infectado extends Personaje {
 	}
 
 	
-    private void intervaloDeAtaque() {
+    protected void intervaloDeAtaque() {
         
     	if(contarTiempoDeAtaque>=tiempoDeAtaque) {
     		 entidad.impacto(letalidadFisica);
     		contarTiempoDeAtaque=0;
+    		System.out.println("soy "+this.getClass().getSimpleName()+ " y me letalidadFisica es "+letalidadFisica);
     	}else {
     		contarTiempoDeAtaque++;
     	

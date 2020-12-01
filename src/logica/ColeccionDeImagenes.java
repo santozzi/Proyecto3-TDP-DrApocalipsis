@@ -68,6 +68,8 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("Pocion","/img/pocion.png", 50, 50);
 		agregarRuta("SuperArma","/img/ak47.png", 50, 20);
 		agregarRuta("Cuarentena","/img/cuarentena.png", 40, 40);
+		
+		
 
 		// Humano
 		agregarRuta("Humano_Cuarentena","/img/Humano_cuarentena.png", 40, 60);
@@ -87,6 +89,8 @@ public class ColeccionDeImagenes extends Imagenes{
 		// Otros
 		agregarRuta("Nivel_AutoEnLlamas","/img/autoEnLlamas.gif", 75, 120);
 		agregarRuta("CuadroDeDialogo","/img/dialogo.png", 80, 40);
+		
+		
 
 	}
 

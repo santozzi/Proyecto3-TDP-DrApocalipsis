@@ -222,6 +222,7 @@ public class FrmScore extends JFrame implements IObservador{
 		btnReinicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				obs.cerrar();
 			}
 		});
 		btnReinicio.setBounds(639, 588, 128, 23);

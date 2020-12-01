@@ -12,6 +12,7 @@ public class Pocion extends ObjetoPrecioso {
     }
 	@Override
 	public void ejecutar() {
+		
 		juego.getJugador().curar(20);
 		juego.notificarCargaViralDeJugador();
 	}

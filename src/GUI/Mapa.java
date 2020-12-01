@@ -370,7 +370,7 @@ public class Mapa  extends JFrame implements IObservador{
 	public void updateEstedistica(Collection<Item> datos) {
 		
 		estadistica.iniciar();
-		dispose();
+		//dispose();
 		
 	}
 	

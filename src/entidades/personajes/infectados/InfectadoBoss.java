@@ -22,7 +22,7 @@ abstract public class InfectadoBoss extends Infectado {
 		super(juego);
 		contarTiempoDeDireccion=0;
 		this.rango = Juego.ALTO_DE_COMBATE;
-		tiempoDeDireccion= 300;
+		tiempoDeDireccion= 750;
 		cambioDireccionOpuesta=false;
 		ran = new Random();
 	}
@@ -84,7 +84,10 @@ abstract public class InfectadoBoss extends Infectado {
 			}
 			
 		}
+	
 		intervaloDeTirarParticula();
+			if(entidad!=null&&atacar)
+			 intervaloDeAtaque();
 	}
 	
 }
