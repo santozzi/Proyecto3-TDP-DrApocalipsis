@@ -8,6 +8,8 @@ import entidades.personajes.infectados.InfectadoBoss;
 import entidades.personajes.infectados.InfectadoBossAlpha;
 import entidades.personajes.infectados.InfectadoBossBeta;
 import entidades.personajes.jugador.Jugador;
+import entidades.premios.no_temporales.Diamante;
+import entidades.premios.no_temporales.Moneda;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
@@ -41,6 +43,7 @@ public class VisitanteHumano extends Visitante {
 	public void visitarJugador(Jugador j) {
 		if(!humano.soltoPremio()) {
 			humano.dejarCaerPremio();
+			humano.getVector().setModulo(8);
 		}
 	}
 
@@ -110,6 +113,18 @@ public class VisitanteHumano extends Visitante {
 
 	@Override
 	public void visitarCuadroDeDialogo(CuadroDeDialogo cd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarMoneda(Moneda mon) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarDiamante(Diamante dia) {
 		// TODO Auto-generated method stub
 		
 	}

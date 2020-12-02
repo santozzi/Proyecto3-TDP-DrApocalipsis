@@ -8,6 +8,8 @@ import entidades.personajes.infectados.InfectadoBoss;
 import entidades.personajes.infectados.InfectadoBossAlpha;
 import entidades.personajes.infectados.InfectadoBossBeta;
 import entidades.personajes.jugador.Jugador;
+import entidades.premios.no_temporales.Diamante;
+import entidades.premios.no_temporales.Moneda;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
@@ -22,6 +24,9 @@ import entidades.proyectiles.proyectil_jugador.SuperProyectilSanitario;
 
 public abstract class Visitor
 {
+	abstract public void visitarMoneda(Moneda mon);
+	abstract public void visitarDiamante(Diamante dia);
+	
 	abstract public void visitarInfectadoAlpha(InfectadoAlpha ea);
 	
 	abstract public void visitarInfectadoBeta(InfectadoBeta eb);
@@ -34,8 +39,8 @@ public abstract class Visitor
 	abstract public void visitarParticulaBeta(ParticulaBeta par);
 	abstract public void visitarHumano(Humano hum);
 	
-	abstract public void visitarPocion(Pocion pos);
-
+	abstract public void visitarPocion(Pocion pos);	
+	
 	abstract public void visitarCuarentena(Cuarentena cuarentena);
 	abstract public void visitarSuperProyectilSanitario(SuperProyectilSanitario sps);
 	abstract public void visitarSuperArma(SuperArma sarm);

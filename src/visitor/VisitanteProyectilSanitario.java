@@ -1,7 +1,5 @@
 package visitor;
 
-import java.util.Random;
-
 import entidades.CuadroDeDialogo;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
@@ -10,6 +8,8 @@ import entidades.personajes.infectados.InfectadoBoss;
 import entidades.personajes.infectados.InfectadoBossAlpha;
 import entidades.personajes.infectados.InfectadoBossBeta;
 import entidades.personajes.jugador.Jugador;
+import entidades.premios.no_temporales.Diamante;
+import entidades.premios.no_temporales.Moneda;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
@@ -18,16 +18,13 @@ import entidades.proyectiles.particulas.ParticulaAlpha;
 import entidades.proyectiles.particulas.ParticulaBeta;
 import entidades.proyectiles.proyectil_jugador.ProyectilSanitario;
 import entidades.proyectiles.proyectil_jugador.SuperProyectilSanitario;
-import reproductor_de_audio.Sonidos;
 
 public class VisitanteProyectilSanitario extends Visitante {
 	
 	private ProyectilSanitario proyectilSanitario;
-	private Random random;
 	
 	public VisitanteProyectilSanitario(ProyectilSanitario ps) {
 		this.proyectilSanitario = ps;
-		this.random = new Random();
 	}
 
 	@Override
@@ -36,9 +33,6 @@ public class VisitanteProyectilSanitario extends Visitante {
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
 		
-		int randomInt = random.nextInt(2)+1;
-		Sonidos.reproducir("zo_pain"+randomInt);
-		
 	}
 
 	@Override
@@ -46,9 +40,6 @@ public class VisitanteProyectilSanitario extends Visitante {
 	    ib.impacto(proyectilSanitario.getLetalidad());
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
-		
-		int randomInt = random.nextInt(2)+1;
-		Sonidos.reproducir("zo_pain"+randomInt);
 		
 	}
 
@@ -116,9 +107,6 @@ public class VisitanteProyectilSanitario extends Visitante {
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
 		
-		int randomInt = random.nextInt(2)+1;
-		Sonidos.reproducir("x_pain"+randomInt);
-		
 	}
 
 	@Override
@@ -127,13 +115,22 @@ public class VisitanteProyectilSanitario extends Visitante {
 		proyectilSanitario.detenerse();
 		proyectilSanitario.desaparecer();
 		
-		int randomInt = random.nextInt(2)+1;
-		Sonidos.reproducir("x_pain"+randomInt);
-		
 	}
 
 	@Override
 	public void visitarCuadroDeDialogo(CuadroDeDialogo cd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarMoneda(Moneda mon) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarDiamante(Diamante dia) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -47,16 +47,14 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("InfectadoBossBeta","/img/infectadoBeta_caminar.gif", 140, 160);
 
 		// Jugador
-		agregarRuta("Jugador_CaminarDerecha", "/img/Jugador_caminarDerecha.gif", 70, 60);
-		agregarRuta("Jugador_CaminarIzquierda", "/img/Jugador_caminarIzquierda.gif", 70, 60);
+		agregarRuta("ArmaSanitaria", "/img/pistola_idle.png", 70, 50);
+		agregarRuta("SuperArmaSanitaria", "/img/superArma.png", 70, 50);
+		agregarRuta("Jugador_caminarDerecha", "/img/Jugador_caminarDerecha.gif", 70, 60);
+		agregarRuta("Jugador_caminarIzquierda", "/img/Jugador_caminarIzquierda.gif", 70, 60);
+		agregarRuta("Disparar", "/img/recargar.gif", 70, 50);
 		agregarRuta("Jugador_Noqueado", "/img/personaje_noqueado.png", 70, 80);
 		agregarRuta("Jugador_Muerto", "/img/personaje_muerto.png", 80, 80);
-		
-		// Jugador con Armas
-		agregarRuta("ArmaSanitaria", "/img/pistola_idle.png", 70, 50);
-		agregarRuta("ArmaSanitaria_Disparar", "/img/recargar.gif", 70, 50);
-		agregarRuta("SuperArmaSanitaria", "/img/superArma.png", 70, 50);
-		agregarRuta("SuperArmaSanitaria_Disparar", "/img/recargar_sa.gif", 70, 50);
+		//----------
 		
         // Proyectiles
 	    agregarRuta("ProyectilSanitario", "/img/Jeringa2.png", 20, 50);
@@ -70,9 +68,9 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("Pocion","/img/pocion.png", 50, 50);
 		agregarRuta("SuperArma","/img/ak47.png", 50, 20);
 		agregarRuta("Cuarentena","/img/cuarentena.png", 40, 40);
+		agregarRuta("Moneda","/img/Moneda.png", 40, 40);
+		agregarRuta("Diamante","/img/Diamante.png", 40, 40);
 		
-		
-
 		// Humano
 		agregarRuta("Humano_Cuarentena","/img/Humano_cuarentena.png", 40, 60);
 		agregarRuta("Humano_SuperArma","/img/Humano_superArma.png", 40, 60);
@@ -86,13 +84,11 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("InicioGUI_PlagueInc", "/img/plagueInc.PNG", 80, 130);
 		
         // Bara de score y Energia
-		agregarRuta("Mapa_PanelDeScore","/img/panelScore.jpg", 619, 40);
+		agregarRuta("panelDeScore","/img/panelScore.jpg", 619, 40);
 		
 		// Otros
 		agregarRuta("Nivel_AutoEnLlamas","/img/autoEnLlamas.gif", 75, 120);
 		agregarRuta("CuadroDeDialogo","/img/dialogo.png", 80, 40);
-		
-		
 
 	}
 
