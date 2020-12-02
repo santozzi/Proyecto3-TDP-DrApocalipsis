@@ -6,16 +6,24 @@ import visitor.VisitantePocion;
 import visitor.Visitor;
 
 public class Moneda extends ObjetoPrecioso{
-
+    protected int valor;
+    protected boolean agarro;
 	public Moneda(Juego juego) {
 		super(juego);
 		v= new VisitanteMoneda(this);
+		this.valor= 5;
+		this.agarro= false;
 	}
 
 	@Override
 	public void ejecutar() {
 		// TODO Auto-generated method stub
-		juego.agregarItem(this.claveImagen, 5);
+		if(!agarro) {
+		   juego.agregarItem(this.claveImagen, valor);
+		   agarro= true;
+		}
+		   desaparecer();
+		juego.notificarScore();
 	}
 
 	@Override

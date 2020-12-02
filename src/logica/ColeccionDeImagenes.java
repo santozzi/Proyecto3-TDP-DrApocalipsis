@@ -54,7 +54,7 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("ArmaSanitaria_Disparar", "/img/recargar.gif", 70, 50);
 		agregarRuta("Jugador_Noqueado", "/img/personaje_noqueado.png", 70, 80);
 		agregarRuta("Jugador_Muerto", "/img/personaje_muerto.png", 80, 80);
-		agregarRuta("SuperArmaSanitaria_Disparar", "/img/superArma.png", 70, 50);
+		agregarRuta("SuperArmaSanitaria_Disparar", "/img/recargar_sa.gif", 70, 50);
 		//----------
 		
         // Proyectiles
@@ -77,7 +77,10 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("Humano_SuperArma","/img/Humano_superArma.png", 40, 60);
 		agregarRuta("Humano_Pocion","/img/Humano_pocion.png", 40, 60);
 		agregarRuta("Humano_Correr","/img/Humano_correr.png", 40, 60);
+		agregarRuta("Humano_Moneda","/img/Humano_moneda.png", 40, 60);
+		agregarRuta("Humano_Diamante","/img/Humano_diamante.png", 40, 60);
 		agregarRuta("Humano", "/img/Humano.png", 40, 60);
+		
 		
         // Presentacion
 		agregarRuta("FrmScore_FondoPresentacion", "/img/drApocalipsis.png", 245, 390);

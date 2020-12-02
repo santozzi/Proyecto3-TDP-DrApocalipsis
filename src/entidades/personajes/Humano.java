@@ -4,6 +4,8 @@ import java.util.Random;
 
 import entidades.CuadroDeDialogo;
 import entidades.premios.Premio;
+import entidades.premios.no_temporales.Diamante;
+import entidades.premios.no_temporales.Moneda;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
@@ -30,13 +32,17 @@ public class Humano extends Personaje {
 	}
 	private void crearPremio() {
 		Random random = new Random();
-		int randomInt = random.nextInt(3);
+		int randomInt = random.nextInt(4);
 		this.claveImagen = new String();
 
 		if(randomInt == 0)
 			premio = new Pocion(juego);
 		else if(randomInt == 1)
 			premio = new SuperArma(juego);
+		else if(randomInt == 2)
+			premio = new Moneda(juego);
+		else if(randomInt == 3)
+			premio = new Diamante(juego);
 		else
 			premio = new Cuarentena(juego);
 

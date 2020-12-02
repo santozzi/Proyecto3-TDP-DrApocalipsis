@@ -10,13 +10,10 @@ public class Diamante extends Moneda{
 	public Diamante(Juego juego) {
 		super(juego);
 		v= new VisitanteDiamante(this);
-		// TODO Auto-generated constructor stub
+		this.valor= 50;
 	}
 
-	public void ejecutar() {
-		// TODO Auto-generated method stub
-		juego.agregarItem(this.claveImagen, 50);
-	}
+
 
 	@Override
 	public void accept(Visitor v) {

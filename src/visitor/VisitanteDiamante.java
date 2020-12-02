@@ -40,7 +40,8 @@ public class VisitanteDiamante extends Visitante{
 
 	@Override
 	public void visitarJugador(Jugador J) {
-		// TODO Auto-generated method stub
+		diamante.ejecutar();
+
 		
 	}
 

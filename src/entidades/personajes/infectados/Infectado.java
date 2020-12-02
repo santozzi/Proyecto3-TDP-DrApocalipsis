@@ -199,7 +199,6 @@ public abstract class Infectado extends Personaje {
     	if(contarTiempoDeAtaque>=tiempoDeAtaque) {
     		 entidad.impacto(letalidadFisica);
     		contarTiempoDeAtaque=0;
-    		System.out.println("soy "+this.getClass().getSimpleName()+ " y me letalidadFisica es "+letalidadFisica);
     	}else {
     		contarTiempoDeAtaque++;
     	

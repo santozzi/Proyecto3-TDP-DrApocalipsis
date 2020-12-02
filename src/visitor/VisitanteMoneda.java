@@ -40,7 +40,9 @@ public class VisitanteMoneda extends Visitante{
 
 	@Override
 	public void visitarJugador(Jugador J) {
-		// TODO Auto-generated method stub
+		moneda.ejecutar();
+		//moneda.detenerse();
+       
 		
 	}
 
