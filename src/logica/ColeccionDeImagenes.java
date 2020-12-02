@@ -88,12 +88,12 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("InicioGUI_PlagueInc", "/img/plagueInc.PNG", 80, 130);
 		
         // Bara de score y Energia
-		agregarRuta("panelDeScore","/img/panelScore.jpg", 619, 40);
+		agregarRuta("Mapa_PanelDeScore","/img/panelScore.jpg", 619, 40);
 		
 		// Otros
 		agregarRuta("Nivel_AutoEnLlamas","/img/autoEnLlamas.gif", 75, 120);
 		agregarRuta("CuadroDeDialogo","/img/dialogo.png", 80, 40);
-
+     
 	}
 
 	private void agregarRuta(String clave, String ruta, int ancho, int alto) {
