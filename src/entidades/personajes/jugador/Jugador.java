@@ -66,6 +66,7 @@ public class Jugador extends Personaje{
 				setImagen("Jugador_CaminarIzquierda");
 
 			}
+			
 			desplazarse();
 		}
 
@@ -133,6 +134,7 @@ public class Jugador extends Personaje{
 	}
 	private void setImagen(String comando) {
 		this.claveImagen = comando;
+		System.out.println(comando);
 		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(claveImagen);
 	}
 }

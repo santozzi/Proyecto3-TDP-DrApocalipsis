@@ -240,7 +240,10 @@ public class Mapa  extends JFrame implements IObservador{
 
 	}
 	public void updateEntidad(Entidad entidad) {
-		JLabel lblEntidad = mapeoEntidades.get(entidad);
+		
+		
+		
+			JLabel lblEntidad = mapeoEntidades.get(entidad);
 
 		if(lblEntidad!=null) {
 			// esto es para que el infectado re aparezca por arriba una vez que salio del mapa
@@ -256,6 +259,7 @@ public class Mapa  extends JFrame implements IObservador{
 
 			lblEntidad.updateUI();
 		}
+		
 	}
 	private void actualizarLimiteVirtual(Entidad entidad) {
 		if(entidad.getVector().getPosicion().y>Juego.ALTO_DE_COMBATE) {
