@@ -13,7 +13,7 @@ public class ProyectilSanitario extends ProyectilJugador{
 	public ProyectilSanitario(Juego juego) {
 	    super(juego);
 		vector.setModulo(9);
-		this.letalidad = 500;
+		this.letalidad = 5;
 		v = new VisitanteProyectilSanitario(this);
 	}
 	
