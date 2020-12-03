@@ -22,7 +22,6 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import GUI.FrmScore;
 
 public class Juego implements IObservado {
 	protected Nivel nivel;
