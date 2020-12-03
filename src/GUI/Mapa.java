@@ -28,7 +28,9 @@ import logica.ColeccionDeImagenes;
 import logica.Juego;
 import logica.contabilidad.Item;
 import observador.IObservador;
+import reproductor_de_audio.Ambiente;
 import reproductor_de_audio.Musica;
+import reproductor_de_audio.Sonidos;
 
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
@@ -354,6 +356,14 @@ public class Mapa  extends JFrame implements IObservador{
 	@Override
 	public void updateEstedistica(Collection<Item> datos) {
 		
+		Musica.parar();
+		Ambiente.parar();
+		Sonidos.parar();
+		if(juego.getJugador().estaInfectado())
+			Musica.reproducir("game-over");
+		else
+			Musica.reproducir("victorious");
+		
 		estadistica.iniciar();
 		//dispose();
 		
@@ -366,6 +376,7 @@ public class Mapa  extends JFrame implements IObservador{
 
 	@Override
 	public void cerrar() {
+		Musica.parar();
 		dispose();
 		
 	}

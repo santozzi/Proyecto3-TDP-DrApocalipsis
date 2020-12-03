@@ -14,6 +14,7 @@ import logica.ColeccionDeImagenes;
 import logica.Juego;
 import logica.contabilidad.Item;
 import observador.IObservador;
+import reproductor_de_audio.Musica;
 
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -35,7 +36,7 @@ public class FrmScore extends JFrame implements IObservador{
 	public FrmScore(IObservador obs,Juego juego) {
 		this.juego = juego;
 		this.obs = obs;
-		
+
 		matriz = new JLabel[6][3];
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,11 +86,11 @@ public class FrmScore extends JFrame implements IObservador{
 		lblPuntos.setBackground(Color.BLACK);
 		lblPuntos.setBounds(586, 120, 102, 28);
 		panel.add(lblPuntos);
-		
-		
-		
-		
-	
+
+
+
+
+
 		JLabel lblCantidad_1_4_1 = new JLabel("Total");
 		lblCantidad_1_4_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCantidad_1_4_1.setForeground(Color.GREEN);
@@ -106,7 +107,7 @@ public class FrmScore extends JFrame implements IObservador{
 		lblTotal.setBounds(590, 559, 102, 28);
 		panel.add(lblTotal);
 
-		
+
 		JButton btnReinicio = new JButton("Salir del juego");
 		btnReinicio.setFocusable(false);
 		btnReinicio.setFocusTraversalKeysEnabled(false);
@@ -117,13 +118,13 @@ public class FrmScore extends JFrame implements IObservador{
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				obs.cerrar();
-				
+
 			}
 		});
-		
+
 		btnReinicio.setBounds(637, 616, 128, 23);
 		panel.add(btnReinicio);
-		
+
 		JButton btnReinicio_1 = new JButton("Volver a jugar");
 		btnReinicio_1.setRolloverEnabled(false);
 		btnReinicio_1.setRequestFocusEnabled(false);
@@ -136,7 +137,7 @@ public class FrmScore extends JFrame implements IObservador{
 				Mapa mapa = new Mapa();
 				mapa.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		btnReinicio_1.setBounds(500, 616, 128, 23);
@@ -149,7 +150,7 @@ public class FrmScore extends JFrame implements IObservador{
 		lblCantidad_1.setBackground(Color.BLACK);
 		lblCantidad_1.setBounds(456, 120, 102, 28);
 		panel.add(lblCantidad_1);
-*/
+		 */
 
 	}
 
@@ -199,49 +200,51 @@ public class FrmScore extends JFrame implements IObservador{
 	public void updateEstedistica(Collection<Item> datos) {
 		int cont = 0;
 		int puntosTotal = 0;
-		
+
 		JLabel nuevaEtiqueta;
-	    int separacionX = 322;
-	    int separacionY= 147;
-	    int altoDeImagen =  60;
-	    int anchoDeImagen = 140;
-	   
-		
-		
+		int separacionX = 280;
+		int separacionY = 180;
+		int altoDeImagen =  30;
+		int anchoDeImagen = 140;
+
+
+
 		for(Item item : datos) {
 			puntosTotal +=item.getScore();
-		    nuevaEtiqueta = armarJLabel(separacionX, separacionY, anchoDeImagen, altoDeImagen);
+			nuevaEtiqueta = armarJLabel(separacionX, separacionY, anchoDeImagen, altoDeImagen);
 			nuevaEtiqueta.setIcon(ColeccionDeImagenes.getColeccionDeImagenes().getImagen(item.getClave()));
-		    panel.add(nuevaEtiqueta);
-		    
-		    nuevaEtiqueta = armarJLabel(separacionX+200, separacionY, anchoDeImagen, altoDeImagen);
-		    nuevaEtiqueta.setText(item.getCantidad()+"");
-		 	panel.add(nuevaEtiqueta);
-		 	
-		    nuevaEtiqueta = armarJLabel(separacionX+300+anchoDeImagen, separacionY, anchoDeImagen, altoDeImagen);
-		    nuevaEtiqueta.setText(item.getScore()+"");
-		 	panel.add(nuevaEtiqueta);
-		 	separacionY += altoDeImagen;
-			
-		//	matriz[cont][0].setText(item.getClave()); 
+			panel.add(nuevaEtiqueta);
+
+			nuevaEtiqueta = armarJLabel(separacionX+anchoDeImagen, separacionY, anchoDeImagen, altoDeImagen);
+			nuevaEtiqueta.setText(item.getCantidad()+"");
+			panel.add(nuevaEtiqueta);
+
+			nuevaEtiqueta = armarJLabel(separacionX+(anchoDeImagen*2), separacionY, anchoDeImagen, altoDeImagen);
+			nuevaEtiqueta.setText(item.getScore()+"");
+			panel.add(nuevaEtiqueta);
+			separacionY += altoDeImagen;
+
+			//	matriz[cont][0].setText(item.getClave()); 
 			//matriz[cont][1].setText(item.getCantidad()+"");
 			//matriz[cont][2].setText(item.getScore()+"");
-			
+
 			cont++;
+			separacionY += altoDeImagen;
 		}
-       lblTotal.setText(puntosTotal+"");
+		lblTotal.setText(puntosTotal+"");
+		panel.repaint();
 	}
-    protected JLabel armarJLabel(int x, int y, int ancho, int alto) {
-    	JLabel nuevaEtiqueta = new JLabel();
-    	nuevaEtiqueta.setHorizontalAlignment(SwingConstants.CENTER);
-    	nuevaEtiqueta.setForeground(Color.GREEN);
-    	nuevaEtiqueta.setFont(new Font("Tw Cen MT", Font.PLAIN, 24));
-    	nuevaEtiqueta.setBackground(Color.BLACK);
-    	nuevaEtiqueta.setBounds(x, y, ancho, alto);
-		
+	protected JLabel armarJLabel(int x, int y, int ancho, int alto) {
+		JLabel nuevaEtiqueta = new JLabel();
+		nuevaEtiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+		nuevaEtiqueta.setForeground(Color.GREEN);
+		nuevaEtiqueta.setFont(new Font("Tw Cen MT", Font.PLAIN, 24));
+		nuevaEtiqueta.setBackground(Color.BLACK);
+		nuevaEtiqueta.setBounds(x, y, ancho, alto);
+
 		return nuevaEtiqueta;
-    }
-    
+	}
+
 	@Override
 	public void iniciar() {
 		setVisible(true);
@@ -250,6 +253,7 @@ public class FrmScore extends JFrame implements IObservador{
 
 	@Override
 	public void cerrar() {
-           dispose();		
+		Musica.parar();
+		dispose();		
 	}
 }
