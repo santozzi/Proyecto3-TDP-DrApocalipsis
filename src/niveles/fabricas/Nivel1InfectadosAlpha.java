@@ -12,7 +12,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 
 	public Nivel1InfectadosAlpha(Juego j, Nivel nivel) {
-		super(j, nivel, 5);
+		super(j, nivel, 50);
 
 	}
 
@@ -21,9 +21,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 	@Override 
 	public void primeraTanda() {
 		crearTanda(cantidadInfectados, new InfectadoAlpha(juego),4);
-		crearTanda(cantidadInfectados, new InfectadoBeta(juego),4);
-		crearTanda(1,new InfectadoBossAlpha(juego),9);
-		crearTanda(1,new InfectadoBossBeta(juego),9);
+		//crearTanda(cantidadInfectados, new InfectadoBeta(juego),4);
 	}
 	
 	@Override

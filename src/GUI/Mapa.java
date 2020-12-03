@@ -23,6 +23,8 @@ import entidades.personajes.jugador.comandos.CaminarIzquierda;
 import entidades.personajes.jugador.comandos.Detenerse;
 import entidades.personajes.jugador.comandos.Disparar;
 import entidades.personajes.jugador.comandos.IComando;
+import entidades.personajes.jugador.controles.InterfazDeControl;
+import entidades.personajes.jugador.controles.Mouse;
 import entidades.personajes.jugador.controles.Teclado;
 import logica.ColeccionDeImagenes;
 import logica.Juego;
@@ -42,7 +44,8 @@ public class Mapa  extends JFrame implements IObservador{
 	protected Panel panelFondo;
 	
 	protected JPanel panelDeEntidades;
-	protected Teclado teclado;
+	protected InterfazDeControl teclado;
+	protected InterfazDeControl mouse;
 	protected JProgressBar progressBar;
 	private Map<Entidad,JLabel> mapeoEntidades;
 	protected JLabel lblMapaDerecha;
@@ -62,9 +65,10 @@ public class Mapa  extends JFrame implements IObservador{
     	estadistica = new FrmScore(this,juego);
    
     	juego = new Juego();
-
+    	mouse= new Mouse();
 		teclado = new Teclado();
 		addKeyListener(teclado);
+		addMouseListener(mouse);
 
 		getContentPane().setLayout(null);
 		setResizable(false);
@@ -199,9 +203,10 @@ public class Mapa  extends JFrame implements IObservador{
 
 				comando = new CaminarIzquierda(gamer);
 
-			}else if(teclado.isDisparar()&&teclado.isLlave()) {
+			}else if((teclado.isDisparar()&&teclado.isLlave())||(mouse.isDisparar()&&mouse.isLlave())) {
 				comando = new Disparar(gamer);
 				teclado.setLlave(false);
+				mouse.setLlave(false);
 
 
 			}else {

@@ -3,13 +3,14 @@ package entidades.personajes.jugador.controles;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Teclado implements KeyListener{
-    protected boolean llave;
+public class Teclado extends InterfazDeControl {
+ /*
+	protected boolean llave;
     protected boolean derecha;
     protected boolean izquierda;
     protected boolean disparar;
 
-    
+   */ 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -43,7 +44,7 @@ public class Teclado implements KeyListener{
 			llave=true;
 		}
 	}
-
+/*
 	public boolean isLlave() {
 		return llave;
 	}
@@ -75,7 +76,7 @@ public class Teclado implements KeyListener{
 	public void setDisparar(boolean disparar) {
 		this.disparar = disparar;
 	}
-
+*/
 	
 
 }

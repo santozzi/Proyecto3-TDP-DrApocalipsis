@@ -33,7 +33,7 @@ public abstract class FabricaDeTandas {
 	protected void crearTanda(int cantidadInfectados, Infectado tipoInfectado,int modulo ) {
 
 			Point posicion;
-			Infectado nuevoInfectado = null;//new InfectadoAlpha(this.juego);
+			Infectado nuevoInfectado = null;
 			Random random = new Random();
 			posiciones = new LinkedList<Point>();
 			List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
@@ -51,7 +51,7 @@ public abstract class FabricaDeTandas {
 						random.nextInt(Juego.ANCHO_DE_COMBATE-nuevoInfectado.getImagen().getIconWidth()),
 						random.nextInt(Juego.ALTO_DE_COMBATE),
 						random);
-				
+				if(posicion!=null) {
 				posiciones.add(posicion);
 				
 				if(juego.getLimite().y>=posicion.y)
@@ -61,12 +61,13 @@ public abstract class FabricaDeTandas {
 				nuevoInfectado.getVector().setModulo(modulo);
 				compositeInfectados.add(nuevoInfectado);
 			}
+			}
 		}
 		
 	
 	protected Point asignarPosicion(List<Point> posiciones, int anchoInfectado, int altoInfectado, int x, int y, Random random) {
 		Iterator<Point> itPosiciones;
-		Point aRetornar;
+		Point aRetornar =null;
 		Point elem;
 		boolean estaInsertado = false;
 		itPosiciones = posiciones.iterator();
