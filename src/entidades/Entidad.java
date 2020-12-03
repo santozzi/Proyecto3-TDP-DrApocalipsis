@@ -24,7 +24,9 @@ abstract public class  Entidad {
 	protected Juego juego;
 	protected ImageIcon imagen;
 	protected String claveImagen;
+	//utilizado para el premio cuarentena.
 	protected boolean estadoTemporal;
+	//es para el estado temporal
 	protected int tiempoDeEspera;
 	protected Jugador jugador;
 
@@ -36,6 +38,7 @@ abstract public class  Entidad {
 		this.vector = new Vector(0, 1, 1);
 		this.claveImagen = this.getClass().getSimpleName();
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
+		tiempoDeEspera = 1000;
 	}
 	public ImageIcon getImagen() {
 		return this.imagen;

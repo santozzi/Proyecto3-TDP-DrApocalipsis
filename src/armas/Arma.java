@@ -4,7 +4,6 @@ import entidades.proyectiles.*;
 import logica.Juego;
 
 public abstract class Arma{
-	protected Proyectil proyectil;
 	protected Juego juego;
 	protected String claveImagen;
 

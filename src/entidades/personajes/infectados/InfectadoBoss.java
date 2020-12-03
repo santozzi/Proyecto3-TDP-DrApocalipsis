@@ -23,7 +23,7 @@ abstract public class InfectadoBoss extends Infectado {
 		super(juego);
 		contarTiempoDeDireccion=0;
 		this.rango = Juego.ALTO_DE_COMBATE;
-		tiempoDeDireccion= 750;
+		tiempoDeDireccion= 300;
 		cambioDireccionOpuesta=false;
 		ran = new Random();
 	}

@@ -24,7 +24,7 @@ public class Jugador extends Personaje{
 		this.juego= juego;
 		this.vector.getPosicion().x=225;
 		this.vector.getPosicion().y=550;
-		tiempoDeEspera = 1000;
+		
 		setImagen(arma.getClaveImagen());
 
 		v = new VisitanteJugador(this);

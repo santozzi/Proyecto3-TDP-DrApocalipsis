@@ -17,7 +17,6 @@ import visitor.Visitor;
 
 public class Humano extends Personaje {
 	protected Premio premio;
-	protected CuadroDeDialogo dialogo;
 	protected boolean soltoPremio;
 
 	public Humano(Juego j) {
@@ -32,7 +31,7 @@ public class Humano extends Personaje {
 	}
 	private void crearPremio() {
 		Random random = new Random();
-		int randomInt = random.nextInt(4);
+		int randomInt = random.nextInt(5);
 		this.claveImagen = new String();
 
 		if(randomInt == 0)
@@ -75,7 +74,7 @@ public class Humano extends Personaje {
 	 *y lo agrega a la colección de entidades.
 	 */
 	public void dejarCaerPremio() {
-		dialogo = new CuadroDeDialogo(juego);
+		CuadroDeDialogo dialogo = new CuadroDeDialogo(juego);
 		this.claveImagen = this.getClass().getSimpleName()+"_Correr";
 		this.imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen(this.claveImagen);
 		premio.getPosicion().setLocation(this.getPosicion());

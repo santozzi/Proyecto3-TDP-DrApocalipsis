@@ -29,13 +29,14 @@ public class FrmScore extends JFrame implements IObservador{
 	protected IObservador obs;
 	protected Juego  juego;
 	protected JLabel lblTotal;
+	protected JPanel panel;
 
 
 	public FrmScore(IObservador obs,Juego juego) {
 		this.juego = juego;
 		this.obs = obs;
 		
-		matriz = new JLabel[4][3];
+		matriz = new JLabel[6][3];
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int anchoDelFrame = Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20;
@@ -48,7 +49,7 @@ public class FrmScore extends JFrame implements IObservador{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
 		panel.setBounds(0, 0, 806, 650);
@@ -65,7 +66,7 @@ public class FrmScore extends JFrame implements IObservador{
 		lblNewLabel.setForeground(Color.GREEN);
 		lblNewLabel.setBackground(Color.BLACK);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(294, 192, 102, 28);
+		lblNewLabel.setBounds(292, 120, 102, 28);
 		panel.add(lblNewLabel);
 		contentPane.add(panel);
 
@@ -82,111 +83,19 @@ public class FrmScore extends JFrame implements IObservador{
 		lblPuntos.setForeground(Color.GREEN);
 		lblPuntos.setFont(new Font("Tw Cen MT", Font.PLAIN, 24));
 		lblPuntos.setBackground(Color.BLACK);
-		lblPuntos.setBounds(586, 192, 102, 28);
+		lblPuntos.setBounds(586, 120, 102, 28);
 		panel.add(lblPuntos);
-		//adentro de la matriz
-		JLabel lblTipo00 = new JLabel("");
-		lblTipo00.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTipo00.setForeground(Color.GREEN);
-		lblTipo00.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblTipo00.setBackground(Color.BLACK);
-		lblTipo00.setBounds(241, 247, 221, 28);
-		panel.add(lblTipo00);
-
-		JLabel lblCant01 = new JLabel("");
-		lblCant01.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCant01.setForeground(Color.GREEN);
-		lblCant01.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblCant01.setBackground(Color.BLACK);
-		lblCant01.setBounds(470, 247, 72, 28);
-		panel.add(lblCant01);
-
-		JLabel lblPuntos02 = new JLabel("");
-		lblPuntos02.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuntos02.setForeground(Color.GREEN);
-		lblPuntos02.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblPuntos02.setBackground(Color.BLACK);
-		lblPuntos02.setBounds(586, 247, 102, 28);
-		panel.add(lblPuntos02);
-
-		JLabel lblTipo10 = new JLabel("");
-		lblTipo10.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTipo10.setForeground(Color.GREEN);
-		lblTipo10.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblTipo10.setBackground(Color.BLACK);
-		lblTipo10.setBounds(241, 286, 221, 28);
-		panel.add(lblTipo10);
-
-		JLabel lblCant11 = new JLabel("");
-		lblCant11.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCant11.setForeground(Color.GREEN);
-		lblCant11.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblCant11.setBackground(Color.BLACK);
-		lblCant11.setBounds(470, 286, 72, 28);
-		panel.add(lblCant11);
-
-		JLabel lblPuntos12 = new JLabel("");
-		lblPuntos12.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuntos12.setForeground(Color.GREEN);
-		lblPuntos12.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblPuntos12.setBackground(Color.BLACK);
-		lblPuntos12.setBounds(586, 286, 102, 28);
-		panel.add(lblPuntos12);
-
-		JLabel lblTipo30 = new JLabel("");
-		lblTipo30.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTipo30.setForeground(Color.GREEN);
-		lblTipo30.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblTipo30.setBackground(Color.BLACK);
-		lblTipo30.setBounds(241, 364, 218, 28);
-	    panel.add(lblTipo30);
 		
-	    JLabel lblCant31 = new JLabel("");
-		lblCant31.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCant31.setForeground(Color.GREEN);
-		lblCant31.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblCant31.setBackground(Color.BLACK);
-		lblCant31.setBounds(470, 364, 72, 28);
-		panel.add(lblCant31);
-
-		JLabel lblPuntos32 = new JLabel("");
-		lblPuntos32.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuntos32.setForeground(Color.GREEN);
-		lblPuntos32.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblPuntos32.setBackground(Color.BLACK);
-		lblPuntos32.setBounds(586, 364, 102, 28);
-		panel.add(lblPuntos32);
-
-		JLabel lblTipo20 = new JLabel("");
-		lblTipo20.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTipo20.setForeground(Color.GREEN);
-		lblTipo20.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblTipo20.setBackground(Color.BLACK);
-		lblTipo20.setBounds(241, 325, 221, 28);
-		panel.add(lblTipo20);
-
-		JLabel lblCant21 = new JLabel("");
-		lblCant21.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCant21.setForeground(Color.GREEN);
-		lblCant21.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblCant21.setBackground(Color.BLACK);
-		lblCant21.setBounds(470, 325, 72, 28);
-		panel.add(lblCant21);
-
-		JLabel lblPuntos22 = new JLabel("");
-		lblPuntos22.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuntos22.setForeground(Color.GREEN);
-		lblPuntos22.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
-		lblPuntos22.setBackground(Color.BLACK);
-		lblPuntos22.setBounds(586, 325, 102, 28);
-		panel.add(lblPuntos22);
+		
+		
+		
 	
 		JLabel lblCantidad_1_4_1 = new JLabel("Total");
 		lblCantidad_1_4_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCantidad_1_4_1.setForeground(Color.GREEN);
 		lblCantidad_1_4_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
 		lblCantidad_1_4_1.setBackground(Color.BLACK);
-		lblCantidad_1_4_1.setBounds(421, 463, 159, 28);
+		lblCantidad_1_4_1.setBounds(425, 559, 159, 28);
 		panel.add(lblCantidad_1_4_1);
 
 		lblTotal = new JLabel("0");
@@ -194,37 +103,33 @@ public class FrmScore extends JFrame implements IObservador{
 		lblTotal.setForeground(Color.GREEN);
 		lblTotal.setFont(new Font("Tw Cen MT", Font.PLAIN, 21));
 		lblTotal.setBackground(Color.BLACK);
-		lblTotal.setBounds(586, 463, 102, 28);
+		lblTotal.setBounds(590, 559, 102, 28);
 		panel.add(lblTotal);
 
-		//Inserto en el arreglo
-
-		matriz[0][0] = lblTipo00;
-		matriz[1][0] = lblTipo10;
-		matriz[2][0] = lblTipo20;
-		matriz[3][0] = lblTipo30;
-		
-		matriz[0][1] = lblCant01;
-		matriz[1][1] = lblCant11;
-		matriz[2][1] = lblCant21;
-		matriz[3][1] = lblCant31;
-
-		matriz[0][2] = lblPuntos02;
-		matriz[1][2] = lblPuntos12;
-		matriz[2][2] = lblPuntos22;
-		matriz[3][2] = lblPuntos32;
 		
 		JButton btnReinicio = new JButton("Salir del juego");
+		btnReinicio.setFocusable(false);
+		btnReinicio.setFocusTraversalKeysEnabled(false);
+		btnReinicio.setFocusPainted(false);
+		btnReinicio.setRequestFocusEnabled(false);
+		btnReinicio.setRolloverEnabled(false);
 		btnReinicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				obs.cerrar();
+				
 			}
 		});
-		btnReinicio.setBounds(639, 588, 128, 23);
+		
+		btnReinicio.setBounds(637, 616, 128, 23);
 		panel.add(btnReinicio);
 		
 		JButton btnReinicio_1 = new JButton("Volver a jugar");
+		btnReinicio_1.setRolloverEnabled(false);
+		btnReinicio_1.setRequestFocusEnabled(false);
+		btnReinicio_1.setFocusable(false);
+		btnReinicio_1.setFocusTraversalKeysEnabled(false);
+		btnReinicio_1.setFocusPainted(false);
 		btnReinicio_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				obs.cerrar();
@@ -234,17 +139,17 @@ public class FrmScore extends JFrame implements IObservador{
 				
 			}
 		});
-		btnReinicio_1.setBounds(500, 588, 128, 23);
+		btnReinicio_1.setBounds(500, 616, 128, 23);
 		panel.add(btnReinicio_1);
-		
+		/*
 		JLabel lblCantidad_1 = new JLabel("Cantidad");
 		lblCantidad_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCantidad_1.setForeground(Color.GREEN);
 		lblCantidad_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 24));
 		lblCantidad_1.setBackground(Color.BLACK);
-		lblCantidad_1.setBounds(458, 192, 102, 28);
+		lblCantidad_1.setBounds(456, 120, 102, 28);
 		panel.add(lblCantidad_1);
-
+*/
 
 	}
 
@@ -294,17 +199,49 @@ public class FrmScore extends JFrame implements IObservador{
 	public void updateEstedistica(Collection<Item> datos) {
 		int cont = 0;
 		int puntosTotal = 0;
+		
+		JLabel nuevaEtiqueta;
+	    int separacionX = 322;
+	    int separacionY= 147;
+	    int altoDeImagen =  60;
+	    int anchoDeImagen = 140;
+	   
+		
+		
 		for(Item item : datos) {
 			puntosTotal +=item.getScore();
-			matriz[cont][0].setText(item.getClave()); 
-			matriz[cont][1].setText(item.getCantidad()+"");
-			matriz[cont][2].setText(item.getScore()+"");
+		    nuevaEtiqueta = armarJLabel(separacionX, separacionY, anchoDeImagen, altoDeImagen);
+			nuevaEtiqueta.setIcon(ColeccionDeImagenes.getColeccionDeImagenes().getImagen(item.getClave()));
+		    panel.add(nuevaEtiqueta);
+		    
+		    nuevaEtiqueta = armarJLabel(separacionX+200, separacionY, anchoDeImagen, altoDeImagen);
+		    nuevaEtiqueta.setText(item.getCantidad()+"");
+		 	panel.add(nuevaEtiqueta);
+		 	
+		    nuevaEtiqueta = armarJLabel(separacionX+300+anchoDeImagen, separacionY, anchoDeImagen, altoDeImagen);
+		    nuevaEtiqueta.setText(item.getScore()+"");
+		 	panel.add(nuevaEtiqueta);
+		 	separacionY += altoDeImagen;
+			
+		//	matriz[cont][0].setText(item.getClave()); 
+			//matriz[cont][1].setText(item.getCantidad()+"");
+			//matriz[cont][2].setText(item.getScore()+"");
 			
 			cont++;
 		}
        lblTotal.setText(puntosTotal+"");
 	}
-
+    protected JLabel armarJLabel(int x, int y, int ancho, int alto) {
+    	JLabel nuevaEtiqueta = new JLabel();
+    	nuevaEtiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+    	nuevaEtiqueta.setForeground(Color.GREEN);
+    	nuevaEtiqueta.setFont(new Font("Tw Cen MT", Font.PLAIN, 24));
+    	nuevaEtiqueta.setBackground(Color.BLACK);
+    	nuevaEtiqueta.setBounds(x, y, ancho, alto);
+		
+		return nuevaEtiqueta;
+    }
+    
 	@Override
 	public void iniciar() {
 		setVisible(true);

@@ -18,8 +18,8 @@ public class Nivel3InfectadosMixto extends FabricaDeTandas {
 
 	@Override
 	public void primeraTanda() {
-		crearTanda(1,new InfectadoBossAlpha(juego),9);
-		//crearTanda(cantidadInfectados, new InfectadoAlpha(juego),4);
+		//crearTanda(1,new InfectadoBossAlpha(juego),9);
+		crearTanda(cantidadInfectados, new InfectadoAlpha(juego),4);
 		//crearTanda(cantidadInfectados, new InfectadoBeta(juego),5);
 	}
 

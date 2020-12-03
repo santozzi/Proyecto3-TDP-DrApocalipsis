@@ -1,5 +1,6 @@
 package armas;
 
+import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.proyectil_jugador.ProyectilSanitario;
 import logica.Juego;
 
@@ -13,7 +14,7 @@ public class ArmaSanitaria extends Arma{
 	@Override
 	public void disparar() {
 		super.disparar();
-		proyectil = new ProyectilSanitario(juego);
+		new ProyectilSanitario(juego);
 	}
 
 

@@ -27,7 +27,6 @@ public abstract class Infectado extends Personaje {
 	public Infectado(Juego juego) {
 		super(juego);
 		this.vector.setModulo(4);
-		this.tiempoDeEspera = 1000;
 		this.rango = 150;
 		this.cargaViral = 150;
 		tiempoDeParticula=300;

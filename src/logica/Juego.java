@@ -160,7 +160,8 @@ public class Juego implements IObservado {
 	// pregunto si no quedan mas infectados en el nivel
 	public void notificarBajaDeInfectado(Entidad infectado) {
 		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
-		//score++;
+	
+		System.out.println(listaDeInfectados);
 		listaDeInfectados.remove(infectado);
 
 		if(listaDeInfectados.isEmpty()) {
