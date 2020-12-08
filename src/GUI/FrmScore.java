@@ -40,10 +40,11 @@ public class FrmScore extends JFrame implements IObservador{
 
 		matriz = new JLabel[6][3];
 
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		int anchoDelFrame = Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20;
+		int anchoDelFrame = Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO;
 
-		setBounds(0, 0, anchoDelFrame, Juego.ALTO_DE_COMBATE + 80);
+		setBounds(0, 0, anchoDelFrame, Juego.ALTO_DE_COMBATE + 70);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		contentPane = new JPanel();
