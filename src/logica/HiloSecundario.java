@@ -52,7 +52,7 @@ public class HiloSecundario extends Thread{
 			while(itListaParaRecorrer.hasNext()) {
 				entidadParaAccionar = itListaParaRecorrer.next();
 				
-				actualizarLimiteVirtual(entidadParaAccionar);
+				//actualizarLimiteVirtual(entidadParaAccionar);
 				entidadParaAccionar.actuar();
 			}
 			agregarYQuitarEntidades();
@@ -60,7 +60,6 @@ public class HiloSecundario extends Thread{
 	}
 	
     private void actualizarLimiteVirtual(Entidad entidad) {
-    	
     	
     	Point limite = juego.getLimite(); 
     	if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
@@ -72,7 +71,6 @@ public class HiloSecundario extends Thread{
 				limite.x += entidad.getImagen().getIconWidth();
 			}
     	}
-    	
     	
     }
 	private void esperar(int segundos) {

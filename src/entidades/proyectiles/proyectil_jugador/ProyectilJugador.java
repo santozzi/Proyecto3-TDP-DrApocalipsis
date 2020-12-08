@@ -20,13 +20,13 @@ public abstract class ProyectilJugador extends Proyectil{
 		int posEntidadConAnchoX= posEntidadParametroX+entidad.getImagen().getIconWidth();
 
 		int posEntidadParametroY =entidad.getVector().getPosicion().y ;
-		int posEntidadConAltoY= posEntidadParametroY +entidad.getImagen().getIconHeight();
+		int posEntidadConAltoY= posEntidadParametroY +(entidad.getImagen().getIconHeight()/2);
 
 		boolean colisionEnX = (posEntidadActualX<= posEntidadConAnchoX) && (posEntidadActualX >= posEntidadParametroX-10);
 		boolean colisionEnY = (posEntidadActualY<=posEntidadConAltoY) && (posEntidadParametroY>=posEntidadParametroY-10);
 
 
-		return colisionEnX &&colisionEnY;
+		return colisionEnX && colisionEnY;
 		/*	
 				(
 				this.vector.getPosicion().y <= 

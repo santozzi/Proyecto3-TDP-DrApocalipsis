@@ -49,7 +49,7 @@ public abstract class FabricaDeTandas {
 						nuevoInfectado.getImagen().getIconWidth(),
 						nuevoInfectado.getImagen().getIconHeight(),
 						random.nextInt(Juego.ANCHO_DE_COMBATE-nuevoInfectado.getImagen().getIconWidth()),
-						random.nextInt(Juego.ALTO_DE_COMBATE),
+						random.nextInt(Juego.ALTO_DE_COMBATE*3),
 						random);
 				if(posicion!=null) {
 				posiciones.add(posicion);
@@ -79,7 +79,7 @@ public abstract class FabricaDeTandas {
 		}
 
 		if(estaInsertado)
-			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE), random);
+			aRetornar = asignarPosicion(posiciones, anchoInfectado, altoInfectado, random.nextInt(Juego.ANCHO_DE_COMBATE-anchoInfectado), random.nextInt(Juego.ALTO_DE_COMBATE*3), random);
 		else
 			aRetornar = new Point(x, y);
 

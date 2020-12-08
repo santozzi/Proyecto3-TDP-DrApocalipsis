@@ -20,10 +20,10 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class InicioGUI extends JFrame {
 
 	private JPanel contentPane;
-	private Musica audio;
 
 	/**
 	 * Launch the application.

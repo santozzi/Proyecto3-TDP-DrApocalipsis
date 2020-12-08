@@ -38,6 +38,7 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class Mapa  extends JFrame implements IObservador{
 
 	protected Juego juego;
