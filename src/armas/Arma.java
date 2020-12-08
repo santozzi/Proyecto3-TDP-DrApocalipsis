@@ -1,6 +1,5 @@
 package armas;
 
-import entidades.proyectiles.*;
 import logica.Juego;
 
 public abstract class Arma{

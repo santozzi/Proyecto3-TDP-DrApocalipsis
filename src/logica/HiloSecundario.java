@@ -16,7 +16,6 @@ public class HiloSecundario extends Thread{
 	protected List<Entidad> copiaDeListaParaRecorrer;
 	protected Juego juego;
 	public static final int LATENCIA_MAXIMA = 10;
-	private static HiloSecundario hiloSecundario;
 	private boolean correr;
 	private boolean correr2;
 	

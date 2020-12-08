@@ -37,7 +37,6 @@ public abstract class FabricaDeTandas {
 			Random random = new Random();
 			posiciones = new LinkedList<Point>();
 			List<Entidad> compositeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
-			int randomInt;
 
 			for(int i=0 ; i<cantidadInfectados ; i++) {
              	nuevoInfectado =tipoInfectado.clone();

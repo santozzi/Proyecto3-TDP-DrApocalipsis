@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class FrmScore extends JFrame implements IObservador{
 	protected JLabel[][] matriz;
 	private JPanel contentPane;

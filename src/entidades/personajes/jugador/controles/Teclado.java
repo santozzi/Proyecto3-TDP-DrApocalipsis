@@ -1,7 +1,6 @@
 package entidades.personajes.jugador.controles;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class Teclado extends InterfazDeControl {
  /*

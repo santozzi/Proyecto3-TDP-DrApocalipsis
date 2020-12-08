@@ -2,7 +2,6 @@ package entidades.premios.no_temporales;
 
 import logica.Juego;
 import visitor.VisitanteDiamante;
-import visitor.VisitantePocion;
 import visitor.Visitor;
 
 public class Diamante extends Moneda{

@@ -1,6 +1,5 @@
 package armas;
 
-import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.proyectil_jugador.ProyectilSanitario;
 import logica.Juego;
 

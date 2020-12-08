@@ -1,10 +1,7 @@
 package entidades.personajes.infectados;
 
-import java.util.Random;
-
 import entidades.proyectiles.particulas.ParticulaBeta;
 import logica.Juego;
-import reproductor_de_audio.Sonidos;
 import visitor.VisitanteInfectadoBeta;
 import visitor.Visitor;
 

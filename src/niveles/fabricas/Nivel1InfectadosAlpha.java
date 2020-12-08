@@ -2,9 +2,7 @@ package niveles.fabricas;
 
 
 import entidades.personajes.infectados.InfectadoAlpha;
-import entidades.personajes.infectados.InfectadoBeta;
 import entidades.personajes.infectados.InfectadoBossAlpha;
-import entidades.personajes.infectados.InfectadoBossBeta;
 import logica.Juego;
 import niveles.Nivel;
 

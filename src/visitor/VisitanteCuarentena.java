@@ -4,7 +4,6 @@ import entidades.CuadroDeDialogo;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
-import entidades.personajes.infectados.InfectadoBoss;
 import entidades.personajes.infectados.InfectadoBossAlpha;
 import entidades.personajes.infectados.InfectadoBossBeta;
 import entidades.personajes.jugador.Jugador;
