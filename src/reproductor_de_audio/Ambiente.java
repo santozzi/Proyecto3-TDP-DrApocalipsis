@@ -7,7 +7,7 @@ public class Ambiente {
 	private static Ambiente audio;
 
 	private Ambiente(String nombre) {
-		ap = new AudioPlayer("/src/media/ambiente/" + nombre + ".mp3");
+		ap = new AudioPlayer("/media/ambiente/" + nombre + ".mp3");
 		hilo = new Thread(ap);
 		
 		//System.out.println("No se encontro el archivo con el nombre del sonido de ambiente especificado");
