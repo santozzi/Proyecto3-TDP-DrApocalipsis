@@ -22,35 +22,56 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ *Juego 
+ *Lógica del programa que implementa a IObservado
+ */
 public class Juego implements IObservado {
+    //Nivel del juego
 	protected Nivel nivel;
-
+	//Lista de observadores
 	protected List<IObservador> observadores;
+	// dimensiones de la parte jugable
 	public static final int ANCHO_DE_COMBATE=444;
 	public static final int ALTO_DE_COMBATE=619;
 	public static final int DECORADO_IZQUIERDO=184;
 	public static final int DECORADO_DERECHO=184;
+	//---------------------------------------
+	//operaciones realizadas en segundo plano
 	protected HiloSecundario hiloSecundario;
+	//para contabilizar el score
 	protected Contabilidad score;
+	//Guarda el ultimo punto de la linea virtual
 	protected Point limite;
+	//Velocidad del juego, tiempo de espera en milisegundos por cilclo
 	protected static final int LATENCIA_MINIMA=5;
+	//unidad Maxima de velocidad de entidades
 	protected static final int LATENCIA_MAXIMA=10;
+	//Entidad que controla el usuario
 	protected Jugador jugador;
+	//determina cuando se termina la primera tanda
 	protected boolean finDeLaTanda;
+	//devuelve en que nivel se encuentra el usuario
 	protected int nivelActual;
+	//devuelve cuando la tanda empieza
 	protected boolean ifinalizarTanda;
+	//devuelve cuando finaliza el boss
 	protected boolean finalizaBoss;
+	//Para mostrar por consola eventos puntuales
 	protected static Logger Logger;
+	//Devuelve si el jugador esta o no vivo
 	protected boolean jugadorVive;
 
 
+	@SuppressWarnings("static-access")
+	/**
+	 * Inicializo atributos
+	 */
 	public Juego() {
 		jugadorVive= false;
 		if(Logger==null) {
 			Logger = Logger.getLogger(Juego.class.getName());
 			Handler hnd = new ConsoleHandler();
-
 			hnd.setLevel(Level.FINE);
 			Logger.addHandler(hnd);
 			Logger.setLevel(Level.FINE);
@@ -80,23 +101,33 @@ public class Juego implements IObservado {
 			Logger.warning("Error al iniciar hilo secundario");
 		
 	}
+	/**
+	 * Para el hilo secundario y la música
+	 */
 	public void finalizarJuego() {
 		hiloSecundario.terminarEjecucion();
 		Logger.fine("Fin del juego");
 		Musica.parar();
 	}
-	
-	
+    /**
+     * Carga al jugador en la cola de entidades a agregar		
+     */
 	public void cargarJugador() {
 		jugadorVive= true;
 		agregarAEntidadesParaAgregar(jugador);
 		
 	}
-
+    /**
+     * Devuelve el punto minimo de la linea virtual
+     * @return
+     */
 	public Point getLimite() {
 		return this.limite;
 	}
-
+    
+	/**
+	 * carga el nivel actual, si ya no hay niveles finaliza el juego
+	 */
 	public void cargarNivel() {
 		//Nivel[] niveles = new Nivel[3];
 
@@ -134,9 +165,16 @@ public class Juego implements IObservado {
 		}
          
 	}
+	/**
+	 * Devuelve al jugador
+	 * @return
+	 */
 	public Jugador getJugador() {
 		return this.jugador;
 	}
+	/**
+	 * Agrega al jefe a la cola de entidades a agregar
+	 */
 	public void cargarJefe() {
 		for(Entidad entidad : nivel.elJefe()) {
 			hiloSecundario.agregarAColaParaAgregar(entidad);
@@ -145,9 +183,18 @@ public class Juego implements IObservado {
 
 	}
 
+	/**
+	 * Agrega un item a la contabilidad
+	 * @param clave
+	 * @param puntos
+	 */
 	public void agregarItem(String clave,int puntos) {
 		score.agregarItem(clave, puntos);
 	}
+	
+	/**
+	 * Detiene a todos los infectados por un determinado tiempo
+	 */
 	public void cuarentena() {
 		if(nivel!=null) {
 		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
@@ -169,22 +216,17 @@ public class Juego implements IObservado {
 				Logger.fine("Entrando a la carga del nuevo nivel despues de matar al boss");
 				nivelActual++;
 				cargarNivel();
-				
 				Musica.parar();
 				Musica.reproducir("Digadig");
-				
 				finalizaBoss=false;
 			}else {
 				if(ifinalizarTanda) {
 					Logger.fine("Cargando al boss");
 					cargarJefe();
-					
 					Musica.parar();
 					Musica.reproducir(new String("poltergeist"));
 					Ambiente.reproducir("nil_win");
-
 					ifinalizarTanda=false;
-
 				}else {
 					Logger.fine("Finalizando tanda");
 					finalizarTanda();
@@ -193,8 +235,10 @@ public class Juego implements IObservado {
 		}
 		notificarScore();
 	}
+	/**
+	 * Empieza la segunda tanda
+	 */
 	public void finalizarTanda() {
-		
 		for(Entidad entidad : nivel.segundaTanda()) {
 			hiloSecundario.agregarAColaParaAgregar(entidad);
 		}
@@ -208,6 +252,10 @@ public class Juego implements IObservado {
 		Ambiente.reproducir(pista+randomInt);
 	
 	}
+	/**
+	 * Devuelve la lista clonada de la que utiliza el hilo secundario para recorrer
+	 * @return
+	 */
 	public List<Entidad> getLista(){
 		return hiloSecundario.listaDeRecorrido();
 	}
@@ -294,17 +342,31 @@ public class Juego implements IObservado {
 	}
 
 	//-------------------fin de observado------------------------------
-    public boolean isHiloSecundarioCorriendo() {
+   
+	/**
+	 * Devuelve verdadero si el hilo secundario esta corriendo
+	 * @return
+	 */
+	public boolean isHiloSecundarioCorriendo() {
     	return hiloSecundario.isAlive();
     }
+	/**
+	 * Detiene al hilo secundario
+	 */
 	public void detenerHiloSecundario() {
 		hiloSecundario.terminarEjecucion();
 		
 	}
-	
+	/**
+	 * Devuelve verdadero si el jugador esta vivo
+	 * @return
+	 */
 	public boolean isJugadorVive() {
 		return jugadorVive;
 	}
+	/**
+	 * Mata al jugador
+	 */
 	public void matarJugador() {
 		jugadorVive= false;
 	}

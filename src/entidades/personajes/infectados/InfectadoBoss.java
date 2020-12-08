@@ -6,12 +6,11 @@ import entidades.proyectiles.particulas.ParticulaAlpha;
 import entidades.proyectiles.particulas.ParticulaBeta;
 import logica.HiloSecundario;
 import logica.Juego;
-import reproductor_de_audio.Sonidos;
 
 /**
- * Este infectado tiene mayor resistencia
- * @author 
- *
+ * Este infectado tiene mayor resistencia y se mueve en varias direcciones,
+ * es una especialización de infectado ya que puede moverse en varias 
+ * direcciones.
  */
 abstract public class InfectadoBoss extends Infectado {
         protected boolean cambioDireccionOpuesta;
@@ -36,7 +35,10 @@ abstract public class InfectadoBoss extends Infectado {
 		else
 			this.particula= new ParticulaBeta(juego,this);
 	}
-
+    /**
+     * cambioDeDireccion
+     * Determina en que dirección se va a desplazar el infectado.
+     */
     private void cambioDeDireccion() {
     	int direccionX = ran.nextInt(2)-1;
     	int direccionY = ran.nextInt(2)-1;
@@ -59,21 +61,15 @@ abstract public class InfectadoBoss extends Infectado {
     }
     @Override
 	public void actuar() {
-
 		int vueltasAEsperar;
-
 		if(estadoTemporal) {
-			//tiempo de espera es 1000
 			vueltasAEsperar = tiempoDeEspera;
 		}else {
 			int velocidad = vector.getModulo();
-			// {
 			vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
 		}
-
 		if(vueltasAEsperar>0) {
 			if(latencia>=vueltasAEsperar) {
-				
 				cambioDeDireccion();
 				desplazarse();
 				juego.actualizarEntidad(this);
@@ -83,7 +79,6 @@ abstract public class InfectadoBoss extends Infectado {
 			}else {
 				latencia++;
 			}
-			
 		}
 	
 		intervaloDeTirarParticula();

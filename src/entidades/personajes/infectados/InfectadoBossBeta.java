@@ -5,8 +5,7 @@ import visitor.VisitanteInfectadoBossBeta;
 import visitor.Visitor;
 
 /**
- * Este infectado tiene mayor resistencia
- * @author 
+ * InfectadoBossBeta es un subtipo de infecta
  *
  */
 public class InfectadoBossBeta extends InfectadoBoss {

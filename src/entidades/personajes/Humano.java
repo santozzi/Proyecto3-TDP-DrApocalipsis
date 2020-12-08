@@ -14,7 +14,12 @@ import logica.HiloSecundario;
 import logica.Juego;
 import visitor.VisitanteHumano;
 import visitor.Visitor;
-
+/**
+ * 
+ * Humano
+ * Es un tipo de personaje, cuya función es entregar un premio.
+ *
+ */
 public class Humano extends Personaje {
 	protected Premio premio;
 	protected boolean soltoPremio;
@@ -29,6 +34,7 @@ public class Humano extends Personaje {
 		crearPremio();
 
 	}
+	//Crea el premio que despues deja caer
 	private void crearPremio() {
 		Random random = new Random();
 		int randomInt = random.nextInt(5);
@@ -52,15 +58,7 @@ public class Humano extends Personaje {
 	public void accept(Visitor v) {
 		v.visitarHumano(this);
 	}
-	/*
-	@Override
-	public void impacto(int infeccion) {
-		if(cargaViral+infeccion<100) 
-			this.cargaViral += infeccion;
-		else
-			infectar();
-	} 
-	 */
+
 	@Override
 	public void desplazarse() {
 		super.desplazarse();
@@ -70,8 +68,7 @@ public class Humano extends Personaje {
 	/**
 	 *dejarCaerPremio
 	 *---------------
-	 *Genera un nuevo objerto de tipo premio
-	 *y lo agrega a la colección de entidades.
+	 *deja caer el premio generado en crearPremio
 	 */
 	public void dejarCaerPremio() {
 		CuadroDeDialogo dialogo = new CuadroDeDialogo(juego);
@@ -87,17 +84,16 @@ public class Humano extends Personaje {
 		juego.agregarAEntidadesParaAgregar(dialogo);
 		soltoPremio = true;
 	}
+
+	//devuelve verdadero si dejó caer a el premio y falso si no.
 	public boolean soltoPremio() {
 		return this.soltoPremio;
 	}
 
 	public void actuar() {
 		int vueltasAEsperar;
-
 		int velocidad = vector.getModulo();
-
 		vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
-
 		if(vueltasAEsperar>0&&vueltasAEsperar<HiloSecundario.LATENCIA_MAXIMA) {
 			if(latencia>=vueltasAEsperar) {
 				desplazarse();

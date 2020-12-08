@@ -4,9 +4,17 @@ import entidades.personajes.infectados.Infectado;
 import logica.Juego;
 import visitor.VisitanteParticulaBeta;
 import visitor.Visitor;
-
+/**
+ * ParticulaBeta
+ * Especializacion de particula
+ *
+ */
 public class ParticulaBeta extends Particula{
-
+	/**
+	 * ParticulaBeta
+	 * @param juego
+	 * @param infectado
+	 */
 	public ParticulaBeta(Juego juego, Infectado infectado) {
 		super(juego, infectado);
 		rangoParticula= 0;
@@ -17,13 +25,12 @@ public class ParticulaBeta extends Particula{
 	@Override
 	public void accept(Visitor v) {
 		v.visitarParticulaBeta(this);
-		
+
 	}
 
 	@Override
 	public void impacto(int letalidad) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 }

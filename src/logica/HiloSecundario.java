@@ -6,9 +6,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-
 import entidades.Entidad;
-
+/**
+ * 
+ *HiloSecundario
+ *Encargada de agregar, quitar y recorrer entidades en segundo plano
+ */
 public class HiloSecundario extends Thread{
 	protected Queue<Entidad> colaParaAgregar;
 	protected Queue<Entidad> colaParaQuitar;
@@ -16,12 +19,14 @@ public class HiloSecundario extends Thread{
 	protected List<Entidad> copiaDeListaParaRecorrer;
 	protected Juego juego;
 	public static final int LATENCIA_MAXIMA = 10;
-	private static HiloSecundario hiloSecundario;
 	private boolean correr;
 	private boolean correr2;
 	
 
-	
+	/**
+	 * HiloSecundario
+	 * @param juego
+	 */
 	public HiloSecundario(Juego juego) {
 		this.juego = juego;
 		colaParaAgregar = new ConcurrentLinkedQueue<Entidad>();
@@ -32,33 +37,33 @@ public class HiloSecundario extends Thread{
 		this.correr2 = false;
 		
 	}
+	/**
+	 * terminarEjecucion
+	 * Finaliza al hilo en ejecucion
+	 */
 	public void terminarEjecucion() {
 		this.correr = false;
-		//this.stop();
 		
 	}
-
+    /**
+     * La parte que se ejecuta en segundo plano
+     */
 	@Override
 	public void run() {
 		Iterator<Entidad> itListaParaRecorrer;
 		Entidad entidadParaAccionar;
 		while(correr||!correr2) {
-			
-			
-
 			juego.notificarObservadores();
 			esperar(5);
 			itListaParaRecorrer = listaParaRecorrer.iterator();
 			while(itListaParaRecorrer.hasNext()) {
 				entidadParaAccionar = itListaParaRecorrer.next();
-				
-				//actualizarLimiteVirtual(entidadParaAccionar);
 				entidadParaAccionar.actuar();
 			}
 			agregarYQuitarEntidades();
 		}
 	}
-	
+	/*
     private void actualizarLimiteVirtual(Entidad entidad) {
     	
     	Point limite = juego.getLimite(); 
@@ -72,17 +77,29 @@ public class HiloSecundario extends Thread{
 			}
     	}
     	
-    }
-	private void esperar(int segundos) {
-		try {Thread.sleep(segundos);} catch (InterruptedException e) {e.getMessage();}
+    }*/
+	
+	/**
+	 * esparar
+	 * Tiempo de espera en milisegundos por cada ciclo
+	 * @param miliSegundos
+	 */
+	private void esperar(int miliSegundos) {
+		try {Thread.sleep(miliSegundos);} catch (InterruptedException e) {e.getMessage();}
 	}
+	/**
+	 * agregarYQuitarEntidades
+	 * Este método se ejecuta al finalizar cada ciclo del hilo secundario
+	 * Se encarga de agregar, quitar y clonar la lista de entidades activas
+	 */
 	private void agregarYQuitarEntidades() {
-      //para evitar error de recorrer cuando es modificada
+		//Agrega a la lista de recorrido
 		while(!colaParaAgregar.isEmpty()) {
 			Entidad entParaAgregar = colaParaAgregar.poll();
 			listaParaRecorrer.add(entParaAgregar);
 			juego.notificarEntidad(entParaAgregar);
 		}
+		//Quita a la lista de recorrido
 		while(!colaParaQuitar.isEmpty()) {
 
 			Entidad entParaQuitar =colaParaQuitar.poll();
@@ -90,18 +107,13 @@ public class HiloSecundario extends Thread{
 			juego.notificarQuitarEntidad(entParaQuitar);
 		}
 		
-	
+	    //Borra la anterior y clona la lista de recorrido
 		copiaDeListaParaRecorrer.clear();
 		for(Entidad entidad : listaParaRecorrer) {
 			copiaDeListaParaRecorrer.add(entidad);
 		}
 		//----------------------------------------------------
-	/*	
-		juego.Logger.fine("paraAgregar "+colaParaAgregar.size()+
-				" paraQuitar "+colaParaQuitar.size()+" listaParaRecorrer "+
-				listaParaRecorrer.size()+ " correr "+correr+" correr2 "+correr2 +
-				" jugadorVive "+juego.jugadorVive);
-				*/
+
 		
 		//para entrar en la pantalla score.
 		if((colaParaAgregar.isEmpty()
@@ -115,20 +127,29 @@ public class HiloSecundario extends Thread{
 			}
 
 	}
+	/**
+	 * agregarAColaParaAgregar
+	 * Agrega una entidad a la cola para agregar a la lista de recorrido
+	 * @param entidad
+	 */
 	public void agregarAColaParaAgregar(Entidad entidad) {
 		colaParaAgregar.add(entidad);
 	}
+	/**
+	 * agregarAColaParaQuitar
+	 * Quiata una entidad a la cola para quitar a la lista de recorrido
+	 * @param entidad
+	 */
 	public void agregarAColaParaQuitar(Entidad entidad) {
 		colaParaQuitar.add(entidad);
 	}
+	/**
+	 * listaDeRecorrido
+	 * Devuelve un clon de la lista de recorido
+	 * @return clon de lista de recorrido
+	 */
 	public List<Entidad> listaDeRecorrido(){
 		return copiaDeListaParaRecorrer;
 	}
-	public boolean isCorrer() {
-		return correr;
-	}
-	public void setCorrer(boolean correr) {
-		this.correr = correr;
-	}
-	
+
 }

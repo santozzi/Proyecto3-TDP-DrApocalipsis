@@ -1,18 +1,15 @@
 package entidades.personajes.infectados;
 
-import java.util.Random;
 
 import entidades.proyectiles.particulas.ParticulaAlpha;
 import logica.Juego;
-import reproductor_de_audio.Musica;
-import reproductor_de_audio.Sonidos;
 import visitor.*;
 import visitor.Visitor;
 
 /**
  * Estos infectados tienen menor resistencia y 
  * mayor letalidad.
- * @author 
+ * 
  *
  */
 public class InfectadoAlpha extends Infectado{
@@ -28,22 +25,22 @@ public class InfectadoAlpha extends Infectado{
 	 * duplicarVelocidad
 	 * -----------------
 	 * Duplica la velocidad del personaje
-	 * cuando este tiene menos del 20% de energia
+	 * cuando este tiene menos del 20% de carga viral
 	 */
 	public void duplicarVelocidad() {
 
 		// si no esta afectado por la cuarentena entonces duplico su velocidad
 		if(this.vector.getModulo()>0) { 
-			vector.setModulo(8);
-			//vector.setModulo(vector.getModulo()*2);
+			int doble = vector.getModulo()*2;
+			if(doble>=8)
+			   vector.setModulo(8);
+			else
+			   vector.setModulo(doble);
+			
 			particula.getVector().setModulo(9);
 		}
-		
-	
-		
 	}
 
-	// v es de jugador
 	@Override
 	public void accept(Visitor v) {
 		v.visitarInfectadoAlpha(this);
@@ -61,7 +58,6 @@ public class InfectadoAlpha extends Infectado{
 
 	@Override
 	public InfectadoAlpha clone() {
-		// TODO Auto-generated method stub
 		return new InfectadoAlpha(juego);
 	}
 

@@ -1,28 +1,29 @@
 package entidades.personajes.infectados;
 
-import java.util.Random;
-
 import entidades.Entidad;
 import entidades.personajes.Humano;
 import entidades.personajes.Personaje;
 import entidades.proyectiles.particulas.Particula;
 import logica.HiloSecundario;
 import logica.Juego;
-import reproductor_de_audio.Sonidos;
-
+/**
+ * Infectado
+ * Todo enemigo del juego es un infectado es una especialización de personaje
+ * 
+ */
 public abstract class Infectado extends Personaje {
-	   protected int tiempoDeParticula;
-       protected int contarTiempoDeParticula;
-       protected int tiempoDeAtaque;
-       protected int contarTiempoDeAtaque;
-       protected boolean atacar;
-       
+	protected int tiempoDeParticula;
+	protected int contarTiempoDeParticula;
+	protected int tiempoDeAtaque;
+	protected int contarTiempoDeAtaque;
+	protected boolean atacar;
+
 	protected Particula particula;
 	protected int rango;
 	protected int puntos;
 	protected int letalidadFisica;
 	protected Entidad entidad;
-	
+
 
 	public Infectado(Juego juego) {
 		super(juego);
@@ -38,30 +39,23 @@ public abstract class Infectado extends Personaje {
 		entidad = null;
 	}
 
-
-
 	/**
-	 * tirarParticulas
-	 * ---------------
-	 * Son las particulas que lanza el infectado
-	 * estas particulas son de tipo Proyectil
+	 * estaCurado
+	 * 
+	 * @return Este metodo devuelve verdadero si el infectao esta curado y falso si no.
 	 */
-
 	public boolean estaCurado() {
 		return cargaViral<=0;
 	}
-/*
-
-	public void atacar() {
-		imagen = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("infectado_atacar");
-
-		v.visitarJugador(juego.getJugador());
-	}
-*/
-
+	/**
+	 * tirarParticula
+	 * ---------------
+	 * Son las particulas que lanza el infectado
+	 * estas particulas son de tipo Particula
+	 */
 	abstract public void tirarParticula();
-	
-	
+
+
 	@Override
 	public void setPosicion(int x, int y) {
 		vector.getPosicion().x= x;
@@ -85,80 +79,51 @@ public abstract class Infectado extends Personaje {
 		}else
 			curar();
 	} 
+	/**
+	 * curar
+	 * Acción a realizar cuando el infectado se cura.
+	 */
 	public void curar() {
 		Entidad humano = new Humano(juego);
 		humano.setPosicion(vector.getPosicion().x, vector.getPosicion().y);
-
-
 		juego.agregarAEntidadesParaAgregar(humano);
-		
 		if(particula!=null)
-		   particula.desaparecer();
+			particula.desaparecer();
 		this.desaparecer();
-
 	}
-
+	/**
+	 * getRango
+	 * Los infectados tienen un rango que representa hasta donde llegan las particulas.
+	 * @return devuelve un entero con el rango de la particula.
+	 */
 	public int getRango() {
 		return rango;
 	}
-/*
-	public List<Entidad> detectarColisiones() {
-		List<Entidad> listaDeColisiones = new LinkedList<Entidad>();
-		List<Entidad> listaDeLatencia = juego.getLista();
-		boolean esta = false;
 
-		Entidad entidadActual = this;
-		Entidad entVerificar;
-		Iterator<Entidad> itEntidades ;
-		for(Entidad entidadDeLatencia : listaDeLatencia) {
-			itEntidades = listaDeColisiones.iterator();
+	/**
+	 * intervaloDeTirarParticula
+	 * Determina cada cuanto se tira una nueva particula.
+	 */
+	protected void intervaloDeTirarParticula() {
 
-
-			if(entidadActual!=entidadDeLatencia&&hayColision(entidadDeLatencia)) {
-				//-----para que no haya repetidos----
-				while(itEntidades.hasNext()&&!esta) {
-					entVerificar = itEntidades.next();
-					esta= entVerificar == entidadDeLatencia;
-				}
-				//-------------------------------------
-
-				if(!esta)
-					listaDeColisiones.add(entidadDeLatencia);
-				else
-					esta = false;
-
-			} 
+		if(contarTiempoDeParticula>=tiempoDeParticula) {
+			tirarParticula();
+			contarTiempoDeParticula=0;
+		}else {
+			contarTiempoDeParticula++;
 
 		}
-		return listaDeColisiones;
-	}  
-
-*/
-
-    protected void intervaloDeTirarParticula() {
-    
-    	if(contarTiempoDeParticula>=tiempoDeParticula) {
-    		tirarParticula();
-    		contarTiempoDeParticula=0;
-    	}else {
-    		contarTiempoDeParticula++;
-    	
-    	}
-    }
+	}
 	@Override
 	public void actuar() {
 
 		int vueltasAEsperar;
 
 		if(estadoTemporal) {
-			//tiempo de espera es 1000
 			vueltasAEsperar = tiempoDeEspera;
 		}else {
 			int velocidad = vector.getModulo();
-			// {
 			vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
-
-
 		}
 
 		if(vueltasAEsperar>0) {
@@ -168,57 +133,58 @@ public abstract class Infectado extends Personaje {
 				accionar();
 				latencia= 1;
 				estadoTemporal= false;
-				
+
 			}else {
 				latencia++;
 			}
 		}
 		intervaloDeTirarParticula();
 		if(entidad!=null&&atacar)
-		 intervaloDeAtaque();
-	
-		
-		
+			intervaloDeAtaque();
 	}
+
 	public void desplazarse() {
-		//this.posicion.y++;
-		//this.vector.setModulo(6);
 		this.vector.desplazarse();
 		juego.actualizarEntidad(this);
-		//detectarColisiones();
-		//accionar();
-		//detectarColisiones();
-		//pregunatar cuando se choca con el limite del mapa
+	}
+
+	/**
+	 * intervaloDeAtaque
+	 * Determina cada cuanto el infectado genera un impacto, en otra entidad
+	 * cuando se detecta una colisión, este metodo se activa cuando atarcar = true
+	 */
+	protected void intervaloDeAtaque() {
+		if(contarTiempoDeAtaque>=tiempoDeAtaque) {
+			entidad.impacto(letalidadFisica);
+			contarTiempoDeAtaque=0;
+		}else {
+			contarTiempoDeAtaque++;
+		}
+		this.atacar = false;
+		entidad= null;
+	}
+	/**
+	 * atacar
+	 * Acciona el metodo intervaloDeAtaque volviendo a atacar= true
+	 * @param ent entidad a la que se va a atacar
+	 */
+	public void atacar(Entidad ent) {
+		this.atacar=true;
+		this.entidad= ent;
 
 	}
 
-	
-    protected void intervaloDeAtaque() {
-        
-    	if(contarTiempoDeAtaque>=tiempoDeAtaque) {
-    		 entidad.impacto(letalidadFisica);
-    		contarTiempoDeAtaque=0;
-    	}else {
-    		contarTiempoDeAtaque++;
-    	
-    	}
-    	this.atacar = false;
-    	entidad= null;
-    }
-    public void atacar(Entidad ent) {
-    	this.atacar=true;
-    	this.entidad= ent;
-    	
-    }
-
+	/**
+	 * getLetalidadFisica
+	 * Los infectados atacan al contacto y tienen un valor de letalidad fisica
+	 * @return la letalidad fisica del infectado.
+	 */
 	public int getLetalidadFisica() {
 		return letalidadFisica;
 	}
 
-
-
-	public void setLetalidadFisica(int letalidadFisica) {
-		this.letalidadFisica = letalidadFisica;
-	}
+	/**
+	 * Clona al infectado
+	 */
 	abstract public Infectado clone();
 }

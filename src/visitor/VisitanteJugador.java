@@ -4,7 +4,6 @@ import entidades.CuadroDeDialogo;
 import entidades.personajes.Humano;
 import entidades.personajes.infectados.InfectadoAlpha;
 import entidades.personajes.infectados.InfectadoBeta;
-import entidades.personajes.infectados.InfectadoBoss;
 import entidades.personajes.infectados.InfectadoBossAlpha;
 import entidades.personajes.infectados.InfectadoBossBeta;
 import entidades.personajes.jugador.Jugador;
@@ -13,13 +12,13 @@ import entidades.premios.no_temporales.Moneda;
 import entidades.premios.no_temporales.Pocion;
 import entidades.premios.temporales.Cuarentena;
 import entidades.premios.temporales.SuperArma;
-import entidades.proyectiles.Proyectil;
 import entidades.proyectiles.particulas.ParticulaAlpha;
 import entidades.proyectiles.particulas.ParticulaBeta;
 import entidades.proyectiles.proyectil_jugador.ProyectilSanitario;
 import entidades.proyectiles.proyectil_jugador.SuperProyectilSanitario;
 
 public class VisitanteJugador extends Visitante {
+	@SuppressWarnings("unused")
 	private Jugador j;
 
 	public VisitanteJugador(Jugador j) {

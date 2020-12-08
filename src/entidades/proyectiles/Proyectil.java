@@ -4,7 +4,11 @@ import entidades.Entidad;
 import logica.HiloSecundario;
 import logica.Juego;
 import logica.Vector;
-
+/**
+ *Proyectil
+ *Toda entidad que es arrojada por un personaje o arma 
+ *
+ */
 public abstract class Proyectil extends Entidad {
 	protected int letalidad;
     

@@ -2,39 +2,37 @@ package entidades.personajes;
 
 import entidades.Entidad;
 import logica.Juego;
-
+/**
+ * 
+ * Es una especialización de la entidad, los enemigos del juego y el jugador mismo son
+ * personajes. 
+ *
+ */
 public abstract class Personaje extends Entidad {
+	//Es la energia del personaje
 	protected int cargaViral;
-	//protected int tiempoDeEspera;
-	
+
+
 	public Personaje(Juego juego) {
 		super(juego);
 	}
-	
-	
-   /**
-    * estaMuerto
-    * ----------
-    * Verifica si el personaje tiene 0 de energia
-    * @return Si tiene 0 o menos retorna true de lo contrario false
-    */
-	
-   /**
-    * desplazarse
-    * -----------
-    * Mueve al personaje en direccion correspondiente
-    */
-   //abstract public void desplazarse();
+
 	public void impacto(int disparo) {
 		if(cargaViral-disparo>0) {
-		   this.cargaViral -=disparo;
-		 
+			this.cargaViral -=disparo;
+
 		}else {
 			desaparecer();
 		}
 	} 
+
+
+	/**
+	 * getCargaViral
+	 * @return la cantidad de carga viral que tiene el personaje.
+	 */
 	public int getCargaViral() {
 		return cargaViral;
 	}
-	
+
 }

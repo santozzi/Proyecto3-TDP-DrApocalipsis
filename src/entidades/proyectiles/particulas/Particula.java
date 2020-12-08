@@ -4,7 +4,11 @@ package entidades.proyectiles.particulas;
 import entidades.personajes.infectados.Infectado;
 import entidades.proyectiles.Proyectil;
 import logica.Juego;
-
+/**
+ * Particula
+ * Son los proyectiles lanzados por los infectados 
+ *
+ */
 public abstract class Particula extends Proyectil{
     protected Infectado infectado;
     protected int rangoParticula;
@@ -35,12 +39,5 @@ public abstract class Particula extends Proyectil{
 		juego.actualizarEntidad(this);
 	}
 
-/*
-	public void reiniciarParticula() {
-		rangoParticula=0;
-		vector.getPosicion().x = infectado.getVector().getPosicion().x+
-				(infectado.getImagen().getIconWidth()/4);
-		vector.getPosicion().y = infectado.getVector().getPosicion().y+10;
-	}
-	*/
+
 }

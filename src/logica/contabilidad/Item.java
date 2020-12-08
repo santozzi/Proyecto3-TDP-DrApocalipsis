@@ -1,9 +1,19 @@
 package logica.contabilidad;
-
+/**
+ * Item
+ * Clase con tres atributos, clave (claveImagen), score(puntos) 
+ * y cantidad( numero de entidades)
+ */
 public class Item {
     protected String clave;
     protected int score;
     protected int cantidad;
+    /**
+     * Item
+     * @param clave
+     * @param score
+     * @param cantidad
+     */
 	public Item(String clave, int score, int cantidad) {
 		this.clave = clave;
 		this.score = score;

@@ -1,8 +1,10 @@
 package armas;
 
-import entidades.proyectiles.*;
 import logica.Juego;
-
+/**
+ * Arma
+ * Es el arma que tiene el jugador su objetivo es crear proyectiles
+ */
 public abstract class Arma{
 	protected Juego juego;
 	protected String claveImagen;

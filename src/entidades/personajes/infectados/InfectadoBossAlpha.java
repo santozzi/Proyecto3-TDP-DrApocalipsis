@@ -5,9 +5,8 @@ import visitor.VisitanteInfectadoBossAlpha;
 import visitor.Visitor;
 
 /**
- * Este infectado tiene mayor resistencia
- * @author 
- *
+ * InfecadoBossAlpha
+ * es un sub tipo de infectadoBoss
  */
 public class InfectadoBossAlpha extends InfectadoBoss {
   
@@ -29,7 +28,6 @@ public class InfectadoBossAlpha extends InfectadoBoss {
 
 	@Override
 	public InfectadoBossAlpha clone() {
-		// TODO Auto-generated method stub
 		return new InfectadoBossAlpha(juego);
 	}
 

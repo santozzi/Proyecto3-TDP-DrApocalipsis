@@ -3,13 +3,18 @@ import logica.Juego;
 import entidades.personajes.jugador.Jugador;
 import visitor.VisitanteProyectilSanitario;
 import visitor.Visitor;
-
+/**
+ * ProyectilSanitario
+ * Una especialización de projectilJugador
+ */
 public class ProyectilSanitario extends ProyectilJugador{
 
 	
 	protected Jugador jugador;
-	//constructor crear un vector con los datos, recibe a juego
-	
+	/**
+	 * ProyectilSanitario
+	 * @param juego
+	 */
 	public ProyectilSanitario(Juego juego) {
 	    super(juego);
 		vector.setModulo(9);
@@ -19,16 +24,10 @@ public class ProyectilSanitario extends ProyectilJugador{
 	
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
 		v.visitarProyectilSanitario(this);
 	}
 
 	@Override
 	public void impacto(int letalidad) {
-		// TODO Auto-generated method stub
-		
 	}
-
-
-
 }

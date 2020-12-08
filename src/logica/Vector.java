@@ -1,75 +1,85 @@
 package logica;
 
 import java.awt.Point;
-
+/**
+ * Vector
+ * Encargada de darle direccion, posicion y modulo a las entidades
+ */
 public class Vector {
 	protected Point direccion;
 	protected Point posicion;
 	protected int sentido;
 	protected int modulo;
-
+	/**
+	 * Vetor
+	 * @param x
+	 * @param y
+	 * @param modulo
+	 */
 	public Vector(int x, int y,int modulo) {
 		this.direccion = new Point(x,y);
 		this.posicion = new Point();
 		this.sentido = 1;
 		this.modulo = modulo;
-		
-		
-	}
-    public Vector() {
-    	this(0,0,0);
-    }
-	public int getX() {
-		return (int)direccion.getX();
-	}
-	public int getY() {
-		return (int)direccion.getY();
-	}
-	public void setX(int x) {
-		direccion.setLocation(x, getY());
 
 	}
-	public void setY(int y) {
-		direccion.setLocation(getX(), y);
-
-	}
-
+	/**
+	 * getSentido
+	 * Devuelve si es 1 o -1
+	 * @return
+	 */
 	public int getSentido() {
 		return sentido;
 	}
-
-	public void setSentido(int sentido) {
-		this.sentido = sentido;
-	}
-
+     
+	
+    /**
+     * getModulo
+     * Devuelve el módulo del vector
+     * @return
+     */
 	public int getModulo() {
 		return modulo;
 	}
-
+    /**
+     * setModulo
+     * Cambia el módulo del vector
+     * @param modulo
+     */
 	public void setModulo(int modulo) {
 		this.modulo = modulo;
 	}
+	/**
+	 * desplazarse
+	 * desplaza a la entidad en funcion de su direccion
+	 */
 	public void desplazarse() {
-	    posicion.x +=direccion.x;
+		posicion.x +=direccion.x;
 		posicion.y +=direccion.y;
 	}
-	
-	public void avanzarEnX() {
 
-		setX(getX()+sentido);
-	}
-	public void avanzarEnY() {
-		setY(getY()+sentido);
-	}
 
+	/**
+	 * cambioDeSentido
+	 * Cambia el sentido de la direccion a su opuesto
+	 */
 	public void cambioDeSentido() {
-	//	this.sentido= (-1)*this.sentido;
 		direccion.x *=-1;
 		direccion.y *=-1;
 	}   
+	/**
+	 * getPosicion
+	 * Devuelve su pusición
+	 * @return posición de tipo Point
+	 */
 	public Point getPosicion() {
 		return posicion;
 	}
+	/**
+	 * getDireccion
+	 * Devuelve la direccion 
+	 * @return dirección de tipo de tipo Point
+	 */
 	public Point getDireccion() {
 		return direccion;
 	}

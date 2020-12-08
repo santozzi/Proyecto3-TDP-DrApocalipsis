@@ -19,28 +19,31 @@ import entidades.proyectiles.particulas.ParticulaBeta;
 import entidades.proyectiles.proyectil_jugador.ProyectilSanitario;
 import entidades.proyectiles.proyectil_jugador.SuperProyectilSanitario;
 
-// Clase visitante general. Los nombres de lo m√©todos son diferentes para poder evitar posibles complicaciones al extender alguna clase concreta. Le pasamos como
-// par√°metro tambi√©n los tipos espec√≠ficos para poder aprovechar los m√©todos propios de cada clase diferente.
 
+/**
+ * Clase visitante general. Los nombres de lo mÈtodos son diferentes para poder evitar posibles complicaciones al extender alguna clase concreta. Le pasamos como
+ * par·metro tambiÈn los tipos especÌficos para poder aprovechar los mÈtodos propios de cada clase diferente.
+ */
 public abstract class Visitor
 {
+
 	abstract public void visitarMoneda(Moneda mon);
 	abstract public void visitarDiamante(Diamante dia);
-	
+
 	abstract public void visitarInfectadoAlpha(InfectadoAlpha ea);
-	
+
 	abstract public void visitarInfectadoBeta(InfectadoBeta eb);
-	
+
 	abstract public void visitarJugador(Jugador J);
-	
+
 	abstract public void visitarProyectilSanitario(ProyectilSanitario p);
-	
+
 	abstract public void visitarParticulaAlpha(ParticulaAlpha par);
 	abstract public void visitarParticulaBeta(ParticulaBeta par);
 	abstract public void visitarHumano(Humano hum);
-	
+
 	abstract public void visitarPocion(Pocion pos);	
-	
+
 	abstract public void visitarCuarentena(Cuarentena cuarentena);
 	abstract public void visitarSuperProyectilSanitario(SuperProyectilSanitario sps);
 	abstract public void visitarSuperArma(SuperArma sarm);

@@ -11,7 +11,12 @@ import logica.Vector;
 import visitor.VisitanteJugador;
 import visitor.Visitor;
 
-
+/**
+ * 
+ * Es un tipo de personaje con la habilidad de disparar y ser
+ * manejado por el usuario.
+ *
+ */
 public class Jugador extends Personaje{
 
 	protected Arma arma;
@@ -36,7 +41,12 @@ public class Jugador extends Personaje{
 			setImagen(arma.getClaveImagen());
 		}
 	}
-
+    
+	/**
+	 * estaInfectado
+	 * Determina si el el jugador no tiene mas energia.
+	 * @return verdadero si cargaViral es <=0 y falso de lo contrario
+	 */
 	public boolean estaInfectado() {
 		return cargaViral<=0;
 	}
@@ -56,11 +66,15 @@ public class Jugador extends Personaje{
 	public Vector getVector() {
 		return this.vector;
 	}
+	
+	/**
+	 * desplazarseIzquierda
+	 * Mueve al jugador hacia la izquierda
+	 */
 	public void desplazarseIzquierda() {
 		if(this.vector.getPosicion().x>=-15 && this.cargaViral>0) {
 			if(vector.getDireccion().x==1) {
 				vector.cambioDeSentido();
-
 			}
 			if(!this.claveImagen.equals("Jugador_CaminarIzquierda")) {
 				setImagen("Jugador_CaminarIzquierda");
@@ -71,22 +85,27 @@ public class Jugador extends Personaje{
 		}
 
 	}
+	
+	/**
+	 * desplazarseDerecha
+	 * Mueve al jugador hacia la derecha
+	 */
 	public void desplazarseDerecha() {
 		if(this.vector.getPosicion().x<=Juego.ANCHO_DE_COMBATE-55 && this.cargaViral>0) {
 			if(vector.getDireccion().x==-1) {
 				vector.cambioDeSentido();
 			}
-
-
 			if(!this.claveImagen.equals("Jugador_CaminarDerecha")) {
 				setImagen("Jugador_CaminarDerecha");
 			}
-
 			desplazarse();
-
 		}
 	}
-
+    /**
+     * curar
+     * Recupera la energia del jugador, en cantidad de cantidad.
+     * @param cantidad, la cantidad de energia a recuperar.
+     */
 	public void curar(int cantidad) {
 		if(cargaViral<=100-cantidad)
 			this.cargaViral +=cantidad;
@@ -94,6 +113,10 @@ public class Jugador extends Personaje{
 			this.cargaViral = 100;
 		}
 	}
+	/**
+	 * disparar
+	 * Da la orden para disparar un nuevo proyectil
+	 */
 	public void disparar() {
 		arma.disparar();
 		setImagen(arma.getClaveImagen());
@@ -123,12 +146,16 @@ public class Jugador extends Personaje{
 		}
 
 	}
+	/**
+	 * cambiarArma
+	 * Cambia el arma del jugador
+	 * @param arma, es el arma con la que se cambia
+	 */
 	public void cambiarArma(Arma arma) {
 		this.arma= arma;
 	}
 	public void desaparecer() {
 		super.desaparecer();
-		//juego.agregarAEntidadesParaQuitar(this);
 		juego.matarJugador();
 		juego.finalizarJuego();
 	}

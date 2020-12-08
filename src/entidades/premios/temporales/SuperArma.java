@@ -5,7 +5,11 @@ import entidades.personajes.jugador.Jugador;
 import logica.Juego;
 import visitor.VisitanteSuperArma;
 import visitor.Visitor;
-
+/**
+ *SuperArma
+ *Modifica de forma temporal el arma del jugador 
+ *
+ */
 public class SuperArma extends Temporal {
 	protected Jugador jugador;
     public SuperArma (Juego juego) {

@@ -5,16 +5,16 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-
+/**
+ * InterfazDeControl
+ * Es una clase intermedia entre los Listeners y los perifericos
+ */
 public class InterfazDeControl implements KeyListener, MouseListener {
     protected boolean llave;
     protected boolean derecha;
     protected boolean izquierda;
     protected boolean disparar;
-	
-	
-	
-	
+
 	public boolean isLlave() {
 		return llave;
 	}
@@ -46,52 +46,33 @@ public class InterfazDeControl implements KeyListener, MouseListener {
 	public void setDisparar(boolean disparar) {
 		this.disparar = disparar;
 	}
-
+	
+	//--------------métodos de MouseListener----------
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
+	//-------------------------------------------------
+	//------------métodos de KeyListener---------------
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
+	//-------------------------------------------------
 }

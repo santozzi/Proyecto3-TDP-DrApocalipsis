@@ -2,9 +2,11 @@ package entidades.premios.no_temporales;
 
 import logica.Juego;
 import visitor.VisitanteDiamante;
-import visitor.VisitantePocion;
 import visitor.Visitor;
-
+/**
+ * Es una especialización de la mondea. 
+ *
+ */
 public class Diamante extends Moneda{
 
 	public Diamante(Juego juego) {
@@ -17,13 +19,11 @@ public class Diamante extends Moneda{
 
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
 		v.visitarDiamante(this);
 	}
 
 	@Override
 	public void impacto(int letalidad) {
-		// TODO Auto-generated method stub
 		
 	}
 }

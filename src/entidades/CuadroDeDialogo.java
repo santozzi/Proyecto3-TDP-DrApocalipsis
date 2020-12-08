@@ -4,14 +4,18 @@ import logica.HiloSecundario;
 import logica.Juego;
 import visitor.VisitanteCuadroDeDialogo;
 import visitor.Visitor;
-
+/**
+ *Cuadro de dialogo
+ *Es lo que dice el Humano cuandro entrega a el premio 
+ *
+ */
 public class CuadroDeDialogo extends Entidad {
 
 	public CuadroDeDialogo(Juego j) {
 		super(j);
 		this.v = new VisitanteCuadroDeDialogo(this);
 	}
-	
+
 	@Override
 	public void desplazarse() {
 		this.vector.desplazarse();
@@ -27,13 +31,8 @@ public class CuadroDeDialogo extends Entidad {
 
 	public void actuar() {
 		int vueltasAEsperar;
-
 		int velocidad = vector.getModulo();
-
 		vueltasAEsperar =HiloSecundario.LATENCIA_MAXIMA-velocidad;
-
-
-
 		if(vueltasAEsperar>0&&vueltasAEsperar<HiloSecundario.LATENCIA_MAXIMA) {
 			if(latencia>=vueltasAEsperar) {
 				desplazarse();
@@ -50,7 +49,7 @@ public class CuadroDeDialogo extends Entidad {
 	@Override
 	public void impacto(int letalidad) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

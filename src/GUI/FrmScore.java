@@ -25,7 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class FrmScore extends JFrame implements IObservador{
-	protected JLabel[][] matriz;
+	
 	private JPanel contentPane;
 	protected IObservador obs;
 	protected Juego  juego;
@@ -37,7 +37,7 @@ public class FrmScore extends JFrame implements IObservador{
 		this.juego = juego;
 		this.obs = obs;
 
-		matriz = new JLabel[6][3];
+
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int anchoDelFrame = Juego.DECORADO_IZQUIERDO + Juego.ANCHO_DE_COMBATE + Juego.DECORADO_DERECHO + 20;
@@ -142,15 +142,7 @@ public class FrmScore extends JFrame implements IObservador{
 		});
 		btnReinicio_1.setBounds(500, 616, 128, 23);
 		panel.add(btnReinicio_1);
-		/*
-		JLabel lblCantidad_1 = new JLabel("Cantidad");
-		lblCantidad_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCantidad_1.setForeground(Color.GREEN);
-		lblCantidad_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 24));
-		lblCantidad_1.setBackground(Color.BLACK);
-		lblCantidad_1.setBounds(456, 120, 102, 28);
-		panel.add(lblCantidad_1);
-		 */
+
 
 	}
 

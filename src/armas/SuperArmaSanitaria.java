@@ -5,11 +5,13 @@ import logica.Juego;
 
 /**
  * Los proyectiles de esta arma causan mas daño
- * @author 
- *
+ * Crea un SuperProyectilSanitario por disparo
  */
 public class SuperArmaSanitaria extends Arma{
-
+    /**
+     * SuperArmaSanitaria
+     * @param juego
+     */
 	public SuperArmaSanitaria(Juego juego) {
 		super(juego);
 	}

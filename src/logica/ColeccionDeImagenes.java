@@ -2,25 +2,23 @@ package logica;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.ImageIcon;
-
+/**
+ * ColeccionDeImagenes
+ * Colección donde se encuentran todas las rutas de las imágenes del juego.
+ */
 public class ColeccionDeImagenes extends Imagenes{
 
 	private Map<Integer, ImageIcon> ruta;
 	private static ColeccionDeImagenes colDeImg;
-	private int contador;// es para probar, despues se borra
-
 	public static ColeccionDeImagenes getColeccionDeImagenes() {
 		if(colDeImg == null)
 			colDeImg = new ColeccionDeImagenes();
-			
 		return colDeImg;
 	}
 
 	private ColeccionDeImagenes() {
 
-		this.contador = 0;
 		this.ruta = new HashMap<Integer, ImageIcon>();
 		
 		// Nivel 1
@@ -95,7 +93,14 @@ public class ColeccionDeImagenes extends Imagenes{
 		agregarRuta("CuadroDeDialogo","/img/dialogo.png", 80, 40);
      
 	}
-
+    /**
+     * agregarRuta
+     * Agrega la nueva ruta al mapeo
+     * @param clave
+     * @param ruta
+     * @param ancho
+     * @param alto
+     */
 	private void agregarRuta(String clave, String ruta, int ancho, int alto) {
 		ImageIcon icono = new ImageIcon(this.getClass().getResource(ruta));
 		icono.setImage(icono.getImage().getScaledInstance(ancho, alto, 0));
@@ -104,13 +109,14 @@ public class ColeccionDeImagenes extends Imagenes{
 	}
 
 	public ImageIcon getImagen(String clave) {
-		//System.out.println("Buscar imagen: " + ruta + " " + this.contador++);
 		return this.ruta.get(clave.hashCode());
 	}
-
+    
+	/**
+	 * Devuelve la tematica de la colección
+	 */
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "infectados";
 	}
 

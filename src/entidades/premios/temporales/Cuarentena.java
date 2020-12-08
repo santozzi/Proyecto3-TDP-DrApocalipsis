@@ -3,7 +3,11 @@ package entidades.premios.temporales;
 import logica.Juego;
 import visitor.VisitanteCuarentena;
 import visitor.Visitor;
-
+/**
+ *Cuarentena
+ *Detiene el movimiento de los infectados por un tiempo determinado 
+ *
+ */
 public class Cuarentena extends Temporal{
     
 	public Cuarentena(Juego juego) {
@@ -23,7 +27,6 @@ public class Cuarentena extends Temporal{
 
 	@Override
 	public void impacto(int letalidad) {
-		// TODO Auto-generated method stub
 		
 	}
 	

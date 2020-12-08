@@ -4,7 +4,11 @@ import entidades.personajes.infectados.Infectado;
 import logica.Juego;
 import visitor.VisitanteParticulaAlpha;
 import visitor.Visitor;
-
+/**
+ * ParticulaAlpha
+ * Especialización de Particula
+ *
+ */
 public class ParticulaAlpha extends Particula{
 
 	public ParticulaAlpha(Juego juego,Infectado infectado) {
@@ -20,7 +24,6 @@ public class ParticulaAlpha extends Particula{
 
 	@Override
 	public void impacto(int letalidad) {
-		// TODO Auto-generated method stub
 		
 	}
 
