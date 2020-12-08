@@ -45,7 +45,7 @@ public class Jugador extends Personaje{
 	/**
 	 * estaInfectado
 	 * Determina si el el jugador no tiene mas energia.
-	 * @return verdadero si cargaViral es <=0 y falso de lo contrario
+	 * @return verdadero si cargaViral es 0 y falso de lo contrario
 	 */
 	public boolean estaInfectado() {
 		return cargaViral<=0;

@@ -21,17 +21,17 @@
 package javazoom.jl.decoder;
 
 /**
- * Instances of <code>BitstreamException</code> are thrown 
- * when operations on a <code>Bitstream</code> fail. 
- * <p>
+ * Instances of BitstreamException are thrown 
+ * when operations on a Bitstream fail. 
+ * 
  * The exception provides details of the exception condition 
  * in two ways:
- * <ol><li>
+ * 
  *		as an error-code describing the nature of the error
- * </li><br></br><li>
- *		as the <code>Throwable</code> instance, if any, that was thrown
+ * 
+ *		as the Throwable instance, if any, that was thrown
  *		indicating that an exceptional condition has occurred. 
- * </li></ol></p>
+ * 
  * 
  * @since 0.0.6
  * @author MDM	12/12/99

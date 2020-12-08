@@ -532,7 +532,7 @@ public final class Bitstream implements BitstreamErrors
   /**
    * Read bits from buffer into the lower bits of an unsigned int.
    * The LSB contains the latest read bit of the stream.
-   * (1 <= number_of_bits <= 16)
+   * @param number_of_bits
    */
   public int get_bits(int number_of_bits)
   {

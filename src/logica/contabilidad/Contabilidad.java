@@ -52,7 +52,7 @@ public class Contabilidad {
 	/**
 	 * listaDeItems
 	 * Devuelve una colección iterable de los valores del mapeo
-	 * @return lista de items de tipo Collecction<Item> 
+	 * @return lista de items de tipo Collecction
 	 */
 	public Collection<Item> listaDeItems(){
 		return items.values();

@@ -133,7 +133,7 @@ final class BitReserve
  */
    /**
     * Returns next bit from reserve.
-    * @returns 0 if next bit is reset, or 1 if next bit is set.
+    * @return 0 if next bit is reset, or 1 if next bit is set.
     */
    public int hget1bit()
    {   	  
