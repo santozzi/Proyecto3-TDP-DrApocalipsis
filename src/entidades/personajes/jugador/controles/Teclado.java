@@ -1,10 +1,12 @@
 package entidades.personajes.jugador.controles;
 
 import java.awt.event.KeyEvent;
+
 /**
  * Configura la acción del teclado
  *
  */
+
 public class Teclado extends InterfazDeControl {
 
 	@Override

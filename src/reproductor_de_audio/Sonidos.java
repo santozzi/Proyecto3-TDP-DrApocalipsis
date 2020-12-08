@@ -7,6 +7,7 @@ public class Sonidos {
 	private static Sonidos audio;
 
 	private Sonidos(String nombre) {
+		//ap = new AudioPlayer("/src/media/sonidos/" + nombre + ".mp3");
 		ap = new AudioPlayer("/media/sonidos/" + nombre + ".mp3");
 		hilo = new Thread(ap);
 
@@ -14,18 +15,22 @@ public class Sonidos {
 	}
 
 	public static void reproducir(String nombre) {
-		if(audio==null || !audio.hilo.isAlive()) {
+		if(!estaReproduciendo()) {
 			audio = new Sonidos(nombre);
 			audio.hilo.start();
 		}
 	}
 
 	public static void parar() {
-		if(audio!=null && audio.hilo.isAlive()) {
+		if(estaReproduciendo()) {
 			audio.hilo.interrupt();
 			audio.hilo.stop();
 			audio = null;
 		}
+	}
+	
+	public static boolean estaReproduciendo() {
+		return audio!=null && audio.hilo.isAlive();
 	}
 
 }

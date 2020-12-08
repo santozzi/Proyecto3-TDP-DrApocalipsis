@@ -6,11 +6,13 @@ import entidades.personajes.Personaje;
 import entidades.proyectiles.particulas.Particula;
 import logica.HiloSecundario;
 import logica.Juego;
+
 /**
  * Infectado
  * Todo enemigo del juego es un infectado es una especialización de personaje
  * 
  */
+
 public abstract class Infectado extends Personaje {
 	protected int tiempoDeParticula;
 	protected int contarTiempoDeParticula;
