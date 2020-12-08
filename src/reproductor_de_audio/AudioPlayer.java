@@ -3,7 +3,9 @@ package reproductor_de_audio;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
@@ -20,15 +22,19 @@ public class AudioPlayer implements Runnable {
 	public void run() {
 		try{
 			//File f = new File(this.getClass().getResource(this.file).toURI());
-			File f = new File(System.getProperty("user.dir")+this.file);
-			System.out.println(f);
-			FileInputStream fis = new FileInputStream(f);
+		//	this.getClass().getResource(ruta)
+		//	File f = new File();
+		//	System.out.println(f);
+			//getClass().getResourceAsStream
+			System.out.println(this.getClass().getResourceAsStream(file));
+			
+			InputStream fis = this.getClass().getResourceAsStream(file);
 		    Player playMP3 = new Player(fis);
 		    playMP3.play();
 		    
 		    
 		}
-		catch(FileNotFoundException | JavaLayerException ex)	{  
+		catch(JavaLayerException ex)	{  
 			ex.printStackTrace();
 		}
 	}
