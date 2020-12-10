@@ -7,11 +7,9 @@ public class Musica {
 	private static Musica audio;
 
 	private Musica(String nombre) {
-		//ap = new AudioPlayer("/src/media/musica/" + nombre + ".mp3");
 		ap = new AudioPlayer("/media/musica/" + nombre + ".mp3");
 		hilo = new Thread(ap);
 		
-		//System.out.println("No se encontro el archivo con el nombre de la musica especificada");
 	}
 
 	public static void reproducir(String nombre) {

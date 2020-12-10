@@ -48,7 +48,6 @@ public class CuadroDeDialogo extends Entidad {
 
 	@Override
 	public void impacto(int letalidad) {
-		// TODO Auto-generated method stub
 
 	}
 

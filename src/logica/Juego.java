@@ -129,7 +129,7 @@ public class Juego implements IObservado {
 	 * carga el nivel actual, si ya no hay niveles finaliza el juego
 	 */
 	public void cargarNivel() {
-		//Nivel[] niveles = new Nivel[3];
+	
 
 		if(nivelActual==1) {
 			Logger.fine("Cargando nivel 1");
@@ -207,7 +207,6 @@ public class Juego implements IObservado {
 	public void notificarBajaDeInfectado(Entidad infectado) {
 		List<Entidad> listaDeInfectados = this.nivel.getColeccionDeInfectados().getListaDeInfectados();
 	
-		System.out.println(listaDeInfectados);
 		listaDeInfectados.remove(infectado);
 
 		if(listaDeInfectados.isEmpty()) {

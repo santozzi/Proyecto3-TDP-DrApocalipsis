@@ -49,7 +49,6 @@ public class InicioGUI extends JFrame {
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(100, 100, 562, 411);
 		setBounds(0, 0, 800, 700);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -77,7 +76,6 @@ public class InicioGUI extends JFrame {
 		contentPane.add(btnNewButton);
 
 		JLabel lblLogo = new JLabel("");
-		//lblLogo.setBounds(311, 187, 54, 77);
 		lblLogo.setBounds(0, 541, 80, 130);
 		ImageIcon logoInc = ColeccionDeImagenes.getColeccionDeImagenes().getImagen("InicioGUI_PlagueInc");
 		lblLogo.setIcon(logoInc);

@@ -150,43 +150,36 @@ public class FrmScore extends JFrame implements IObservador{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void updateEntidades(Entidad entidad) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void updateEntidad(Entidad entidad) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void quitarEntidad(Entidad entidad) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void updateEnergiaJugador() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void updateNivel(ImageIcon izq, ImageIcon fondo, ImageIcon der) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void updateScore(int score) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -217,10 +210,6 @@ public class FrmScore extends JFrame implements IObservador{
 			nuevaEtiqueta.setText(item.getScore()+"");
 			panel.add(nuevaEtiqueta);
 			separacionY += altoDeImagen;
-
-			//	matriz[cont][0].setText(item.getClave()); 
-			//matriz[cont][1].setText(item.getCantidad()+"");
-			//matriz[cont][2].setText(item.getScore()+"");
 
 			cont++;
 			separacionY += altoDeImagen;

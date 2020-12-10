@@ -63,21 +63,7 @@ public class HiloSecundario extends Thread{
 			agregarYQuitarEntidades();
 		}
 	}
-	/*
-    private void actualizarLimiteVirtual(Entidad entidad) {
-    	
-    	Point limite = juego.getLimite(); 
-    	if(entidad.getVector().getPosicion().y<limite.y && entidad.getVector().getPosicion().y<0) {
-			if(limite.x >= Juego.ANCHO_DE_COMBATE-entidad.getImagen().getIconWidth()) {
-				limite.y = limite.y = entidad.getVector().getPosicion().y-entidad.getImagen().getIconHeight();
-				limite.x = 0;
-			}else {
-				limite.y = limite.y = entidad.getVector().getPosicion().y;
-				limite.x += entidad.getImagen().getIconWidth();
-			}
-    	}
-    	
-    }*/
+
 	
 	/**
 	 * esparar

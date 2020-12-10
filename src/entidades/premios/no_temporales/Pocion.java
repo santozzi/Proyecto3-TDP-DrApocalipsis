@@ -26,7 +26,6 @@ public class Pocion extends ObjetoPrecioso {
 	}
 	@Override
 	public void impacto(int letalidad) {
-		// TODO Auto-generated method stub
 		
 	}
 	

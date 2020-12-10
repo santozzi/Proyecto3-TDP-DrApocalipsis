@@ -7,11 +7,9 @@ public class Sonidos {
 	private static Sonidos audio;
 
 	private Sonidos(String nombre) {
-		//ap = new AudioPlayer("/src/media/sonidos/" + nombre + ".mp3");
 		ap = new AudioPlayer("/media/sonidos/" + nombre + ".mp3");
 		hilo = new Thread(ap);
 
-		//System.out.println("No se encontro el archivo con el nombre del efecto de sonido especificado");
 	}
 
 	public static void reproducir(String nombre) {

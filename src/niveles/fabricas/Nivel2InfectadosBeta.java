@@ -9,7 +9,7 @@ public class Nivel2InfectadosBeta extends FabricaDeTandas {
 	
 
 	public Nivel2InfectadosBeta(Juego j, Nivel nivel) {
-		super(j, nivel, 20);
+		super(j, nivel, 10);
 
 	}
 

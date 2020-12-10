@@ -10,7 +10,7 @@ public class Nivel1InfectadosAlpha extends FabricaDeTandas{
 
 
 	public Nivel1InfectadosAlpha(Juego j, Nivel nivel) {
-		super(j, nivel, 50);
+		super(j, nivel, 10);
 	}
 
 	@Override 

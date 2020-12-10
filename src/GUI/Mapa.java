@@ -342,8 +342,6 @@ public class Mapa  extends JFrame implements IObservador{
 	public void updateNivel(ImageIcon izq, ImageIcon fondo, ImageIcon der) {
 		panelFondo.setImagenDeFondo(fondo);
 		panelFondo.repaint();
-		//panelFondo = new PnlScore();
-		//panelFondo.repaint();
 		lblMapaDerecha.setIcon(der);
 		lblMapaIzquierda.setIcon(izq);
 
@@ -371,15 +369,9 @@ public class Mapa  extends JFrame implements IObservador{
 			Musica.reproducir("victorious");
 		
 		estadistica.iniciar();
-		//dispose();
 		
 	}
-	
-	/*
-	public void reiniciarJuego() {
-		iniciar();
-	}
-*/
+
 	@Override
 	public void cerrar() {
 		Musica.parar();

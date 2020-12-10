@@ -16,12 +16,7 @@ public class AudioPlayer implements Runnable {
 	@Override
 	public void run() {
 		try{
-			/*
-			File f = new File(this.getClass().getResource(this.file).toURI());
-			File f = new File(System.getProperty("user.dir")+this.file);
-			System.out.println(f);
-			InputStream fis = new FileInputStream(f);
-			*/
+		
 			InputStream fis = this.getClass().getResourceAsStream(file);
 		    Player playMP3 = new Player(fis);
 		    playMP3.play();
