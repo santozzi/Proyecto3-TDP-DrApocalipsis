@@ -7,3 +7,13 @@ Para verlo en funcionamiento <a href="https://github.com/santozzi/Proyecto3-TDP/
   <img src="https://github.com/santozzi/Proyecto3-TDP/blob/master/drApocalipsis.png" width="450" title="DrApocalipsisPicture">
   
 </p>
+
+Diagrama UML de nuestro proyecto. La idea es utilizar diversos patrones de diseño para realizar un proyecto complejo y escalable. Entre ellos utilizamos:
+<ul>
+  <li>Observer</li>
+  <li>Visitor</li>
+  <li>Factory</li>
+  <li>Strategy</li>
+  <li>Singleton</li>
+  <li>Command</li>
+</ul>
