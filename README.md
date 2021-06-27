@@ -8,12 +8,14 @@ Para verlo en funcionamiento <a href="https://github.com/santozzi/Proyecto3-TDP/
   
 </p>
 
-Diagrama UML de nuestro proyecto. La idea es utilizar diversos patrones de diseño para realizar un proyecto complejo y escalable. Entre ellos utilizamos:
+La idea es utilizar diversos patrones de diseño para realizar un proyecto complejo y escalable. Entre ellos utilizamos:
 <ul>
-  <li>Observer</li>
-  <li>Visitor</li>
-  <li>Factory</li>
-  <li>Strategy</li>
-  <li>Singleton</li>
-  <li>Command</li>
-</ul>
+    <li><a href="https://refactoring.guru/es/design-patterns/observer">Observer</a></li>
+    <li><a href="https://refactoring.guru/es/design-patterns/visitor">Visitor</a></li>
+    <li> <a href="https://refactoring.guru/es/design-patterns/factory-method">Factory</li></a>
+    <li><a href="https://refactoring.guru/es/design-patterns/strategy">Strategy</a></li>
+    <li><a href="https://refactoring.guru/es/design-patterns/singleton">Singleton</a></li>
+    <li><a href="https://refactoring.guru/es/design-patterns/command">Command</a></li>
+  </ul>
+Diagrama UML de nuestro proyecto.
+ <img src="https://github.com/santozzi/Proyecto3-TDP/blob/master/Proyecto%203%20-TDP.png" width="1700" title="UML">
