@@ -75,7 +75,7 @@ public class HiloSecundario extends Thread{
 	}
 	/**
 	 * agregarYQuitarEntidades
-	 * Este método se ejecuta al finalizar cada ciclo del hilo secundario
+	 * Este mï¿½todo se ejecuta al finalizar cada ciclo del hilo secundario
 	 * Se encarga de agregar, quitar y clonar la lista de entidades activas
 	 */
 	private void agregarYQuitarEntidades() {

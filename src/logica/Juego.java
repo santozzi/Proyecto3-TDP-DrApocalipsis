@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 /**
  *Juego 
- *Lógica del programa que implementa a IObservado
+ *Lï¿½gica del programa que implementa a IObservado
  */
 public class Juego implements IObservado {
     //Nivel del juego
@@ -46,7 +46,7 @@ public class Juego implements IObservado {
 	//Velocidad del juego, tiempo de espera en milisegundos por cilclo
 	protected static final int LATENCIA_MINIMA=5;
 	//unidad Maxima de velocidad de entidades
-	protected static final int LATENCIA_MAXIMA=10;
+	protected static final int LATENCIA_MAXIMA=8;
 	//Entidad que controla el usuario
 	protected Jugador jugador;
 	//determina cuando se termina la primera tanda
@@ -102,7 +102,7 @@ public class Juego implements IObservado {
 		
 	}
 	/**
-	 * Para el hilo secundario y la música
+	 * Para el hilo secundario y la mï¿½sica
 	 */
 	public void finalizarJuego() {
 		hiloSecundario.terminarEjecucion();
