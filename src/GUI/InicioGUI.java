@@ -57,12 +57,12 @@ public class InicioGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Musica.reproducir("fnv");
+		//Musica.reproducir("fnv");
 
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Musica.parar();
+				//Musica.parar();
 				Mapa mapa = new Mapa();
 				mapa.setVisible(true);
 				dispose();
